@@ -1,6 +1,7 @@
 package model.sql;
 
 import java.sql.Connection;
+import model.*;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -61,22 +62,36 @@ public class Kone {
 	} 
 	 
 
-	public static void erregistratu(String izena, String abizena, String erabiltzailea, String pasahitza, String data,
-			String hizk) {
+	public static void erregistratu(ErabiltzaileFree erab) {
 		konektatu();
 		kontsulta = "INSERT into Bezeroa(Izena,Abizena,Erabiltzailea,Pasahitza,JaiotzeData,IdHizkuntza) VALUES(?,?,?,?,?,?)";
 		try {
 			pstm = konexioa.prepareStatement(kontsulta);
-			pstm.setString(1, izena);
-			pstm.setString(2, abizena);
-			pstm.setString(3, erabiltzailea);
-			pstm.setString(4, pasahitza);
-			pstm.setString(5, data);
-			pstm.setString(6, hizk);
+			pstm.setString(1, erab.getIzena());
+			pstm.setString(2, erab.getAbizena());
+			pstm.setString(3, erab.getErabiltzailea());
+			pstm.setString(4, erab.getPasahitza());
+			pstm.setString(5, erab.getJaiotzeData());
+			pstm.setString(6, erab.getHizkuntza());
 			pstm.execute();
 		} catch (SQLException e) {
 			System.out.println("Kontsulta txarto" + e.getMessage());
 		}
 		itxiConexioa();
 	}
+	
+	public static boolean isLoginaOk(String erabiltzailea,String mota){
+		konektatu();
+		kontsulta = "SELECT erabiltzailea FROM bezeroa WHERE erabiltzailea = "+erabiltzailea+" ";
+		try {
+			stm = konexioa.createStatement();
+			kontsulta = "SELECT Deskribapena FROM Hizkuntza";
+			rs = stm.executeQuery(kontsulta);
+		} catch (SQLException e) {
+			e.getMessage();
+		}
+	
+		
+	}
+	
 }

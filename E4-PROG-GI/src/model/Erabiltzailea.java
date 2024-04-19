@@ -11,8 +11,8 @@ public class Erabiltzailea {
 	protected Date jaiotzeData;
 	protected String hizkuntza;
 	
-	public Erabiltzailea(String erabiltzailea, String pasahitza, String izena, String abizena, Date jaiotzeData,
-			String hizkuntza) {
+	public Erabiltzailea(String izena, String abizena, String erabiltzailea, String pasahitza, String data,
+			String hizk) {
 		this.erabiltzailea = erabiltzailea;
 		this.pasahitza = pasahitza;
 		this.izena = izena;

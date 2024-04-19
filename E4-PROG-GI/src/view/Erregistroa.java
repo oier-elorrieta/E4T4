@@ -41,6 +41,7 @@ import java.util.Properties;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextPane;
+import model.*;
 
 public class Erregistroa extends JFrame {
 
@@ -202,7 +203,8 @@ public class Erregistroa extends JFrame {
 		btnErregistratu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {	
-				Kone.erregistratu(txtIzena.getText().trim(),txtAbizenak.getText().trim(),txtErabiltzailea.getText().trim(),passwordField.getText(), txtJaiotzeData.getText() ,(String)cboHizkuntza.getSelectedItem());	
+				ErabiltzaileFree erab = new ErabiltzaileFree(txtIzena.getText().trim(),txtAbizenak.getText().trim(),txtErabiltzailea.getText().trim(),passwordField.getText(), txtJaiotzeData.getText() ,(String)cboHizkuntza.getSelectedItem());
+				Kone.erregistratu(erab);
 				dispose();
 				JFrameSortu.menuNagusiaAukeraSortu();
 			}

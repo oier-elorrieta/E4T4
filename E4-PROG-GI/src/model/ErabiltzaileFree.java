@@ -4,8 +4,9 @@ import java.util.Date;
 
 public class ErabiltzaileFree extends Erabiltzailea {
 
-	public ErabiltzaileFree(String erabiltzailea, String pasahitza, String izena, String abizena, Date jaiotzeData,
-			String hizkuntza) {
-		super(erabiltzailea, pasahitza, izena, abizena, jaiotzeData, hizkuntza);
+	public ErabiltzaileFree(String izena, String abizena, String erabiltzailea, String pasahitza, String data,
+			String hizk) {
+		super(izena, abizena,  erabiltzailea,  pasahitza,  data,
+				 hizk);
 	}
 }
