@@ -20,6 +20,9 @@ import java.awt.SystemColor;
 import java.awt.Toolkit;
 
 import model.*;
+import model.metodoak.JFrameSortu;
+import model.sql.Kone;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -53,7 +56,7 @@ public class Login extends JFrame {
 	public Login() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 250, 906, 594);
-		setTitle("Login - Talde 6");
+		setTitle("Login - Talde 4");
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -103,9 +106,7 @@ public class Login extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				dispose();		
-				Erregistroa erregistroAukera = new Erregistroa();
-				erregistroAukera.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-				erregistroAukera.setVisible(true);
+				JFrameSortu.erregistroAukeraSortu();
 			}
 		});
 	}

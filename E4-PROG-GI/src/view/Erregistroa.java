@@ -10,6 +10,8 @@ import javax.swing.border.LineBorder;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.UtilDateModel;
 import org.mindrot.jbcrypt.BCrypt;
+
+import model.metodoak.JFrameSortu;
 import model.sql.Kone;
 import javax.swing.ButtonGroup;
 import java.awt.Color;
@@ -41,13 +43,11 @@ public class Erregistroa extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	protected static final String String = null;
-	private static final int nanLuzeraBeti = 9;
 	private JPanel contentPane;
 	private JTextField txtIzena;
 	private JTextField txtAbizenak;
 	private JTextField txtErabiltzailea;
 	private JTextField txtJaiotzeData;
-	private JTextField txtErregistroData;
 	private JPasswordField passwordField;
 	private JPasswordField passwordFieldErrepikatu;
 
@@ -56,12 +56,11 @@ public class Erregistroa extends JFrame {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
+		EventQueue.invokeLater(new Runnable() {	
 			
-			Kone kone = new Kone();
 			public void run() {
 				try {
-					Erregistroa frame = new Erregistroa(kone);
+					Erregistroa frame = new Erregistroa();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -73,11 +72,11 @@ public class Erregistroa extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Erregistroa(Kone kone) {
+	public Erregistroa() {
 		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 250, 906, 594);
-		setTitle("Erregistroa - Talde 6");
+		setTitle("Erregistroa - Talde 4");
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -146,25 +145,17 @@ public class Erregistroa extends JFrame {
 		txtJaiotzeData.setToolTipText("Sartu Jaiotze Data...");
 		txtJaiotzeData.setColumns(10);
 		txtJaiotzeData.setBorder(new LineBorder(Color.GRAY, 1, true));
-
-		JLabel lblErregistroData = new JLabel("Erregistro Data:");
-		lblErregistroData.setBounds(80, 320, 129, 23);
-		lblErregistroData.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 15));
-
-		txtErregistroData = new JTextField();
-		txtErregistroData.setBounds(220, 320, 300, 32);
-		txtErregistroData.setToolTipText("Sartu Erregistro data...");
-		txtErregistroData.setColumns(10);
-		txtErregistroData.setBorder(new LineBorder(Color.GRAY, 1, true));
 		
 		JLabel lblHizkuntza = new JLabel("Hizkuntza:");
-		lblHizkuntza.setBounds(80, 380, 129, 23);
+		lblHizkuntza.setBounds(80, 340, 129, 23);
 		lblHizkuntza.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 15));
 		
-		
-		
-		
-		
+		JComboBox<String> cboHiz = new JComboBox();
+		String[] hiz = {"ES","EU","EN","FR","DE","CA","GA","AR"};
+		for (String i: hiz) {
+			cboHiz.addItem(i);
+		}
+		cboHiz.setBounds(220, 340, 136, 29);
 		
 		JButton btnAtzera = new JButton("Atzera");
 		btnAtzera.setBounds(269, 462, 136, 29);
@@ -177,18 +168,6 @@ public class Erregistroa extends JFrame {
 		btnErregistratu.setForeground(SystemColor.text);
 		btnErregistratu.setBackground(SystemColor.desktop);
 		btnErregistratu.setFont(new Font("Segoe UI Black", Font.PLAIN, 15));
-		
-		JComboBox<String> cboHiz = new JComboBox();
-		String[] hiz = {"ES","EU","EN","FR","DE","CA","GA","AR"};
-		
-		for (String i: hiz) {
-			
-			cboHiz.addItem(i);
-		}
-		
-		cboHiz.setBounds(73, 414, 136, 29);
-		contentPane.add(cboHiz);
-		
 		
 		contentPane.add(lblErregistroa_Header);
 		contentPane.add(lblIzena);
@@ -203,26 +182,24 @@ public class Erregistroa extends JFrame {
 		contentPane.add(passwordFieldErrepikatu);
 		contentPane.add(lblJaiotzeData);
 		contentPane.add(txtJaiotzeData);
-		contentPane.add(lblErregistroData);
-		contentPane.add(txtErregistroData);
 		contentPane.add(lblHizkuntza);
+		contentPane.add(cboHiz);
 		contentPane.add(btnAtzera);
 		contentPane.add(btnErregistratu);
 		
 		btnErregistratu.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
-				System.out.println(txtIzena.getText().trim()+txtAbizenak.getText().trim()+txtErabiltzailea.getText().trim()+passwordField.getText()+ txtJaiotzeData.getText() +(String)cboHiz.getSelectedItem());
-						
-				kone.erregistratu(txtIzena.getText().trim(),txtAbizenak.getText().trim(),txtErabiltzailea.getText().trim(),passwordField.getText(), txtJaiotzeData.getText() ,(String)cboHiz.getSelectedItem());	
+			public void mouseClicked(MouseEvent e) {	
+				Kone.erregistratu(txtIzena.getText().trim(),txtAbizenak.getText().trim(),txtErabiltzailea.getText().trim(),passwordField.getText(), txtJaiotzeData.getText() ,(String)cboHiz.getSelectedItem());	
 				
 			}
 		});
 		
-		
-		
-	
-		
-		
+		btnAtzera.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JFrameSortu.loginAukeraSortu();
+			}
+		});
 	}
 }

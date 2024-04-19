@@ -13,36 +13,42 @@ import java.util.Random;
 public class Kone {
 	
 
-	private String url = "jdbc:mysql://10.5.6.111:3306/Sphea";
-	private String user = "admin";
-    private String pass = "headmin";
-    private Connection konexioa = null;
-    private String kontsulta;
-    private Statement stm;
-    private PreparedStatement pstm;
-    private ResultSet rs;
+	private static String url = "jdbc:mysql://10.5.6.111:3306/Sphea";
+	private static String user = "admin";
+    private static String pass = "headmin";
+    private static Connection konexioa = null;
+    private static String kontsulta;
+    private static Statement stm;
+    private static PreparedStatement pstm;
+    private static ResultSet rs;
    
 
 	// Datu-basearekin konexioa egiteko metodoa
-    public Connection konektatu() {
-        
-    	
+    public static void konektatu() {
     	try {
-    		 
             // Konexioa sortu, oraindik ez badago
             if (konexioa == null || konexioa.isClosed()) {
-                
                 konexioa = DriverManager.getConnection(url, user, pass);
                 System.out.println("Konektatuta!!!");
             }
         } catch (SQLException e) {
             System.out.println("Errorea datu-basearekin konexioa egiten: " + e.getMessage());
         }
-    	return konexioa;
+    	//return konexioa;
     }
     
+    public static void itxiConexioa() {
+		try {
+			stm.close();
+			konexioa.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+    
 	
-	public ResultSet hizkuntzaHartu() {
+	/*public ResultSet hizkuntzaHartu() {
 		try {
 			kontsulta = "SELECT Deskribapena FROM Hizkuntza JOIN Bezeroa using(IdHizkuntza)";
 			stm = this.konexioa.createStatement();
@@ -52,10 +58,9 @@ public class Kone {
 			e.printStackTrace();
 		}
 		return rs;
-	}
-	
-	public void erregistratu(String izena,String abizena,String erabiltzailea,String pasahitza,String data,String hizk) {
-		
+	}*/
+			
+public static void erregistratu(String izena,String abizena,String erabiltzailea,String pasahitza,String data,String hizk) {
 		konektatu();
 		kontsulta = "INSERT into Bezeroa(Izena,Abizena,Erabiltzailea,Pasahitza,JaiotzeData,IdHizkuntza) VALUES(?,?,?,?,?,?)";
 		try {
@@ -69,21 +74,8 @@ public class Kone {
 			pstm.execute();
 		} catch (SQLException e) {
 			System.out.println("Kontsulta txarto" + e.getMessage());
-		}
+		}	
+		itxiConexioa();
 		
-		
-	}
-	
-	
-	
-
-	public void itxiConexioa() {
-		try {
-			stm.close();
-			konexioa.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 }
