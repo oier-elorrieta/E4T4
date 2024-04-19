@@ -102,6 +102,8 @@ public class Login extends JFrame {
 		contentPane.add(btnErregistratu);
 		contentPane.add(btnLogin);
 		
+		
+		
 		btnErregistratu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

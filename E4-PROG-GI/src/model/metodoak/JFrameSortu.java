@@ -3,6 +3,7 @@ package model.metodoak;
 import javax.swing.WindowConstants;
 import view.Erregistroa;
 import view.Login;
+import view.MenuNagusia;
 
 public class JFrameSortu {
 
@@ -16,5 +17,11 @@ public class JFrameSortu {
 		Erregistroa erregistroAukera = new Erregistroa();
 		erregistroAukera.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		erregistroAukera.setVisible(true);
+	}
+	
+	public static void menuNagusiaAukeraSortu(){
+		MenuNagusia menuNagusiaAukera = new MenuNagusia();
+		menuNagusiaAukera.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		menuNagusiaAukera.setVisible(true);
 	}
 }

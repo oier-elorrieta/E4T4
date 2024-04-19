@@ -66,14 +66,40 @@ public class MenuNagusia extends JFrame {
 		lblaukeratu.setHorizontalAlignment(SwingConstants.CENTER);
 		lblaukeratu.setFont(new Font("Source Sans Pro Black", Font.BOLD, 45));
 		
-		JButton btnLogin = new JButton("Login");
-		btnLogin.setBackground(Color.BLACK);
-		btnLogin.setForeground(Color.RED);
-		btnLogin.setBounds(100, 53, 144, 50);
-		btnLogin.setFont(new Font("SansSerif", Font.BOLD, 22));
-		btnLogin.setFocusPainted(false);
+		JButton btnAtzera = new JButton("Atzera");
+		btnAtzera.setBackground(Color.BLACK);
+		btnAtzera.setForeground(Color.RED);
+		btnAtzera.setBounds(50, 60, 144, 50);
+		btnAtzera.setFont(new Font("SansSerif", Font.BOLD, 22));
+		btnAtzera.setFocusPainted(false);
+		
+		JButton btnMusikaDeskubritu = new JButton("Musika Deskubritu");
+		btnMusikaDeskubritu.setBounds(150, 175, 550, 54);
+		btnMusikaDeskubritu.setFont(new Font("Segoe UI", Font.BOLD, 21));
+		btnMusikaDeskubritu.setFocusPainted(false);
+		
+		JButton btnPodcastDeskubritu = new JButton("Podcast Deskubritu");
+		btnPodcastDeskubritu.setBounds(150, 275, 550, 54);
+		btnPodcastDeskubritu.setFont(new Font("Segoe UI", Font.BOLD, 21));
+		btnPodcastDeskubritu.setFocusPainted(false);
+		
+		JButton btnNirePlayList = new JButton("Nire PlayList-ak");
+		btnNirePlayList.setBounds(150, 375, 550, 54);
+		btnNirePlayList.setFont(new Font("Segoe UI", Font.BOLD, 21));
+		btnNirePlayList.setFocusPainted(false);
 		
 		contentPane.add(lblaukeratu);
-		contentPane.add(btnLogin);
+		contentPane.add(btnAtzera);
+		contentPane.add(btnMusikaDeskubritu);
+		contentPane.add(btnPodcastDeskubritu);
+		contentPane.add(btnNirePlayList);
+		
+		btnAtzera.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+				JFrameSortu.loginAukeraSortu();
+			}
+		});
 	}
 }

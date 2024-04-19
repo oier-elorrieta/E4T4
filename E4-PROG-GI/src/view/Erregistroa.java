@@ -7,11 +7,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.text.View;
+
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.UtilDateModel;
 import org.mindrot.jbcrypt.BCrypt;
 
 import model.metodoak.JFrameSortu;
+import model.metodoak.ViewMetodoak;
 import model.sql.Kone;
 import javax.swing.ButtonGroup;
 import java.awt.Color;
@@ -50,6 +53,7 @@ public class Erregistroa extends JFrame {
 	private JTextField txtJaiotzeData;
 	private JPasswordField passwordField;
 	private JPasswordField passwordFieldErrepikatu;
+	private DefaultComboBoxModel<String> cboModelHizkuntza = new DefaultComboBoxModel<>(); 
 
 	/**
 	 * 
@@ -150,12 +154,19 @@ public class Erregistroa extends JFrame {
 		lblHizkuntza.setBounds(80, 340, 129, 23);
 		lblHizkuntza.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 15));
 		
-		JComboBox<String> cboHiz = new JComboBox();
+		JComboBox cboHizkuntza = new JComboBox();
+		cboModelHizkuntza = ViewMetodoak.cboHizkuntzaModeloaSortu(cboModelHizkuntza);
+		cboHizkuntza.setModel(cboModelHizkuntza);
+		cboHizkuntza.setBounds(220, 340, 136, 29);
+		contentPane.add(cboHizkuntza);
+		
+		
+		/*JComboBox<String> cboHiz = new JComboBox();
 		String[] hiz = {"ES","EU","EN","FR","DE","CA","GA","AR"};
 		for (String i: hiz) {
 			cboHiz.addItem(i);
 		}
-		cboHiz.setBounds(220, 340, 136, 29);
+		cboHiz.setBounds(220, 340, 136, 29);*/
 		
 		JButton btnAtzera = new JButton("Atzera");
 		btnAtzera.setBounds(269, 462, 136, 29);
@@ -183,21 +194,24 @@ public class Erregistroa extends JFrame {
 		contentPane.add(lblJaiotzeData);
 		contentPane.add(txtJaiotzeData);
 		contentPane.add(lblHizkuntza);
-		contentPane.add(cboHiz);
+	//	contentPane.add(cboHiz);
+		contentPane.add(cboHizkuntza);
 		contentPane.add(btnAtzera);
 		contentPane.add(btnErregistratu);
 		
 		btnErregistratu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {	
-				Kone.erregistratu(txtIzena.getText().trim(),txtAbizenak.getText().trim(),txtErabiltzailea.getText().trim(),passwordField.getText(), txtJaiotzeData.getText() ,(String)cboHiz.getSelectedItem());	
-				
+				Kone.erregistratu(txtIzena.getText().trim(),txtAbizenak.getText().trim(),txtErabiltzailea.getText().trim(),passwordField.getText(), txtJaiotzeData.getText() ,(String)cboHizkuntza.getSelectedItem());	
+				dispose();
+				JFrameSortu.menuNagusiaAukeraSortu();
 			}
 		});
 		
 		btnAtzera.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				dispose();
 				JFrameSortu.loginAukeraSortu();
 			}
 		});
