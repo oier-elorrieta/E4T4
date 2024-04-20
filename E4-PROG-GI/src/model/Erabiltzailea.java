@@ -14,10 +14,6 @@ public class Erabiltzailea {
 	protected Date jaiotzeData;
 	protected String hizkuntza;
 	
-<<<<<<< HEAD
-	public Erabiltzailea(String izena, String abizena, String erabiltzailea, String pasahitza, String data,
-			String hizk) {
-=======
 	/**
 	 * Erabiltzailea klasearen eraikitzailea.
 	 * 
@@ -30,7 +26,6 @@ public class Erabiltzailea {
 	 */
 	public Erabiltzailea(String erabiltzailea, String pasahitza, String izena, String abizena, Date jaiotzeData,
 			String hizkuntza) {
->>>>>>> 51c2b42dcd235e05ca3dcbdf3b433d9826b6d262
 		this.erabiltzailea = erabiltzailea;
 		this.pasahitza = pasahitza;
 		this.izena = izena;

@@ -14,7 +14,7 @@ public class ViewMetodoak {
 			Kone.konektatu();
 			ResultSet hizkuntzaLista = Kone.hizkuntzakAtera();
 			while (hizkuntzaLista.next()) {
-				modeloa.addElement(hizkuntzaLista.getString("Deskribapena"));
+				modeloa.addElement(hizkuntzaLista.getString("IdHizkuntza"));
 			}
 			Kone.itxiConexioa();
 		} catch (SQLException e) {

@@ -12,10 +12,12 @@ import java.sql.Statement;
 import java.util.Random;
 
 public class Kone {
-
-	private static String url = "jdbc:mysql://10.5.6.111:3306/Sphea";
-	private static String user = "admin";
-	private static String pass = "headmin";
+	private static final String url = "jdbc:mysql://localhost:3306/sphea";
+	//private static String url = "jdbc:mysql://10.5.6.111:3306/Sphea";
+	private static final String user = "root";
+	private static final String pass = "";
+	//private static String user = "admin";
+	//private static String pass = "headmin";
 	private static Connection konexioa = null;
 	private static String kontsulta;
 	private static Statement stm = null;
@@ -53,7 +55,7 @@ public class Kone {
 	public static ResultSet hizkuntzakAtera() {
 		try {
 			stm = konexioa.createStatement();
-			kontsulta = "SELECT Deskribapena FROM Hizkuntza";
+			kontsulta = "SELECT IdHizkuntza FROM Hizkuntza";
 			rs = stm.executeQuery(kontsulta);
 		} catch (SQLException e) {
 			e.getMessage();
@@ -71,7 +73,7 @@ public class Kone {
 			pstm.setString(2, erab.getAbizena());
 			pstm.setString(3, erab.getErabiltzailea());
 			pstm.setString(4, erab.getPasahitza());
-			pstm.setString(5, erab.getJaiotzeData());
+			pstm.setDate(5, (Date) erab.getJaiotzeData());
 			pstm.setString(6, erab.getHizkuntza());
 			pstm.execute();
 		} catch (SQLException e) {
@@ -80,7 +82,7 @@ public class Kone {
 		itxiConexioa();
 	}
 	
-	public static boolean isLoginaOk(String erabiltzailea,String mota){
+	/*public static boolean isLoginaOk(String erabiltzailea,String mota){
 		konektatu();
 		kontsulta = "SELECT erabiltzailea FROM bezeroa WHERE erabiltzailea = "+erabiltzailea+" ";
 		try {
@@ -93,5 +95,6 @@ public class Kone {
 	
 		
 	}
+	*/
 	
 }

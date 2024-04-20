@@ -161,14 +161,6 @@ public class Erregistroa extends JFrame {
 		cboHizkuntza.setBounds(220, 340, 136, 29);
 		contentPane.add(cboHizkuntza);
 		
-		
-		/*JComboBox<String> cboHiz = new JComboBox();
-		String[] hiz = {"ES","EU","EN","FR","DE","CA","GA","AR"};
-		for (String i: hiz) {
-			cboHiz.addItem(i);
-		}
-		cboHiz.setBounds(220, 340, 136, 29);*/
-		
 		JButton btnAtzera = new JButton("Atzera");
 		btnAtzera.setBounds(269, 462, 136, 29);
 		btnAtzera.setForeground(SystemColor.text);
@@ -195,16 +187,17 @@ public class Erregistroa extends JFrame {
 		contentPane.add(lblJaiotzeData);
 		contentPane.add(txtJaiotzeData);
 		contentPane.add(lblHizkuntza);
-	//	contentPane.add(cboHiz);
 		contentPane.add(cboHizkuntza);
 		contentPane.add(btnAtzera);
 		contentPane.add(btnErregistratu);
 		
 		btnErregistratu.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {	
-				ErabiltzaileFree erab = new ErabiltzaileFree(txtIzena.getText().trim(),txtAbizenak.getText().trim(),txtErabiltzailea.getText().trim(),passwordField.getText(), txtJaiotzeData.getText() ,(String)cboHizkuntza.getSelectedItem());
-				Kone.erregistratu(erab);
+			public void mouseClicked(MouseEvent e) {
+				String[] data = txtJaiotzeData.getText().split("-");
+				Date jaioData = new Date(Integer.parseInt(data[0])-1900, Integer.parseInt(data[1])-1,Integer.parseInt(data[2]));
+				ErabiltzaileFree erabiltzaileFree = new ErabiltzaileFree(txtIzena.getText().trim(),txtAbizenak.getText().trim(),txtErabiltzailea.getText().trim(),passwordField.getText(), jaioData ,(String) cboHizkuntza.getSelectedItem());
+				Kone.erregistratu(erabiltzaileFree);
 				dispose();
 				JFrameSortu.menuNagusiaAukeraSortu();
 			}
