@@ -12,14 +12,15 @@ import java.sql.Statement;
 import java.util.Random;
 
 public class Kone {
+	/*
 	private static String url = "jdbc:mysql://10.5.6.111:3306/Sphea";
 	private static String user = "admin";
 	private static String pass = "headmin";
-	/*
+	*/
 	private static final String url = "jdbc:mysql://localhost:3306/sphea";
 	private static final String user = "root";
 	private static final String pass = "";
-	*/
+	
 	private static Connection konexioa = null;
 	private static String kontsulta;
 	private static Statement stm = null;
@@ -84,19 +85,18 @@ public class Kone {
 		itxiConexioa();
 	}
 	
-	/*public static boolean isLoginaOk(String erabiltzailea,String mota){
+	public static ResultSet isLoginaOk(String erabiltzailea){
 		konektatu();
-		kontsulta = "SELECT erabiltzailea FROM bezeroa WHERE erabiltzailea = "+erabiltzailea+" ";
 		try {
 			stm = konexioa.createStatement();
-			kontsulta = "SELECT Deskribapena FROM Hizkuntza";
+			kontsulta = "SELECT Erabiltzailea, Pasahitza FROM bezeroa WHERE Erabiltzailea = '"+erabiltzailea+"'";
 			rs = stm.executeQuery(kontsulta);
 		} catch (SQLException e) {
 			e.getMessage();
 		}
-	
+		return rs;
 		
 	}
-	*/
+	
 	
 }

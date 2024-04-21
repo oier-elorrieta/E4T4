@@ -21,6 +21,7 @@ import java.awt.Toolkit;
 
 import model.*;
 import model.metodoak.JFrameSortu;
+import model.metodoak.ViewMetodoak;
 import model.sql.Kone;
 
 import java.awt.event.MouseAdapter;
@@ -33,7 +34,7 @@ public class Login extends JFrame {
 	private static final long serialVersionUID = 1L;
 	protected static final String String = null;
 	private JPanel contentPane;
-	private JTextField txtNAN;
+	private JTextField txtErabiltzaile;
 	private JPasswordField passwordField;
 
 	/**
@@ -44,7 +45,7 @@ public class Login extends JFrame {
 			public void run() {
 				try {
 					Login frame = new Login();
-					frame.setVisible(false);
+					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -73,9 +74,9 @@ public class Login extends JFrame {
 		lblErabiltzailea.setBounds(210, 165, 204, 23);
 		lblErabiltzailea.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 15));
 		
-		txtNAN = new JTextField();
-		txtNAN.setBounds(210, 191, 433, 32);
-		txtNAN.setColumns(10);
+		txtErabiltzaile = new JTextField();
+		txtErabiltzaile.setBounds(210, 191, 433, 32);
+		txtErabiltzaile.setColumns(10);
 		
 		JLabel lblPasahitza = new JLabel("PASAHITZA");
 		lblPasahitza.setBounds(210, 254, 204, 23);
@@ -103,15 +104,12 @@ public class Login extends JFrame {
 		
 		contentPane.add(lblLogin_Header);
 		contentPane.add(lblErabiltzailea);
-		contentPane.add(txtNAN);
+		contentPane.add(txtErabiltzaile);
 		contentPane.add(lblPasahitza);
 		contentPane.add(passwordField);
 		contentPane.add(cboErabiltzaileMota);
 		contentPane.add(btnErregistratu);
 		contentPane.add(btnLogin);
-		
-	
-		
 		
 		btnErregistratu.addMouseListener(new MouseAdapter() {
 			@Override
@@ -124,6 +122,14 @@ public class Login extends JFrame {
 		btnLogin.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				if (cboErabiltzaileMota.getSelectedItem().equals("Bezeroa")) {
+					if(ViewMetodoak.comprobatuLogin(txtErabiltzaile.getText(), passwordField.getText())) {
+						dispose();		
+						JFrameSortu.menuNagusiaAukeraSortu();
+					}			
+				} else {
+					
+				}
 			}
 		});
 	}
