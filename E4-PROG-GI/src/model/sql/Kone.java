@@ -12,12 +12,14 @@ import java.sql.Statement;
 import java.util.Random;
 
 public class Kone {
+	private static String url = "jdbc:mysql://10.5.6.111:3306/Sphea";
+	private static String user = "admin";
+	private static String pass = "headmin";
+	/*
 	private static final String url = "jdbc:mysql://localhost:3306/sphea";
-	//private static String url = "jdbc:mysql://10.5.6.111:3306/Sphea";
 	private static final String user = "root";
 	private static final String pass = "";
-	//private static String user = "admin";
-	//private static String pass = "headmin";
+	*/
 	private static Connection konexioa = null;
 	private static String kontsulta;
 	private static Statement stm = null;

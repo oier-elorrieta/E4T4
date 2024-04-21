@@ -25,6 +25,8 @@ import model.sql.Kone;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class Login extends JFrame {
 
@@ -82,14 +84,19 @@ public class Login extends JFrame {
 		passwordField = new JPasswordField();
 		passwordField.setBounds(210, 281, 433, 33);
 		
+		JComboBox cboErabiltzaileMota = new JComboBox();
+		cboErabiltzaileMota.setModel(new DefaultComboBoxModel(new String[] {"Bezeroa", "Administratzailea"}));
+		cboErabiltzaileMota.setBounds(210, 350, 433, 33);
+		cboErabiltzaileMota.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 15));
+		
 		JButton btnErregistratu = new JButton("Erregistratu");
-		btnErregistratu.setBounds(342, 380, 148, 29);
+		btnErregistratu.setBounds(342, 420, 148, 29);
 		btnErregistratu.setForeground(SystemColor.text);
 		btnErregistratu.setFont(new Font("Segoe UI Black", Font.PLAIN, 15));
 		btnErregistratu.setBackground(SystemColor.desktop);
 		
 		JButton btnLogin = new JButton("Login");
-		btnLogin.setBounds(342, 422, 148, 29);
+		btnLogin.setBounds(342, 460, 148, 29);
 		btnLogin.setForeground(SystemColor.text);
 		btnLogin.setFont(new Font("Segoe UI Black", Font.PLAIN, 15));
 		btnLogin.setBackground(SystemColor.desktop);
@@ -99,9 +106,11 @@ public class Login extends JFrame {
 		contentPane.add(txtNAN);
 		contentPane.add(lblPasahitza);
 		contentPane.add(passwordField);
+		contentPane.add(cboErabiltzaileMota);
 		contentPane.add(btnErregistratu);
 		contentPane.add(btnLogin);
 		
+	
 		
 		
 		btnErregistratu.addMouseListener(new MouseAdapter() {
@@ -109,6 +118,12 @@ public class Login extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				dispose();		
 				JFrameSortu.erregistroAukeraSortu();
+			}
+		});
+		
+		btnLogin.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
 			}
 		});
 	}

@@ -15,6 +15,7 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import model.metodoak.JFrameSortu;
 import model.metodoak.ViewMetodoak;
+import model.salbuespenak.pasahitzaEzKointziditu;
 import model.sql.Kone;
 import javax.swing.ButtonGroup;
 import java.awt.Color;
@@ -194,12 +195,22 @@ public class Erregistroa extends JFrame {
 		btnErregistratu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				String[] data = txtJaiotzeData.getText().split("-");
-				Date jaioData = new Date(Integer.parseInt(data[0])-1900, Integer.parseInt(data[1])-1,Integer.parseInt(data[2]));
-				ErabiltzaileFree erabiltzaileFree = new ErabiltzaileFree(txtIzena.getText().trim(),txtAbizenak.getText().trim(),txtErabiltzailea.getText().trim(),passwordField.getText(), jaioData ,(String) cboHizkuntza.getSelectedItem());
-				Kone.erregistratu(erabiltzaileFree);
-				dispose();
-				JFrameSortu.menuNagusiaAukeraSortu();
+				try {
+					if (!passwordField.getText().equals(passwordFieldErrepikatu.getText())) {
+						throw new pasahitzaEzKointziditu();
+						
+					}
+					String[] data = txtJaiotzeData.getText().split("-");
+					Date jaioData = new Date(Integer.parseInt(data[0])-1900, Integer.parseInt(data[1])-1,Integer.parseInt(data[2]));
+					ErabiltzaileFree erabiltzaileFree = new ErabiltzaileFree(txtIzena.getText().trim(),txtAbizenak.getText().trim(),txtErabiltzailea.getText().trim(),passwordField.getText(), jaioData ,(String) cboHizkuntza.getSelectedItem());
+					Kone.erregistratu(erabiltzaileFree);
+					dispose();
+					JFrameSortu.menuNagusiaAukeraSortu();
+				} catch (pasahitzaEzKointziditu e1) {
+					System.err.println(e1.getMessage());
+				} catch (Exception eall) {
+					System.err.println("error");
+				}
 			}
 		});
 		
