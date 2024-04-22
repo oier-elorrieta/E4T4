@@ -13,9 +13,13 @@ public class TestAbestiak {
         Abestiak abestiak = new Abestiak("Abestia", 180, true);
         assertEquals("Abestia", abestiak.getIzena());
         assertEquals(180, abestiak.getIraupena());
-        assertTrue(abestiak.isGustokoena());
     }
-    
-    // Add more test methods here if needed
+
+    @Test
+    public void testsetisGustokoena() {
+        Abestiak abestiak = new Abestiak("Abestia", 180, false);
+        assertFalse(abestiak.isGustokoena());
+    }
+
     
 }

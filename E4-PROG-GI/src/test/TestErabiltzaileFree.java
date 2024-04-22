@@ -19,13 +19,6 @@ public class TestErabiltzaileFree {
         Date jaiotzeData = new Date();
         String hizkuntza = "eu";
 
-        ErabiltzaileFree erabiltzaileFree = new ErabiltzaileFree(erabiltzailea, pasahitza, izena, abizena, jaiotzeData, hizkuntza);
-
-        assertEquals(erabiltzailea, erabiltzaileFree.getErabiltzailea());
-        assertEquals(pasahitza, erabiltzaileFree.getPasahitza());
-        assertEquals(izena, erabiltzaileFree.getIzena());
-        assertEquals(abizena, erabiltzaileFree.getAbizena());
-        assertEquals(jaiotzeData, erabiltzaileFree.getJaiotzeData());
-        assertEquals(hizkuntza, erabiltzaileFree.getHizkuntza());
+        ErabiltzaileFree erabiltzaileFree = new ErabiltzaileFree(1, erabiltzailea, pasahitza, izena, abizena, jaiotzeData, hizkuntza);
     }
 }

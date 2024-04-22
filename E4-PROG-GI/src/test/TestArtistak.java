@@ -1,49 +1,67 @@
-/*
 package test;
 
-
+import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 
-import model.*;
+import model.Musikaria;
 
 import static org.junit.Assert.*;
 
 public class TestArtistak {
 
-    @Test
-    public void testEquals() {
-        Artistak artist1 = new Artistak("John Doe", "Description 1", "image1.jpg");
-        Artistak artist2 = new Artistak("John Doe", "Description 1", "image1.jpg");
-        Artistak artist3 = new Artistak("Jane Smith", "Description 2", "image2.jpg");
+	@Test
+	public void testSetIzena() {
+		Musikaria artist = new Musikaria("John Doe", "Description", "image.jpg");
+		artist.setIzena("Jane Smith");
+		assertEquals("Jane Smith", artist.getIzena());
+	}
 
-        Assertions.assertEquals(artist1, artist2); // Same attributes, should be equal
-        Assertions.assertNotEquals(artist1, artist3); // Different attributes, should not be equal
-    }
+	@Test
+	public void testSetDeskription() {
+		Musikaria artist = new Musikaria("John Doe", "Description", "image.jpg");
+		artist.setDeskription("New description");
+		assertEquals("New description", artist.getDeskription());
+	}
 
-    @Test
-    public void testToString() {
-        Artistak artist = new Artistak("John Doe", "Description", "image.jpg");
-        String expectedString = "Artistak [izena=John Doe, deskription=Description, irudia=image.jpg]";
+	@Test
+	public void testSetIrudia() {
+		Musikaria artist = new Musikaria("John Doe", "Description", "image.jpg");
+		artist.setIrudia("new_image.jpg");
+		assertEquals("new_image.jpg", artist.getIrudia());
+	}
 
-        Assertions.assertEquals(expectedString, artist.toString());
-    }
+	@Test
+	public void testEquals() {
+		Musikaria artist1 = new Musikaria("John Doe", "Description 1", "image1.jpg");
+		Musikaria artist2 = new Musikaria("John Doe", "Description 1", "image1.jpg");
+		Musikaria artist3 = new Musikaria("Jane Smith", "Description 2", "image2.jpg");
 
-    @Test
-    public void testGettersAndSetters() {
-        Artistak artist = new Artistak("John Doe", "Description", "image.jpg");
+		Assertions.assertEquals(artist1, artist2);
+		Assertions.assertNotEquals(artist1, artist3);
+	}
 
-        Assertions.assertEquals("John Doe", artist.getIzena());
-        Assertions.assertEquals("Description", artist.getDeskription());
-        Assertions.assertEquals("image.jpg", artist.getIrudia());
+	@Test
+	public void testToString() {
+		Musikaria artist = new Musikaria("John Doe", "Description", "image.jpg");
+		String expectedString = "Artistak [izena=John Doe, deskription=Description, irudia=image.jpg]";
 
-        artist.setIzena("Jane Smith");
-        artist.setDeskription("New Description");
-        artist.setIrudia("new_image.jpg");
+		Assertions.assertEquals(expectedString, artist.toString());
+	}
 
-        Assertions.assertEquals("Jane Smith", artist.getIzena());
-        Assertions.assertEquals("New Description", artist.getDeskription());
-        Assertions.assertEquals("new_image.jpg", artist.getIrudia());
-    }
+	@Test
+	public void testGettersAndSetters() {
+		Musikaria artist = new Musikaria("John Doe", "Description", "image.jpg");
+
+		Assertions.assertEquals("John Doe", artist.getIzena());
+		Assertions.assertEquals("Description", artist.getDeskription());
+		Assertions.assertEquals("image.jpg", artist.getIrudia());
+
+		artist.setIzena("Jane Smith");
+		artist.setDeskription("New Description");
+		artist.setIrudia("new_image.jpg");
+
+		Assertions.assertEquals("Jane Smith", artist.getIzena());
+		Assertions.assertEquals("New Description", artist.getDeskription());
+		Assertions.assertEquals("new_image.jpg", artist.getIrudia());
+	}
 }
-*/
