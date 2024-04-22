@@ -17,6 +17,9 @@ public class Kone {
 	private static String user = "admin";
 	private static String pass = "headmin";
 
+	private static String userErabiltzailea;
+	private static String passErabiltzailea;
+	
 	private static Connection konexioa = null;
 	private static String kontsulta;
 	private static Statement stm = null;
@@ -83,7 +86,7 @@ public class Kone {
 		konektatu();
 		try {
 			stm = konexioa.createStatement();
-			kontsulta = "SELECT Erabiltzailea, Pasahitza, IdBezeroa, Mota FROM bezeroa WHERE Erabiltzailea = '"+erabiltzailea+"'";
+			kontsulta = "SELECT Erabiltzailea, Pasahitza, IdBezeroa, Mota FROM Bezeroa WHERE Erabiltzailea = '"+erabiltzailea+"'";
 			rs = stm.executeQuery(kontsulta);
 		} catch (SQLException e) {
 			e.getMessage();
@@ -96,7 +99,7 @@ public class Kone {
 		konektatu();
 		try {
 			stm = konexioa.createStatement();
-			kontsulta = "SELECT * FROM bezeroa WHERE IdBezeroa = " + id;
+			kontsulta = "SELECT * FROM Bezeroa WHERE IdBezeroa = " + id;
 			rs = stm.executeQuery(kontsulta);
 			while (rs.next()) {
 				SesioAldagaiak.erabiltzaileLogeatutaFree = new ErabiltzaileFree(rs.getInt("IdBezeroa"),rs.getString("Erabiltzailea"),
@@ -113,7 +116,7 @@ public class Kone {
 		konektatu();
 		try {
 			stm = konexioa.createStatement();
-			kontsulta = "SELECT * FROM bezeroa b join premium p where b.IdBezeroa = p.IdBezeroa and b.IdBezeroa = "
+			kontsulta = "SELECT * FROM Bezeroa b join premium p where b.IdBezeroa = p.IdBezeroa and b.IdBezeroa = "
 					+ id;
 			rs = stm.executeQuery(kontsulta);
 			SesioAldagaiak.erabiltzaileLogeatutaPremium = new ErabiltzailePremium(rs.getInt("IdBezeroa"),rs.getString("b.Erabiltzailea"),

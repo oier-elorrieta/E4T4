@@ -124,6 +124,7 @@ public class Login extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				if (cboErabiltzaileMota.getSelectedItem().equals("Bezeroa")) {
 					if(ViewMetodoak.comprobatuLogin(txtErabiltzaile.getText(), passwordField.getText())) {
+						
 						dispose();		
 						JFrameSortu.menuNagusiaAukeraSortu();
 					}			
