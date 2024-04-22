@@ -99,7 +99,7 @@ public class Kone {
 			kontsulta = "SELECT * FROM bezeroa WHERE IdBezeroa = " + id;
 			rs = stm.executeQuery(kontsulta);
 			while (rs.next()) {
-				SesioAldagaiak.erabiltzaileLogeatutaFree = new ErabiltzaileFree(rs.getString("Erabiltzailea"),
+				SesioAldagaiak.erabiltzaileLogeatutaFree = new ErabiltzaileFree(rs.getInt("IdBezeroa"),rs.getString("Erabiltzailea"),
 						rs.getString("Pasahitza"), rs.getString("Izena"), rs.getString("Abizena"),
 						rs.getDate("JaiotzeData"), rs.getString("IdHizkuntza"));
 			}
@@ -116,7 +116,7 @@ public class Kone {
 			kontsulta = "SELECT * FROM bezeroa b join premium p where b.IdBezeroa = p.IdBezeroa and b.IdBezeroa = "
 					+ id;
 			rs = stm.executeQuery(kontsulta);
-			SesioAldagaiak.erabiltzaileLogeatutaPremium = new ErabiltzailePremium(rs.getString("b.Erabiltzailea"),
+			SesioAldagaiak.erabiltzaileLogeatutaPremium = new ErabiltzailePremium(rs.getInt("IdBezeroa"),rs.getString("b.Erabiltzailea"),
 					rs.getString("b.Pasahitza"), rs.getString("b.Izena"), rs.getString("b.Abizena"),
 					rs.getDate("b.JaiotzeData"), rs.getString("b.IdHizkuntza"), rs.getDate("p.IraungitzeData"));
 		} catch (SQLException e) {

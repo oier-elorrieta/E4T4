@@ -8,20 +8,24 @@ import java.util.Date;
  * jaiotze data eta hizkuntza dituzten atributuak dituzte.
  */
 public class ErabiltzaileFree extends Erabiltzailea {
+
+	public ErabiltzaileFree(int idErabiltzailea, String erabiltzailea, String pasahitza, String izena, String abizena,
+			Date jaiotzeData, String hizkuntza) {
+		super(idErabiltzailea, erabiltzailea, pasahitza, izena, abizena, jaiotzeData, hizkuntza);
+		// TODO Auto-generated constructor stub
+	}
 	/**
 	 * ErabiltzaileFree klasearen eraikitzailea. Erabiltzailearen atributuak jasotzen ditu eta
 	 * Erabiltzailea klasearen eraikitzaileari deitzen dio.
 	 *
-	 * @param erabiltzailea  erabiltzailearen izena
-	 * @param pasahitza      erabiltzailearen pasahitza
-	 * @param izena          erabiltzailearen izena
-	 * @param abizena        erabiltzailearen abizena
-	 * @param jaiotzeData    erabiltzailearen jaiotze data
-	 * @param hizkuntza      erabiltzailearen hizkuntza
+	 * @param idErabiltzailea erabiltzailearen id-a
+	 * @param erabiltzailea   erabiltzailearen izena
+	 * @param pasahitza       erabiltzailearen pasahitza
+	 * @param izena           erabiltzailearen izena
+	 * @param abizena         erabiltzailearen abizena
+	 * @param jaiotzeData     erabiltzailearen jaiotze data
+	 * @param hizkuntza       erabiltzailearen hizkuntza
 	 */
 	
-	public ErabiltzaileFree(String erabiltzailea, String pasahitza, String izena, String abizena, Date jaiotzeData,
-			String hizkuntza) {
-		super(erabiltzailea, pasahitza, izena, abizena, jaiotzeData, hizkuntza);
-	}
+	
 }

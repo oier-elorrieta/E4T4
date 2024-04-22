@@ -7,6 +7,7 @@ import java.util.Objects;
  * Erabiltzailea klasea erabiltzailearen datuak gordetzeko eta kudeatzeko erabiliko da.
  */
 public class Erabiltzailea {
+	protected int idErabiltzailea;
 	protected String erabiltzailea;
 	protected String pasahitza;
 	protected String izena;
@@ -17,6 +18,7 @@ public class Erabiltzailea {
 	/**
 	 * Erabiltzailea klasearen eraikitzailea.
 	 * 
+	 * @param idErabiltzailea Erabiltzailearen id-ea
 	 * @param erabiltzailea Erabiltzailearen erabiltzaile izena
 	 * @param pasahitza Erabiltzailearen pasahitza
 	 * @param izena Erabiltzailearen izena
@@ -24,8 +26,9 @@ public class Erabiltzailea {
 	 * @param jaiotzeData Erabiltzailearen jaiotze data
 	 * @param hizkuntza Erabiltzailearen hizkuntza
 	 */
-	public Erabiltzailea(String erabiltzailea, String pasahitza, String izena, String abizena, Date jaiotzeData,
+	public Erabiltzailea(int idErabiltzailea, String erabiltzailea, String pasahitza, String izena, String abizena, Date jaiotzeData,
 			String hizkuntza) {
+		this.idErabiltzailea = idErabiltzailea;
 		this.erabiltzailea = erabiltzailea;
 		this.pasahitza = pasahitza;
 		this.izena = izena;
@@ -40,6 +43,7 @@ public class Erabiltzailea {
 	 * @param obj Beste objektua
 	 * @return Objektuak berdinak diren ala ez
 	 */
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -50,8 +54,9 @@ public class Erabiltzailea {
 			return false;
 		Erabiltzailea other = (Erabiltzailea) obj;
 		return Objects.equals(abizena, other.abizena) && Objects.equals(erabiltzailea, other.erabiltzailea)
-				&& Objects.equals(hizkuntza, other.hizkuntza) && Objects.equals(izena, other.izena)
-				&& Objects.equals(jaiotzeData, other.jaiotzeData) && Objects.equals(pasahitza, other.pasahitza);
+				&& Objects.equals(hizkuntza, other.hizkuntza) && idErabiltzailea == other.idErabiltzailea
+				&& Objects.equals(izena, other.izena) && Objects.equals(jaiotzeData, other.jaiotzeData)
+				&& Objects.equals(pasahitza, other.pasahitza);
 	}
 
 	/**
@@ -59,12 +64,34 @@ public class Erabiltzailea {
 	 * 
 	 * @return Erabiltzailearen testu errepresentazioa
 	 */
+
 	@Override
 	public String toString() {
-		return "Erabiltzailea [erabiltzailea=" + erabiltzailea + ", pasahitza=" + pasahitza + ", izena=" + izena
-				+ ", abizena=" + abizena + ", jaiotzeData=" + jaiotzeData + ", hizkuntza=" + hizkuntza + "]";
+		return "Erabiltzailea [idErabiltzailea=" + idErabiltzailea + ", erabiltzailea=" + erabiltzailea + ", pasahitza="
+				+ pasahitza + ", izena=" + izena + ", abizena=" + abizena + ", jaiotzeData=" + jaiotzeData
+				+ ", hizkuntza=" + hizkuntza + "]";
 	}
-
+	
+	/**
+	 * idErabiltzailearen erabiltzaile idea itzultzen duen metodoa.
+	 * 
+	 * @return Erabiltzailearen idea
+	 */
+	
+	public int getIdErabiltzailea() {
+		return idErabiltzailea;
+	}
+	
+	/**
+	 * Erabiltzailearen idea ezartzen duen metodoa.
+	 * 
+	 * @param erabiltzailea id-ea
+	 */
+	
+	public void setIdErabiltzailea(int idErabiltzailea) {
+		this.idErabiltzailea = idErabiltzailea;
+	}
+	
 	/**
 	 * Erabiltzailearen erabiltzaile izena itzultzen duen metodoa.
 	 * 

@@ -13,6 +13,7 @@ public class ErabiltzailePremium extends Erabiltzailea {
 	 * ErabiltzailePremium klasearen eraikitzailea. Erabiltzailearen datuak eta premium mugaren data
 	 * emanda, ErabiltzailePremium objektua sortzen du.
 	 *
+	 * @param idErabiltzailea Erabiltzaile idea
 	 * @param erabiltzailea Erabiltzailearen erabiltzaile izena
 	 * @param pasahitza Erabiltzailearen pasahitza
 	 * @param izena Erabiltzailearen izena
@@ -21,10 +22,10 @@ public class ErabiltzailePremium extends Erabiltzailea {
 	 * @param hizkuntza Erabiltzailearen hizkuntza
 	 * @param premiumMuga ErabiltzailePremium-aren premium mugaren data
 	 */
-	public ErabiltzailePremium(String erabiltzailea, String pasahitza, String izena, String abizena, Date jaiotzeData,
-			String hizkuntza, Date premiumMuga) {
-		super(erabiltzailea, pasahitza, izena, abizena, jaiotzeData, hizkuntza);
-		this.setPremiumMuga(premiumMuga);
+	public ErabiltzailePremium(int idErabiltzailea, String erabiltzailea, String pasahitza, String izena,
+			String abizena, Date jaiotzeData, String hizkuntza, Date premiumMuga) {
+		super(idErabiltzailea, erabiltzailea, pasahitza, izena, abizena, jaiotzeData, hizkuntza);
+		this.premiumMuga = premiumMuga;
 	}
 
 	/**
