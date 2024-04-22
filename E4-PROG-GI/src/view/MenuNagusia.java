@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.mysql.cj.Session;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -22,6 +23,7 @@ import java.awt.Toolkit;
 
 import model.*;
 import model.metodoak.JFrameSortu;
+import model.metodoak.ViewMetodoak;
 import model.sql.Kone;
 
 import java.awt.event.MouseAdapter;
@@ -66,13 +68,6 @@ public class MenuNagusia extends JFrame {
 		lblaukeratu.setHorizontalAlignment(SwingConstants.CENTER);
 		lblaukeratu.setFont(new Font("Source Sans Pro Black", Font.BOLD, 45));
 		
-		JButton btnAtzera = new JButton("Atzera");
-		btnAtzera.setBackground(Color.BLACK);
-		btnAtzera.setForeground(Color.RED);
-		btnAtzera.setBounds(50, 60, 144, 50);
-		btnAtzera.setFont(new Font("SansSerif", Font.BOLD, 22));
-		btnAtzera.setFocusPainted(false);
-		
 		JButton btnMusikaDeskubritu = new JButton("Musika Deskubritu");
 		btnMusikaDeskubritu.setBounds(150, 175, 550, 54);
 		btnMusikaDeskubritu.setFont(new Font("Segoe UI", Font.BOLD, 21));
@@ -88,15 +83,36 @@ public class MenuNagusia extends JFrame {
 		btnNirePlayList.setFont(new Font("Segoe UI", Font.BOLD, 21));
 		btnNirePlayList.setFocusPainted(false);
 		
+		JButton btnAtzera = new JButton("Atzera");
+		btnAtzera.setBackground(Color.BLACK);
+		btnAtzera.setForeground(Color.RED);
+		btnAtzera.setBounds(50, 60, 144, 50);
+		btnAtzera.setFont(new Font("SansSerif", Font.BOLD, 22));
+		btnAtzera.setFocusPainted(false);
+		
+		
+		JButton btnErabiltzaile = ViewMetodoak.btnErabiltzaileaSortu();
+		
 		contentPane.add(lblaukeratu);
-		contentPane.add(btnAtzera);
 		contentPane.add(btnMusikaDeskubritu);
 		contentPane.add(btnPodcastDeskubritu);
 		contentPane.add(btnNirePlayList);
-		
+		contentPane.add(btnAtzera);
+		contentPane.add(btnErabiltzaile);
+				
 		btnAtzera.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				dispose();
+				JFrameSortu.loginAukeraSortu();
+			}
+		});
+		
+		btnErabiltzaile.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				SesioAldagaiak.erabiltzaileLogeatutaFree = null;
+				SesioAldagaiak.erabiltzaileLogeatutaPremium = null;
 				dispose();
 				JFrameSortu.loginAukeraSortu();
 			}

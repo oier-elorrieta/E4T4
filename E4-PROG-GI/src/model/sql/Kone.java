@@ -12,15 +12,11 @@ import java.sql.Statement;
 import java.util.Random;
 
 public class Kone {
-	/*
+	
 	private static String url = "jdbc:mysql://10.5.6.111:3306/Sphea";
 	private static String user = "admin";
 	private static String pass = "headmin";
-	*/
-	private static final String url = "jdbc:mysql://localhost:3306/sphea";
-	private static final String user = "root";
-	private static final String pass = "";
-	
+
 	private static Connection konexioa = null;
 	private static String kontsulta;
 	private static Statement stm = null;
@@ -46,7 +42,7 @@ public class Kone {
 			if (stm != null || !stm.isClosed()) {
 				stm.close();
 			}
-			
+
 			konexioa.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -54,7 +50,6 @@ public class Kone {
 		}
 	}
 
-	
 	public static ResultSet hizkuntzakAtera() {
 		try {
 			stm = konexioa.createStatement();
@@ -64,8 +59,7 @@ public class Kone {
 			e.getMessage();
 		}
 		return rs;
-	} 
-	 
+	}
 
 	public static void erregistratu(ErabiltzaileFree erab) {
 		konektatu();
@@ -84,12 +78,12 @@ public class Kone {
 		}
 		itxiConexioa();
 	}
-	
+
 	public static ResultSet isLoginaOk(String erabiltzailea){
 		konektatu();
 		try {
 			stm = konexioa.createStatement();
-			kontsulta = "SELECT Erabiltzailea, Pasahitza FROM bezeroa WHERE Erabiltzailea = '"+erabiltzailea+"'";
+			kontsulta = "SELECT Erabiltzailea, Pasahitza, IdBezeroa, Mota FROM bezeroa WHERE Erabiltzailea = '"+erabiltzailea+"'";
 			rs = stm.executeQuery(kontsulta);
 		} catch (SQLException e) {
 			e.getMessage();
@@ -97,6 +91,37 @@ public class Kone {
 		return rs;
 		
 	}
-	
-	
+
+	public static void kargatuErabiltzaileFree(int id) {
+		konektatu();
+		try {
+			stm = konexioa.createStatement();
+			kontsulta = "SELECT * FROM bezeroa WHERE IdBezeroa = " + id;
+			rs = stm.executeQuery(kontsulta);
+			while (rs.next()) {
+				SesioAldagaiak.erabiltzaileLogeatutaFree = new ErabiltzaileFree(rs.getString("Erabiltzailea"),
+						rs.getString("Pasahitza"), rs.getString("Izena"), rs.getString("Abizena"),
+						rs.getDate("JaiotzeData"), rs.getString("IdHizkuntza"));
+			}
+
+		} catch (SQLException e) {
+			e.getMessage();
+		}
+	}
+
+	public static void kargatuErabiltzailePremium(int id) {
+		konektatu();
+		try {
+			stm = konexioa.createStatement();
+			kontsulta = "SELECT * FROM bezeroa b join premium p where b.IdBezeroa = p.IdBezeroa and b.IdBezeroa = "
+					+ id;
+			rs = stm.executeQuery(kontsulta);
+			SesioAldagaiak.erabiltzaileLogeatutaPremium = new ErabiltzailePremium(rs.getString("b.Erabiltzailea"),
+					rs.getString("b.Pasahitza"), rs.getString("b.Izena"), rs.getString("b.Abizena"),
+					rs.getDate("b.JaiotzeData"), rs.getString("b.IdHizkuntza"), rs.getDate("p.IraungitzeData"));
+		} catch (SQLException e) {
+			e.getMessage();
+		}
+	}
+
 }

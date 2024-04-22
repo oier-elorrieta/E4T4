@@ -67,7 +67,7 @@ public class Erregistroa extends JFrame {
 			public void run() {
 				try {
 					Erregistroa frame = new Erregistroa();
-					frame.setVisible(true);
+					frame.setVisible(false);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -198,19 +198,18 @@ public class Erregistroa extends JFrame {
 				try {
 					if (!passwordField.getText().equals(passwordFieldErrepikatu.getText())) {
 						throw new pasahitzaEzKointziditu();
-						
 					}
+					
 					String[] data = txtJaiotzeData.getText().split("-");
 					Date jaioData = new Date(Integer.parseInt(data[0])-1900, Integer.parseInt(data[1])-1,Integer.parseInt(data[2]));
-					ErabiltzaileFree erabiltzaileFree = new ErabiltzaileFree(txtIzena.getText().trim(),txtAbizenak.getText().trim(),txtErabiltzailea.getText().trim(),passwordField.getText(), jaioData ,(String) cboHizkuntza.getSelectedItem());
+					ErabiltzaileFree erabiltzaileFree = new ErabiltzaileFree(txtErabiltzailea.getText(), passwordField.getText(), txtIzena.getText(),txtAbizenak.getText(), jaioData ,(String) cboHizkuntza.getSelectedItem());
 					Kone.erregistratu(erabiltzaileFree);
+					ViewMetodoak.comprobatuLogin(txtErabiltzailea.getText(), passwordField.getText());
 					dispose();
 					JFrameSortu.menuNagusiaAukeraSortu();
 				} catch (pasahitzaEzKointziditu e1) {
 					System.err.println(e1.getMessage());
-				} catch (Exception eall) {
-					System.err.println("error");
-				}
+				} 
 			}
 		});
 		
