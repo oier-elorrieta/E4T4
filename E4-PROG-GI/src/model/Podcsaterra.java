@@ -5,7 +5,7 @@ package model;
  * 
  * Klase honek Podcaterra artistaren informazioa gordetzen du: izena, deskribapena eta irudia.
  */
-public class Podcaterra extends Artistak {
+public class Podcsaterra extends Artista {
 
 	/**
 	 * Podcaterra klasearen eraikitzailea.
@@ -14,7 +14,7 @@ public class Podcaterra extends Artistak {
 	 * @param deskription  Podcaterra artistaren deskribapena
 	 * @param irudia       Podcaterra artistaren irudia
 	 */
-	public Podcaterra(String izena, String deskription, String irudia) {
+	public Podcsaterra(String izena, String deskription, String irudia) {
 		super(izena, deskription, irudia);
 	}
 }

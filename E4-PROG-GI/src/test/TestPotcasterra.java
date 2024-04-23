@@ -3,7 +3,7 @@ package test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import model.Podcaterra;
+import model.Podcsaterra;
 
 public class TestPotcasterra {
 
@@ -13,7 +13,7 @@ public class TestPotcasterra {
         String deskription = "Description";
         String irudia = "Image";
         
-        Podcaterra podcaterra = new Podcaterra(izena, deskription, irudia);
+        Podcsaterra podcaterra = new Podcsaterra(izena, deskription, irudia);
         
         Assertions.assertEquals(izena, podcaterra.getIzena());
         Assertions.assertEquals(deskription, podcaterra.getDeskription());

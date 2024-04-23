@@ -5,7 +5,7 @@ import java.util.Objects;
 /**
  * Artistak klasea abstraktoa da, eta artisten informazioa gordetzeko erabiltzen da.
  */
-public abstract class Artistak {
+public abstract class Artista {
 	protected String izena;
 	protected String deskription;
 	protected String irudia;
@@ -16,7 +16,7 @@ public abstract class Artistak {
 	 * @param deskription artistaren deskribapena
 	 * @param irudia artistaren irudia
 	 */
-	public Artistak(String izena, String deskription, String irudia) {
+	public Artista(String izena, String deskription, String irudia) {
 		this.izena = izena;
 		this.deskription = deskription;
 		this.irudia = irudia;
@@ -35,7 +35,7 @@ public abstract class Artistak {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Artistak other = (Artistak) obj;
+		Artista other = (Artista) obj;
 		return Objects.equals(deskription, other.deskription) && Objects.equals(irudia, other.irudia)
 				&& Objects.equals(izena, other.izena);
 	}

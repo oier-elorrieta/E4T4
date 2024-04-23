@@ -131,6 +131,8 @@ public class Login extends JFrame {
 					}			
 				} else {
 					
+				// aqui va la conexion de admin
+					
 				}
 			}
 		});

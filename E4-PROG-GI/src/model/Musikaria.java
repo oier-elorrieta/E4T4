@@ -4,7 +4,7 @@ package model;
  * Klase hau Musikaria klasea da, Artistak klasea heredatzen duena.
  * Musikariak izena, deskribapena eta irudia ditu.
  */
-public class Musikaria extends Artistak {
+public class Musikaria extends Artista {
 
 	/**
 	 * Musikariaren eraikitzailea.
