@@ -8,7 +8,7 @@ import java.util.Objects;
  * 
  * Gustokoena atributua abestia gustatzen zaion edo ez adierazten du.
  */
-public class Abestiak extends Audio {
+public class Abestia extends Audio {
 	private boolean gustokoena;
 
 	/**
@@ -18,7 +18,7 @@ public class Abestiak extends Audio {
 	 * @param iraupena    abestiaren iraupena
 	 * @param gustokoena  abestia gustatzen zaion edo ez adierazten du
 	 */
-	public Abestiak(String izena, int iraupena, boolean gustokoena) {
+	public Abestia(String izena, int iraupena, boolean gustokoena) {
 		super(izena, iraupena);
 		this.setGustokoena(gustokoena);
 	}

@@ -7,7 +7,7 @@ import model.PlayListak;
 
 import java.util.Date;
 
-public class TestPlayListak {
+public class TestPlayLista {
 
     @Test
     public void testEquals() {

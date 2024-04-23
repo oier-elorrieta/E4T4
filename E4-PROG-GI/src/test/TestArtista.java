@@ -7,7 +7,7 @@ import model.Musikaria;
 
 import static org.junit.Assert.*;
 
-public class TestArtistak {
+public class TestArtista {
 
 	@Test
 	public void testSetIzena() {

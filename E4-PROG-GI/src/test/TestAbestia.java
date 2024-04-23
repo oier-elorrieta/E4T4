@@ -6,18 +6,18 @@ import model.*;
 
 import static org.junit.Assert.*;
 
-public class TestAbestiak {
+public class TestAbestia {
 
     @Test
     public void testConstructor() {
-        Abestiak abestiak = new Abestiak("Abestia", 180, true);
+        Abestia abestiak = new Abestia("Abestia", 180, true);
         assertEquals("Abestia", abestiak.getIzena());
         assertEquals(180, abestiak.getIraupena());
     }
 
     @Test
     public void testsetisGustokoena() {
-        Abestiak abestiak = new Abestiak("Abestia", 180, false);
+        Abestia abestiak = new Abestia("Abestia", 180, false);
         assertFalse(abestiak.isGustokoena());
     }
 
