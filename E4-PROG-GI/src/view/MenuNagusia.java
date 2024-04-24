@@ -28,6 +28,8 @@ import model.sql.Kone;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class MenuNagusia extends JFrame {
 
@@ -35,25 +37,7 @@ public class MenuNagusia extends JFrame {
 	protected static final String String = null;
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Login frame = new Login();
-					frame.setVisible(false);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
+	
 	public MenuNagusia() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 250, 906, 594);
@@ -69,6 +53,7 @@ public class MenuNagusia extends JFrame {
 		lblaukeratu.setFont(new Font("Source Sans Pro Black", Font.BOLD, 45));
 		
 		JButton btnMusikaDeskubritu = new JButton("Musika Deskubritu");
+		
 		btnMusikaDeskubritu.setBounds(150, 175, 550, 54);
 		btnMusikaDeskubritu.setFont(new Font("Segoe UI", Font.BOLD, 21));
 		btnMusikaDeskubritu.setFocusPainted(false);
@@ -115,6 +100,18 @@ public class MenuNagusia extends JFrame {
 				SesioAldagaiak.erabiltzaileLogeatutaPremium = null;
 				dispose();
 				JFrameSortu.loginAukeraSortu();
+			}
+		});
+		
+		
+		btnMusikaDeskubritu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				MusikaDeskubritu MusikaDesk = new MusikaDeskubritu(btnErabiltzaile);
+				
+				MusikaDesk.setVisible(true);
+				dispose();
+				
 			}
 		});
 	}
