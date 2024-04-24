@@ -114,5 +114,14 @@ public class MenuNagusia extends JFrame {
 				
 			}
 		});
+		
+		btnNirePlayList.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				NirePlaylista nirePlayListaSortu = new NirePlaylista();
+				nirePlayListaSortu.setVisible(true);
+				dispose();
+				
+			}
+		});
 	}
 }
