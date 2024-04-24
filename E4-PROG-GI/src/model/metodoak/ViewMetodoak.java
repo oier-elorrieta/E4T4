@@ -2,11 +2,16 @@ package model.metodoak;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import model.ErabiltzaileFree;
 import model.SesioAldagaiak;
@@ -78,4 +83,29 @@ public class ViewMetodoak {
 		}
 		return btnErabiltzaile;
 	}
+	
+	public static void btnGeneratu(JPanel pane,String ruta,String txt) {
+		
+		JButton newButton = new JButton();
+        newButton.setText(txt);
+        ImageIcon icono = new ImageIcon(ruta);
+
+        // Escala la imagen al tamaño deseado
+        Image imagen = icono.getImage().getScaledInstance(150, 100, Image.SCALE_SMOOTH);
+
+        // Crea un nuevo ImageIcon con la imagen escalada
+        ImageIcon iconoEscalado = new ImageIcon(imagen);
+        newButton.setIcon(iconoEscalado);
+        
+        
+        
+        pane.add(newButton);
+
+        // Se actualiza el layout del panel para que se ajuste automáticamente
+        pane.revalidate();
+        pane.repaint();
+		
+	}
+	
+	
 }
