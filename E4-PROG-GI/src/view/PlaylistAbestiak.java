@@ -18,6 +18,7 @@ import javax.swing.border.LineBorder;
 
 import model.Abestia;
 import model.PlayListak;
+import model.SesioAldagaiak;
 import model.metodoak.JFrameSortu;
 import model.metodoak.ViewMetodoak;
 import model.sql.Kone;
@@ -46,6 +47,18 @@ public class PlaylistAbestiak extends JFrame {
 		jListAbestiak.setBorder(new LineBorder(new Color(0, 0, 0)));
 		JScrollPane scrollPane = new JScrollPane(jListAbestiak);
 		jListAbestiak.setBounds(50, 150, 550, 350);
+		
+		JButton btnErreproduzitu= new JButton("Erreproduzitu");
+		btnErreproduzitu.setBounds(650, 225, 208, 50);
+		btnErreproduzitu.setFont(new Font("SansSerif", Font.BOLD, 22));
+		
+		JButton btnKompartitu= new JButton("Kompartitu");
+		btnKompartitu.setBounds(650, 300, 208, 50);
+		btnKompartitu.setFont(new Font("SansSerif", Font.BOLD, 22));
+
+		JButton btnEzabatu = new JButton("Ezabatu");
+		btnEzabatu.setBounds(650, 375, 208, 50);
+		btnEzabatu.setFont(new Font("SansSerif", Font.BOLD, 22));
 
 		JButton btnAtzera = new JButton("Atzera");
 		btnAtzera.setBackground(Color.BLACK);
@@ -64,7 +77,20 @@ public class PlaylistAbestiak extends JFrame {
 			}
 		});
 		
+		btnErabiltzaile.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				SesioAldagaiak.erabiltzaileLogeatutaFree = null;
+				SesioAldagaiak.erabiltzaileLogeatutaPremium = null;
+				dispose();
+				JFrameSortu.loginAukeraSortu();
+			}
+		});
+		
 		contentPane.add(jListAbestiak);
+		contentPane.add(btnErreproduzitu);
+		contentPane.add(btnKompartitu);
+		contentPane.add(btnEzabatu);
 		contentPane.add(btnAtzera);
 		contentPane.add(btnErabiltzaile);
 
