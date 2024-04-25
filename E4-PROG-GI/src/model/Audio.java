@@ -6,8 +6,9 @@ import java.util.Objects;
  * Audio klasea errepresentazioa egiten du audio fitxategien datuei buruz.
  */
 public class Audio {
+	protected int idAudio;
 	protected String izena;
-	protected int iraupena;
+	protected String iraupena;
 	
 	/**
 	 * Audio objektuaren eraikitzailea.
@@ -15,7 +16,8 @@ public class Audio {
 	 * @param izena     audioaren izena
 	 * @param iraupena  audioaren iraupena
 	 */
-	public Audio(String izena, int iraupena) {
+	public Audio(int idAudio, String izena, String iraupena) {
+		this.idAudio = idAudio;
 		this.izena = izena;
 		this.iraupena = iraupena;
 	}
@@ -53,8 +55,22 @@ public class Audio {
 	 * 
 	 * @return  audioaren izena
 	 */
+	
+	
 	public String getIzena() {
 		return izena;
+	}
+
+	public int getIdAudio() {
+		return idAudio;
+	}
+
+	public void setIdAudio(int idAudio) {
+		this.idAudio = idAudio;
+	}
+
+	public void setIraupena(String iraupena) {
+		this.iraupena = iraupena;
 	}
 
 	/**
@@ -71,16 +87,4 @@ public class Audio {
 	 * 
 	 * @return  audioaren iraupena
 	 */
-	public int getIraupena() {
-		return iraupena;
-	}
-
-	/**
-	 * Audioaren iraupena ezartzen du.
-	 * 
-	 * @param iraupena  audioaren iraupena
-	 */
-	public void setIraupena(int iraupena) {
-		this.iraupena = iraupena;
-	}	
 }
