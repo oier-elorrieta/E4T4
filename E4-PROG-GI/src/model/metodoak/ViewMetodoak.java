@@ -85,6 +85,9 @@ public class ViewMetodoak {
 		return btnErabiltzaile;
 	}
 	
+	public static boolean komprobatuAdmin(String user, String pass) {
+		return Kone.konektatuAdmin(user, pass);
+	}
 	public static void btnGeneratu(JPanel pane,String ruta,String txt) {
 		
 		JButton newButton = new JButton();
@@ -124,6 +127,5 @@ public class ViewMetodoak {
 		
 	
 	}
-	
 	
 }

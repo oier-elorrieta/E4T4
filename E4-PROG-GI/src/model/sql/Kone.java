@@ -18,8 +18,8 @@ import model.SesioAldagaiak;
 public class Kone {
 
 	private static String url = "jdbc:mysql://10.5.6.111:3306/Sphea";
-	private static String user = "admin";
-	private static String pass = "headmin";
+	private static String user = "erabiltzaile";
+	private static String pass = "4321";
 
 	private static String userErabiltzailea;
 	private static String passErabiltzailea;
@@ -43,6 +43,21 @@ public class Kone {
 		}
 		// return konexioa;
 	}
+	
+	public static boolean konektatuAdmin(String user, String pass) {
+		boolean LoginOk = true;
+		try {
+			
+			if (konexioa == null || konexioa.isClosed()) {
+				konexioa = DriverManager.getConnection(url, user, pass);
+			}
+		} catch (SQLException e) {
+			LoginOk = false;
+		}
+		return LoginOk;
+	}
+	
+	
 
 	public static void itxiConexioa() {
 		try {
@@ -241,5 +256,4 @@ public class Kone {
 		}
 		return abestiakList;
 	}
-
 }
