@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Color;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -112,6 +113,13 @@ public class MenuNagusia extends JFrame {
 				MusikaDesk.setVisible(true);
 				dispose();
 				
+			}
+		});
+		
+		btnNirePlayList.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				JFrameSortu.nirePlaylistaSortu();
 			}
 		});
 	}

@@ -1,9 +1,14 @@
 package model.metodoak;
 
 import javax.swing.WindowConstants;
+
+import model.PlayListak;
 import view.Erregistroa;
 import view.Login;
 import view.MenuNagusia;
+import view.NirePlaylista;
+import view.PlayListaSortu;
+import view.PlaylistAbestiak;
 
 public class JFrameSortu {
 
@@ -23,5 +28,23 @@ public class JFrameSortu {
 		MenuNagusia menuNagusiaAukera = new MenuNagusia();
 		menuNagusiaAukera.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		menuNagusiaAukera.setVisible(true);
+	}
+	
+	public static void nirePlaylistaSortu(){
+		NirePlaylista nirePlaylista = new NirePlaylista();
+		nirePlaylista.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		nirePlaylista.setVisible(true);
+	}
+	
+	public static void playListaSortuSortu(){
+		PlayListaSortu playListaSortu = new PlayListaSortu();
+		playListaSortu.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		playListaSortu.setVisible(true);
+	}
+	
+	public static void playlistAbestiakSortu(PlayListak playlist){
+		PlaylistAbestiak playlistAbestiakSortu = new PlaylistAbestiak(playlist);
+		playlistAbestiakSortu.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		playlistAbestiakSortu.setVisible(true);
 	}
 }
