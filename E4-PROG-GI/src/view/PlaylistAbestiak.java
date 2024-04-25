@@ -3,6 +3,8 @@ package view;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
@@ -16,6 +18,7 @@ import javax.swing.border.LineBorder;
 
 import model.Abestia;
 import model.PlayListak;
+import model.metodoak.JFrameSortu;
 import model.metodoak.ViewMetodoak;
 import model.sql.Kone;
 
@@ -52,6 +55,14 @@ public class PlaylistAbestiak extends JFrame {
 		btnAtzera.setFocusPainted(false);
 		
 		JButton btnErabiltzaile = ViewMetodoak.btnErabiltzaileaSortu();
+		
+		btnAtzera.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+				JFrameSortu.nirePlaylistaSortu();
+			}
+		});
 		
 		contentPane.add(jListAbestiak);
 		contentPane.add(btnAtzera);

@@ -145,7 +145,7 @@ public class NirePlaylista extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				dispose();
-				JFrameSortu.loginAukeraSortu();
+				JFrameSortu.menuNagusiaAukeraSortu();
 			}
 		});
 

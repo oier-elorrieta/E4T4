@@ -47,7 +47,7 @@ public class Audio {
 	 */
 	@Override
 	public String toString() {
-		return "Audio [izena=" + izena + ", iraupena=" + iraupena + "]";
+		return izena + " - " + iraupena;
 	}
 
 	/**

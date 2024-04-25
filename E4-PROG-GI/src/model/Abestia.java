@@ -39,6 +39,5 @@ public class Abestia extends Audio {
 	 */
 	public void setGustokoena(boolean gustokoena) {
 		this.gustokoena = gustokoena;
-	}
-	
+	}	
 }
