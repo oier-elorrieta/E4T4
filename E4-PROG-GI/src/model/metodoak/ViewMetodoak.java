@@ -78,4 +78,14 @@ public class ViewMetodoak {
 		}
 		return btnErabiltzaile;
 	}
+	
+	public static boolean komprobatuAdmin(String user, String pass) {
+		boolean LoginOk = false;
+		try {
+			Kone.konektatuAdmin(String user, String pass);
+		} catch (SQLException e) {
+			
+		}
+		return LoginOk;
+	}
 }

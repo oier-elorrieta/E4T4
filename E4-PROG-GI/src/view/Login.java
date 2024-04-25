@@ -131,7 +131,13 @@ public class Login extends JFrame {
 					}			
 				} else {
 					
-				// aqui va la conexion de admin
+				if (Kone.komprobatuAdmin(txtErabiltzaile.getText(), passwordField.getText())) {
+					dispose();
+					JFrameSortu.menuNagusiaAukeraSortu();
+				}else {
+					JOptionPane.showMessageDialog(null, "Pasahitza edo erabiltzailea txarto!!", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+				}
 					
 				}
 			}
