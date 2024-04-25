@@ -107,5 +107,22 @@ public class ViewMetodoak {
 		
 	}
 	
+	public static void musikariakEntzunaldiakBotoiarentzako(JPanel pane) {
+		
+		ResultSet rs = Kone.getMusikariakEntzunaldiak();
+		try {
+		while(rs.next()) {
+			
+			String txt = rs.getString("Izena") + ",   Entzunaldiak: " + rs.getString("Totala");
+			btnGeneratu(pane,"C:\\Users\\aitzo\\Desktop\\4.erronka\\E4T4\\E4-PROG-GI\\src\\img\\acdc.png",txt);
+		}
+		}catch(SQLException e){
+			
+		}	
+			
+		
+	
+	}
+	
 	
 }

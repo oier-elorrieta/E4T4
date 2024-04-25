@@ -13,9 +13,9 @@ import java.util.Random;
 
 public class Kone {
 	
-	private static String url = "jdbc:mysql://10.5.6.111:3306/Sphea";
-	private static String user = "admin";
-	private static String pass = "headmin";
+	private static String url = "jdbc:mysql://localhost/Sphea";
+	private static String user = "root";
+	private static String pass = "";
 
 	private static String userErabiltzailea;
 	private static String passErabiltzailea;
@@ -125,6 +125,24 @@ public class Kone {
 		} catch (SQLException e) {
 			e.getMessage();
 		}
+		
+		
+	
+	}
+	
+	public static ResultSet getMusikariakEntzunaldiak() {
+		
+		konektatu();
+		
+		try {
+			stm = konexioa.createStatement();
+			kontsulta = "SELECT * FROM EstatistikakAurkestuMusikariaTotala";
+			rs = stm.executeQuery(kontsulta);
+		} catch (SQLException e) {
+			e.getMessage();
+		}
+		return rs;
+		
 	}
 	
 	

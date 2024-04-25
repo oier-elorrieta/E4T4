@@ -1,4 +1,5 @@
 package view;
+
 import model.metodoak.*;
 
 import java.awt.BorderLayout;
@@ -23,8 +24,6 @@ public class MusikaDeskubritu extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
-	
-	
 	public MusikaDeskubritu(JButton btn) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 250, 906, 594);
@@ -33,53 +32,34 @@ public class MusikaDeskubritu extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
 
 		JButton btnErabiltzaile = btn;
-		
+
 		JButton btnAtzera = new JButton("Atzera");
 		btnAtzera.setBackground(Color.BLACK);
 		btnAtzera.setForeground(Color.RED);
 		btnAtzera.setBounds(50, 60, 144, 50);
 		btnAtzera.setFont(new Font("SansSerif", Font.BOLD, 22));
 		btnAtzera.setFocusPainted(false);
-		
-		
-		
+
 		contentPane.add(btnErabiltzaile);
 		contentPane.add(btnAtzera);
-		
-		
-		
-		
-		JPanel artistaPane = new JPanel(new GridLayout(0, 2));
-		artistaPane.setBounds(96, 121, 686, 372);  
-	    contentPane.add(artistaPane,BorderLayout.CENTER);
-	    
-	    
-		
-ViewMetodoak.btnGeneratu(artistaPane ,"C:\\\\Users\\\\in1dm3-d\\\\Desktop\\\\4.Erronka\\\\E4T4\\\\E4-PROG-GI\\\\src\\\\img\\\\acdc.png","Otrooooooooooooooo grupoooooooo");
-ViewMetodoak.btnGeneratu(artistaPane ,"C:\\\\Users\\\\in1dm3-d\\\\Desktop\\\\4.Erronka\\\\E4T4\\\\E4-PROG-GI\\\\src\\\\img\\\\acdc.png","Otrooooooooooooooo grupoooooooo");	
-ViewMetodoak.btnGeneratu(artistaPane ,"C:\\\\Users\\\\in1dm3-d\\\\Desktop\\\\4.Erronka\\\\E4T4\\\\E4-PROG-GI\\\\src\\\\img\\\\acdc.png","ACDC");
-ViewMetodoak.btnGeneratu(artistaPane ,"C:\\\\Users\\\\in1dm3-d\\\\Desktop\\\\4.Erronka\\\\E4T4\\\\E4-PROG-GI\\\\src\\\\img\\\\acdc.png","ACDC");	
-ViewMetodoak.btnGeneratu(artistaPane ,"C:\\\\Users\\\\in1dm3-d\\\\Desktop\\\\4.Erronka\\\\E4T4\\\\E4-PROG-GI\\\\src\\\\img\\\\acdc.png","ACDC");
-ViewMetodoak.btnGeneratu(artistaPane ,"C:\\\\Users\\\\in1dm3-d\\\\Desktop\\\\4.Erronka\\\\E4T4\\\\E4-PROG-GI\\\\src\\\\img\\\\acdc.png","ACDC");	
-ViewMetodoak.btnGeneratu(artistaPane ,"C:\\\\Users\\\\in1dm3-d\\\\Desktop\\\\4.Erronka\\\\E4T4\\\\E4-PROG-GI\\\\src\\\\img\\\\acdc.png","ACDC");
-ViewMetodoak.btnGeneratu(artistaPane ,"C:\\\\Users\\\\in1dm3-d\\\\Desktop\\\\4.Erronka\\\\E4T4\\\\E4-PROG-GI\\\\src\\\\img\\\\acdc.png","ACDC");	
-ViewMetodoak.btnGeneratu(artistaPane ,"C:\\\\Users\\\\in1dm3-d\\\\Desktop\\\\4.Erronka\\\\E4T4\\\\E4-PROG-GI\\\\src\\\\img\\\\acdc.png","ACDC");
 
+		JScrollPane jsp = new JScrollPane();
+		jsp.setBounds(96, 121, 686, 372);
 
+		contentPane.add(jsp, BorderLayout.CENTER);
 
-	
+		JPanel artistaPane = new JPanel(new GridLayout(0, 1));
+		artistaPane.setBounds(96, 121, 686, 372);
+		jsp.setViewportView(artistaPane);
+
+		ViewMetodoak.musikariakEntzunaldiakBotoiarentzako(artistaPane);
 
 		
-		
-		
-		
-		
-		
-		
-
-		
+		//Aqui los añado manualmente para ver que funciona la scrollvar porque en la db solo hay 2 musikaris metidos
+		ViewMetodoak.btnGeneratu(artistaPane,"C:\\Users\\aitzo\\Desktop\\4.erronka\\E4T4\\E4-PROG-GI\\src\\img\\acdc.png","asdas");
+		ViewMetodoak.btnGeneratu(artistaPane,"C:\\Users\\aitzo\\Desktop\\4.erronka\\E4T4\\E4-PROG-GI\\src\\img\\acdc.png","sdasdas");
+		ViewMetodoak.btnGeneratu(artistaPane,"C:\\Users\\aitzo\\Desktop\\4.erronka\\E4T4\\E4-PROG-GI\\src\\img\\acdc.png","asdasd");
 	}
 }
