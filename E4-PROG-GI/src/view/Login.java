@@ -131,7 +131,7 @@ public class Login extends JFrame {
 					}			
 				} else {
 					
-				if (Kone.komprobatuAdmin(txtErabiltzaile.getText(), passwordField.getText())) {
+				if (Kone.konektatuAdmin(txtErabiltzaile.getText(), passwordField.getText())) {
 					dispose();
 					JFrameSortu.menuNagusiaAukeraSortu();
 				}else {
@@ -141,6 +141,6 @@ public class Login extends JFrame {
 					
 				}
 			}
-		});
+		);
 	}
 }

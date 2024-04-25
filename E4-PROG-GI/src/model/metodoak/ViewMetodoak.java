@@ -85,13 +85,7 @@ public class ViewMetodoak {
 	}
 	
 	public static boolean komprobatuAdmin(String user, String pass) {
-		boolean LoginOk = false;
-		try {
-			Kone.konektatuAdmin(String user, String pass);
-		} catch (SQLException e) {
-			
-		}
-		return LoginOk;
+		return Kone.konektatuAdmin(user, pass);
 	}
 	public static void btnGeneratu(JPanel pane,String ruta,String txt) {
 		

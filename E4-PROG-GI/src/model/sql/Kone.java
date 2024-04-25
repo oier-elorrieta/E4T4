@@ -44,17 +44,17 @@ public class Kone {
 		// return konexioa;
 	}
 	
-	public static void konektatuAdmin(String user, String pass) {
+	public static boolean konektatuAdmin(String user, String pass) {
+		boolean LoginOk = true;
 		try {
-			// Konexioa sortu, oraindik ez badago
+			
 			if (konexioa == null || konexioa.isClosed()) {
 				konexioa = DriverManager.getConnection(url, user, pass);
-				System.out.println("Konektatuta!!!");
 			}
 		} catch (SQLException e) {
-			System.out.println("Errorea datu-basearekin konexioa egiten: " + e.getMessage());
+			LoginOk = false;
 		}
-		// return konexioa;
+		return LoginOk;
 	}
 	
 	
@@ -252,11 +252,4 @@ public class Kone {
 		}
 		return abestiakList;
 	}
-<<<<<<< HEAD
-	
-	
-=======
-
-
->>>>>>> dca1ba14812b47a18caf283f7bb93227801832df
 }
