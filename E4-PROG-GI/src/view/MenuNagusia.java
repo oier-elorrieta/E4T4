@@ -76,8 +76,9 @@ public class MenuNagusia extends JFrame {
 		btnAtzera.setFont(new Font("SansSerif", Font.BOLD, 22));
 		btnAtzera.setFocusPainted(false);
 		
+		model.SesioAldagaiak.jb = ViewMetodoak.btnErabiltzaileaSortu();
+		JButton  btnErabiltzaile = model.SesioAldagaiak.jb;
 		
-		JButton btnErabiltzaile = ViewMetodoak.btnErabiltzaileaSortu();
 		
 		contentPane.add(lblaukeratu);
 		contentPane.add(btnMusikaDeskubritu);
@@ -108,7 +109,7 @@ public class MenuNagusia extends JFrame {
 		btnMusikaDeskubritu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				MusikaDeskubritu MusikaDesk = new MusikaDeskubritu(btnErabiltzaile);
+				MusikaDeskubritu MusikaDesk = new MusikaDeskubritu();
 				
 				MusikaDesk.setVisible(true);
 				dispose();

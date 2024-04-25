@@ -24,7 +24,7 @@ public class MusikaDeskubritu extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
-	public MusikaDeskubritu(JButton btn) {
+	public MusikaDeskubritu() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 250, 906, 594);
 		setTitle("Menu Nagusia - Talde 4");
@@ -33,9 +33,11 @@ public class MusikaDeskubritu extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JButton btnErabiltzaile = btn;
+		JButton btnErabiltzaile = model.SesioAldagaiak.jb;
 
 		JButton btnAtzera = new JButton("Atzera");
+		
+		
 		btnAtzera.setBackground(Color.BLACK);
 		btnAtzera.setForeground(Color.RED);
 		btnAtzera.setBounds(50, 60, 144, 50);
@@ -54,12 +56,16 @@ public class MusikaDeskubritu extends JFrame {
 		artistaPane.setBounds(96, 121, 686, 372);
 		jsp.setViewportView(artistaPane);
 
-		ViewMetodoak.musikariakEntzunaldiakBotoiarentzako(artistaPane);
+		ViewMetodoak.musikariakEntzunaldiakBotoiarentzako(artistaPane,this);
 
 		
 		//Aqui los añado manualmente para ver que funciona la scrollvar porque en la db solo hay 2 musikaris metidos
-		ViewMetodoak.btnGeneratu(artistaPane,"C:\\Users\\aitzo\\Desktop\\4.erronka\\E4T4\\E4-PROG-GI\\src\\img\\acdc.png","asdas");
-		ViewMetodoak.btnGeneratu(artistaPane,"C:\\Users\\aitzo\\Desktop\\4.erronka\\E4T4\\E4-PROG-GI\\src\\img\\acdc.png","sdasdas");
-		ViewMetodoak.btnGeneratu(artistaPane,"C:\\Users\\aitzo\\Desktop\\4.erronka\\E4T4\\E4-PROG-GI\\src\\img\\acdc.png","asdasd");
+		ViewMetodoak.btnGeneratu(artistaPane,"C:\\Users\\in1dm3-d\\Desktop\\4.Erronka\\E4T4\\E4-PROG-GI\\src\\img\\acdc.png","asdas","asda",this);
+		ViewMetodoak.btnGeneratu(artistaPane,"C:\\Users\\in1dm3-d\\Desktop\\4.Erronka\\E4T4\\E4-PROG-GI\\src\\img\\acdc.png","sdasdas","asda",this);
+		ViewMetodoak.btnGeneratu(artistaPane,"C:\\Users\\in1dm3-d\\Desktop\\4.Erronka\\E4T4\\E4-PROG-GI\\src\\img\\acdc.png","asdasd","asdas",this);
+		ViewMetodoak.btnGeneratu(artistaPane,"C:\\Users\\in1dm3-d\\Desktop\\4.Erronka\\E4T4\\E4-PROG-GI\\src\\img\\acdc.png","asdasd","asda",this);
+		
+		
+		
 	}
 }

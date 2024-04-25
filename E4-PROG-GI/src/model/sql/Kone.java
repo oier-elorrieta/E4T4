@@ -13,9 +13,9 @@ import java.util.Random;
 
 public class Kone {
 	
-	private static String url = "jdbc:mysql://localhost/Sphea";
-	private static String user = "root";
-	private static String pass = "";
+	private static String url = "jdbc:mysql://10.5.6.111:3306/Sphea";
+	private static String user = "admin";
+	private static String pass = "headmin";
 
 	private static String userErabiltzailea;
 	private static String passErabiltzailea;
@@ -105,8 +105,9 @@ public class Kone {
 				SesioAldagaiak.erabiltzaileLogeatutaFree = new ErabiltzaileFree(rs.getInt("IdBezeroa"),rs.getString("Erabiltzailea"),
 						rs.getString("Pasahitza"), rs.getString("Izena"), rs.getString("Abizena"),
 						rs.getDate("JaiotzeData"), rs.getString("IdHizkuntza"));
+				
 			}
-
+			
 		} catch (SQLException e) {
 			e.getMessage();
 		}
