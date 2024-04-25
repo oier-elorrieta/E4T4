@@ -129,12 +129,13 @@ public class Login extends JFrame {
 					}else {
 						JOptionPane.showMessageDialog(null, "Pasahitza edo erabiltzailea txarto!!", "Error", JOptionPane.ERROR_MESSAGE);
 					}			
-				} else {
-					
-				// aqui va la conexion de admin
-					
+				} else if (Kone.konektatuAdmin(txtErabiltzaile.getText(), passwordField.getText())) {
+					dispose();
+				}else {
+					JOptionPane.showMessageDialog(null, "Pasahitza edo erabiltzailea txarto!!", "Error", JOptionPane.ERROR_MESSAGE);
+				}
 				}
 			}
-		});
+		);
 	}
 }

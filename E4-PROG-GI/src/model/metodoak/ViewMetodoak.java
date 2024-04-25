@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
@@ -92,8 +93,15 @@ public class ViewMetodoak {
 		return btnErabiltzaile;
 	}
 	
+
+	
+
+	public static boolean komprobatuAdmin(String user, String pass) {
+		return Kone.konektatuAdmin(user, pass);
+	}
+	
+
 	public static void btnGeneratu(JPanel pane,String ruta,String izena,String entzunaldiak,JFrame jf) {
-		
 		JButton newButton = new JButton();
         newButton.setText(izena + " Entzunaldiak: " + entzunaldiak);
         ImageIcon icono = new ImageIcon(ruta);
@@ -136,12 +144,4 @@ public class ViewMetodoak {
 				
 	
 	}
-	
-	public static void sortuErabiltzaileaIzenarekin(String izena) {
-		
-		
-		
-	}
-	
-	
 }

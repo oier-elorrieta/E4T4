@@ -12,8 +12,8 @@ public class Podcast extends Audio {
 	 * @param izena     the name of the podcast
 	 * @param iraupena  the duration of the podcast in seconds
 	 */
-	public Podcast(String izena, int iraupena) {
-		super(izena, iraupena);
+	public Podcast(int IdAudio, String izena, String iraupena) {
+		super(IdAudio, izena, iraupena);
 	}
 
 }

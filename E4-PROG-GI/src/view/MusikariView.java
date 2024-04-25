@@ -44,6 +44,12 @@ public class MusikariView extends JFrame {
 		contentPane.add(btnAtzera);
 		
 		setContentPane(contentPane);
+		
+		
+		
+		
+		
+		
 	}
 
 }

@@ -18,8 +18,8 @@ public class Abestia extends Audio {
 	 * @param iraupena    abestiaren iraupena
 	 * @param gustokoena  abestia gustatzen zaion edo ez adierazten du
 	 */
-	public Abestia(String izena, int iraupena, boolean gustokoena) {
-		super(izena, iraupena);
+	public Abestia(int idAudio, String izena, String iraupena, boolean gustokoena) {
+		super(idAudio, izena, iraupena);
 		this.setGustokoena(gustokoena);
 	}
 
@@ -39,6 +39,5 @@ public class Abestia extends Audio {
 	 */
 	public void setGustokoena(boolean gustokoena) {
 		this.gustokoena = gustokoena;
-	}
-	
+	}	
 }
