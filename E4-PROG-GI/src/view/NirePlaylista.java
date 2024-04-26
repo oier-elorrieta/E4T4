@@ -110,7 +110,7 @@ public class NirePlaylista extends JFrame {
 						JOptionPane.showMessageDialog(null, "Ez duzu Playlist bat aukeratu ezabatzeko", "Error", JOptionPane.ERROR_MESSAGE);
 					} else {
 						int aukeraPlaylist = jListPlayList.getSelectedIndex();
-						Kone.playlistEzabatu(aukeraPlaylist);
+						Kone.playlistEzabatu(playlistLista.get(aukeraPlaylist).getIdPlayList());
 						dispose();
 						JFrameSortu.nirePlaylistaSortu();
 					}
