@@ -74,6 +74,14 @@ public class PlaylistAbestiak extends JFrame {
 
 		JButton btnErabiltzaile = ViewMetodoak.btnErabiltzaileaSortu();
 
+
+		contentPane.add(jListAbestiak);
+		contentPane.add(btnErreproduzitu);
+		contentPane.add(btnKompartitu);
+		contentPane.add(btnEzabatu);
+		contentPane.add(btnAtzera);
+		contentPane.add(btnErabiltzaile);
+		
 		btnErreproduzitu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -81,9 +89,7 @@ public class PlaylistAbestiak extends JFrame {
 				if (jListAbestiak.getSelectedValue() == null) {
 					JOptionPane.showMessageDialog(null, "Ez duzu Abesti bat aukeratu ezabatzeko", "Error",
 							JOptionPane.ERROR_MESSAGE);
-				} else {
-					
-					
+				} else {					
 					int aukeraAbestia = jListAbestiak.getSelectedIndex();
 					dispose();
 					try {
@@ -94,6 +100,20 @@ public class PlaylistAbestiak extends JFrame {
 					}
 				}
 
+			}
+		});
+		
+		btnEzabatu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					int aukeraAbestia = jListAbestiak.getSelectedIndex();
+					Kone.abestiPlaylistEzabatu(aukeraPlaylist.getIdPlayList(), abestiakList.get(aukeraAbestia).getIdAudio());
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 			}
 		});
 
@@ -115,12 +135,6 @@ public class PlaylistAbestiak extends JFrame {
 			}
 		});
 
-		contentPane.add(jListAbestiak);
-		contentPane.add(btnErreproduzitu);
-		contentPane.add(btnKompartitu);
-		contentPane.add(btnEzabatu);
-		contentPane.add(btnAtzera);
-		contentPane.add(btnErabiltzaile);
 
 	}
 
