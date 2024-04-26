@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.text.View;
 
 import org.jdatepicker.impl.JDatePanelImpl;
@@ -74,6 +76,7 @@ public class ErregistroaPremium extends Erregistroa {
 
 		spinner.setEditor(editor);
 		spinner.setBounds(580, 260, 200, 32);
+        
 		super.addComponents(lblPremiumMuga, spinner);
 		
         JButton btnGorde = new JButton("Aldatu datuak");
@@ -81,7 +84,18 @@ public class ErregistroaPremium extends Erregistroa {
         btnGorde.setForeground(SystemColor.text);
         btnGorde.setBackground(SystemColor.desktop);
         btnGorde.setFont(new Font("Segoe UI Black", Font.PLAIN, 15));
+        
         contentPane.add(btnGorde);
+        
+        spinner.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                if (isIdatzi()) {
+                	spinner.setValue(model.getPreviousValue());
+                }
+            }
+        });
+        
         
         btnGorde.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {

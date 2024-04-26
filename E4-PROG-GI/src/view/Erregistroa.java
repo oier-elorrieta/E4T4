@@ -65,7 +65,6 @@ public class Erregistroa extends JFrame {
 
 	public void setIdatzi(boolean idatzi) {
 		this.idatzi = idatzi;
-		System.out.println(idatzi);
 	}
 
 	/**
