@@ -1,5 +1,7 @@
 package model;
 
+import java.sql.Blob;
+
 /**
  * Podcaterra klasea Artistak klasea heredatzen duena.
  * 
@@ -14,7 +16,7 @@ public class Podcsaterra extends Artista {
 	 * @param deskription  Podcaterra artistaren deskribapena
 	 * @param irudia       Podcaterra artistaren irudia
 	 */
-	public Podcsaterra(String izena, String deskription, String irudia) {
+	public Podcsaterra(String izena, String deskription, Blob irudia) {
 		super(izena, deskription, irudia);
 	}
 }

@@ -1,5 +1,6 @@
 package model;
 
+import java.sql.Blob;
 import java.util.Objects;
 
 /**
@@ -8,7 +9,7 @@ import java.util.Objects;
 public abstract class Artista {
 	protected String izena;
 	protected String deskription;
-	protected String irudia;
+	protected Blob irudia;
 	
 	/**
 	 * Artistak klasearen eraikitzailea.
@@ -16,7 +17,7 @@ public abstract class Artista {
 	 * @param deskription artistaren deskribapena
 	 * @param irudia artistaren irudia
 	 */
-	public Artista(String izena, String deskription, String irudia) {
+	public Artista(String izena, String deskription, Blob irudia) {
 		this.izena = izena;
 		this.deskription = deskription;
 		this.irudia = irudia;
@@ -85,7 +86,7 @@ public abstract class Artista {
 	 * Artistaren irudia itzultzen duen metodoa.
 	 * @return artistaren irudia
 	 */
-	public String getIrudia() {
+	public Blob getIrudia() {
 		return irudia;
 	}
 
@@ -93,7 +94,7 @@ public abstract class Artista {
 	 * Artistaren irudia ezartzen duen metodoa.
 	 * @param irudia artistaren irudia
 	 */
-	public void setIrudia(String irudia) {
+	public void setIrudia(Blob irudia) {
 		this.irudia = irudia;
 	}
 }

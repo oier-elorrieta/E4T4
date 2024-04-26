@@ -9,6 +9,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 import javax.swing.JButton;
@@ -55,13 +56,13 @@ public class NirePlaylista extends JFrame {
 		JButton btnErabiltzaile = ViewMetodoak.btnErabiltzaileaSortu();
 
 		ArrayList<PlayListak> playlistLista = Kone.getPlaylist();
-
-		DefaultListModel<PlayListak> modeloLista = new DefaultListModel<>();
+		
+		DefaultListModel<String> modeloLista = new DefaultListModel<>();
 		for (int i = 0; i < playlistLista.size(); i++) {
-			modeloLista.addElement(playlistLista.get(i));
+			modeloLista.addElement(playlistLista.get(i).getIzena());
 		}
 
-		JList<PlayListak> jListPlayList = new JList(modeloLista);
+		JList<String> jListPlayList = new JList(modeloLista);
 		jListPlayList.setBorder(new LineBorder(new Color(0, 0, 0)));
 		JScrollPane scrollPane = new JScrollPane(jListPlayList);
 		jListPlayList.setBounds(50, 150, 550, 350);
@@ -108,8 +109,8 @@ public class NirePlaylista extends JFrame {
 					if (jListPlayList.getSelectedValue() == null) {
 						JOptionPane.showMessageDialog(null, "Ez duzu Playlist bat aukeratu ezabatzeko", "Error", JOptionPane.ERROR_MESSAGE);
 					} else {
-						PlayListak aukeraPlaylist = jListPlayList.getSelectedValue();
-						Kone.playlistEzabatu(aukeraPlaylist.getIdPlayList());
+						int aukeraPlaylist = jListPlayList.getSelectedIndex();
+						Kone.playlistEzabatu(aukeraPlaylist);
 						dispose();
 						JFrameSortu.nirePlaylistaSortu();
 					}
@@ -134,9 +135,10 @@ public class NirePlaylista extends JFrame {
 				if (jListPlayList.getSelectedValue() == null) {
 					JOptionPane.showMessageDialog(null, "Ez duzu Playlist bat aukeratu ezabatzeko", "Error", JOptionPane.ERROR_MESSAGE);
 				} else {
-					PlayListak aukeraPlaylist = jListPlayList.getSelectedValue();
+					int aukeraPlaylist = jListPlayList.getSelectedIndex();
+					PlayListak aukeraPlaylistO = playlistLista.get(aukeraPlaylist);
 					dispose();
-					JFrameSortu.playlistAbestiakSortu(aukeraPlaylist);
+					JFrameSortu.playlistAbestiakSortu(aukeraPlaylistO);
 				}
 			}
 		});

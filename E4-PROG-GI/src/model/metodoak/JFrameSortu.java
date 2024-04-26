@@ -1,9 +1,13 @@
 package model.metodoak;
 
+import java.sql.SQLException;
+
 import javax.swing.WindowConstants;
 
+import model.Abestia;
 import model.PlayListak;
 import view.Erregistroa;
+import view.Erreprodukzioa;
 import view.Login;
 import view.MenuNagusia;
 import view.NirePlaylista;
@@ -46,5 +50,11 @@ public class JFrameSortu {
 		PlaylistAbestiak playlistAbestiakSortu = new PlaylistAbestiak(playlist);
 		playlistAbestiakSortu.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		playlistAbestiakSortu.setVisible(true);
+	}
+	
+	public static void erreprodukzioaSortu(Abestia abestia) throws SQLException{
+		Erreprodukzioa erreprodukzioaSortu = new Erreprodukzioa(abestia);
+		erreprodukzioaSortu.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		erreprodukzioaSortu.setVisible(true);
 	}
 }
