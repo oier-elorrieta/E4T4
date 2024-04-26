@@ -103,6 +103,32 @@ public class Kone {
 		}
 		itxiConexioa();
 	}
+	
+	public static void erregistratuPremium(ErabiltzailePremium erab) {
+		konektatu();
+		try {
+			stm = konexioa.createStatement();
+			//Por comprobar
+			kontsulta = "SELECT Erabiltzailea FROM Bezeroa where(Erabiltzailea = ?);";
+			rs = stm.executeQuery(kontsulta);
+		} catch (SQLException e) {
+			e.getMessage();
+		}
+		kontsulta = "INSERT into Bezeroa(Izena,Abizena,Erabiltzailea,Pasahitza,JaiotzeData,IdHizkuntza) VALUES(?,?,?,?,?,?)";
+		try {
+			pstm = konexioa.prepareStatement(kontsulta);
+			pstm.setString(1, erab.getIzena());
+			pstm.setString(2, erab.getAbizena());
+			pstm.setString(3, erab.getErabiltzailea());
+			pstm.setString(4, erab.getPasahitza());
+			pstm.setDate(5, (java.sql.Date) erab.getJaiotzeData());
+			pstm.setString(6, erab.getHizkuntza());
+			pstm.execute();
+		} catch (SQLException e) {
+			System.out.println("Kontsulta txarto" + e.getMessage());
+		}
+		itxiConexioa();
+	}
 
 	public static ResultSet isLoginaOk(String erabiltzailea) {
 		konektatu();
@@ -126,10 +152,16 @@ public class Kone {
 			rs = stm.executeQuery(kontsulta);
 			while (rs.next()) {
 
+<<<<<<< HEAD
 				SesioAldagaiak.erabiltzaileLogeatutaFree = new ErabiltzaileFree(rs.getInt("IdBezeroa"),
 						rs.getString("Erabiltzailea"), rs.getString("Pasahitza"), rs.getString("Izena"),
 						rs.getString("Abizena"), rs.getDate("JaiotzeData"), rs.getString("IdHizkuntza"));
 
+=======
+				SesioAldagaiak.erabiltzaileLogeatutaFree = new ErabiltzaileFree(rs.getInt("IdBezeroa"),rs.getString("Erabiltzailea"),
+						rs.getString("Pasahitza"), rs.getString("Izena"), rs.getString("Abizena"),
+						rs.getDate("JaiotzeData"), rs.getString("IdHizkuntza"));
+>>>>>>> feb4441f893e8d9d7cd4b0f3ecffc5ee42e8a047
 			}
 
 		} catch (SQLException e) {
@@ -245,22 +277,29 @@ public class Kone {
 		} else {
 			id = SesioAldagaiak.erabiltzaileLogeatutaPremium.getIdErabiltzailea();
 		}
-
+		
 		try {
 			stm = konexioa.createStatement();
-			kontsulta = "SELECT au.IdAudio, au.Izena, au.Iraupena FROM PlaylistAbestiak pla INNER JOIN Audio au on pla.IdAudio = au.IdAudio where IdList = "
+			kontsulta = "SELECT au.IdAudio, au.Izena, au.Iraupena, au.Irudia FROM PlaylistAbestiak pla INNER JOIN Audio au on pla.IdAudio = au.IdAudio where IdList = "
 					+ aukeraPlaylist.getIdPlayList();
 			rs = stm.executeQuery(kontsulta);
+			
 			while (rs.next()) {
 				Abestia abestiaSartu = new Abestia(rs.getInt("au.IdAudio"), rs.getString("au.izena"),
+<<<<<<< HEAD
 						rs.getTime("au.Iraupena"));
+=======
+						rs.getString("au.Iraupena"), rs.getBlob("au.Irudia"), false);
+>>>>>>> feb4441f893e8d9d7cd4b0f3ecffc5ee42e8a047
 				abestiakList.add(abestiaSartu);
 			}
 		} catch (SQLException e) {
 			e.getMessage();
 		}
+		itxiConexioa();
 		return abestiakList;
 	}
+<<<<<<< HEAD
 
 	
 	public static ArrayList<Album> getAlbumak(Musikaria musikari) {
@@ -363,4 +402,15 @@ public class Kone {
 
 	
 
+=======
+	
+	public static void abestiPlaylistEzabatu(int idPlaylist, int idAbestia) throws SQLException {
+		konektatu();
+
+		kontsulta = "DELETE FROM PlaylistAbestiak WHERE IdList = " + idPlaylist + " AND IdAudio = " + idAbestia;
+		stm.executeUpdate(kontsulta);
+
+		itxiConexioa();
+	}
+>>>>>>> feb4441f893e8d9d7cd4b0f3ecffc5ee42e8a047
 }

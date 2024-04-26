@@ -1,5 +1,6 @@
 package model;
 
+import java.sql.Blob;
 import java.util.Objects;
 
 import com.mysql.cj.jdbc.Blob;
@@ -19,7 +20,11 @@ public abstract class Artista {
 	 * @param deskription artistaren deskribapena
 	 * @param irudia artistaren irudia
 	 */
+<<<<<<< HEAD
 	public Artista(int idArtista,String izena, String deskription, Blob irudia) {
+=======
+	public Artista(String izena, String deskription, Blob irudia) {
+>>>>>>> feb4441f893e8d9d7cd4b0f3ecffc5ee42e8a047
 		this.izena = izena;
 		this.deskription = deskription;
 		this.irudia = irudia;

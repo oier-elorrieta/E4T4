@@ -46,16 +46,26 @@ import model.*;
 
 public class Erregistroa extends JFrame {
 
-	private static final long serialVersionUID = 1L;
+	protected static final long serialVersionUID = 1L;
 	protected static final String String = null;
-	private JPanel contentPane;
-	private JTextField txtIzena;
-	private JTextField txtAbizenak;
-	private JTextField txtErabiltzailea;
-	private JTextField txtJaiotzeData;
-	private JPasswordField passwordField;
-	private JPasswordField passwordFieldErrepikatu;
-	private DefaultComboBoxModel<String> cboModelHizkuntza = new DefaultComboBoxModel<>(); 
+	protected JPanel contentPane;
+	protected JComboBox cboHizkuntza = new JComboBox();
+	protected JTextField txtIzena;
+	protected JTextField txtAbizenak;
+	protected JTextField txtErabiltzailea;
+	protected JTextField txtJaiotzeData;
+	protected JPasswordField passwordField;
+	protected JPasswordField passwordFieldErrepikatu;
+	protected DefaultComboBoxModel<String> cboModelHizkuntza = new DefaultComboBoxModel<>(); 
+	private boolean idatzi = false;
+
+	public boolean isIdatzi() {
+		return idatzi;
+	}
+
+	public void setIdatzi(boolean idatzi) {
+		this.idatzi = idatzi;
+	}
 
 	/**
 	 * 
@@ -103,6 +113,7 @@ public class Erregistroa extends JFrame {
 		txtIzena.setToolTipText("Sartu izen bat...");
 		txtIzena.setColumns(10);
 		txtIzena.setBorder(new LineBorder(Color.GRAY, 1, true));
+		txtIzena.setEditable(idatzi);
 		
 		JLabel lblAbizenak = new JLabel("Abizenak:");
 		lblAbizenak.setBounds(480, 80, 94, 23);
@@ -114,6 +125,8 @@ public class Erregistroa extends JFrame {
 		txtAbizenak.setColumns(10);
 		txtAbizenak.setBorder(new LineBorder(Color.GRAY, 1, true));
 		
+		txtAbizenak.setEditable(idatzi);
+		
 		JLabel lblErabiltzailea = new JLabel("Erabiltzailea:");
 		lblErabiltzailea.setBounds(80, 140, 94, 23);
 		lblErabiltzailea.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 15));
@@ -124,6 +137,8 @@ public class Erregistroa extends JFrame {
 		txtErabiltzailea.setColumns(10);
 		txtErabiltzailea.setBorder(new LineBorder(Color.GRAY, 1, true));
 		
+		txtErabiltzailea.setEditable(idatzi);
+		
 		JLabel lblPasahitza = new JLabel("Pasahitza:");
 		lblPasahitza.setBounds(80, 200, 94, 23);
 		lblPasahitza.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 15));
@@ -132,6 +147,8 @@ public class Erregistroa extends JFrame {
 		passwordField.setBounds(220, 200, 174, 29);
 		passwordField.setToolTipText("Sartu pasahitza...");
 		passwordField.setBorder(new LineBorder(Color.GRAY, 1, true));
+		
+		passwordField.setEditable(idatzi);
 		
 		JLabel lblPasahitzaErrepikatu = new JLabel("Konfirmatu:");
 		lblPasahitzaErrepikatu.setBounds(480, 200, 103, 23);
@@ -142,83 +159,90 @@ public class Erregistroa extends JFrame {
 		passwordFieldErrepikatu.setToolTipText("Sartu pasahitza berriz...");
 		passwordFieldErrepikatu.setBorder(new LineBorder(Color.GRAY, 1, true));
 		
+		passwordFieldErrepikatu.setEditable(idatzi);
+		
 		JLabel lblJaiotzeData = new JLabel("Jaiotze Data:");
 		lblJaiotzeData.setBounds(80, 260, 129, 23);
 		lblJaiotzeData.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 15));
 
 		txtJaiotzeData = new JTextField();
-		txtJaiotzeData.setBounds(220, 260, 300, 32);
+		txtJaiotzeData.setBounds(220, 260, 200, 32);
 		txtJaiotzeData.setToolTipText("Sartu Jaiotze Data...");
 		txtJaiotzeData.setColumns(10);
 		txtJaiotzeData.setBorder(new LineBorder(Color.GRAY, 1, true));
+		
+		txtJaiotzeData.setEditable(idatzi);
 		
 		JLabel lblHizkuntza = new JLabel("Hizkuntza:");
 		lblHizkuntza.setBounds(80, 340, 129, 23);
 		lblHizkuntza.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 15));
 		
-		JComboBox cboHizkuntza = new JComboBox();
+		
 		cboModelHizkuntza = ViewMetodoak.cboHizkuntzaModeloaSortu(cboModelHizkuntza);
 		cboHizkuntza.setModel(cboModelHizkuntza);
 		cboHizkuntza.setBounds(220, 340, 136, 29);
 		contentPane.add(cboHizkuntza);
 		
+		cboHizkuntza.setEnabled(idatzi);
+		
 		JButton btnAtzera = new JButton("Atzera");
-		btnAtzera.setBounds(269, 462, 136, 29);
+		btnAtzera.setBounds(200, 462, 136, 29);
 		btnAtzera.setForeground(SystemColor.text);
 		btnAtzera.setBackground(SystemColor.desktop);
 		btnAtzera.setFont(new Font("Segoe UI Black", Font.PLAIN, 15));
 		
 		JButton btnErregistratu = new JButton("Erregistratu");
-		btnErregistratu.setBounds(480, 462, 136, 29);
+		btnErregistratu.setBounds(600, 462, 136, 29);
 		btnErregistratu.setForeground(SystemColor.text);
 		btnErregistratu.setBackground(SystemColor.desktop);
 		btnErregistratu.setFont(new Font("Segoe UI Black", Font.PLAIN, 15));
 		
-		contentPane.add(lblErregistroa_Header);
-		contentPane.add(lblIzena);
-		contentPane.add(txtIzena);
-		contentPane.add(lblAbizenak);
-		contentPane.add(txtAbizenak);
-		contentPane.add(lblErabiltzailea);
-		contentPane.add(txtErabiltzailea);
-		contentPane.add(lblPasahitza);
-		contentPane.add(passwordField);
-		contentPane.add(lblPasahitzaErrepikatu);
-		contentPane.add(passwordFieldErrepikatu);
-		contentPane.add(lblJaiotzeData);
-		contentPane.add(txtJaiotzeData);
-		contentPane.add(lblHizkuntza);
-		contentPane.add(cboHizkuntza);
-		contentPane.add(btnAtzera);
-		contentPane.add(btnErregistratu);
+		addComponents(lblErregistroa_Header, lblIzena, txtIzena, lblAbizenak,
+				txtAbizenak, lblErabiltzailea, txtErabiltzailea, lblPasahitza,
+				passwordField, lblPasahitzaErrepikatu, passwordFieldErrepikatu,
+				lblJaiotzeData, txtJaiotzeData, lblHizkuntza, cboHizkuntza,
+				btnAtzera, btnErregistratu);
 		
 		btnErregistratu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				try {
-					if (!passwordField.getText().equals(passwordFieldErrepikatu.getText())) {
-						throw new pasahitzaEzKointziditu();
-					}
-					
-					String[] data = txtJaiotzeData.getText().split("-");
-					Date jaioData = new Date(Integer.parseInt(data[0])-1900, Integer.parseInt(data[1])-1,Integer.parseInt(data[2]));
-					ErabiltzaileFree erabiltzaileFree = new ErabiltzaileFree(0,txtErabiltzailea.getText(), passwordField.getText(), txtIzena.getText(),txtAbizenak.getText(), jaioData ,(String) cboHizkuntza.getSelectedItem());
-					Kone.erregistratu(erabiltzaileFree);
-					ViewMetodoak.comprobatuLogin(txtErabiltzailea.getText(), passwordField.getText());
-					dispose();
-					JFrameSortu.menuNagusiaAukeraSortu();
-				} catch (pasahitzaEzKointziditu e1) {
-					System.err.println(e1.getMessage());
-				} 
+				datuakEzarri();
 			}
 		});
 		
 		btnAtzera.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				dispose();
-				JFrameSortu.loginAukeraSortu();
+				
 			}
 		});
 	}
+	protected void datuakEzarri() {
+		try {
+			if (!passwordField.getText().equals(passwordFieldErrepikatu.getText())) {
+				throw new pasahitzaEzKointziditu();
+			}
+			String[] data = txtJaiotzeData.getText().split("-");
+			Date jaioData = new Date(Integer.parseInt(data[0])-1900, Integer.parseInt(data[1])-1,Integer.parseInt(data[2]));
+			ErabiltzaileFree erabiltzaileFree = new ErabiltzaileFree(0,txtErabiltzailea.getText(), passwordField.getText(), txtIzena.getText(),txtAbizenak.getText(), jaioData ,(String) cboHizkuntza.getSelectedItem());
+			Kone.erregistratu(erabiltzaileFree);
+			ViewMetodoak.comprobatuLogin(txtErabiltzailea.getText(), passwordField.getText());
+			dispose();
+			JFrameSortu.menuNagusiaAukeraSortu();
+		} catch (pasahitzaEzKointziditu e1) {
+			System.err.println(e1.getMessage());
+		} 
+	}
+	
+	protected void atzeraEraman() {
+		dispose();
+		JFrameSortu.loginAukeraSortu();
+	}
+	
+	// Funtzio varidikoa elementu infinituak sartzeko contentPane
+    protected void addComponents(Component... components) {
+        for (Component component : components) {
+            contentPane.add(component);
+        }
+    }
 }

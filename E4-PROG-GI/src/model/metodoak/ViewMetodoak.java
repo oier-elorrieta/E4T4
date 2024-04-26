@@ -80,19 +80,14 @@ public class ViewMetodoak {
 		 JButton btnErabiltzaile = null;
 		if (!SesioAldagaiak.erabiltzailePremium) {
 			btnErabiltzaile = new JButton(SesioAldagaiak.erabiltzaileLogeatutaFree.getIzena());
-			btnErabiltzaile.setBackground(Color.BLACK);
-			btnErabiltzaile.setForeground(Color.RED);
-			btnErabiltzaile.setBounds(700, 60, 144, 50);
-			btnErabiltzaile.setFont(new Font("SansSerif", Font.BOLD, 22));
-			btnErabiltzaile.setFocusPainted(false);
 		} else {
 			btnErabiltzaile = new JButton(SesioAldagaiak.erabiltzaileLogeatutaPremium.getIzena());
-			btnErabiltzaile.setBackground(Color.BLACK);
-			btnErabiltzaile.setForeground(Color.RED);
+		}
+			btnErabiltzaile.setBackground(Color.LIGHT_GRAY);
+			btnErabiltzaile.setForeground(Color.BLACK);
 			btnErabiltzaile.setBounds(700, 60, 144, 50);
 			btnErabiltzaile.setFont(new Font("SansSerif", Font.BOLD, 22));
 			btnErabiltzaile.setFocusPainted(false);
-		}
 		return btnErabiltzaile;
 	}
 	

@@ -1,5 +1,7 @@
 package model;
 
+import java.sql.Blob;
+
 /**
  * Podcast class represents a podcast audio file.
  * It extends the Audio class.
@@ -12,8 +14,8 @@ public class Podcast extends Audio {
 	 * @param izena     the name of the podcast
 	 * @param iraupena  the duration of the podcast in seconds
 	 */
-	public Podcast(int IdAudio, String izena, String iraupena) {
-		super(IdAudio, izena, iraupena);
+	public Podcast(int IdAudio, String izena, String iraupena, Blob irudia) {
+		super(IdAudio, izena, iraupena, irudia);
 	}
 
 }

@@ -1,7 +1,11 @@
 package model;
 
+<<<<<<< HEAD
 import java.sql.Time;
 import java.time.LocalTime;
+=======
+import java.sql.Blob;
+>>>>>>> feb4441f893e8d9d7cd4b0f3ecffc5ee42e8a047
 import java.util.Objects;
 
 /**
@@ -10,18 +14,40 @@ import java.util.Objects;
 public class Audio {
 	protected int idAudio;
 	protected String izena;
+<<<<<<< HEAD
 	protected Time iraupena;
+=======
+	protected String iraupena;
+	protected Blob irudia;
+>>>>>>> feb4441f893e8d9d7cd4b0f3ecffc5ee42e8a047
 	
+	public Blob getIrudia() {
+		return irudia;
+	}
+
+	public void setIrudia(Blob irudia) {
+		this.irudia = irudia;
+	}
+
+	public String getIraupena() {
+		return iraupena;
+	}
+
 	/**
 	 * Audio objektuaren eraikitzailea.
 	 * 
 	 * @param izena     audioaren izena
 	 * @param iraupena  audioaren iraupena
 	 */
+<<<<<<< HEAD
 	public Audio(int idAudio, String izena, Time iraupena) {
+=======
+	public Audio(int idAudio, String izena, String iraupena, Blob irudia) {
+>>>>>>> feb4441f893e8d9d7cd4b0f3ecffc5ee42e8a047
 		this.idAudio = idAudio;
 		this.izena = izena;
 		this.iraupena = iraupena;
+		this.irudia = irudia;
 	}
 
 	/**
@@ -41,6 +67,8 @@ public class Audio {
 		Audio other = (Audio) obj;
 		return iraupena == other.iraupena && Objects.equals(izena, other.izena);
 	}
+
+	
 
 	/**
 	 * Objektuaren testu-representazioa itzultzen du.
