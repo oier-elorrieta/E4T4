@@ -261,20 +261,22 @@ public class Kone {
 		} else {
 			id = SesioAldagaiak.erabiltzaileLogeatutaPremium.getIdErabiltzailea();
 		}
-
+		
 		try {
 			stm = konexioa.createStatement();
-			kontsulta = "SELECT au.IdAudio, au.Izena, au.Iraupena FROM PlaylistAbestiak pla INNER JOIN Audio au on pla.IdAudio = au.IdAudio where IdList = "
+			kontsulta = "SELECT au.IdAudio, au.Izena, au.Iraupena, au.Irudia FROM PlaylistAbestiak pla INNER JOIN Audio au on pla.IdAudio = au.IdAudio where IdList = "
 					+ aukeraPlaylist.getIdPlayList();
 			rs = stm.executeQuery(kontsulta);
+			
 			while (rs.next()) {
 				Abestia abestiaSartu = new Abestia(rs.getInt("au.IdAudio"), rs.getString("au.izena"),
-						rs.getString("au.Iraupena"), false);
+						rs.getString("au.Iraupena"), rs.getBlob("au.Irudia"), false);
 				abestiakList.add(abestiaSartu);
 			}
 		} catch (SQLException e) {
 			e.getMessage();
 		}
+		itxiConexioa();
 		return abestiakList;
 	}
 }

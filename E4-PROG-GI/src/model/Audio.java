@@ -1,5 +1,6 @@
 package model;
 
+import java.sql.Blob;
 import java.util.Objects;
 
 /**
@@ -9,17 +10,31 @@ public class Audio {
 	protected int idAudio;
 	protected String izena;
 	protected String iraupena;
+	protected Blob irudia;
 	
+	public Blob getIrudia() {
+		return irudia;
+	}
+
+	public void setIrudia(Blob irudia) {
+		this.irudia = irudia;
+	}
+
+	public String getIraupena() {
+		return iraupena;
+	}
+
 	/**
 	 * Audio objektuaren eraikitzailea.
 	 * 
 	 * @param izena     audioaren izena
 	 * @param iraupena  audioaren iraupena
 	 */
-	public Audio(int idAudio, String izena, String iraupena) {
+	public Audio(int idAudio, String izena, String iraupena, Blob irudia) {
 		this.idAudio = idAudio;
 		this.izena = izena;
 		this.iraupena = iraupena;
+		this.irudia = irudia;
 	}
 
 	/**
@@ -39,6 +54,8 @@ public class Audio {
 		Audio other = (Audio) obj;
 		return iraupena == other.iraupena && Objects.equals(izena, other.izena);
 	}
+
+	
 
 	/**
 	 * Objektuaren testu-representazioa itzultzen du.
