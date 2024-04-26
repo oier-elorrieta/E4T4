@@ -279,4 +279,13 @@ public class Kone {
 		itxiConexioa();
 		return abestiakList;
 	}
+	
+	public static void abestiPlaylistEzabatu(int idPlaylist, int idAbestia) throws SQLException {
+		konektatu();
+
+		kontsulta = "DELETE FROM PlaylistAbestiak WHERE IdList = " + idPlaylist + " AND IdAudio = " + idAbestia;
+		stm.executeUpdate(kontsulta);
+
+		itxiConexioa();
+	}
 }

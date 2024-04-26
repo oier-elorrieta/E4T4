@@ -106,8 +106,14 @@ public class PlaylistAbestiak extends JFrame {
 		btnEzabatu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				dispose();
-				JFrameSortu.nirePlaylistaSortu();
+				try {
+					int aukeraAbestia = jListAbestiak.getSelectedIndex();
+					Kone.abestiPlaylistEzabatu(aukeraPlaylist.getIdPlayList(), abestiakList.get(aukeraAbestia).getIdAudio());
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 			}
 		});
 
