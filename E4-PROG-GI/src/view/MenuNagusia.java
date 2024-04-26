@@ -98,10 +98,8 @@ public class MenuNagusia extends JFrame {
 		btnErabiltzaile.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				SesioAldagaiak.erabiltzaileLogeatutaFree = null;
-				SesioAldagaiak.erabiltzaileLogeatutaPremium = null;
 				dispose();
-				JFrameSortu.loginAukeraSortu();
+				JFrameSortu.premiumErregistroAukeraSortu();
 			}
 		});
 		

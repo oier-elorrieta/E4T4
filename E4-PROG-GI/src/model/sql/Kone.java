@@ -102,6 +102,24 @@ public class Kone {
 		}
 		itxiConexioa();
 	}
+	
+	public static void erregistratuPremium(ErabiltzailePremium erab) {
+		konektatu();
+		kontsulta = "INSERT into Bezeroa(Izena,Abizena,Erabiltzailea,Pasahitza,JaiotzeData,IdHizkuntza) VALUES(?,?,?,?,?,?)";
+		try {
+			pstm = konexioa.prepareStatement(kontsulta);
+			pstm.setString(1, erab.getIzena());
+			pstm.setString(2, erab.getAbizena());
+			pstm.setString(3, erab.getErabiltzailea());
+			pstm.setString(4, erab.getPasahitza());
+			pstm.setDate(5, (java.sql.Date) erab.getJaiotzeData());
+			pstm.setString(6, erab.getHizkuntza());
+			pstm.execute();
+		} catch (SQLException e) {
+			System.out.println("Kontsulta txarto" + e.getMessage());
+		}
+		itxiConexioa();
+	}
 
 	public static ResultSet isLoginaOk(String erabiltzailea) {
 		konektatu();
@@ -128,7 +146,6 @@ public class Kone {
 				SesioAldagaiak.erabiltzaileLogeatutaFree = new ErabiltzaileFree(rs.getInt("IdBezeroa"),rs.getString("Erabiltzailea"),
 						rs.getString("Pasahitza"), rs.getString("Izena"), rs.getString("Abizena"),
 						rs.getDate("JaiotzeData"), rs.getString("IdHizkuntza"));
-
 			}
 			
 		} catch (SQLException e) {
