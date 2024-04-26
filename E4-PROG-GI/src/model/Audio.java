@@ -1,5 +1,7 @@
 package model;
 
+import java.sql.Time;
+import java.time.LocalTime;
 import java.util.Objects;
 
 /**
@@ -8,7 +10,7 @@ import java.util.Objects;
 public class Audio {
 	protected int idAudio;
 	protected String izena;
-	protected String iraupena;
+	protected Time iraupena;
 	
 	/**
 	 * Audio objektuaren eraikitzailea.
@@ -16,7 +18,7 @@ public class Audio {
 	 * @param izena     audioaren izena
 	 * @param iraupena  audioaren iraupena
 	 */
-	public Audio(int idAudio, String izena, String iraupena) {
+	public Audio(int idAudio, String izena, Time iraupena) {
 		this.idAudio = idAudio;
 		this.izena = izena;
 		this.iraupena = iraupena;
@@ -57,8 +59,13 @@ public class Audio {
 	 */
 	
 	
+	
 	public String getIzena() {
 		return izena;
+	}
+
+	public Time getIraupena() {
+		return iraupena;
 	}
 
 	public int getIdAudio() {
@@ -69,7 +76,7 @@ public class Audio {
 		this.idAudio = idAudio;
 	}
 
-	public void setIraupena(String iraupena) {
+	public void setIraupena(Time iraupena) {
 		this.iraupena = iraupena;
 	}
 

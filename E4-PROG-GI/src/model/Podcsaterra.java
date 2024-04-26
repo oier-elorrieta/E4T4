@@ -14,7 +14,7 @@ public class Podcsaterra extends Artista {
 	 * @param deskription  Podcaterra artistaren deskribapena
 	 * @param irudia       Podcaterra artistaren irudia
 	 */
-	public Podcsaterra(String izena, String deskription, String irudia) {
-		super(izena, deskription, irudia);
+	public Podcsaterra(int idArtista, String izena, String deskription, String irudia) {
+		super(idArtista,izena, deskription, irudia);
 	}
 }

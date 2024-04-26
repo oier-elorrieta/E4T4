@@ -2,13 +2,16 @@ package model;
 
 import java.util.Objects;
 
+import com.mysql.cj.jdbc.Blob;
+
 /**
  * Artistak klasea abstraktoa da, eta artisten informazioa gordetzeko erabiltzen da.
  */
 public abstract class Artista {
+	protected int idArtista;
 	protected String izena;
 	protected String deskription;
-	protected String irudia;
+	protected Blob irudia;
 	
 	/**
 	 * Artistak klasearen eraikitzailea.
@@ -16,10 +19,11 @@ public abstract class Artista {
 	 * @param deskription artistaren deskribapena
 	 * @param irudia artistaren irudia
 	 */
-	public Artista(String izena, String deskription, String irudia) {
+	public Artista(int idArtista,String izena, String deskription, Blob irudia) {
 		this.izena = izena;
 		this.deskription = deskription;
 		this.irudia = irudia;
+		this.idArtista = idArtista;
 	}
 
 	/**
@@ -85,7 +89,7 @@ public abstract class Artista {
 	 * Artistaren irudia itzultzen duen metodoa.
 	 * @return artistaren irudia
 	 */
-	public String getIrudia() {
+	public Blob getIrudia() {
 		return irudia;
 	}
 
@@ -93,7 +97,16 @@ public abstract class Artista {
 	 * Artistaren irudia ezartzen duen metodoa.
 	 * @param irudia artistaren irudia
 	 */
-	public void setIrudia(String irudia) {
+	public void setIrudia(Blob irudia) {
 		this.irudia = irudia;
 	}
+
+	public int getIdArtista() {
+		return idArtista;
+	}
+
+	public void setIdArtista(int idArtista) {
+		this.idArtista = idArtista;
+	}
+	
 }

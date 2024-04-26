@@ -7,21 +7,24 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Iterator;
 
+import com.mysql.cj.jdbc.Blob;
 import model.Abestia;
+import model.Album;
 import model.ErabiltzaileFree;
 import model.ErabiltzailePremium;
+import model.Musikaria;
 import model.PlayListak;
 import model.SesioAldagaiak;
 
 public class Kone {
 
-
 	private static String url = "jdbc:mysql://10.5.6.111:3306/Sphea";
 	private static String user = "erabiltzaile";
 	private static String pass = "4321";
-
 
 	private static String userErabiltzailea;
 	private static String passErabiltzailea;
@@ -45,11 +48,11 @@ public class Kone {
 		}
 		// return konexioa;
 	}
-	
+
 	public static boolean konektatuAdmin(String user, String pass) {
 		boolean LoginOk = true;
 		try {
-			
+
 			if (konexioa == null || konexioa.isClosed()) {
 				konexioa = DriverManager.getConnection(url, user, pass);
 			}
@@ -58,8 +61,6 @@ public class Kone {
 		}
 		return LoginOk;
 	}
-	
-	
 
 	public static void itxiConexioa() {
 		try {
@@ -125,13 +126,12 @@ public class Kone {
 			rs = stm.executeQuery(kontsulta);
 			while (rs.next()) {
 
-				SesioAldagaiak.erabiltzaileLogeatutaFree = new ErabiltzaileFree(rs.getInt("IdBezeroa"),rs.getString("Erabiltzailea"),
-						rs.getString("Pasahitza"), rs.getString("Izena"), rs.getString("Abizena"),
-						rs.getDate("JaiotzeData"), rs.getString("IdHizkuntza"));
-		s
+				SesioAldagaiak.erabiltzaileLogeatutaFree = new ErabiltzaileFree(rs.getInt("IdBezeroa"),
+						rs.getString("Erabiltzailea"), rs.getString("Pasahitza"), rs.getString("Izena"),
+						rs.getString("Abizena"), rs.getDate("JaiotzeData"), rs.getString("IdHizkuntza"));
 
 			}
-			
+
 		} catch (SQLException e) {
 			e.getMessage();
 		}
@@ -253,7 +253,7 @@ public class Kone {
 			rs = stm.executeQuery(kontsulta);
 			while (rs.next()) {
 				Abestia abestiaSartu = new Abestia(rs.getInt("au.IdAudio"), rs.getString("au.izena"),
-						rs.getString("au.Iraupena"), false);
+						rs.getTime("au.Iraupena"));
 				abestiakList.add(abestiaSartu);
 			}
 		} catch (SQLException e) {
@@ -261,4 +261,106 @@ public class Kone {
 		}
 		return abestiakList;
 	}
+
+	
+	public static ArrayList<Album> getAlbumak(Musikaria musikari) {
+
+		konektatu();
+		ArrayList<Album> albumak = new ArrayList<Album>();
+		System.out.println(musikari.getIdArtista());
+		try {
+			stm = konexioa.createStatement();
+			kontsulta = "SELECT * FROM Album where IdArtista ="+musikari.getIdArtista()+"";
+			rs = stm.executeQuery(kontsulta);
+	
+			
+			while(rs.next()) {
+			
+			albumak.add(new Album(rs.getInt("IdAlbum"),rs.getString("Izenburua"),rs.getString("Generoa"), (Blob)rs.getBlob("Irudia")));
+			
+			}
+			
+		} catch (SQLException e) {
+			e.getMessage();
+			
+		}
+		return albumak;	
+	}
+
+	public static Musikaria getMusikaria(String izena) {
+
+		konektatu();
+		Musikaria musikari = null;
+	
+		try {
+			stm = konexioa.createStatement();
+			
+			kontsulta = "SELECT * FROM Musikaria m INNER JOIN Artista a on m.IdArtista = a.IdArtista WHERE IzenArtistikoa='"+izena+"'";
+			rs = stm.executeQuery(kontsulta);
+			
+			
+			rs.next(); 
+
+				
+				 musikari = new Musikaria(rs.getInt("a.IdArtista"), rs.getString("a.IzenArtistikoa"),
+						rs.getString("a.Deskripzioa"), (Blob) rs.getBlob("a.Irudia"), rs.getString("m.Ezaugarria"));
+				
+				 	
+			
+		} catch (SQLException e) {
+			e.getMessage();
+			
+		}
+		
+		return musikari;
+
+	}
+	
+	public static ArrayList<Abestia> getAbestiak(int idAlbum){
+		
+		konektatu();
+
+		try {
+			ArrayList<Abestia> abestiak = new ArrayList<Abestia>();
+			stm = konexioa.createStatement();
+			kontsulta = "SELECT * FROM Abestia join Audio using(IdAudio) where IdAlbum = '"+idAlbum+"'";
+			rs = stm.executeQuery(kontsulta);
+			while(rs.next()) {
+			abestiak.add(new Abestia(rs.getInt("IdAudio"),rs.getString("Izena"),rs.getTime("Iraupena")));
+			}
+			return abestiak;
+		} catch (SQLException e) {
+			e.getMessage();
+			return null;
+		}
+		
+	}
+	
+	public static void beteAlbumakKantaKop(ArrayList<Album> albumak){
+		
+		
+		konektatu();
+		
+
+		for(Album i: albumak) {
+		
+
+			try {
+			stm = konexioa.createStatement();
+			kontsulta = "SELECT count(IdAudio) FROM Abestia where IdAlbum ="+i.getId()+"";
+			rs = stm.executeQuery(kontsulta);
+			rs.next();
+			i.setKantaKop(rs.getInt("count(IdAudio)"));
+		} catch (SQLException e) {
+			e.getMessage();
+			
+		}
+			}
+		
+		
+	} 
+	
+
+	
+
 }

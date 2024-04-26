@@ -1,5 +1,5 @@
 package model.metodoak;
-
+import model.*;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -7,13 +7,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
@@ -125,6 +128,7 @@ public class ViewMetodoak {
         // Se actualiza el layout del panel para que se ajuste automáticamente
         pane.revalidate();
         pane.repaint();
+        
 		
 	}
 	
@@ -144,4 +148,21 @@ public class ViewMetodoak {
 				
 	
 	}
+	
+	
+	public static DefaultListModel<Album> getMusikariAlbumak(String izena) {
+		
+		DefaultListModel<Album> lm = new DefaultListModel();
+		Musikaria musikari = Kone.getMusikaria(izena);	
+		ArrayList<Album> albumak = Kone.getAlbumak(musikari);
+		Kone.beteAlbumakKantaKop(albumak);
+		
+		for(Album i: albumak) {
+			lm.addElement(i);
+		}
+		
+		return lm;
+	}
+	
+	
 }
