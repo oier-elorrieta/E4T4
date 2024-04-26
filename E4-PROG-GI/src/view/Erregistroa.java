@@ -57,6 +57,16 @@ public class Erregistroa extends JFrame {
 	protected JPasswordField passwordField;
 	protected JPasswordField passwordFieldErrepikatu;
 	protected DefaultComboBoxModel<String> cboModelHizkuntza = new DefaultComboBoxModel<>(); 
+	private boolean idatzi = false;
+
+	public boolean isIdatzi() {
+		return idatzi;
+	}
+
+	public void setIdatzi(boolean idatzi) {
+		this.idatzi = idatzi;
+		System.out.println(idatzi);
+	}
 
 	/**
 	 * 
@@ -104,6 +114,7 @@ public class Erregistroa extends JFrame {
 		txtIzena.setToolTipText("Sartu izen bat...");
 		txtIzena.setColumns(10);
 		txtIzena.setBorder(new LineBorder(Color.GRAY, 1, true));
+		txtIzena.setEditable(idatzi);
 		
 		JLabel lblAbizenak = new JLabel("Abizenak:");
 		lblAbizenak.setBounds(480, 80, 94, 23);
@@ -115,6 +126,8 @@ public class Erregistroa extends JFrame {
 		txtAbizenak.setColumns(10);
 		txtAbizenak.setBorder(new LineBorder(Color.GRAY, 1, true));
 		
+		txtAbizenak.setEditable(idatzi);
+		
 		JLabel lblErabiltzailea = new JLabel("Erabiltzailea:");
 		lblErabiltzailea.setBounds(80, 140, 94, 23);
 		lblErabiltzailea.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 15));
@@ -125,6 +138,8 @@ public class Erregistroa extends JFrame {
 		txtErabiltzailea.setColumns(10);
 		txtErabiltzailea.setBorder(new LineBorder(Color.GRAY, 1, true));
 		
+		txtErabiltzailea.setEditable(idatzi);
+		
 		JLabel lblPasahitza = new JLabel("Pasahitza:");
 		lblPasahitza.setBounds(80, 200, 94, 23);
 		lblPasahitza.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 15));
@@ -134,6 +149,8 @@ public class Erregistroa extends JFrame {
 		passwordField.setToolTipText("Sartu pasahitza...");
 		passwordField.setBorder(new LineBorder(Color.GRAY, 1, true));
 		
+		passwordField.setEditable(idatzi);
+		
 		JLabel lblPasahitzaErrepikatu = new JLabel("Konfirmatu:");
 		lblPasahitzaErrepikatu.setBounds(480, 200, 103, 23);
 		lblPasahitzaErrepikatu.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 15));
@@ -142,6 +159,8 @@ public class Erregistroa extends JFrame {
 		passwordFieldErrepikatu.setBounds(600, 200, 174, 29);
 		passwordFieldErrepikatu.setToolTipText("Sartu pasahitza berriz...");
 		passwordFieldErrepikatu.setBorder(new LineBorder(Color.GRAY, 1, true));
+		
+		passwordFieldErrepikatu.setEditable(idatzi);
 		
 		JLabel lblJaiotzeData = new JLabel("Jaiotze Data:");
 		lblJaiotzeData.setBounds(80, 260, 129, 23);
@@ -153,6 +172,8 @@ public class Erregistroa extends JFrame {
 		txtJaiotzeData.setColumns(10);
 		txtJaiotzeData.setBorder(new LineBorder(Color.GRAY, 1, true));
 		
+		txtJaiotzeData.setEditable(idatzi);
+		
 		JLabel lblHizkuntza = new JLabel("Hizkuntza:");
 		lblHizkuntza.setBounds(80, 340, 129, 23);
 		lblHizkuntza.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 15));
@@ -163,14 +184,16 @@ public class Erregistroa extends JFrame {
 		cboHizkuntza.setBounds(220, 340, 136, 29);
 		contentPane.add(cboHizkuntza);
 		
+		cboHizkuntza.setEnabled(idatzi);
+		
 		JButton btnAtzera = new JButton("Atzera");
-		btnAtzera.setBounds(269, 462, 136, 29);
+		btnAtzera.setBounds(200, 462, 136, 29);
 		btnAtzera.setForeground(SystemColor.text);
 		btnAtzera.setBackground(SystemColor.desktop);
 		btnAtzera.setFont(new Font("Segoe UI Black", Font.PLAIN, 15));
 		
 		JButton btnErregistratu = new JButton("Erregistratu");
-		btnErregistratu.setBounds(480, 462, 136, 29);
+		btnErregistratu.setBounds(600, 462, 136, 29);
 		btnErregistratu.setForeground(SystemColor.text);
 		btnErregistratu.setBackground(SystemColor.desktop);
 		btnErregistratu.setFont(new Font("Segoe UI Black", Font.PLAIN, 15));
