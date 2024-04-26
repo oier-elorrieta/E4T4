@@ -42,10 +42,10 @@ public class PlaylistAbestiak extends JFrame {
 		contentPane.setLayout(null);
 
 		ArrayList<Abestia> abestiakList = Kone.getPlayListAbestiak(aukeraPlaylist);
-		
+
 		DefaultListModel<String> modeloLista = new DefaultListModel<>();
 		for (int i = 0; i < abestiakList.size(); i++) {
-			
+
 			modeloLista.addElement(abestiakList.get(i).getIzena());
 		}
 		JList<String> jListAbestiak = new JList(modeloLista);
@@ -74,14 +74,13 @@ public class PlaylistAbestiak extends JFrame {
 
 		JButton btnErabiltzaile = ViewMetodoak.btnErabiltzaileaSortu();
 
-
 		contentPane.add(jListAbestiak);
 		contentPane.add(btnErreproduzitu);
 		contentPane.add(btnKompartitu);
 		contentPane.add(btnEzabatu);
 		contentPane.add(btnAtzera);
 		contentPane.add(btnErabiltzaile);
-		
+
 		btnErreproduzitu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -89,11 +88,11 @@ public class PlaylistAbestiak extends JFrame {
 				if (jListAbestiak.getSelectedValue() == null) {
 					JOptionPane.showMessageDialog(null, "Ez duzu Abesti bat aukeratu ezabatzeko", "Error",
 							JOptionPane.ERROR_MESSAGE);
-				} else {					
-					int aukeraAbestia = jListAbestiak.getSelectedIndex();
-					dispose();
+				} else {
 					try {
-						JFrameSortu.erreprodukzioaSortu(abestiakList.get(aukeraAbestia));
+						int aukeraAbestia = jListAbestiak.getSelectedIndex();
+						dispose();
+						JFrameSortu.erreprodukzioaSortu(abestiakList,aukeraAbestia);
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -102,18 +101,21 @@ public class PlaylistAbestiak extends JFrame {
 
 			}
 		});
-		
+
 		btnEzabatu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
 					int aukeraAbestia = jListAbestiak.getSelectedIndex();
-					Kone.abestiPlaylistEzabatu(aukeraPlaylist.getIdPlayList(), abestiakList.get(aukeraAbestia).getIdAudio());
+					Kone.abestiPlaylistEzabatu(aukeraPlaylist.getIdPlayList(),
+							abestiakList.get(aukeraAbestia).getIdAudio());
+					dispose();
+					JFrameSortu.playlistAbestiakSortu(aukeraPlaylist);
+					JFrameSortu.erreprodukzioaSortu(abestiakList,aukeraAbestia);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				
 			}
 		});
 
@@ -134,7 +136,6 @@ public class PlaylistAbestiak extends JFrame {
 				JFrameSortu.loginAukeraSortu();
 			}
 		});
-
 
 	}
 

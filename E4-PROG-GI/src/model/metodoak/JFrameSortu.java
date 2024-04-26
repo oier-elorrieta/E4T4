@@ -1,6 +1,7 @@
 package model.metodoak;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.WindowConstants;
 
@@ -59,8 +60,8 @@ public class JFrameSortu {
 		playlistAbestiakSortu.setVisible(true);
 	}
 	
-	public static void erreprodukzioaSortu(Abestia abestia) throws SQLException{
-		Erreprodukzioa erreprodukzioaSortu = new Erreprodukzioa(abestia);
+	public static void erreprodukzioaSortu(ArrayList<Abestia> abestiak, int abestiAukera) throws SQLException{
+		Erreprodukzioa erreprodukzioaSortu = new Erreprodukzioa(abestiak,abestiAukera);
 		erreprodukzioaSortu.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		erreprodukzioaSortu.setVisible(true);
 	}

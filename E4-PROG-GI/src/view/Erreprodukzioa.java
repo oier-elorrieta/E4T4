@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -37,7 +38,7 @@ public class Erreprodukzioa extends JFrame {
 
 	private Clip clip;
 
-	public Erreprodukzioa(Abestia abestia) throws SQLException {
+	public Erreprodukzioa(ArrayList<Abestia> abestiak, int abestiAukera) throws SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 250, 906, 594);
 		setTitle("Menu Nagusia - Talde 4");
@@ -46,7 +47,7 @@ public class Erreprodukzioa extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		ImageIcon irudia = new ImageIcon(abestia.getIrudia().getBytes(1, (int) abestia.getIrudia().length()));
+		ImageIcon irudia = new ImageIcon(abestiak.get(abestiAukera).getIrudia().getBytes(1, (int) abestiak.get(abestiAukera).getIrudia().length()));
 		JLabel lblIrudia = new JLabel();
 		lblIrudia.setBounds(325, 50, 250, 250);
 		lblIrudia.setIcon(irudia);
@@ -90,7 +91,7 @@ public class Erreprodukzioa extends JFrame {
 		contentPane.add(btnErabiltzaile);
 
 		String filepath = "C:\\Users\\in1dm3-d\\eclipse-workspace\\E4T4\\E4-PROG-GI\\src\\audioak\\"
-				+ abestia.getIzena() + ".wav";
+				+ abestiak.get(abestiAukera).getIzena() + ".wav";
 		File f = new File(filepath);
 		AudioInputStream aui;
 		try {
@@ -117,7 +118,31 @@ public class Erreprodukzioa extends JFrame {
 				}
 			}
 		});
-
+		
+		btnHurrengoa.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					int abestiAukeraAux = abestiAukera;
+					abestiAukeraAux++;
+					System.out.println(abestiAukera);
+					if (abestiak.size() > abestiAukera) {
+						clip.stop();
+						dispose();
+						JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux);
+					} else {
+						clip.stop();
+						abestiAukeraAux = 0;
+						dispose();
+						JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux);
+					}
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		
 		btnAtzera.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
