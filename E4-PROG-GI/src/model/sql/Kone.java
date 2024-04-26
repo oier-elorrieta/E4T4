@@ -105,6 +105,14 @@ public class Kone {
 	
 	public static void erregistratuPremium(ErabiltzailePremium erab) {
 		konektatu();
+		try {
+			stm = konexioa.createStatement();
+			//Por comprobar
+			kontsulta = "SELECT Erabiltzailea FROM Bezeroa where(Erabiltzailea = ?);";
+			rs = stm.executeQuery(kontsulta);
+		} catch (SQLException e) {
+			e.getMessage();
+		}
 		kontsulta = "INSERT into Bezeroa(Izena,Abizena,Erabiltzailea,Pasahitza,JaiotzeData,IdHizkuntza) VALUES(?,?,?,?,?,?)";
 		try {
 			pstm = konexioa.prepareStatement(kontsulta);
