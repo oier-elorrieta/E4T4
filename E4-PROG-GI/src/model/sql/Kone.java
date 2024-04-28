@@ -213,6 +213,10 @@ public class Kone {
 			kontsulta = "SELECT * FROM Playlist where IdBezeroa = " + id;
 			rs = stm.executeQuery(kontsulta);
 
+			java.util.Date d = new java.util.Date();
+			PlayListak playlistGustokoena = new PlayListak(0, "Gustokoena", d);
+			playlistList.add(playlistGustokoena);
+			
 			while (rs.next()) {
 				playLista = new PlayListak(rs.getInt("IdList"), rs.getString("Izenburua"), rs.getDate("SorreraData"));
 				playlistList.add(playLista);
@@ -277,8 +281,39 @@ public class Kone {
 			rs = stm.executeQuery(kontsulta);
 			
 			while (rs.next()) {
-				Abestia abestiaSartu = new Abestia(rs.getInt("au.IdAudio"), rs.getString("au.izena"),
+				Abestia abestiaSartu = new Abestia(rs.getInt("au.IdAudio"), rs.getString("au.Izena"),
 						rs.getTime("au.Iraupena"), rs.getBlob("au.Irudia"), false);
+				abestiakList.add(abestiaSartu);
+			}
+		} catch (SQLException e) {
+			e.getMessage();
+		}
+		itxiConexioa();
+		return abestiakList;
+	}
+	
+	public static ArrayList<Abestia> getAbestiGustokoak(){
+		ArrayList<Abestia> abestiakList = new ArrayList<Abestia>();
+		Abestia abestia;
+		
+		int id = 0;
+
+		konektatu();
+
+		if (!SesioAldagaiak.erabiltzailePremium) {
+			id = SesioAldagaiak.erabiltzaileLogeatutaFree.getIdErabiltzailea();
+		} else {
+			id = SesioAldagaiak.erabiltzaileLogeatutaPremium.getIdErabiltzailea();
+		}
+		
+		try {
+			stm = konexioa.createStatement();
+			kontsulta = "SELECT a.IdAudio, a.Izena, a.Iraupena, a.Irudia FROM Gustokoak g join Audio a using (IdAudio) where IdBezeroa = " + id ;
+			rs = stm.executeQuery(kontsulta);
+			
+			while (rs.next()) {
+				Abestia abestiaSartu = new Abestia(rs.getInt("a.IdAudio"), rs.getString("a.izena"),
+						rs.getTime("a.Iraupena"), rs.getBlob("a.Irudia"), true);
 				abestiakList.add(abestiaSartu);
 			}
 		} catch (SQLException e) {

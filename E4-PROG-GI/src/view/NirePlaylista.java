@@ -54,9 +54,8 @@ public class NirePlaylista extends JFrame {
 		btnAtzera.setFocusPainted(false);
 
 		JButton btnErabiltzaile = ViewMetodoak.btnErabiltzaileaSortu();
-
+				
 		ArrayList<PlayListak> playlistLista = Kone.getPlaylist();
-		
 		DefaultListModel<String> modeloLista = new DefaultListModel<>();
 		for (int i = 0; i < playlistLista.size(); i++) {
 			modeloLista.addElement(playlistLista.get(i).getIzena());
@@ -108,6 +107,8 @@ public class NirePlaylista extends JFrame {
 				try {
 					if (jListPlayList.getSelectedValue() == null) {
 						JOptionPane.showMessageDialog(null, "Ez duzu Playlist bat aukeratu ezabatzeko", "Error", JOptionPane.ERROR_MESSAGE);
+					} else if (jListPlayList.getSelectedIndex() == 0){
+						JOptionPane.showMessageDialog(null, "Ezin duzu Playlist hau ezabatu", "Error", JOptionPane.ERROR_MESSAGE);
 					} else {
 						int aukeraPlaylist = jListPlayList.getSelectedIndex();
 						Kone.playlistEzabatu(playlistLista.get(aukeraPlaylist).getIdPlayList());

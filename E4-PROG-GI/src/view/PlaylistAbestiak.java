@@ -31,7 +31,8 @@ public class PlaylistAbestiak extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-
+	private static ArrayList<Abestia> abestiakList;
+	
 	public PlaylistAbestiak(PlayListak aukeraPlaylist) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 250, 906, 594);
@@ -40,12 +41,16 @@ public class PlaylistAbestiak extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
-		ArrayList<Abestia> abestiakList = Kone.getPlayListAbestiak(aukeraPlaylist);
-
+		
+		if (aukeraPlaylist.getIdPlayList() != 0) {
+		abestiakList = Kone.getPlayListAbestiak(aukeraPlaylist);
+		} else {
+		abestiakList = Kone.getAbestiGustokoak();
+		}
+		
+		
 		DefaultListModel<String> modeloLista = new DefaultListModel<>();
 		for (int i = 0; i < abestiakList.size(); i++) {
-
 			modeloLista.addElement(abestiakList.get(i).getIzena());
 		}
 		JList<String> jListAbestiak = new JList(modeloLista);

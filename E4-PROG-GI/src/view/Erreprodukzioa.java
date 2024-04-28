@@ -100,10 +100,8 @@ public class Erreprodukzioa extends JFrame {
 			clip = AudioSystem.getClip();
 			clip.open(aui);
 		} catch (UnsupportedAudioFileException | IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (LineUnavailableException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
@@ -112,7 +110,6 @@ public class Erreprodukzioa extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				Object[] aukerakMenu = {"Gorde", "Kompartitu"};
 				int menuAukera = JOptionPane.showOptionDialog(null, "Zer nahi duzu egin?","Menu", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, aukerakMenu, aukerakMenu[0]);
-				
 				if(menuAukera == JOptionPane.YES_OPTION) {
 					System.out.println("go");
 				} else if (menuAukera == JOptionPane.NO_OPTION) {
