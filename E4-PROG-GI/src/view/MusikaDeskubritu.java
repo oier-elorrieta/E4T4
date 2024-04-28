@@ -1,5 +1,6 @@
 package view;
 
+import model.SesioAldagaiak;
 import model.metodoak.*;
 
 import java.awt.BorderLayout;
@@ -33,11 +34,9 @@ public class MusikaDeskubritu extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JButton btnErabiltzaile = model.SesioAldagaiak.jb;
+		JButton btnErabiltzaile = SesioAldagaiak.jb;
 
 		JButton btnAtzera = new JButton("Atzera");
-		
-		
 		btnAtzera.setBackground(Color.BLACK);
 		btnAtzera.setForeground(Color.RED);
 		btnAtzera.setBounds(50, 60, 144, 50);
