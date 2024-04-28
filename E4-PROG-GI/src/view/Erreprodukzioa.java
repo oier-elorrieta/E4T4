@@ -90,7 +90,7 @@ public class Erreprodukzioa extends JFrame {
 		contentPane.add(btnAtzera);
 		contentPane.add(btnErabiltzaile);
 
-		String filepath = "C:\\Users\\in1dm3-d\\eclipse-workspace\\E4T4\\E4-PROG-GI\\src\\audioak\\"
+		String filepath = "src\\audioak\\"
 				+ abestiak.get(abestiAukera).getIzena() + ".wav";
 		File f = new File(filepath);
 		AudioInputStream aui;

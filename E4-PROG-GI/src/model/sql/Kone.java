@@ -22,9 +22,9 @@ import model.SesioAldagaiak;
 
 public class Kone {
 
-	private static String url = "jdbc:mysql://10.5.6.111:3306/Sphea";
-	private static String user = "erabiltzaile";
-	private static String pass = "4321";
+	private static String url = "jdbc:mysql://localhost/Sphea";
+	private static String user = "root";
+	private static String pass = "";
 
 	private static String userErabiltzailea;
 	private static String passErabiltzailea;
@@ -151,17 +151,9 @@ public class Kone {
 			kontsulta = "SELECT * FROM Bezeroa WHERE IdBezeroa = " + id;
 			rs = stm.executeQuery(kontsulta);
 			while (rs.next()) {
-
-<<<<<<< HEAD
 				SesioAldagaiak.erabiltzaileLogeatutaFree = new ErabiltzaileFree(rs.getInt("IdBezeroa"),
 						rs.getString("Erabiltzailea"), rs.getString("Pasahitza"), rs.getString("Izena"),
 						rs.getString("Abizena"), rs.getDate("JaiotzeData"), rs.getString("IdHizkuntza"));
-
-=======
-				SesioAldagaiak.erabiltzaileLogeatutaFree = new ErabiltzaileFree(rs.getInt("IdBezeroa"),rs.getString("Erabiltzailea"),
-						rs.getString("Pasahitza"), rs.getString("Izena"), rs.getString("Abizena"),
-						rs.getDate("JaiotzeData"), rs.getString("IdHizkuntza"));
->>>>>>> feb4441f893e8d9d7cd4b0f3ecffc5ee42e8a047
 			}
 
 		} catch (SQLException e) {
@@ -286,11 +278,7 @@ public class Kone {
 			
 			while (rs.next()) {
 				Abestia abestiaSartu = new Abestia(rs.getInt("au.IdAudio"), rs.getString("au.izena"),
-<<<<<<< HEAD
-						rs.getTime("au.Iraupena"));
-=======
-						rs.getString("au.Iraupena"), rs.getBlob("au.Irudia"), false);
->>>>>>> feb4441f893e8d9d7cd4b0f3ecffc5ee42e8a047
+						rs.getTime("au.Iraupena"), rs.getBlob("au.Irudia"), false);
 				abestiakList.add(abestiaSartu);
 			}
 		} catch (SQLException e) {
@@ -299,7 +287,7 @@ public class Kone {
 		itxiConexioa();
 		return abestiakList;
 	}
-<<<<<<< HEAD
+
 
 	
 	public static ArrayList<Album> getAlbumak(Musikaria musikari) {
@@ -398,12 +386,7 @@ public class Kone {
 		
 		
 	} 
-	
-
-	
-
-=======
-	
+		
 	public static void abestiPlaylistEzabatu(int idPlaylist, int idAbestia) throws SQLException {
 		konektatu();
 
@@ -412,5 +395,4 @@ public class Kone {
 
 		itxiConexioa();
 	}
->>>>>>> feb4441f893e8d9d7cd4b0f3ecffc5ee42e8a047
 }

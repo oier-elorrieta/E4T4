@@ -1,11 +1,9 @@
 package model;
 
-<<<<<<< HEAD
 import java.sql.Time;
 import java.time.LocalTime;
-=======
+
 import java.sql.Blob;
->>>>>>> feb4441f893e8d9d7cd4b0f3ecffc5ee42e8a047
 import java.util.Objects;
 
 /**
@@ -24,16 +22,20 @@ public class Abestia extends Audio {
 	 * @param iraupena    abestiaren iraupena
 	 * @param gustokoena  abestia gustatzen zaion edo ez adierazten du
 	 */
-<<<<<<< HEAD
-	public Abestia(int idAudio, String izena, Time iraupena) {
-		super(idAudio, izena, iraupena);
-		
-=======
-	public Abestia(int idAudio, String izena, String iraupena, Blob irudia, boolean gustokoena) {
+
+	
+	
+	public Abestia(int idAudio, String izena, Time iraupena, Blob irudia, boolean gustokoena) {
 		super(idAudio, izena, iraupena, irudia);
 		this.setGustokoena(gustokoena);
->>>>>>> feb4441f893e8d9d7cd4b0f3ecffc5ee42e8a047
 	}
+	
+	public Abestia(int idAudio, String izena, Time iraupena) {
+		super(idAudio, izena, iraupena);
+		this.setGustokoena(gustokoena);
+	}
+	
+	
 
 	/**
 	 * Abestia gustatzen zaion edo ez itzultzen du.
