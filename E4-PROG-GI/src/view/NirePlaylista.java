@@ -133,7 +133,7 @@ public class NirePlaylista extends JFrame {
 		btnAukeratu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (jListPlayList.getSelectedValue() == null) {
-					JOptionPane.showMessageDialog(null, "Ez duzu Playlist bat aukeratu ezabatzeko", "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Ez duzu Playlist bat aukeratu", "Error", JOptionPane.ERROR_MESSAGE);
 				} else {
 					int aukeraPlaylist = jListPlayList.getSelectedIndex();
 					PlayListak aukeraPlaylistO = playlistLista.get(aukeraPlaylist);
@@ -156,6 +156,7 @@ public class NirePlaylista extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				SesioAldagaiak.erabiltzaileLogeatutaFree = null;
 				SesioAldagaiak.erabiltzaileLogeatutaPremium = null;
+				SesioAldagaiak.erabiltzailePremium = false;
 				dispose();
 				JFrameSortu.loginAukeraSortu();
 			}

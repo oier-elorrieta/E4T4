@@ -84,7 +84,6 @@ public class PlaylistAbestiak extends JFrame {
 		btnErreproduzitu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-
 				if (jListAbestiak.getSelectedValue() == null) {
 					JOptionPane.showMessageDialog(null, "Ez duzu Abesti bat aukeratu ezabatzeko", "Error",
 							JOptionPane.ERROR_MESSAGE);
@@ -111,14 +110,12 @@ public class PlaylistAbestiak extends JFrame {
 							abestiakList.get(aukeraAbestia).getIdAudio());
 					dispose();
 					JFrameSortu.playlistAbestiakSortu(aukeraPlaylist);
-					JFrameSortu.erreprodukzioaSortu(abestiakList,aukeraAbestia);
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
 		});
-
+		
 		btnAtzera.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -136,7 +133,5 @@ public class PlaylistAbestiak extends JFrame {
 				JFrameSortu.loginAukeraSortu();
 			}
 		});
-
 	}
-
 }

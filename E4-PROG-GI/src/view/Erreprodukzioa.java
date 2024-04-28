@@ -22,6 +22,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
@@ -105,7 +106,45 @@ public class Erreprodukzioa extends JFrame {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		
+		btnMenua.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Object[] aukerakMenu = {"Gorde", "Kompartitu"};
+				int menuAukera = JOptionPane.showOptionDialog(null, "Zer nahi duzu egin?","Menu", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, aukerakMenu, aukerakMenu[0]);
+				
+				if(menuAukera == JOptionPane.YES_OPTION) {
+					System.out.println("go");
+				} else if (menuAukera == JOptionPane.NO_OPTION) {
+					System.out.println("kompa");
+				}
+			}
+		});
 
+		btnAurrekoa.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					int abestiAukeraAux = abestiAukera;
+					abestiAukeraAux--;
+
+					if (abestiAukeraAux >= 0) {
+						clip.stop();
+						dispose();
+						JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux);
+					} else {
+						clip.stop();
+						abestiAukeraAux = abestiak.size()-1;
+						dispose();
+						JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux);
+					}
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		
 		btnPlay.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -125,8 +164,8 @@ public class Erreprodukzioa extends JFrame {
 				try {
 					int abestiAukeraAux = abestiAukera;
 					abestiAukeraAux++;
-					System.out.println(abestiAukera);
-					if (abestiak.size() > abestiAukera) {
+
+					if (abestiak.size() > abestiAukeraAux) {
 						clip.stop();
 						dispose();
 						JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux);
@@ -147,7 +186,7 @@ public class Erreprodukzioa extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				dispose();
-				JFrameSortu.loginAukeraSortu();
+				JFrameSortu.menuNagusiaAukeraSortu();
 			}
 		});
 

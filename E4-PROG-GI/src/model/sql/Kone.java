@@ -41,6 +41,7 @@ public class Kone {
 			// Konexioa sortu, oraindik ez badago
 			if (konexioa == null || konexioa.isClosed()) {
 				konexioa = DriverManager.getConnection(url, user, pass);
+				stm = konexioa.createStatement();
 				System.out.println("Konektatuta!!!");
 			}
 		} catch (SQLException e) {
@@ -52,7 +53,6 @@ public class Kone {
 	public static boolean konektatuAdmin(String user, String pass) {
 		boolean LoginOk = true;
 		try {
-
 			if (konexioa == null || konexioa.isClosed()) {
 				konexioa = DriverManager.getConnection(url, user, pass);
 			}
@@ -253,7 +253,7 @@ public class Kone {
 
 		kontsulta = "DELETE FROM Playlist WHERE IdList = " + idPlaylist;
 		stm.executeUpdate(kontsulta);
-
+	
 		itxiConexioa();
 	}
 
@@ -389,10 +389,8 @@ public class Kone {
 		
 	public static void abestiPlaylistEzabatu(int idPlaylist, int idAbestia) throws SQLException {
 		konektatu();
-
 		kontsulta = "DELETE FROM PlaylistAbestiak WHERE IdList = " + idPlaylist + " AND IdAudio = " + idAbestia;
 		stm.executeUpdate(kontsulta);
-
 		itxiConexioa();
 	}
 }
