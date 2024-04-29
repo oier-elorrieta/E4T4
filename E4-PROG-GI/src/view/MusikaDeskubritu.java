@@ -58,11 +58,7 @@ public class MusikaDeskubritu extends JFrame {
 		ViewMetodoak.musikariakEntzunaldiakBotoiarentzako(artistaPane,this);
 
 		
-		//Aqui los añado manualmente para ver que funciona la scrollvar porque en la db solo hay 2 musikaris metidos
-		ViewMetodoak.btnGeneratu(artistaPane,"C:\\Users\\in1dm3-d\\Desktop\\4.Erronka\\E4T4\\E4-PROG-GI\\src\\img\\acdc.png","asdas","asda",this);
-		ViewMetodoak.btnGeneratu(artistaPane,"C:\\Users\\in1dm3-d\\Desktop\\4.Erronka\\E4T4\\E4-PROG-GI\\src\\img\\acdc.png","sdasdas","asda",this);
-		ViewMetodoak.btnGeneratu(artistaPane,"C:\\Users\\in1dm3-d\\Desktop\\4.Erronka\\E4T4\\E4-PROG-GI\\src\\img\\acdc.png","asdasd","asdas",this);
-		ViewMetodoak.btnGeneratu(artistaPane,"C:\\Users\\in1dm3-d\\Desktop\\4.Erronka\\E4T4\\E4-PROG-GI\\src\\img\\acdc.png","asdasd","asda",this);
+		
 		
 		
 		

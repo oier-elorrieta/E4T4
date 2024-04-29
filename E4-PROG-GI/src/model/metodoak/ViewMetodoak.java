@@ -16,6 +16,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -157,6 +158,18 @@ public class ViewMetodoak {
 		}
 		
 		return lm;
+	}
+	
+	public static void setIrudia(JLabel lbl,Musikaria m) {
+		
+		try {
+			ImageIcon icon = new ImageIcon(m.getIrudia().getBytes(1, (int) m.getIrudia().length()));
+			Image imagen = icon.getImage().getScaledInstance(550, 500, Image.SCALE_SMOOTH);
+			ImageIcon iconoEscalado = new ImageIcon(imagen);
+			lbl.setIcon(icon);
+			}catch(SQLException e) {
+				e.getMessage();
+			}
 	}
 	
 	

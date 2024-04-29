@@ -1,6 +1,8 @@
 package model;
 
-import com.mysql.cj.jdbc.Blob;
+
+import java.sql.Blob;
+
 /**
  * Klase hau Musikaria klasea da, Artistak klasea heredatzen duena.
  * Musikariak izena, deskribapena eta irudia ditu.
