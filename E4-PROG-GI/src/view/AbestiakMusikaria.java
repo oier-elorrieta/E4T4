@@ -16,6 +16,7 @@ import javax.swing.event.ListSelectionListener;
 
 import com.mysql.cj.jdbc.Blob;
 
+import model.Abestia;
 import model.Album;
 import model.Musikaria;
 import model.metodoak.ViewMetodoak;
@@ -34,14 +35,14 @@ import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextPane;
 
-public class MusikariView extends JFrame {
+public class AbestiakMusikaria extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private Musikaria musikari;
 	private JLabel lblIzena;
 
-	public MusikariView(String izena){
+	public AbestiakMusikaria(Album album){
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 250, 906, 594);
@@ -69,7 +70,7 @@ public class MusikariView extends JFrame {
 		panel.setBounds(10, 152, 359,389);
 		contentPane.add(panel);
 
-		DefaultListModel<Album> modeloList = ViewMetodoak.getMusikariAlbumak(izena);
+		DefaultListModel<Abestia> modeloList = ViewMetodoak.getMusikariAbestiak(album.getId());
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
 
 		JList list = new JList(modeloList);
@@ -87,18 +88,17 @@ public class MusikariView extends JFrame {
 		panel_1.add(lblNewLabel);
 		
 		
-		//Aukeratutako musikaria
-		musikari = Kone.getMusikaria(izena);
+		
 		
 		//irudia seteatu lbl-ari
-		ViewMetodoak.setIrudia(lblNewLabel,musikari.getIrudia());
+		ViewMetodoak.setIrudia(lblNewLabel,album.getIrudia());
 		
 		
 		
 		//Deskripzioa
 		JTextPane textPane = new JTextPane();
 		JScrollPane scrollPane_1 = new JScrollPane(textPane);
-		textPane.setText(musikari.getDeskription());
+		textPane.setText(album.toString());
 		scrollPane_1.setBounds(373, 378, 469, 166);
 		contentPane.add(scrollPane_1);
 		
@@ -106,7 +106,7 @@ public class MusikariView extends JFrame {
 		//Izena lbl
 		lblIzena = new JLabel("");
 		lblIzena.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		lblIzena.setText(musikari.getIzena());
+		lblIzena.setText(album.getIzenburua());
 		lblIzena.setBounds(373, 63, 295, 38);
 		contentPane.add(lblIzena);
 		
@@ -124,9 +124,7 @@ public class MusikariView extends JFrame {
             // Obtener el valor del elemento seleccionado
             Album selectedValue = (Album) list.getSelectedValue();
             
-             AbestiakMusikaria ab = new AbestiakMusikaria(selectedValue);
-             ab.setVisible(true);
-             dispose();
+                
             }
         });
 		
