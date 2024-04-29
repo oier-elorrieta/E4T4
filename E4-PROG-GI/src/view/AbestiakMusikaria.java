@@ -46,7 +46,7 @@ public class AbestiakMusikaria extends JFrame {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 250, 906, 594);
-		setTitle("Menu Nagusia - Talde 4");
+		setTitle("Abestiak Musikaria - Talde 4");
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -127,14 +127,5 @@ public class AbestiakMusikaria extends JFrame {
                 
             }
         });
-		
-        
-        
-		
-		
-		
-		
-	
-
 	}
 }
