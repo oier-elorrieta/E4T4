@@ -4,7 +4,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
+import java.sql.Date;
 import java.util.Objects;
 
 /**
@@ -34,16 +34,19 @@ public class Erabiltzailea {
 		
 	}
 	
-	public Erabiltzailea(int idErabiltzailea, String erabiltzailea, String pasahitza, String izena, String abizena, Date jaiotzeData,
-			String hizkuntza) {
+
+
+	public Erabiltzailea(int idErabiltzailea, String erabiltzailea, String pasahitza, String izena, String abizena,Date jaiotzeData2, String hizkuntza) {
 		this.idErabiltzailea = idErabiltzailea;
 		this.erabiltzailea = erabiltzailea;
 		this.pasahitza = pasahitza;
 		this.izena = izena;
 		this.abizena = abizena;
-		this.jaiotzeData = jaiotzeData;
+		this.jaiotzeData = jaiotzeData2;
 		this.hizkuntza = hizkuntza;
 	}
+
+
 
 	/**
 	 * Objektu hau eta beste objektu bat berdinak diren ala ez jakiteko metodoa.
@@ -54,15 +57,9 @@ public class Erabiltzailea {
 	
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
 		Erabiltzailea other = (Erabiltzailea) obj;
 		return Objects.equals(abizena, other.abizena) && Objects.equals(erabiltzailea, other.erabiltzailea)
-				&& Objects.equals(hizkuntza, other.hizkuntza) && idErabiltzailea == other.idErabiltzailea
+				&& Objects.equals(hizkuntza, other.hizkuntza)
 				&& Objects.equals(izena, other.izena) && Objects.equals(jaiotzeData, other.jaiotzeData)
 				&& Objects.equals(pasahitza, other.pasahitza);
 	}
@@ -210,36 +207,4 @@ public class Erabiltzailea {
 		this.hizkuntza = hizkuntza;
 	}
 	
-	public static boolean komprobatujaiotza(String fechaString) {
-        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-        dateFormat.setLenient(false);
-        
-        try {
-            Date fecha = dateFormat.parse(fechaString);
-            
-            Calendar calendarActual = Calendar.getInstance();
-            calendarActual.setTime(new Date());
-            
-            Calendar calendarFecha = Calendar.getInstance();
-            calendarFecha.setTime(fecha);
-            
-            if (calendarFecha.before(calendarActual)) {
-                return true;
-            } else {
-                return false;
-            }
-        } catch (ParseException e) {
-            return false;
-        }
-    }
-	
-	public static boolean validarFecha(Date fecha) {
-        Calendar calendarActual = Calendar.getInstance();
-        calendarActual.setTime(new Date());
-
-        Calendar calendarFecha = Calendar.getInstance();
-        calendarFecha.setTime(fecha);
-
-        return calendarFecha.before(calendarActual);
-    }
 }

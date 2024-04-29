@@ -82,7 +82,7 @@ public class ErregistroaPremium extends Erregistroa {
 		calendar.add(Calendar.DAY_OF_MONTH, 1);
 		model = new SpinnerDateModel(calendar.getTime(), null, null, Calendar.DAY_OF_MONTH);
 		JSpinner spinner = new JSpinner(model);
-		JSpinner.DateEditor editor = new JSpinner.DateEditor(spinner, "dd-MM-yyyy");
+		JSpinner.DateEditor editor = new JSpinner.DateEditor(spinner, "yyyy-MM-dd");
  
 		editor.getTextField().setEditable(false);
 		
@@ -108,11 +108,18 @@ public class ErregistroaPremium extends Erregistroa {
                     btnGorde.setText("Gorde");
                     setIdatzi(true);
                 } else {
-                    if (!balidatuAldaketak()) {
-
+                    if (balidatuAldaketak()) {
+                    	//Datuak ondo daude
+                    	btnGorde.setText("Aldatu datuak");
+                    	setIdatzi(false);
+                    }
+                    else {
                     	if(Alerta()) {
+                    		//Datuak aldatko ditu
                     	} else {
+                    		//Datuak ez ditu aldatuko
                             btnGorde.setText("Aldatu datuak");
+                            ezarriTextua();
                     		setIdatzi(false);
                     	}
                     }
@@ -135,10 +142,15 @@ public class ErregistroaPremium extends Erregistroa {
         txtErabiltzailea.setText(SesioAldagaiak.logErabiltzailea.getErabiltzailea());
         passwordField.setText(SesioAldagaiak.logErabiltzailea.getPasahitza());
         passwordFieldErrepikatu.setText(SesioAldagaiak.logErabiltzailea.getPasahitza());
-        txtJaiotzeData.setText(SesioAldagaiak.logErabiltzailea.getJaiotzeData().toString());
+        txtJaiotzeData.setText(AldatuData(SesioAldagaiak.logErabiltzailea.getJaiotzeData()));
         cboHizkuntza.setSelectedItem(SesioAldagaiak.logErabiltzailea.getHizkuntza());;
 	}
 
+	public String AldatuData(Date fecha) {
+	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	    return dateFormat.format(fecha);
+	}
+	
 	@Override
 	protected void datuakEzarri() {
 		try {
@@ -146,12 +158,9 @@ public class ErregistroaPremium extends Erregistroa {
 				throw new pasahitzaEzKointziditu();
 			}
 			String[] data = txtJaiotzeData.getText().split("-");
-			Date jaioData = new Date(Integer.parseInt(data[0]) - 1900, Integer.parseInt(data[1]) - 1,
-					Integer.parseInt(data[2]));
-			ErabiltzailePremium erabiltzailepremium = new ErabiltzailePremium(0, txtErabiltzailea.getText(),
-					passwordField.getText(), txtIzena.getText(), txtAbizenak.getText(), jaioData,
-					(String) cboHizkuntza.getSelectedItem(), model.getDate());
-
+			Date jaioData = new Date(Integer.parseInt(data[0])-1900, Integer.parseInt(data[1])-1,Integer.parseInt(data[2]));
+			ErabiltzailePremium erabiltzailepremium = new ErabiltzailePremium(0,txtErabiltzailea.getText(), passwordField.getText(), txtIzena.getText(),txtAbizenak.getText(), (java.sql.Date) jaioData ,(String) cboHizkuntza.getSelectedItem(),
+					(java.sql.Date) new Date());
 			Kone.erregistratuPremium(erabiltzailepremium);
 			ViewMetodoak.comprobatuLogin(txtErabiltzailea.getText(), passwordField.getText());
 			dispose();
@@ -163,24 +172,25 @@ public class ErregistroaPremium extends Erregistroa {
 	
 	private boolean balidatuAldaketak() {
 		Erabiltzailea erabiltzailea = new Erabiltzailea();
+		erabiltzailea.setIdErabiltzailea(4);
 		erabiltzailea.setIzena(txtIzena.getText());
-		erabiltzailea.setAbizena(txtIzena.getText());
+		erabiltzailea.setAbizena(txtAbizenak.getText());
 		erabiltzailea.setHizkuntza((String) cboHizkuntza.getSelectedItem());
 		erabiltzailea.setErabiltzailea(txtErabiltzailea.getText());
-		erabiltzailea.setJaiotzeData(balidatuData(txtJaiotzeData.getText()));
+		 
+		erabiltzailea.setJaiotzeData( new java.sql.Date(balidatuData(txtJaiotzeData.getText()).getTime()));
 		erabiltzailea.setPasahitza(passwordField.getText());
-
-		System.out.println(erabiltzailea.getJaiotzeData());
-		System.out.println(SesioAldagaiak.logErabiltzailea.getJaiotzeData());
+		
 		return SesioAldagaiak.logErabiltzailea.equals(erabiltzailea);
 	}
 	
     public static Date balidatuData(String fechaString) {
-        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        
+    	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         dateFormat.setLenient(false);
         
         try {
-            return dateFormat.parse(fechaString);
+            return  dateFormat.parse(fechaString);
         } catch (ParseException e) {
             return null;
         }
