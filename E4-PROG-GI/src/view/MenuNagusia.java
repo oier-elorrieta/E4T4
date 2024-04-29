@@ -38,7 +38,6 @@ public class MenuNagusia extends JFrame {
 	protected static final String String = null;
 	private JPanel contentPane;
 
-	
 	public MenuNagusia() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 250, 906, 594);
@@ -47,46 +46,45 @@ public class MenuNagusia extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JLabel lblaukeratu = new JLabel("Aukeratu");
 		lblaukeratu.setBounds(198, 11, 452, 58);
 		lblaukeratu.setHorizontalAlignment(SwingConstants.CENTER);
 		lblaukeratu.setFont(new Font("Source Sans Pro Black", Font.BOLD, 45));
-		
+
 		JButton btnMusikaDeskubritu = new JButton("Musika Deskubritu");
-		
+
 		btnMusikaDeskubritu.setBounds(150, 175, 550, 54);
 		btnMusikaDeskubritu.setFont(new Font("Segoe UI", Font.BOLD, 21));
 		btnMusikaDeskubritu.setFocusPainted(false);
-		
+
 		JButton btnPodcastDeskubritu = new JButton("Podcast Deskubritu");
 		btnPodcastDeskubritu.setBounds(150, 275, 550, 54);
 		btnPodcastDeskubritu.setFont(new Font("Segoe UI", Font.BOLD, 21));
 		btnPodcastDeskubritu.setFocusPainted(false);
-		
+
 		JButton btnNirePlayList = new JButton("Nire PlayList-ak");
 		btnNirePlayList.setBounds(150, 375, 550, 54);
 		btnNirePlayList.setFont(new Font("Segoe UI", Font.BOLD, 21));
 		btnNirePlayList.setFocusPainted(false);
-		
+
 		JButton btnAtzera = new JButton("Atzera");
 		btnAtzera.setBackground(Color.BLACK);
 		btnAtzera.setForeground(Color.RED);
 		btnAtzera.setBounds(50, 60, 144, 50);
 		btnAtzera.setFont(new Font("SansSerif", Font.BOLD, 22));
 		btnAtzera.setFocusPainted(false);
-		
+
 		model.SesioAldagaiak.jb = ViewMetodoak.btnErabiltzaileaSortu();
-		JButton  btnErabiltzaile = model.SesioAldagaiak.jb;
-		
-		
+		JButton btnErabiltzaile = model.SesioAldagaiak.jb;
+
 		contentPane.add(lblaukeratu);
 		contentPane.add(btnMusikaDeskubritu);
 		contentPane.add(btnPodcastDeskubritu);
 		contentPane.add(btnNirePlayList);
 		contentPane.add(btnAtzera);
 		contentPane.add(btnErabiltzaile);
-				
+
 		btnAtzera.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -94,7 +92,7 @@ public class MenuNagusia extends JFrame {
 				JFrameSortu.loginAukeraSortu();
 			}
 		});
-		
+
 		btnErabiltzaile.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -102,19 +100,23 @@ public class MenuNagusia extends JFrame {
 				JFrameSortu.premiumErregistroAukeraSortu();
 			}
 		});
-		
-		
+
 		btnMusikaDeskubritu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				MusikaDeskubritu MusikaDesk = new MusikaDeskubritu();
-				
 				MusikaDesk.setVisible(true);
 				dispose();
-				
 			}
 		});
-		
+
+		btnPodcastDeskubritu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PodcastDeskubritu podcastDeskubritu = new PodcastDeskubritu();
+				podcastDeskubritu.setVisible(true);
+				dispose();
+			}
+		});
+
 		btnNirePlayList.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
