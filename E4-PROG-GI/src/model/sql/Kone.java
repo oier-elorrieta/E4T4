@@ -18,6 +18,8 @@ import model.ErabiltzaileFree;
 import model.ErabiltzailePremium;
 import model.Musikaria;
 import model.PlayListak;
+import model.Podcast;
+import model.Podcasterra;
 import model.SesioAldagaiak;
 
 public class Kone {
@@ -194,6 +196,21 @@ public class Kone {
 		return rs;
 
 	}
+	
+	public static ResultSet getPodcasterEntzunaldiak() {
+
+		konektatu();
+
+		try {
+			stm = konexioa.createStatement();
+			kontsulta = "SELECT * FROM EstatistikakAurkestuPodcasterraTotala";
+			rs = stm.executeQuery(kontsulta);
+		} catch (SQLException e) {
+			e.getMessage();
+		}
+		return rs;
+
+	}
 
 	public static ArrayList<PlayListak> getPlaylist() {
 		ArrayList<PlayListak> playlistList = new ArrayList<PlayListak>();
@@ -333,7 +350,6 @@ public class Kone {
 	public static ArrayList<Album> getAlbumak(Musikaria musikari) {
 		konektatu();
 		ArrayList<Album> albumak = new ArrayList<Album>();
-		System.out.println(musikari.getIdArtista());
 		try {
 			stm = konexioa.createStatement();
 			kontsulta = "SELECT * FROM Album where IdArtista =" + musikari.getIdArtista() + "";
@@ -366,6 +382,44 @@ public class Kone {
 		}
 		return musikari;
 
+	}
+	
+	public static Podcasterra getPodcasterra(String izena) {
+		konektatu();
+		Podcasterra podcaster = null;
+		try {
+			stm = konexioa.createStatement();
+			kontsulta = "SELECT * FROM Podcaster p INNER JOIN Artista a on p.IdArtista = a.IdArtista WHERE IzenArtistikoa='" + izena + "'";
+			rs = stm.executeQuery(kontsulta);
+			rs.next();
+			podcaster = new Podcasterra(rs.getInt("a.IdArtista"), rs.getString("a.IzenArtistikoa"),
+					rs.getString("a.Deskripzioa"), (Blob) rs.getBlob("a.Irudia"));
+		} catch (SQLException e) {
+			e.getMessage();
+
+		}
+		return podcaster;
+
+	}
+	
+	public static ArrayList<Podcast> getPodcastak(Podcasterra podcaster){
+		ArrayList<Podcast> podcastList = new ArrayList<Podcast>();
+		
+		konektatu();
+		try {
+			stm = konexioa.createStatement();
+			kontsulta = "select * from Audio a inner join Podcast p using (IdAudio) where IdArtista = "+ podcaster.getIdArtista();
+			rs = stm.executeQuery(kontsulta);
+			
+			while (rs.next()) {
+				Podcast podcast = new Podcast(rs.getInt("a.IdAudio"), rs.getString("a.Izena"), rs.getTime("a.Iraupena"), rs.getBlob("a.Irudia"));
+				podcastList.add(podcast);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return podcastList;
 	}
 
 	public static ArrayList<Abestia> getAbestiak(int idAlbum) {

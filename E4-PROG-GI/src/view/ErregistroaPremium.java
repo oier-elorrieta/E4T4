@@ -3,6 +3,8 @@ package view;
 import java.awt.EventQueue;
 
 import java.text.DateFormat;
+import java.text.ParseException;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -60,6 +62,18 @@ public class ErregistroaPremium extends Erregistroa {
 
 	public ErregistroaPremium() {
 		super();
+		
+		ezarriTextua();
+		
+        txtIzena.setEditable(isIdatzi());
+        txtAbizenak.setEditable(isIdatzi());
+        txtErabiltzailea.setEditable(isIdatzi());
+        passwordField.setEditable(isIdatzi());
+        passwordFieldErrepikatu.setEditable(isIdatzi());
+        txtJaiotzeData.setEditable(isIdatzi());
+        cboHizkuntza.setEnabled(isIdatzi());
+		
+		
 		JLabel lblPremiumMuga = new JLabel("Premium muga:");
 		lblPremiumMuga.setBounds(440, 260, 129, 23);
 		lblPremiumMuga.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 15));
@@ -68,7 +82,7 @@ public class ErregistroaPremium extends Erregistroa {
 		calendar.add(Calendar.DAY_OF_MONTH, 1);
 		model = new SpinnerDateModel(calendar.getTime(), null, null, Calendar.DAY_OF_MONTH);
 		JSpinner spinner = new JSpinner(model);
-		JSpinner.DateEditor editor = new JSpinner.DateEditor(spinner, "dd/MM/yyyy");
+		JSpinner.DateEditor editor = new JSpinner.DateEditor(spinner, "dd-MM-yyyy");
  
 		editor.getTextField().setEditable(false);
 		
@@ -87,15 +101,6 @@ public class ErregistroaPremium extends Erregistroa {
         
         contentPane.add(btnGorde);
         
-        spinner.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                if (isIdatzi()) {
-                	spinner.setValue(model.getPreviousValue());
-                }
-            }
-        });
-        
         
         btnGorde.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
@@ -103,8 +108,15 @@ public class ErregistroaPremium extends Erregistroa {
                     btnGorde.setText("Gorde");
                     setIdatzi(true);
                 } else {
-                    btnGorde.setText("Aldatu datuak");
-                    setIdatzi(false);
+                    if (!balidatuAldaketak()) {
+
+                    	if(Alerta()) {
+                    	} else {
+                            btnGorde.setText("Aldatu datuak");
+                    		setIdatzi(false);
+                    	}
+                    }
+                    
                 }
                 txtIzena.setEditable(isIdatzi());
                 txtAbizenak.setEditable(isIdatzi());
@@ -113,7 +125,18 @@ public class ErregistroaPremium extends Erregistroa {
                 passwordFieldErrepikatu.setEditable(isIdatzi());
                 txtJaiotzeData.setEditable(isIdatzi());
                 cboHizkuntza.setEnabled(isIdatzi());
+                spinner.setEnabled(!isIdatzi());
         }});
+	}
+	
+	public void ezarriTextua() {
+		txtIzena.setText(SesioAldagaiak.logErabiltzailea.getIzena());
+        txtAbizenak.setText(SesioAldagaiak.logErabiltzailea.getAbizena());
+        txtErabiltzailea.setText(SesioAldagaiak.logErabiltzailea.getErabiltzailea());
+        passwordField.setText(SesioAldagaiak.logErabiltzailea.getPasahitza());
+        passwordFieldErrepikatu.setText(SesioAldagaiak.logErabiltzailea.getPasahitza());
+        txtJaiotzeData.setText(SesioAldagaiak.logErabiltzailea.getJaiotzeData().toString());
+        cboHizkuntza.setSelectedItem(SesioAldagaiak.logErabiltzailea.getHizkuntza());;
 	}
 
 	@Override
@@ -137,4 +160,50 @@ public class ErregistroaPremium extends Erregistroa {
 			System.err.println(e1.getMessage());
 		}
 	}
+	
+	private boolean balidatuAldaketak() {
+		Erabiltzailea erabiltzailea = new Erabiltzailea();
+		erabiltzailea.setIzena(txtIzena.getText());
+		erabiltzailea.setAbizena(txtIzena.getText());
+		erabiltzailea.setHizkuntza((String) cboHizkuntza.getSelectedItem());
+		erabiltzailea.setErabiltzailea(txtErabiltzailea.getText());
+		erabiltzailea.setJaiotzeData(balidatuData(txtJaiotzeData.getText()));
+		erabiltzailea.setPasahitza(passwordField.getText());
+
+		System.out.println(erabiltzailea.getJaiotzeData());
+		System.out.println(SesioAldagaiak.logErabiltzailea.getJaiotzeData());
+		return SesioAldagaiak.logErabiltzailea.equals(erabiltzailea);
+	}
+	
+    public static Date balidatuData(String fechaString) {
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        dateFormat.setLenient(false);
+        
+        try {
+            return dateFormat.parse(fechaString);
+        } catch (ParseException e) {
+            return null;
+        }
+    }
+    
+    
+    private boolean Alerta() {
+        String[] opciones = {"Utzi", "Eguneratu nire datuak"};
+        int opcionSeleccionada = JOptionPane.showOptionDialog(null,
+                "Datuak desberdinak dira.",
+                "Alerta",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE,
+                null,
+                opciones,
+                opciones[0]);
+
+        // Procesar la opción seleccionada
+        if (opcionSeleccionada == JOptionPane.YES_OPTION) {
+        	return true;
+        } else if (opcionSeleccionada == JOptionPane.NO_OPTION) {
+        	return false;
+        }
+        return false;
+    }
 }

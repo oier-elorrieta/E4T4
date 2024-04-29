@@ -7,7 +7,12 @@ import java.sql.Blob;
  * 
  * Klase honek Podcaterra artistaren informazioa gordetzen du: izena, deskribapena eta irudia.
  */
-public class Podcsaterra extends Artista {
+public class Podcasterra extends Artista {
+
+	public Podcasterra(int idArtista, String izena, String deskription, Blob irudia) {
+		super(idArtista, izena, deskription, irudia);
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * Podcaterra klasearen eraikitzailea.
@@ -18,8 +23,5 @@ public class Podcsaterra extends Artista {
 	 */
 
 
-	public Podcsaterra(String izena, String deskription, Blob irudia) {
-		super(izena, deskription, irudia);
-
-	}
+	
 }
