@@ -1,6 +1,6 @@
 package model;
 
-import java.util.Date;
+import java.sql.Date;
 
 /**
  * Klase honek Erabiltzailea klasearen luzapena du, eta ErabiltzaileFree motako erabiltzaileak

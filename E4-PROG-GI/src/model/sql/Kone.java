@@ -173,8 +173,8 @@ public class Kone {
 			while (rs.next()) {
 				SesioAldagaiak.erabiltzaileLogeatutaPremium = new ErabiltzailePremium(rs.getInt("b.IdBezeroa"),
 						rs.getString("b.Erabiltzailea"), rs.getString("b.Pasahitza"), rs.getString("b.Izena"),
-						rs.getString("b.Abizena"), (java.util.Date) rs.getDate("JaiotzeData"),
-						rs.getString("b.IdHizkuntza"), (java.util.Date) rs.getDate("p.IraungitzeData"));
+						rs.getString("b.Abizena"), rs.getDate("JaiotzeData"),
+						rs.getString("b.IdHizkuntza"), rs.getDate("p.IraungitzeData"));
 			}
 		} catch (SQLException e) {
 			e.getMessage();

@@ -1,6 +1,6 @@
 package model;
 
-import java.util.Date;
+import java.sql.Date;
 
 /**
  * Klase honek Erabiltzailea klasea heredatzen du eta ErabiltzailePremium motako erabiltzaileak
