@@ -375,7 +375,7 @@ public class Kone {
 			rs = stm.executeQuery(kontsulta);
 			rs.next();
 			musikari = new Musikaria(rs.getInt("a.IdArtista"), rs.getString("a.IzenArtistikoa"),
-					rs.getString("a.Deskripzioa"), (Blob) rs.getBlob("a.Irudia"), rs.getString("m.Ezaugarria"));
+					rs.getString("a.Deskripzioa"),rs.getBlob("a.Irudia"), rs.getString("m.Ezaugarria"));
 		} catch (SQLException e) {
 			e.getMessage();
 
