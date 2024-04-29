@@ -3,6 +3,8 @@ package view;
 import java.awt.EventQueue;
 
 import java.text.DateFormat;
+import java.text.ParseException;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -32,11 +34,12 @@ import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.Properties;
 import javax.swing.JComboBox;
@@ -57,7 +60,7 @@ public class Erregistroa extends JFrame {
 	protected JPasswordField passwordField;
 	protected JPasswordField passwordFieldErrepikatu;
 	protected DefaultComboBoxModel<String> cboModelHizkuntza = new DefaultComboBoxModel<>(); 
-	private boolean idatzi = false;
+	private boolean idatzi = true;
 
 	public boolean isIdatzi() {
 		return idatzi;
@@ -67,23 +70,6 @@ public class Erregistroa extends JFrame {
 		this.idatzi = idatzi;
 	}
 
-	/**
-	 * 
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {	
-			
-			public void run() {
-				try {
-					Erregistroa frame = new Erregistroa();
-					frame.setVisible(false);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -239,7 +225,6 @@ public class Erregistroa extends JFrame {
 		JFrameSortu.loginAukeraSortu();
 	}
 	
-	// Funtzio varidikoa elementu infinituak sartzeko contentPane
     protected void addComponents(Component... components) {
         for (Component component : components) {
             contentPane.add(component);

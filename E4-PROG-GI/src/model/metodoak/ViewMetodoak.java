@@ -77,8 +77,10 @@ public class ViewMetodoak {
 		 JButton btnErabiltzaile = null;
 		if (!SesioAldagaiak.erabiltzailePremium) {
 			btnErabiltzaile = new JButton(SesioAldagaiak.erabiltzaileLogeatutaFree.getIzena());
+			SesioAldagaiak.logErabiltzailea = SesioAldagaiak.erabiltzaileLogeatutaFree;
 		} else {
 			btnErabiltzaile = new JButton(SesioAldagaiak.erabiltzaileLogeatutaPremium.getIzena());
+			SesioAldagaiak.logErabiltzailea = SesioAldagaiak.erabiltzaileLogeatutaPremium;
 		}
 			btnErabiltzaile.setBackground(Color.LIGHT_GRAY);
 			btnErabiltzaile.setForeground(Color.BLACK);

@@ -1,5 +1,9 @@
 package model;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
@@ -182,10 +186,10 @@ public class Erabiltzailea {
 	/**
 	 * Erabiltzailearen jaiotze data ezartzen duen metodoa.
 	 * 
-	 * @param jaiotzeData Erabiltzailearen jaiotze data
+	 * @param date Erabiltzailearen jaiotze data
 	 */
-	public void setJaiotzeData(Date jaiotzeData) {
-		this.jaiotzeData = jaiotzeData;
+	public void setJaiotzeData(Date date) {
+		this.jaiotzeData = date;
 	}
 
 	/**
@@ -204,5 +208,38 @@ public class Erabiltzailea {
 	 */
 	public void setHizkuntza(String hizkuntza) {
 		this.hizkuntza = hizkuntza;
-	}	
+	}
+	
+	public static boolean komprobatujaiotza(String fechaString) {
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        dateFormat.setLenient(false);
+        
+        try {
+            Date fecha = dateFormat.parse(fechaString);
+            
+            Calendar calendarActual = Calendar.getInstance();
+            calendarActual.setTime(new Date());
+            
+            Calendar calendarFecha = Calendar.getInstance();
+            calendarFecha.setTime(fecha);
+            
+            if (calendarFecha.before(calendarActual)) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (ParseException e) {
+            return false;
+        }
+    }
+	
+	public static boolean validarFecha(Date fecha) {
+        Calendar calendarActual = Calendar.getInstance();
+        calendarActual.setTime(new Date());
+
+        Calendar calendarFecha = Calendar.getInstance();
+        calendarFecha.setTime(fecha);
+
+        return calendarFecha.before(calendarActual);
+    }
 }
