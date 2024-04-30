@@ -31,6 +31,7 @@ import model.Abestia;
 import model.SesioAldagaiak;
 import model.metodoak.JFrameSortu;
 import model.metodoak.ViewMetodoak;
+import model.sql.Kone;
 
 public class Erreprodukzioa extends JFrame {
 
@@ -48,7 +49,8 @@ public class Erreprodukzioa extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		ImageIcon irudia = new ImageIcon(abestiak.get(abestiAukera).getIrudia().getBytes(1, (int) abestiak.get(abestiAukera).getIrudia().length()));
+		ImageIcon irudia = new ImageIcon(abestiak.get(abestiAukera).getIrudia().getBytes(1,
+				(int) abestiak.get(abestiAukera).getIrudia().length()));
 		JLabel lblIrudia = new JLabel();
 		lblIrudia.setBounds(325, 50, 250, 250);
 		lblIrudia.setIcon(irudia);
@@ -69,7 +71,13 @@ public class Erreprodukzioa extends JFrame {
 		btnHurrengoa.setBounds(525, 325, 50, 50);
 		btnHurrengoa.setFont(new Font("SansSerif", Font.BOLD, 15));
 
-		JButton btnGuztokoa = new JButton("Guztokoa");
+		boolean gustokoaDu = Kone.gustukoaKomprobatu(abestiak.get(abestiAukera));
+		JButton btnGuztokoa = new JButton();
+		if (gustokoaDu) {
+			btnGuztokoa.setText("Gustokoetatik atera");
+		} else {
+			btnGuztokoa.setText("Gustokoan sartu");
+		}
 		btnGuztokoa.setBounds(600, 325, 150, 50);
 		btnGuztokoa.setFont(new Font("SansSerif", Font.BOLD, 15));
 
@@ -91,8 +99,7 @@ public class Erreprodukzioa extends JFrame {
 		contentPane.add(btnAtzera);
 		contentPane.add(btnErabiltzaile);
 
-		String filepath = "src\\audioak\\"
-				+ abestiak.get(abestiAukera).getIzena() + ".wav";
+		String filepath = "src\\audioak\\" + abestiak.get(abestiAukera).getIzena() + ".wav";
 		File f = new File(filepath);
 		AudioInputStream aui;
 		try {
@@ -104,13 +111,14 @@ public class Erreprodukzioa extends JFrame {
 		} catch (LineUnavailableException e1) {
 			e1.printStackTrace();
 		}
-		
+
 		btnMenua.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Object[] aukerakMenu = {"Gorde", "Kompartitu"};
-				int menuAukera = JOptionPane.showOptionDialog(null, "Zer nahi duzu egin?","Menu", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, aukerakMenu, aukerakMenu[0]);
-				if(menuAukera == JOptionPane.YES_OPTION) {
+				Object[] aukerakMenu = { "Gorde", "Kompartitu" };
+				int menuAukera = JOptionPane.showOptionDialog(null, "Zer nahi duzu egin?", "Menu",
+						JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, aukerakMenu, aukerakMenu[0]);
+				if (menuAukera == JOptionPane.YES_OPTION) {
 					System.out.println("go");
 				} else if (menuAukera == JOptionPane.NO_OPTION) {
 					System.out.println("kompa");
@@ -131,7 +139,7 @@ public class Erreprodukzioa extends JFrame {
 						JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux);
 					} else {
 						clip.stop();
-						abestiAukeraAux = abestiak.size()-1;
+						abestiAukeraAux = abestiak.size() - 1;
 						dispose();
 						JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux);
 					}
@@ -141,7 +149,7 @@ public class Erreprodukzioa extends JFrame {
 				}
 			}
 		});
-		
+
 		btnPlay.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -154,7 +162,7 @@ public class Erreprodukzioa extends JFrame {
 				}
 			}
 		});
-		
+
 		btnHurrengoa.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -178,7 +186,25 @@ public class Erreprodukzioa extends JFrame {
 				}
 			}
 		});
-		
+
+		btnGuztokoa.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					if (gustokoaDu) {
+						Kone.abestiGuztokoaEzabatu(abestiak.get(abestiAukera).getIdAudio());
+						JOptionPane.showMessageDialog(null, "Gustoko listatik ondo kendu da", "Eginda!", JOptionPane.INFORMATION_MESSAGE);
+					} else {
+						Kone.abestiGustokoaGehitu(abestiak.get(abestiAukera));
+						JOptionPane.showMessageDialog(null, "Gustoko listan ondo sartu da", "Eginda!", JOptionPane.INFORMATION_MESSAGE);
+					}
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+
 		btnAtzera.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
