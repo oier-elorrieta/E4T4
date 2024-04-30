@@ -59,7 +59,7 @@ public class ViewMetodoak {
 
 				}
 			}
-			Kone.itxiConexioa();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

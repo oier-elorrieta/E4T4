@@ -105,6 +105,8 @@ public class ErregistroaPremium extends Erregistroa {
         btnGorde.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
                 if (btnGorde.getText().equals("Aldatu datuak")) {
+                	// Premium data eguneratu (Urteak)
+                	gordePremium((Date) spinner.getValue());
                     btnGorde.setText("Gorde");
                     setIdatzi(true);
                 } else {
@@ -127,7 +129,7 @@ public class ErregistroaPremium extends Erregistroa {
                     		else {
                     			//Konexioa datuak gordetzeko
                                 btnGorde.setText("Aldatu datuak");
-                                //gordePremium();
+                                datuakEguneratu();
                         		setIdatzi(false);
                     		}
 
@@ -161,23 +163,25 @@ public class ErregistroaPremium extends Erregistroa {
 	    return dateFormat.format(fecha);
 	}
 	
-	@Override
-	protected void datuakEzarri() {
+	protected void datuakEguneratu() {
 		try {
 			if (!passwordField.getText().equals(passwordFieldErrepikatu.getText())) {
 				throw new pasahitzaEzKointziditu();
 			}
 			String[] data = txtJaiotzeData.getText().split("-");
 			Date jaioData = new Date(Integer.parseInt(data[0])-1900, Integer.parseInt(data[1])-1,Integer.parseInt(data[2]));
-			ErabiltzailePremium erabiltzailepremium = new ErabiltzailePremium(0,txtErabiltzailea.getText(), passwordField.getText(), txtIzena.getText(),txtAbizenak.getText(), (java.sql.Date) jaioData ,(String) cboHizkuntza.getSelectedItem(),
-					(java.sql.Date) new Date());
-			Kone.erregistratuPremium(erabiltzailepremium);
+			ErabiltzaileFree erabiltzailefree = new ErabiltzaileFree(0,txtErabiltzailea.getText(), passwordField.getText(), txtIzena.getText(),txtAbizenak.getText(), new java.sql.Date( jaioData.getTime()) ,(String) cboHizkuntza.getSelectedItem());
+			Kone.eguneratuErabiltzailea(erabiltzailefree);
 			ViewMetodoak.comprobatuLogin(txtErabiltzailea.getText(), passwordField.getText());
 			dispose();
 			JFrameSortu.menuNagusiaAukeraSortu();
 		} catch (pasahitzaEzKointziditu e1) {
 			System.err.println(e1.getMessage());
 		}
+	}
+	
+	private void gordePremium(Date eguna) {
+		Kone.erregistratuPremium(SesioAldagaiak.logErabiltzailea.getIdErabiltzailea(), new java.sql.Date(eguna.getTime()) );
 	}
 	
 	private boolean balidatuAldaketak() {
@@ -193,6 +197,7 @@ public class ErregistroaPremium extends Erregistroa {
 		
 		return SesioAldagaiak.logErabiltzailea.equals(erabiltzailea);
 	}
+	
 	
     public static Date balidatuData(String fechaString) {
         
