@@ -153,7 +153,7 @@ public class Erregistroa extends JFrame {
 
 		txtJaiotzeData = new JTextField();
 		txtJaiotzeData.setBounds(220, 260, 200, 32);
-		txtJaiotzeData.setToolTipText("Sartu Jaiotze Data...");
+		txtJaiotzeData.setToolTipText("yyyy-MM-dd");
 		txtJaiotzeData.setColumns(10);
 		txtJaiotzeData.setBorder(new LineBorder(Color.GRAY, 1, true));
 		
