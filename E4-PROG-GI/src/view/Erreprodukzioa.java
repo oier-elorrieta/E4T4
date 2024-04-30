@@ -31,6 +31,7 @@ import model.Abestia;
 import model.Audio;
 import model.Podcast;
 import model.SesioAldagaiak;
+import model.dao.AbestiaDao;
 import model.metodoak.JFrameSortu;
 import model.metodoak.ViewMetodoak;
 import model.sql.Kone;
@@ -227,8 +228,6 @@ public class Erreprodukzioa extends JFrame {
 	}
 	*/
 	
-	
-	
 	public Erreprodukzioa(ArrayList<Audio> abestiak, int abestiAukera) throws SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 250, 906, 594);
@@ -264,7 +263,7 @@ public class Erreprodukzioa extends JFrame {
 		
 		Abestia a = new Abestia();
 		if (abestiak.get(abestiAukera).getClass().toString().equals(a.getClass().toString())) {
-			boolean gustokoaDu = Kone.gustukoaKomprobatu(abestiak.get(abestiAukera));
+			boolean gustokoaDu = AbestiaDao.gustukoaKomprobatu(abestiak.get(abestiAukera));
 			JButton btnGuztokoa = new JButton();
 			if (gustokoaDu) {
 				btnGuztokoa.setText("Gustokoetatik atera");
@@ -280,10 +279,10 @@ public class Erreprodukzioa extends JFrame {
 				public void mouseClicked(MouseEvent e) {
 					try {
 						if (gustokoaDu) {
-							Kone.abestiGuztokoaEzabatu(abestiak.get(abestiAukera).getIdAudio());
+							AbestiaDao.abestiGuztokoaEzabatu(abestiak.get(abestiAukera).getIdAudio());
 							JOptionPane.showMessageDialog(null, "Gustoko listatik ondo kendu da", "Eginda!", JOptionPane.INFORMATION_MESSAGE);
 						} else {
-							Kone.abestiGustokoaGehitu(abestiak.get(abestiAukera));
+							AbestiaDao.abestiGustokoaGehitu(abestiak.get(abestiAukera));
 							JOptionPane.showMessageDialog(null, "Gustoko listan ondo sartu da", "Eginda!", JOptionPane.INFORMATION_MESSAGE);
 						}
 						dispose();

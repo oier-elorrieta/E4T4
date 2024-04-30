@@ -18,6 +18,7 @@ import com.mysql.cj.jdbc.Blob;
 
 import model.Album;
 import model.Musikaria;
+import model.dao.MusikariaDao;
 import model.metodoak.ViewMetodoak;
 import model.sql.Kone;
 
@@ -88,7 +89,7 @@ public class MusikariView extends JFrame {
 		
 		
 		//Aukeratutako musikaria
-		musikari = Kone.getMusikaria(izena);
+		musikari = MusikariaDao.getMusikaria(izena);
 		
 		//irudia seteatu lbl-ari
 		ViewMetodoak.setIrudia(lblNewLabel,musikari.getIrudia());
