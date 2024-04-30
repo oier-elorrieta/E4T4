@@ -112,6 +112,7 @@ public class AbestiakMusikaria extends JFrame {
 		lblLista.setBounds(111, 127, 162, 14);
 		contentPane.add(lblLista);
 
+
 		// Agregar un ListSelectionListener a la lista
 		list.addListSelectionListener(new ListSelectionListener() {
 			@Override

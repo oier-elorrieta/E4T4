@@ -8,18 +8,28 @@ import java.awt.Font;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import model.Album;
+import model.Audio;
 import model.Podcast;
+import model.Podcasterra;
+import model.metodoak.JFrameSortu;
 import model.metodoak.ViewMetodoak;
+import model.sql.Kone;
+
 import javax.swing.JScrollPane;
 import javax.swing.JList;
 import java.awt.GridLayout;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.awt.FlowLayout;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
 import javax.swing.SpringLayout;
 import javax.swing.BoxLayout;
 
@@ -27,7 +37,7 @@ public class PodcastView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
+	private JLabel lblIzena;
 
 	public PodcastView(String izena) {
 
@@ -37,7 +47,6 @@ public class PodcastView extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
 
 		JButton btnErabiltzaile = model.SesioAldagaiak.jb;
 
@@ -53,41 +62,66 @@ public class PodcastView extends JFrame {
 		contentPane.add(btnAtzera);
 
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 121, 870, 423);
+		panel.setBounds(10, 152, 359, 389);
 		contentPane.add(panel);
 		ArrayList<Podcast> p = ViewMetodoak.getPodcastList(izena);
-		
 		DefaultListModel<String> modeloList = new DefaultListModel<>();
 		for (int i = 0; i < p.size(); i++) {
 			modeloList.addElement(p.get(i).getIzena());
 		}
-		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+		panel.setLayout(new GridLayout(0, 1, 0, 0));
 
 		JList list = new JList(modeloList);
-		list.setBounds(50, 150, 550, 350);
+		list.setBounds(100, 5, 0, 0);
+
 		JScrollPane scrollPane = new JScrollPane(list);
 		panel.add(scrollPane);
-		
-		JPanel panel_1 = new JPanel();
-		panel.add(panel_1);
-		panel_1.setLayout(new GridLayout(0, 1, 0, 0));
-		
-		textField = new JTextField();
-		textField.setBounds(EXIT_ON_CLOSE, ABORT, WIDTH, HEIGHT);
-		panel_1.add(textField);
-		textField.setColumns(10);
-		
-		
-		textField.setText("ssssssssssssssssssssssssssssssssssssssssssssssssssssssaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-				+ "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-				+ "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-				+ "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-				+ "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-				+ "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-				+ "aaaaaaaaaaaaaaaaa"
-				+ "aaaaaa");;
 
-	
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(373, 121, 469, 223);
+		contentPane.add(panel_1);
+
+		JLabel lblNewLabel = new JLabel("");
+		panel_1.add(lblNewLabel);
+
+		// irudia seteatu lbl-ari
+		Podcasterra podcaster = Kone.getPodcasterra(izena);
+		ViewMetodoak.setIrudia(lblNewLabel, podcaster.getIrudia());
+
+		// Deskripzioa
+		JTextPane textPane = new JTextPane();
+		JScrollPane scrollPane_1 = new JScrollPane(textPane);
+		textPane.setText(podcaster.getDeskription());
+		scrollPane_1.setBounds(373, 378, 469, 166);
+		contentPane.add(scrollPane_1);
+
+		// Izena lbl
+		lblIzena = new JLabel("");
+		lblIzena.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lblIzena.setText(podcaster.getIzena());
+		lblIzena.setBounds(373, 63, 295, 38);
+		contentPane.add(lblIzena);
+
+		JLabel lblLista = new JLabel("Aukeratu Podcasta: ");
+		lblLista.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblLista.setBounds(111, 127, 162, 14);
+		contentPane.add(lblLista);
+
+		
+		// Agregar un ListSelectionListener a la lista
+		list.addListSelectionListener(new ListSelectionListener() {
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				try {
+					int podcastAukera = list.getSelectedIndex();
+					dispose();
+					JFrameSortu.erreprodukzioaSortuPodcast(p, podcastAukera);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+
+			}
+		});
 
 	}
 }

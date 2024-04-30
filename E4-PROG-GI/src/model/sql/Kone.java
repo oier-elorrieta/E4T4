@@ -14,6 +14,7 @@ import java.util.Iterator;
 import com.mysql.cj.jdbc.Blob;
 import model.Abestia;
 import model.Album;
+import model.Audio;
 import model.ErabiltzaileFree;
 import model.ErabiltzailePremium;
 import model.Musikaria;
@@ -481,7 +482,7 @@ public class Kone {
 		itxiConexioa();
 	}
 
-	public static boolean gustukoaKomprobatu(Abestia abestia) throws SQLException {
+	public static boolean gustukoaKomprobatu(Audio abestia) throws SQLException {
 		boolean gustokoaDu;
 		int id = 0;
 
