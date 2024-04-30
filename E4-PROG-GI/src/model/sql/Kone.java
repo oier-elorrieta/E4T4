@@ -39,7 +39,7 @@ public class Kone {
 	private static ResultSet rs;
 
 	// Datu-basearekin konexioa egiteko metodoa
-	public static void konektatu() {
+	public static Connection konektatu() {
 		try {
 			// Konexioa sortu, oraindik ez badago
 			if (konexioa == null || konexioa.isClosed()) {
@@ -50,7 +50,7 @@ public class Kone {
 		} catch (SQLException e) {
 			System.out.println("Errorea datu-basearekin konexioa egiten: " + e.getMessage());
 		}
-		// return konexioa;
+		return konexioa;
 	}
 
 	public static boolean konektatuAdmin(String user, String pass) {
@@ -183,7 +183,7 @@ public class Kone {
 
 	}
 
-	public static ResultSet getMusikariakEntzunaldiak() {
+	/*public static ResultSet getMusikariakEntzunaldiak() {
 
 		konektatu();
 
@@ -212,6 +212,7 @@ public class Kone {
 		return rs;
 
 	}
+	
 
 	public static ArrayList<PlayListak> getPlaylist() {
 		ArrayList<PlayListak> playlistList = new ArrayList<PlayListak>();
@@ -243,6 +244,7 @@ public class Kone {
 		return playlistList;
 	}
 
+	
 	public static void playlistGehitu(String izenburua) {
 
 		konektatu();
@@ -270,6 +272,7 @@ public class Kone {
 
 		itxiConexioa();
 	}
+	
 
 	public static void playlistEzabatu(int idPlaylist) throws SQLException {
 		konektatu();
@@ -316,7 +319,7 @@ public class Kone {
 		itxiConexioa();
 		return abestiakList;
 	}
-
+*/
 	public static ArrayList<Abestia> getAbestiGustokoak() {
 		ArrayList<Abestia> abestiakList = new ArrayList<Abestia>();
 		Abestia abestia;
@@ -347,7 +350,7 @@ public class Kone {
 		itxiConexioa();
 		return abestiakList;
 	}
-
+/*
 	public static ArrayList<Album> getAlbumak(Musikaria musikari) {
 		konektatu();
 		ArrayList<Album> albumak = new ArrayList<Album>();
@@ -364,7 +367,9 @@ public class Kone {
 		}
 		return albumak;
 	}
-
+*/
+	
+	/*
 	public static Musikaria getMusikaria(String izena) {
 
 		konektatu();
@@ -385,6 +390,7 @@ public class Kone {
 		return musikari;
 
 	}
+	
 
 	public static Podcasterra getPodcasterra(String izena) {
 		konektatu();
@@ -481,7 +487,7 @@ public class Kone {
 		stm.executeUpdate(kontsulta);
 		itxiConexioa();
 	}
-
+*//*
 	public static boolean gustukoaKomprobatu(Audio abestia) throws SQLException {
 		boolean gustokoaDu;
 		int id = 0;
@@ -505,8 +511,8 @@ public class Kone {
 		itxiConexioa();
 
 		return gustokoaDu;
-	}
-
+	}*/
+/*
 	public static void abestiGustokoaGehitu(Audio abestia) {
 		int id = 0;
 
@@ -526,5 +532,5 @@ public class Kone {
 		} catch (SQLException e) {
 			System.out.println("Kontsulta txarto" + e.getMessage());
 		}
-	}
+	}*/
 }

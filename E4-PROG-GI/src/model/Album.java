@@ -1,8 +1,8 @@
 package model;
 
+import java.sql.Blob;
 import java.util.ArrayList;
 
-import com.mysql.cj.jdbc.Blob;
 
 public class Album {
 

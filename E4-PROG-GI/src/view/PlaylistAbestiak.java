@@ -24,6 +24,9 @@ import model.Abestia;
 import model.Audio;
 import model.PlayListak;
 import model.SesioAldagaiak;
+import model.dao.AbestiaDao;
+import model.dao.AudioDao;
+import model.dao.PlayListakDao;
 import model.metodoak.JFrameSortu;
 import model.metodoak.ViewMetodoak;
 import model.sql.Kone;
@@ -43,7 +46,8 @@ public class PlaylistAbestiak extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		abestiakList = Kone.getPlayListAbestiak(aukeraPlaylist);
+		abestiakList = AudioDao.getPlayListAbestiak(aukeraPlaylist);
+		//abestiakList = Kone.getPlayListAbestiak(aukeraPlaylist);
 
 		DefaultListModel<String> modeloLista = new DefaultListModel<>();
 		for (int i = 0; i < abestiakList.size(); i++) {
@@ -109,10 +113,10 @@ public class PlaylistAbestiak extends JFrame {
 					int aukeraAbestia = jListAbestiak.getSelectedIndex();
 
 					if (aukeraPlaylist.getIdPlayList() != 0) {
-						Kone.abestiPlaylistEzabatu(aukeraPlaylist.getIdPlayList(),
+						PlayListakDao.abestiPlaylistEzabatu(aukeraPlaylist.getIdPlayList(),
 								abestiakList.get(aukeraAbestia).getIdAudio());
 					} else {
-						Kone.abestiGuztokoaEzabatu(abestiakList.get(aukeraAbestia).getIdAudio());
+						AbestiaDao.abestiGuztokoaEzabatu(abestiakList.get(aukeraAbestia).getIdAudio());
 					}
 					
 					dispose();

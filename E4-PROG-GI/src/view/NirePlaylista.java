@@ -22,6 +22,7 @@ import javax.swing.border.EmptyBorder;
 
 import model.PlayListak;
 import model.SesioAldagaiak;
+import model.dao.PlayListakDao;
 import model.metodoak.JFrameSortu;
 import model.metodoak.ViewMetodoak;
 import model.sql.Kone;
@@ -54,8 +55,8 @@ public class NirePlaylista extends JFrame {
 		btnAtzera.setFocusPainted(false);
 
 		JButton btnErabiltzaile = ViewMetodoak.btnErabiltzaileaSortu();
-				
-		ArrayList<PlayListak> playlistLista = Kone.getPlaylist();
+		ArrayList<PlayListak> playlistLista = PlayListakDao.getPlaylist();
+		//ArrayList<PlayListak> playlistLista = Kone.getPlaylist();
 		DefaultListModel<String> modeloLista = new DefaultListModel<>();
 		for (int i = 0; i < playlistLista.size(); i++) {
 			modeloLista.addElement(playlistLista.get(i).getIzena());
@@ -111,7 +112,7 @@ public class NirePlaylista extends JFrame {
 						JOptionPane.showMessageDialog(null, "Ezin duzu Playlist hau ezabatu", "Error", JOptionPane.ERROR_MESSAGE);
 					} else {
 						int aukeraPlaylist = jListPlayList.getSelectedIndex();
-						Kone.playlistEzabatu(playlistLista.get(aukeraPlaylist).getIdPlayList());
+						PlayListakDao.playlistEzabatu(playlistLista.get(aukeraPlaylist).getIdPlayList());
 						dispose();
 						JFrameSortu.nirePlaylistaSortu();
 					}
