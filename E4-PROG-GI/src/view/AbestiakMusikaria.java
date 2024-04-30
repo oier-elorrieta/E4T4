@@ -18,6 +18,7 @@ import com.mysql.cj.jdbc.Blob;
 
 import model.Abestia;
 import model.Album;
+import model.Audio;
 import model.Musikaria;
 import model.metodoak.JFrameSortu;
 import model.metodoak.ViewMetodoak;
@@ -72,8 +73,8 @@ public class AbestiakMusikaria extends JFrame {
 		panel.setBounds(10, 152, 359, 389);
 		contentPane.add(panel);
 
-		ArrayList<Abestia> abestiak = Kone.getAbestiak(album.getId());
-		DefaultListModel<Abestia> modeloList = ViewMetodoak.getMusikariAbestiak(album.getId());
+		ArrayList<Audio> abestiak = Kone.getAbestiak(album.getId());
+		DefaultListModel<Audio> modeloList = ViewMetodoak.getMusikariAbestiak(album.getId());
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
 
 		JList list = new JList(modeloList);
@@ -120,7 +121,7 @@ public class AbestiakMusikaria extends JFrame {
 				try {
 					int abestiAukera = list.getSelectedIndex();
 					dispose();
-					JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukera, album.getIzenburua());
+					JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukera);
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}

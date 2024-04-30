@@ -280,8 +280,8 @@ public class Kone {
 		itxiConexioa();
 	}
 
-	public static ArrayList<Abestia> getPlayListAbestiak(PlayListak aukeraPlaylist) {
-		ArrayList<Abestia> abestiakList = new ArrayList<Abestia>();
+	public static ArrayList<Audio> getPlayListAbestiak(PlayListak aukeraPlaylist) {
+		ArrayList<Audio> abestiakList = new ArrayList<Audio>();
 		Abestia abestia;
 		int id = 0;
 
@@ -405,8 +405,8 @@ public class Kone {
 
 	}
 
-	public static ArrayList<Podcast> getPodcastak(Podcasterra podcaster) {
-		ArrayList<Podcast> podcastList = new ArrayList<Podcast>();
+	public static ArrayList<Audio> getPodcastak(Podcasterra podcaster) {
+		ArrayList<Audio> podcastList = new ArrayList<Audio>();
 
 		konektatu();
 		try {
@@ -427,10 +427,10 @@ public class Kone {
 		return podcastList;
 	}
 
-	public static ArrayList<Abestia> getAbestiak(int idAlbum) {
+	public static ArrayList<Audio> getAbestiak(int idAlbum) {
 		konektatu();
 		try {
-			ArrayList<Abestia> abestiak = new ArrayList<Abestia>();
+			ArrayList<Audio> abestiak = new ArrayList<Audio>();
 			stm = konexioa.createStatement();
 			kontsulta = "SELECT * FROM Abestia join Audio using(IdAudio) where IdAlbum = '" + idAlbum + "'";
 			rs = stm.executeQuery(kontsulta);
@@ -507,7 +507,7 @@ public class Kone {
 		return gustokoaDu;
 	}
 
-	public static void abestiGustokoaGehitu(Abestia abestia) {
+	public static void abestiGustokoaGehitu(Audio abestia) {
 		int id = 0;
 
 		if (!SesioAldagaiak.erabiltzailePremium) {

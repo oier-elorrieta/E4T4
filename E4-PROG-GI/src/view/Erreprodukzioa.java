@@ -28,6 +28,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import model.Abestia;
+import model.Audio;
 import model.Podcast;
 import model.SesioAldagaiak;
 import model.metodoak.JFrameSortu;
@@ -40,16 +41,7 @@ public class Erreprodukzioa extends JFrame {
 	private JPanel contentPane;
 
 	private Clip clip;
-
-<<<<<<< HEAD
-	public Erreprodukzioa(ArrayList<Abestia> abestiak, int abestiAukera, String albumIzena) throws SQLException {
-=======
-	
-	
-	
-	
-	
-	
+/*
 	public Erreprodukzioa(ArrayList<Podcast> podcastak, int podcastAukera,String mota) throws SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 250, 906, 594);
@@ -146,12 +138,12 @@ public class Erreprodukzioa extends JFrame {
 					if (abestiAukeraAux >= 0) {
 						clip.stop();
 						dispose();
-						JFrameSortu.erreprodukzioaSortu(podcastak, abestiAukeraAux);
+						JFrameSortu.erreprodukzioaSortu(podcastak, abestiAukeraAux, );
 					} else {
 						clip.stop();
 						abestiAukeraAux = podcastak.size() - 1;
 						dispose();
-						JFrameSortu.erreprodukzioaSortu(podcastak, abestiAukeraAux);
+						JFrameSortu.erreprodukzioaSortu(podcastak, abestiAukeraAux, );
 					}
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
@@ -233,12 +225,11 @@ public class Erreprodukzioa extends JFrame {
 			}
 		});
 	}
+	*/
 	
 	
 	
-	
-	public Erreprodukzioa(ArrayList<Abestia> abestiak, int abestiAukera) throws SQLException {
->>>>>>> 7b34e9514d009cd73725ea67baffd08c0709c658
+	public Erreprodukzioa(ArrayList<Audio> abestiak, int abestiAukera) throws SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 250, 906, 594);
 		setTitle("Menu Nagusia - Talde 4");
@@ -268,17 +259,43 @@ public class Erreprodukzioa extends JFrame {
 		JButton btnHurrengoa = new JButton("->");
 		btnHurrengoa.setBounds(525, 450, 50, 50);
 		btnHurrengoa.setFont(new Font("SansSerif", Font.BOLD, 15));
+		
+		
+		
+		Abestia a = new Abestia();
+		if (abestiak.get(abestiAukera).getClass().toString().equals(a.getClass().toString())) {
+			boolean gustokoaDu = Kone.gustukoaKomprobatu(abestiak.get(abestiAukera));
+			JButton btnGuztokoa = new JButton();
+			if (gustokoaDu) {
+				btnGuztokoa.setText("Gustokoetatik atera");
+			} else {
+				btnGuztokoa.setText("Gustokoan sartu");
+			}
+			btnGuztokoa.setBounds(600, 450, 150, 50);
+			btnGuztokoa.setFont(new Font("SansSerif", Font.BOLD, 15));
+			contentPane.add(btnGuztokoa);
+			
+			btnGuztokoa.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					try {
+						if (gustokoaDu) {
+							Kone.abestiGuztokoaEzabatu(abestiak.get(abestiAukera).getIdAudio());
+							JOptionPane.showMessageDialog(null, "Gustoko listatik ondo kendu da", "Eginda!", JOptionPane.INFORMATION_MESSAGE);
+						} else {
+							Kone.abestiGustokoaGehitu(abestiak.get(abestiAukera));
+							JOptionPane.showMessageDialog(null, "Gustoko listan ondo sartu da", "Eginda!", JOptionPane.INFORMATION_MESSAGE);
+						}
+						dispose();
+						JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukera);
+					} catch (SQLException e1) {
 
-		boolean gustokoaDu = Kone.gustukoaKomprobatu(abestiak.get(abestiAukera));
-		JButton btnGuztokoa = new JButton();
-		if (gustokoaDu) {
-			btnGuztokoa.setText("Gustokoetatik atera");
-		} else {
-			btnGuztokoa.setText("Gustokoan sartu");
+						e1.printStackTrace();
+					}
+				}
+			});
 		}
-		btnGuztokoa.setBounds(600, 450, 150, 50);
-		btnGuztokoa.setFont(new Font("SansSerif", Font.BOLD, 15));
-
+		
 		JButton btnAtzera = new JButton("Atzera");
 		btnAtzera.setBackground(Color.BLACK);
 		btnAtzera.setForeground(Color.RED);
@@ -293,7 +310,7 @@ public class Erreprodukzioa extends JFrame {
 		contentPane.add(btnAurrekoa);
 		contentPane.add(btnPlay);
 		contentPane.add(btnHurrengoa);
-		contentPane.add(btnGuztokoa);
+	
 		contentPane.add(btnAtzera);
 		contentPane.add(btnErabiltzaile);
 		
@@ -340,12 +357,12 @@ public class Erreprodukzioa extends JFrame {
 					if (abestiAukeraAux >= 0) {
 						clip.stop();
 						dispose();
-						JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux, albumIzena);
+						JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux);
 					} else {
 						clip.stop();
 						abestiAukeraAux = abestiak.size() - 1;
 						dispose();
-						JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux, albumIzena);
+						JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux);
 					}
 				} catch (SQLException e1) {
 					e1.printStackTrace();
@@ -376,12 +393,12 @@ public class Erreprodukzioa extends JFrame {
 					if (abestiak.size() > abestiAukeraAux) {
 						clip.stop();
 						dispose();
-						JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux, albumIzena);
+						JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux);
 					} else {
 						clip.stop();
 						abestiAukeraAux = 0;
 						dispose();
-						JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux, albumIzena);
+						JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux);
 					}
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
@@ -390,25 +407,6 @@ public class Erreprodukzioa extends JFrame {
 			}
 		});
 
-		btnGuztokoa.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				try {
-					if (gustokoaDu) {
-						Kone.abestiGuztokoaEzabatu(abestiak.get(abestiAukera).getIdAudio());
-						JOptionPane.showMessageDialog(null, "Gustoko listatik ondo kendu da", "Eginda!", JOptionPane.INFORMATION_MESSAGE);
-					} else {
-						Kone.abestiGustokoaGehitu(abestiak.get(abestiAukera));
-						JOptionPane.showMessageDialog(null, "Gustoko listan ondo sartu da", "Eginda!", JOptionPane.INFORMATION_MESSAGE);
-					}
-					dispose();
-					JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukera, albumIzena);
-				} catch (SQLException e1) {
-
-					e1.printStackTrace();
-				}
-			}
-		});
 
 		btnAtzera.addMouseListener(new MouseAdapter() {
 			@Override

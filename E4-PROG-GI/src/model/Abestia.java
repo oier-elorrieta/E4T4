@@ -25,7 +25,9 @@ public class Abestia extends Audio {
 	 * @param gustokoena  abestia gustatzen zaion edo ez adierazten du
 	 */
 
-	
+	public Abestia() {
+		
+	}
 	
 	public Abestia(int idAudio, String izena, Time iraupena, Blob irudia, boolean gustokoena) {
 		super(idAudio, izena, iraupena, irudia);
