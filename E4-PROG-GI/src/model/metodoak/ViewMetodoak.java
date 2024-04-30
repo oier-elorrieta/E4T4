@@ -1,10 +1,12 @@
 package model.metodoak;
+
 import model.*;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Blob;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -54,7 +56,7 @@ public class ViewMetodoak {
 				if (erabiltzaileInfo.getString("Pasahitza").equals(pasahitza)) {
 					loginOK = true;
 					erabiltzaileaKargatu(erabiltzaileInfo.getInt("IdBezeroa"), erabiltzaileInfo.getString("Mota"));
-					
+
 				}
 			}
 			Kone.itxiConexioa();
@@ -69,7 +71,7 @@ public class ViewMetodoak {
 		case "free":
 			Kone.kargatuErabiltzaileFree(id);
 			SesioAldagaiak.erabiltzailePremium = false;
-		
+
 			break;
 		case "premium":
 			Kone.kargatuErabiltzailePremium(id);
@@ -78,10 +80,8 @@ public class ViewMetodoak {
 		}
 	}
 
-	
-	
 	public static JButton btnErabiltzaileaSortu() {
-		 JButton btnErabiltzaile = null;
+		JButton btnErabiltzaile = null;
 		if (!SesioAldagaiak.erabiltzailePremium) {
 			btnErabiltzaile = new JButton(SesioAldagaiak.erabiltzaileLogeatutaFree.getIzena());
 			SesioAldagaiak.logErabiltzailea = SesioAldagaiak.erabiltzaileLogeatutaFree;
@@ -89,143 +89,162 @@ public class ViewMetodoak {
 			btnErabiltzaile = new JButton(SesioAldagaiak.erabiltzaileLogeatutaPremium.getIzena());
 			SesioAldagaiak.logErabiltzailea = SesioAldagaiak.erabiltzaileLogeatutaPremium;
 		}
-			btnErabiltzaile.setBackground(Color.LIGHT_GRAY);
-			btnErabiltzaile.setForeground(Color.BLACK);
-			btnErabiltzaile.setBounds(700, 60, 144, 50);
-			btnErabiltzaile.setFont(new Font("SansSerif", Font.BOLD, 22));
-			btnErabiltzaile.setFocusPainted(false);
+		btnErabiltzaile.setBackground(Color.LIGHT_GRAY);
+		btnErabiltzaile.setForeground(Color.BLACK);
+		btnErabiltzaile.setBounds(700, 60, 144, 50);
+		btnErabiltzaile.setFont(new Font("SansSerif", Font.BOLD, 22));
+		btnErabiltzaile.setFocusPainted(false);
 		return btnErabiltzaile;
 	}
-	
-
-	
 
 	public static boolean komprobatuAdmin(String user, String pass) {
 		return Kone.konektatuAdmin(user, pass);
 	}
-	
 
-	public static void btnGeneratu(JPanel pane,String ruta,String izena,String entzunaldiak,JFrame jf) {
+	public static void btnGeneratu(JPanel pane, Blob irudia, String izena, String entzunaldiak,JFrame jf) {
 		JButton newButton = new JButton();
-        newButton.setText(izena + " Entzunaldiak: " + entzunaldiak);
-        ImageIcon icono = new ImageIcon(ruta);
-        newButton.addActionListener(new ActionListener() {
+		newButton.setText(izena + " Entzunaldiak: " + entzunaldiak);
+		
+		try {
+		ImageIcon icono = new ImageIcon(irudia.getBytes(1, (int) irudia.length()));
+		newButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MusikariView mv = new MusikariView(izena);
 				mv.setVisible(true);
 				jf.dispose();
 			}
 		});
-        
-        // Escala la imagen al tamaño deseado
-        Image imagen = icono.getImage().getScaledInstance(150, 100, Image.SCALE_SMOOTH);
 
-        // Crea un nuevo ImageIcon con la imagen escalada
-        ImageIcon iconoEscalado = new ImageIcon(imagen);
-        newButton.setIcon(iconoEscalado);
-         
-        pane.add(newButton);
+		// Escala la imagen al tamaño deseado
+		Image imagen = icono.getImage().getScaledInstance(150, 100, Image.SCALE_SMOOTH);
 
-        // Se actualiza el layout del panel para que se ajuste automáticamente
-        pane.revalidate();
-        pane.repaint();
-        
+		// Crea un nuevo ImageIcon con la imagen escalada
+		ImageIcon iconoEscalado = new ImageIcon(imagen);
+		newButton.setIcon(iconoEscalado);
+
+		pane.add(newButton);
+
+		// Se actualiza el layout del panel para que se ajuste automáticamente
+		pane.revalidate();
+		pane.repaint();
 		
+		}catch(SQLException e) {
+			e.getMessage();
+		}
+		
+		
+
 	}
-	
-	public static void musikariakEntzunaldiakBotoiarentzako(JPanel pane,JFrame jf) {
-		
+
+	public static void musikariakEntzunaldiakBotoiarentzako(JPanel pane, JFrame jf) {
+
 		ResultSet rs = Kone.getMusikariakEntzunaldiak();
 		try {
-		while(rs.next()) {
-			
-			String izena = rs.getString("Izena");
-			String entzunaldiak =  rs.getString("Totala");
-			btnGeneratu(pane,"C:\\Users\\in1dm3-d\\Desktop\\4.Erronka\\E4T4\\E4-PROG-GI\\src\\img\\acdc.png",izena,entzunaldiak,jf);
+			while (rs.next()) {
+
+				String izena = rs.getString("Izena");
+				String entzunaldiak = rs.getString("Totala");
+				Blob irudia = rs.getBlob("Irudia");
+				btnGeneratu(pane,irudia,izena, entzunaldiak, jf);
+			}
+		} catch (SQLException e) {
+
 		}
-		}catch(SQLException e){
-			
-		}	
 	}
-	
-public static void podcasterrakEntzunaldiakBotoiarentzako(JPanel pane,JFrame jf) {
-		
+
+	public static void podcasterrakEntzunaldiakBotoiarentzako(JPanel pane, JFrame jf) {
+
 		ResultSet rs = Kone.getPodcasterEntzunaldiak();
 		try {
-		while(rs.next()) {
-			
-			String izena = rs.getString("Izena");
-			String entzunaldiak =  rs.getString("Totala");
-			btnGeneratuPodcaster(pane,"C:\\Users\\in1dm3-d\\Desktop\\4.Erronka\\E4T4\\E4-PROG-GI\\src\\img\\acdc.png",izena,entzunaldiak,jf);
+			while (rs.next()) {
+
+				String izena = rs.getString("Izena");
+				String entzunaldiak = rs.getString("Totala");
+				btnGeneratuPodcaster(pane,
+						"C:\\Users\\in1dm3-d\\Desktop\\4.Erronka\\E4T4\\E4-PROG-GI\\src\\img\\acdc.png", izena,
+						entzunaldiak, jf);
+			}
+		} catch (SQLException e) {
+
 		}
-		}catch(SQLException e){
-			
-		}	
 	}
 
-public static void btnGeneratuPodcaster(JPanel pane,String ruta,String izena,String entzunaldiak,JFrame jf) {
-	JButton newButton = new JButton();
-    newButton.setText(izena + " Entzunaldiak: " + entzunaldiak);
-    ImageIcon icono = new ImageIcon(ruta);
-    newButton.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
-			PodcastView mv = new PodcastView(izena);
-			mv.setVisible(true);
-			jf.dispose();
-		}
-	});
-    
-    // Escala la imagen al tamaño deseado
-    Image imagen = icono.getImage().getScaledInstance(150, 100, Image.SCALE_SMOOTH);
+	public static void btnGeneratuPodcaster(JPanel pane, String ruta, String izena, String entzunaldiak, JFrame jf) {
+		JButton newButton = new JButton();
+		newButton.setText(izena + " Entzunaldiak: " + entzunaldiak);
+		ImageIcon icono = new ImageIcon(ruta);
+		newButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PodcastView mv = new PodcastView(izena);
+				mv.setVisible(true);
+				jf.dispose();
+			}
+		});
 
-    // Crea un nuevo ImageIcon con la imagen escalada
-    ImageIcon iconoEscalado = new ImageIcon(imagen);
-    newButton.setIcon(iconoEscalado);
-     
-    pane.add(newButton);
+		// Escala la imagen al tamaño deseado
+		Image imagen = icono.getImage().getScaledInstance(150, 100, Image.SCALE_SMOOTH);
 
-    // Se actualiza el layout del panel para que se ajuste automáticamente
-    pane.revalidate();
-    pane.repaint();
-    
-	
-}
-	
-	
-	
+		// Crea un nuevo ImageIcon con la imagen escalada
+		ImageIcon iconoEscalado = new ImageIcon(imagen);
+		newButton.setIcon(iconoEscalado);
+
+		pane.add(newButton);
+
+		// Se actualiza el layout del panel para que se ajuste automáticamente
+		pane.revalidate();
+		pane.repaint();
+
+	}
+
 	public static DefaultListModel<Album> getMusikariAlbumak(String izena) {
-		
+
 		DefaultListModel<Album> lm = new DefaultListModel();
-		Musikaria musikari = Kone.getMusikaria(izena);	
+		Musikaria musikari = Kone.getMusikaria(izena);
 		ArrayList<Album> albumak = Kone.getAlbumak(musikari);
 		Kone.beteAlbumakKantaKop(albumak);
-		
-		for(Album i: albumak) {
+
+		for (Album i : albumak) {
 			lm.addElement(i);
 		}
-		
+
 		return lm;
 	}
 	
-<<<<<<< HEAD
-	public static void setIrudia(JLabel lbl,Musikaria m) {
+	public static DefaultListModel<Abestia> getMusikariAbestiak(int idAlbum) {
+
+		DefaultListModel<Abestia> lm = new DefaultListModel();
 		
+		ArrayList<Abestia> abestiak = Kone.getAbestiak(idAlbum);
+	
+		for (Abestia i : abestiak) {
+			lm.addElement(i);
+		}
+
+		return lm;
+	}
+	
+	
+	
+	
+
+	public static void setIrudia(JLabel lbl, Blob m) {
+
 		try {
-			ImageIcon icon = new ImageIcon(m.getIrudia().getBytes(1, (int) m.getIrudia().length()));
+			ImageIcon icon = new ImageIcon(m.getBytes(1, (int) m.length()));
 			Image imagen = icon.getImage().getScaledInstance(550, 500, Image.SCALE_SMOOTH);
 			ImageIcon iconoEscalado = new ImageIcon(imagen);
 			lbl.setIcon(icon);
-			}catch(SQLException e) {
-				e.getMessage();
-			}
-=======
-public static ArrayList<Podcast> getPodcastList(String izena) {
+		} catch (SQLException e) {
+			e.getMessage();
+		}
+	}
+
+	public static ArrayList<Podcast> getPodcastList(String izena) {
 		ArrayList<Podcast> podcastList = new ArrayList<Podcast>();
 		Podcasterra podcaster = Kone.getPodcasterra(izena);
 		podcastList = Kone.getPodcastak(podcaster);
 		return podcastList;
->>>>>>> b2cdeef65ab689a4843347d0564cf40f6cd4728f
+
 	}
-	
-	
+
 }

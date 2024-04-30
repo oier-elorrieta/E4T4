@@ -56,11 +56,6 @@ public class MusikaDeskubritu extends JFrame {
 		jsp.setViewportView(artistaPane);
 
 		ViewMetodoak.musikariakEntzunaldiakBotoiarentzako(artistaPane,this);
-
-		
-		
-		
-		
 		
 	}
 }

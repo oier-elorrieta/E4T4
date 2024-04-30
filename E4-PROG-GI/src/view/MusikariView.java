@@ -11,6 +11,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import com.mysql.cj.jdbc.Blob;
 
@@ -64,7 +66,7 @@ public class MusikariView extends JFrame {
 		contentPane.add(btnAtzera);
 
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 152, 353,389);
+		panel.setBounds(10, 152, 359,389);
 		contentPane.add(panel);
 
 		DefaultListModel<Album> modeloList = ViewMetodoak.getMusikariAlbumak(izena);
@@ -89,7 +91,7 @@ public class MusikariView extends JFrame {
 		musikari = Kone.getMusikaria(izena);
 		
 		//irudia seteatu lbl-ari
-		ViewMetodoak.setIrudia(lblNewLabel,musikari);
+		ViewMetodoak.setIrudia(lblNewLabel,musikari.getIrudia());
 		
 		
 		
@@ -114,12 +116,26 @@ public class MusikariView extends JFrame {
 		contentPane.add(lblLista);
 		
 		
+			// Agregar un ListSelectionListener a la lista
+        list.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                
+            // Obtener el valor del elemento seleccionado
+            Album selectedValue = (Album) list.getSelectedValue();
+            
+             AbestiakMusikaria ab = new AbestiakMusikaria(selectedValue);
+             ab.setVisible(true);
+             dispose();
+            }
+        });
+		
+        
+        
 		
 		
 		
 		
-		
-
 	
 
 	}
