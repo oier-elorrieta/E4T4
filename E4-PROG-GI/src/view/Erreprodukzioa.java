@@ -40,7 +40,7 @@ public class Erreprodukzioa extends JFrame {
 
 	private Clip clip;
 
-	public Erreprodukzioa(ArrayList<Abestia> abestiak, int abestiAukera) throws SQLException {
+	public Erreprodukzioa(ArrayList<Abestia> abestiak, int abestiAukera, String albumIzena) throws SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 250, 906, 594);
 		setTitle("Menu Nagusia - Talde 4");
@@ -52,23 +52,23 @@ public class Erreprodukzioa extends JFrame {
 		ImageIcon irudia = new ImageIcon(abestiak.get(abestiAukera).getIrudia().getBytes(1,
 				(int) abestiak.get(abestiAukera).getIrudia().length()));
 		JLabel lblIrudia = new JLabel();
-		lblIrudia.setBounds(325, 50, 250, 250);
+		lblIrudia.setBounds(325, 89, 250, 250);
 		lblIrudia.setIcon(irudia);
 
 		JButton btnMenua = new JButton("Menua");
-		btnMenua.setBounds(150, 325, 150, 50);
+		btnMenua.setBounds(150, 450, 150, 50);
 		btnMenua.setFont(new Font("SansSerif", Font.BOLD, 15));
 
 		JButton btnAurrekoa = new JButton("<-");
-		btnAurrekoa.setBounds(325, 325, 50, 50);
+		btnAurrekoa.setBounds(325, 450, 50, 50);
 		btnAurrekoa.setFont(new Font("SansSerif", Font.BOLD, 15));
 
 		JButton btnPlay = new JButton("Play");
-		btnPlay.setBounds(400, 325, 100, 50);
+		btnPlay.setBounds(400, 450, 100, 50);
 		btnPlay.setFont(new Font("SansSerif", Font.BOLD, 15));
 
 		JButton btnHurrengoa = new JButton("->");
-		btnHurrengoa.setBounds(525, 325, 50, 50);
+		btnHurrengoa.setBounds(525, 450, 50, 50);
 		btnHurrengoa.setFont(new Font("SansSerif", Font.BOLD, 15));
 
 		boolean gustokoaDu = Kone.gustukoaKomprobatu(abestiak.get(abestiAukera));
@@ -78,7 +78,7 @@ public class Erreprodukzioa extends JFrame {
 		} else {
 			btnGuztokoa.setText("Gustokoan sartu");
 		}
-		btnGuztokoa.setBounds(600, 325, 150, 50);
+		btnGuztokoa.setBounds(600, 450, 150, 50);
 		btnGuztokoa.setFont(new Font("SansSerif", Font.BOLD, 15));
 
 		JButton btnAtzera = new JButton("Atzera");
@@ -98,7 +98,13 @@ public class Erreprodukzioa extends JFrame {
 		contentPane.add(btnGuztokoa);
 		contentPane.add(btnAtzera);
 		contentPane.add(btnErabiltzaile);
-
+		
+		JLabel lblIzenaAbesti = new JLabel(abestiak.get(abestiAukera).getIzena());
+		lblIzenaAbesti.setFont(new Font("Arial Black", Font.BOLD | Font.ITALIC, 17));
+		lblIzenaAbesti.setHorizontalAlignment(SwingConstants.CENTER);
+		lblIzenaAbesti.setBounds(10, 350, 870 , 25);
+		contentPane.add(lblIzenaAbesti);
+		
 		String filepath = "src\\audioak\\" + abestiak.get(abestiAukera).getIzena() + ".wav";
 		File f = new File(filepath);
 		AudioInputStream aui;
@@ -136,15 +142,14 @@ public class Erreprodukzioa extends JFrame {
 					if (abestiAukeraAux >= 0) {
 						clip.stop();
 						dispose();
-						JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux);
+						JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux, albumIzena);
 					} else {
 						clip.stop();
 						abestiAukeraAux = abestiak.size() - 1;
 						dispose();
-						JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux);
+						JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux, albumIzena);
 					}
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
@@ -173,12 +178,12 @@ public class Erreprodukzioa extends JFrame {
 					if (abestiak.size() > abestiAukeraAux) {
 						clip.stop();
 						dispose();
-						JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux);
+						JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux, albumIzena);
 					} else {
 						clip.stop();
 						abestiAukeraAux = 0;
 						dispose();
-						JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux);
+						JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux, albumIzena);
 					}
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
@@ -198,8 +203,10 @@ public class Erreprodukzioa extends JFrame {
 						Kone.abestiGustokoaGehitu(abestiak.get(abestiAukera));
 						JOptionPane.showMessageDialog(null, "Gustoko listan ondo sartu da", "Eginda!", JOptionPane.INFORMATION_MESSAGE);
 					}
+					dispose();
+					JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukera, albumIzena);
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
+
 					e1.printStackTrace();
 				}
 			}

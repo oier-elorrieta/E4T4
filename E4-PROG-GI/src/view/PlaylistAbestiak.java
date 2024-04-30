@@ -91,7 +91,7 @@ public class PlaylistAbestiak extends JFrame {
 					try {
 						int aukeraAbestia = jListAbestiak.getSelectedIndex();
 						dispose();
-						JFrameSortu.erreprodukzioaSortu(abestiakList, aukeraAbestia);
+						JFrameSortu.erreprodukzioaSortu(abestiakList, aukeraAbestia, aukeraPlaylist.getIzena());
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();

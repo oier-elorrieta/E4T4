@@ -516,7 +516,7 @@ public class Kone {
 		}
 		
 		konektatu();
-		kontsulta = "INSERT into Playlist(IdBezeroa, IdAudio) VALUES(?,?)";
+		kontsulta = "INSERT into Gustokoak(IdBezeroa, IdAudio) VALUES(?,?)";
 		try {
 			pstm = konexioa.prepareStatement(kontsulta);
 			pstm.setInt(1, id);
