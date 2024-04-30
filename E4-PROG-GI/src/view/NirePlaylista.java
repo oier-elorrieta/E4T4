@@ -128,7 +128,13 @@ public class NirePlaylista extends JFrame {
 
 		btnExportatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				PlayListak selectedPlay = playlistLista.get(jListPlayList.getSelectedIndex());
+				
+				
+				
 			}
+			
 		});
 
 		btnAukeratu.addActionListener(new ActionListener() {
@@ -162,5 +168,8 @@ public class NirePlaylista extends JFrame {
 				JFrameSortu.loginAukeraSortu();
 			}
 		});
+		
+		
+		
 	}
 }
