@@ -61,6 +61,7 @@ public class Erregistroa extends JFrame {
 	protected JPasswordField passwordFieldErrepikatu;
 	protected DefaultComboBoxModel<String> cboModelHizkuntza = new DefaultComboBoxModel<>(); 
 	private boolean idatzi = true;
+	protected JButton btnErregistratu;
 
 	public boolean isIdatzi() {
 		return idatzi;
@@ -177,7 +178,7 @@ public class Erregistroa extends JFrame {
 		btnAtzera.setBackground(SystemColor.desktop);
 		btnAtzera.setFont(new Font("Segoe UI Black", Font.PLAIN, 15));
 		
-		JButton btnErregistratu = new JButton("Erregistratu");
+		btnErregistratu = new JButton("Erregistratu");
 		btnErregistratu.setBounds(600, 462, 136, 29);
 		btnErregistratu.setForeground(SystemColor.text);
 		btnErregistratu.setBackground(SystemColor.desktop);
@@ -210,7 +211,7 @@ public class Erregistroa extends JFrame {
 			}
 			String[] data = txtJaiotzeData.getText().split("-");
 			Date jaioData = new Date(Integer.parseInt(data[0])-1900, Integer.parseInt(data[1])-1,Integer.parseInt(data[2]));
-			ErabiltzaileFree erabiltzaileFree = new ErabiltzaileFree(0,txtErabiltzailea.getText(), passwordField.getText(), txtIzena.getText(),txtAbizenak.getText(), (java.sql.Date) jaioData ,(String) cboHizkuntza.getSelectedItem());
+			ErabiltzaileFree erabiltzaileFree = new ErabiltzaileFree(0,txtErabiltzailea.getText(), passwordField.getText(), txtIzena.getText(),txtAbizenak.getText(), new java.sql.Date( jaioData.getTime()) ,(String) cboHizkuntza.getSelectedItem());
 			Kone.erregistratu(erabiltzaileFree);
 			ViewMetodoak.comprobatuLogin(txtErabiltzailea.getText(), passwordField.getText());
 			dispose();
