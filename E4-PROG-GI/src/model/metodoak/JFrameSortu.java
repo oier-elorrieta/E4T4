@@ -7,6 +7,7 @@ import javax.swing.WindowConstants;
 
 import model.Abestia;
 import model.PlayListak;
+import model.Podcast;
 import view.Erregistroa;
 import view.ErregistroaPremium;
 import view.Erreprodukzioa;
@@ -62,6 +63,12 @@ public class JFrameSortu {
 	
 	public static void erreprodukzioaSortu(ArrayList<Abestia> abestiak, int abestiAukera) throws SQLException{
 		Erreprodukzioa erreprodukzioaSortu = new Erreprodukzioa(abestiak,abestiAukera);
+		erreprodukzioaSortu.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		erreprodukzioaSortu.setVisible(true);
+	}
+	
+	public static void erreprodukzioaSortuPodcast(ArrayList<Podcast> podcast, int podcastAukera) throws SQLException{
+		Erreprodukzioa erreprodukzioaSortu = new Erreprodukzioa(podcast,podcastAukera,"podcast");
 		erreprodukzioaSortu.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		erreprodukzioaSortu.setVisible(true);
 	}

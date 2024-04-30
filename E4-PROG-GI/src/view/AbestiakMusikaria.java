@@ -111,30 +111,7 @@ public class AbestiakMusikaria extends JFrame {
 		lblLista.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblLista.setBounds(111, 127, 162, 14);
 		contentPane.add(lblLista);
-<<<<<<< HEAD
-		
-		
-			// Agregar un ListSelectionListener a la lista
-			list.addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                
-            // Obtener el valor del elemento seleccionado
-            
-            
-                
-            }
-        });
-		
-        
-        
-		
-		
-		
-		
-	
-=======
->>>>>>> aabafed249e56dcdf96113324900ed7df534162b
+
 
 		// Agregar un ListSelectionListener a la lista
 		list.addListSelectionListener(new ListSelectionListener() {
