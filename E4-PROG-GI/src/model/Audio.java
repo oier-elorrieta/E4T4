@@ -21,6 +21,9 @@ public class Audio {
 	 * @param iraupena  audioaren iraupena
 	 */
 	
+	public Audio() {
+	}
+	
 	public Audio(int idAudio, String izena, Time iraupena) {
 		this.idAudio = idAudio;
 		this.izena = izena;
