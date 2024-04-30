@@ -14,6 +14,7 @@ import java.util.Iterator;
 import com.mysql.cj.jdbc.Blob;
 import model.Abestia;
 import model.Album;
+import model.Audio;
 import model.ErabiltzaileFree;
 import model.ErabiltzailePremium;
 import model.Musikaria;
@@ -310,8 +311,8 @@ public class Kone {
 		itxiConexioa();
 	}
 
-	public static ArrayList<Abestia> getPlayListAbestiak(PlayListak aukeraPlaylist) {
-		ArrayList<Abestia> abestiakList = new ArrayList<Abestia>();
+	public static ArrayList<Audio> getPlayListAbestiak(PlayListak aukeraPlaylist) {
+		ArrayList<Audio> abestiakList = new ArrayList<Audio>();
 		Abestia abestia;
 		int id = 0;
 
@@ -438,8 +439,8 @@ public class Kone {
 
 	}
 
-	public static ArrayList<Podcast> getPodcastak(Podcasterra podcaster) {
-		ArrayList<Podcast> podcastList = new ArrayList<Podcast>();
+	public static ArrayList<Audio> getPodcastak(Podcasterra podcaster) {
+		ArrayList<Audio> podcastList = new ArrayList<Audio>();
 
 		konektatu();
 		try {
@@ -461,15 +462,16 @@ public class Kone {
 		return podcastList;
 	}
 
-	public static ArrayList<Abestia> getAbestiak(int idAlbum) {
+	public static ArrayList<Audio> getAbestiak(int idAlbum) {
 		konektatu();
 		try {
-			ArrayList<Abestia> abestiak = new ArrayList<Abestia>();
+			ArrayList<Audio> abestiak = new ArrayList<Audio>();
 			stm = konexioa.createStatement();
 			kontsulta = "SELECT * FROM Abestia join Audio using(IdAudio) where IdAlbum = '" + idAlbum + "'";
 			rs = stm.executeQuery(kontsulta);
 			while (rs.next()) {
-				abestiak.add(new Abestia(rs.getInt("IdAudio"), rs.getString("Izena"), rs.getTime("Iraupena")));
+				abestiak.add(new Abestia(rs.getInt("IdAudio"), rs.getString("Izena"), rs.getTime("Iraupena"),
+						rs.getBlob("Irudia"), false));
 			}
 			itxiConexioa();
 			return abestiak;
@@ -516,5 +518,50 @@ public class Kone {
 		kontsulta = "DELETE FROM Gustokoak WHERE IdBezeroa = " + id + " AND IdAudio = " + idAbestia;
 		stm.executeUpdate(kontsulta);
 		itxiConexioa();
+	}
+
+	public static boolean gustukoaKomprobatu(Audio abestia) throws SQLException {
+		boolean gustokoaDu;
+		int id = 0;
+
+		if (!SesioAldagaiak.erabiltzailePremium) {
+			id = SesioAldagaiak.erabiltzaileLogeatutaFree.getIdErabiltzailea();
+		} else {
+			id = SesioAldagaiak.erabiltzaileLogeatutaPremium.getIdErabiltzailea();
+		}
+		konektatu();
+		kontsulta = "SELECT count(IdAudio) as cont from Gustokoak where IdBezeroa = " + id + " and IdAudio = "
+				+ abestia.getIdAudio() + ";";
+		rs = stm.executeQuery(kontsulta);
+		rs.next();
+
+		if (rs.getInt("cont") == 0) {
+			gustokoaDu = false;
+		} else {
+			gustokoaDu = true;
+		}
+		itxiConexioa();
+
+		return gustokoaDu;
+	}
+
+	public static void abestiGustokoaGehitu(Audio abestia) {
+		int id = 0;
+
+		if (!SesioAldagaiak.erabiltzailePremium) {
+			id = SesioAldagaiak.erabiltzaileLogeatutaFree.getIdErabiltzailea();
+		} else {
+			id = SesioAldagaiak.erabiltzaileLogeatutaPremium.getIdErabiltzailea();
+		}
+		konektatu();
+		kontsulta = "INSERT into Gustokoak(IdBezeroa, IdAudio) VALUES(?,?)";
+		try {
+			pstm = konexioa.prepareStatement(kontsulta);
+			pstm.setInt(1, id);
+			pstm.setInt(2, abestia.getIdAudio());
+			pstm.execute();
+		} catch (SQLException e) {
+			System.out.println("Kontsulta txarto" + e.getMessage());
+		}
 	}
 }

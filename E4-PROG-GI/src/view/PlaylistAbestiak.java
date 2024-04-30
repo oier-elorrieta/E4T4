@@ -21,6 +21,7 @@ import javax.swing.border.LineBorder;
 import org.junit.jupiter.params.shadow.com.univocity.parsers.common.processor.core.AbstractBatchedColumnProcessor;
 
 import model.Abestia;
+import model.Audio;
 import model.PlayListak;
 import model.SesioAldagaiak;
 import model.metodoak.JFrameSortu;
@@ -31,7 +32,7 @@ public class PlaylistAbestiak extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private static ArrayList<Abestia> abestiakList;
+	private static ArrayList<Audio> abestiakList;
 
 	public PlaylistAbestiak(PlayListak aukeraPlaylist) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

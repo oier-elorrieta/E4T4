@@ -210,13 +210,13 @@ public class ViewMetodoak {
 		return lm;
 	}
 	
-	public static DefaultListModel<Abestia> getMusikariAbestiak(int idAlbum) {
+	public static DefaultListModel<Audio> getMusikariAbestiak(int idAlbum) {
 
-		DefaultListModel<Abestia> lm = new DefaultListModel();
+		DefaultListModel<Audio> lm = new DefaultListModel();
 		
-		ArrayList<Abestia> abestiak = Kone.getAbestiak(idAlbum);
+		ArrayList<Audio> abestiak = Kone.getAbestiak(idAlbum);
 	
-		for (Abestia i : abestiak) {
+		for (Audio i : abestiak) {
 			lm.addElement(i);
 		}
 
@@ -239,8 +239,8 @@ public class ViewMetodoak {
 		}
 	}
 
-	public static ArrayList<Podcast> getPodcastList(String izena) {
-		ArrayList<Podcast> podcastList = new ArrayList<Podcast>();
+	public static ArrayList<Audio> getPodcastList(String izena) {
+		ArrayList<Audio> podcastList = new ArrayList<Audio>();
 		Podcasterra podcaster = Kone.getPodcasterra(izena);
 		podcastList = Kone.getPodcastak(podcaster);
 		return podcastList;
