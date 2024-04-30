@@ -18,6 +18,7 @@ public class Erabiltzailea {
 	protected String abizena;
 	protected Date jaiotzeData;
 	protected String hizkuntza;
+
 	
 	/**
 	 * Erabiltzailea klasearen eraikitzailea.

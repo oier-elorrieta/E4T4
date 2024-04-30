@@ -104,32 +104,62 @@ public class Kone {
 		} catch (SQLException e) {
 			System.out.println("Kontsulta txarto" + e.getMessage());
 		}
-		itxiConexioa();
+		
 	}
 
-	public static void erregistratuPremium(ErabiltzailePremium erab) {
+	public static void eguneratuErabiltzailea(ErabiltzaileFree erab) {
 		konektatu();
 		try {
 			stm = konexioa.createStatement();
-			// Por comprobar
-			kontsulta = "SELECT Erabiltzailea FROM Bezeroa where(Erabiltzailea = ?);";
-			rs = stm.executeQuery(kontsulta);
-		} catch (SQLException e) {
-			e.getMessage();
-		}
-		kontsulta = "INSERT into Bezeroa(Izena,Abizena,Erabiltzailea,Pasahitza,JaiotzeData,IdHizkuntza) VALUES(?,?,?,?,?,?)";
-		try {
+			kontsulta = "UPDATE Bezeroa"
+					+ "	SET Izena = ?, Abizena = ?, Erabiltzailea = ?, Pasahitza = ?, JaiotzeData = ?, IdHizkuntza = ?"
+					+ "	WHERE IdBezeroa = ?;";
 			pstm = konexioa.prepareStatement(kontsulta);
 			pstm.setString(1, erab.getIzena());
 			pstm.setString(2, erab.getAbizena());
 			pstm.setString(3, erab.getErabiltzailea());
 			pstm.setString(4, erab.getPasahitza());
-			pstm.setDate(5, (java.sql.Date) erab.getJaiotzeData());
+			pstm.setDate(5, new java.sql.Date( erab.getJaiotzeData().getTime()));
 			pstm.setString(6, erab.getHizkuntza());
+			pstm.setInt(7, SesioAldagaiak.logErabiltzailea.getIdErabiltzailea());
 			pstm.execute();
 		} catch (SQLException e) {
 			System.out.println("Kontsulta txarto" + e.getMessage());
 		}
+		itxiConexioa();
+	}
+
+	public static void erregistratuPremium(int id, java.sql.Date iranD) {
+		konektatu();
+		try {
+			stm = konexioa.createStatement();
+			// Zaiatu Premium bezala ezartzen berria bada
+			kontsulta = "INSERT into Premium values(?, ?);";
+			pstm = konexioa.prepareStatement(kontsulta);
+			pstm.setInt(1, id);
+			pstm.setDate(2, iranD);
+			pstm.execute();
+		} catch (SQLException e) {
+			try {
+				kontsulta = "UPDATE Premium SET IraungitzeData = ? WHERE IdBezeroa = ?;";
+				pstm = konexioa.prepareStatement(kontsulta);
+				pstm.setDate(1, iranD);
+				pstm.setInt(2, id);
+				pstm.execute();
+			} catch (SQLException i) {
+				System.out.println("Kontsulta txarto" + e.getMessage());
+			}
+		}
+		try {
+			kontsulta = "UPDATE Bezeroa SET Mota = ? WHERE IdBezeroa = ?;";
+			pstm = konexioa.prepareStatement(kontsulta);
+			pstm.setString(1, "Premium");
+			pstm.setInt(2, id);
+			pstm.execute();
+		} catch(SQLException e) {
+			System.out.println("Ezin izan da Premium ezarri " + e.getMessage());
+		}
+		
 		itxiConexioa();
 	}
 
@@ -144,7 +174,6 @@ public class Kone {
 			e.getMessage();
 		}
 		return rs;
-
 	}
 
 	public static void kargatuErabiltzaileFree(int id) {
@@ -162,6 +191,7 @@ public class Kone {
 		} catch (SQLException e) {
 			e.getMessage();
 		}
+		
 	}
 
 	public static void kargatuErabiltzailePremium(int id) {
@@ -180,7 +210,7 @@ public class Kone {
 		} catch (SQLException e) {
 			e.getMessage();
 		}
-
+		
 	}
 
 	/*public static ResultSet getMusikariakEntzunaldiak() {
@@ -241,6 +271,7 @@ public class Kone {
 		} catch (SQLException e) {
 			e.getMessage();
 		}
+		itxiConexioa();
 		return playlistList;
 	}
 
@@ -365,6 +396,7 @@ public class Kone {
 		} catch (SQLException e) {
 			e.getMessage();
 		}
+		itxiConexioa();
 		return albumak;
 	}
 */
@@ -387,6 +419,7 @@ public class Kone {
 			e.getMessage();
 
 		}
+		itxiConexioa();
 		return musikari;
 
 	}
@@ -407,6 +440,7 @@ public class Kone {
 			e.getMessage();
 
 		}
+		itxiConexioa();
 		return podcaster;
 
 	}
@@ -430,6 +464,7 @@ public class Kone {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		itxiConexioa();
 		return podcastList;
 	}
 
@@ -444,9 +479,11 @@ public class Kone {
 				abestiak.add(new Abestia(rs.getInt("IdAudio"), rs.getString("Izena"), rs.getTime("Iraupena"),
 						rs.getBlob("Irudia"), false));
 			}
+			itxiConexioa();
 			return abestiak;
 		} catch (SQLException e) {
 			e.getMessage();
+			itxiConexioa();
 			return null;
 		}
 	}
@@ -464,6 +501,7 @@ public class Kone {
 				e.getMessage();
 			}
 		}
+		itxiConexioa();
 	}
 
 	public static void abestiPlaylistEzabatu(int idPlaylist, int idAbestia) throws SQLException {
@@ -521,7 +559,6 @@ public class Kone {
 		} else {
 			id = SesioAldagaiak.erabiltzaileLogeatutaPremium.getIdErabiltzailea();
 		}
-		
 		konektatu();
 		kontsulta = "INSERT into Gustokoak(IdBezeroa, IdAudio) VALUES(?,?)";
 		try {

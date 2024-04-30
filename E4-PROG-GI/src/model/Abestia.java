@@ -57,5 +57,13 @@ public class Abestia extends Audio {
 	 */
 	public void setGustokoena(boolean gustokoena) {
 		this.gustokoena = gustokoena;
+	}
+
+	@Override
+	public String toString() {
+		return "Izena:" + izena + "|| Iraupena: " + iraupena;
 	}	
+	
+	
+	
 }

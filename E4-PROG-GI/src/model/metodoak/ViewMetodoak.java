@@ -64,7 +64,7 @@ public class ViewMetodoak {
 
 				}
 			}
-			Kone.itxiConexioa();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -106,38 +106,36 @@ public class ViewMetodoak {
 		return Kone.konektatuAdmin(user, pass);
 	}
 
-	public static void btnGeneratu(JPanel pane, Blob irudia, String izena, String entzunaldiak,JFrame jf) {
+	public static void btnGeneratu(JPanel pane, Blob irudia, String izena, String entzunaldiak, JFrame jf) {
 		JButton newButton = new JButton();
 		newButton.setText(izena + " Entzunaldiak: " + entzunaldiak);
-		
+
 		try {
-		ImageIcon icono = new ImageIcon(irudia.getBytes(1, (int) irudia.length()));
-		newButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				MusikariView mv = new MusikariView(izena);
-				mv.setVisible(true);
-				jf.dispose();
-			}
-		});
+			ImageIcon icono = new ImageIcon(irudia.getBytes(1, (int) irudia.length()));
+			newButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					MusikariView mv = new MusikariView(izena);
+					mv.setVisible(true);
+					jf.dispose();
+				}
+			});
 
-		// Escala la imagen al tamaño deseado
-		Image imagen = icono.getImage().getScaledInstance(150, 100, Image.SCALE_SMOOTH);
+			// Escala la imagen al tamaño deseado
+			Image imagen = icono.getImage().getScaledInstance(150, 100, Image.SCALE_SMOOTH);
 
-		// Crea un nuevo ImageIcon con la imagen escalada
-		ImageIcon iconoEscalado = new ImageIcon(imagen);
-		newButton.setIcon(iconoEscalado);
+			// Crea un nuevo ImageIcon con la imagen escalada
+			ImageIcon iconoEscalado = new ImageIcon(imagen);
+			newButton.setIcon(iconoEscalado);
 
-		pane.add(newButton);
+			pane.add(newButton);
 
-		// Se actualiza el layout del panel para que se ajuste automáticamente
-		pane.revalidate();
-		pane.repaint();
-		
-		}catch(SQLException e) {
+			// Se actualiza el layout del panel para que se ajuste automáticamente
+			pane.revalidate();
+			pane.repaint();
+
+		} catch (SQLException e) {
 			e.getMessage();
 		}
-		
-		
 
 	}
 
@@ -151,7 +149,7 @@ public class ViewMetodoak {
 				String izena = rs.getString("Izena");
 				String entzunaldiak = rs.getString("Totala");
 				Blob irudia = rs.getBlob("Irudia");
-				btnGeneratu(pane,irudia,izena, entzunaldiak, jf);
+				btnGeneratu(pane, irudia, izena, entzunaldiak, jf);
 			}
 		} catch (SQLException e) {
 
@@ -166,39 +164,43 @@ public class ViewMetodoak {
 
 				String izena = rs.getString("Izena");
 				String entzunaldiak = rs.getString("Totala");
-				btnGeneratuPodcaster(pane,
-						"C:\\Users\\in1dm3-d\\Desktop\\4.Erronka\\E4T4\\E4-PROG-GI\\src\\img\\acdc.png", izena,
-						entzunaldiak, jf);
+				Blob irudia = rs.getBlob("Irudia");
+				btnGeneratuPodcaster(pane, irudia, izena, entzunaldiak, jf);
 			}
 		} catch (SQLException e) {
 
 		}
 	}
 
-	public static void btnGeneratuPodcaster(JPanel pane, String ruta, String izena, String entzunaldiak, JFrame jf) {
+	public static void btnGeneratuPodcaster(JPanel pane, Blob irudia, String izena, String entzunaldiak, JFrame jf) {
 		JButton newButton = new JButton();
 		newButton.setText(izena + " Entzunaldiak: " + entzunaldiak);
-		ImageIcon icono = new ImageIcon(ruta);
-		newButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				PodcastView mv = new PodcastView(izena);
-				mv.setVisible(true);
-				jf.dispose();
-			}
-		});
+		try {
+			ImageIcon icono = new ImageIcon(irudia.getBytes(1, (int) irudia.length()));
+			newButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					PodcastView mv = new PodcastView(izena);
+					mv.setVisible(true);
+					jf.dispose();
+				}
+			});
 
-		// Escala la imagen al tamaño deseado
-		Image imagen = icono.getImage().getScaledInstance(150, 100, Image.SCALE_SMOOTH);
+			// Escala la imagen al tamaño deseado
+			Image imagen = icono.getImage().getScaledInstance(150, 100, Image.SCALE_SMOOTH);
 
-		// Crea un nuevo ImageIcon con la imagen escalada
-		ImageIcon iconoEscalado = new ImageIcon(imagen);
-		newButton.setIcon(iconoEscalado);
+			// Crea un nuevo ImageIcon con la imagen escalada
+			ImageIcon iconoEscalado = new ImageIcon(imagen);
+			newButton.setIcon(iconoEscalado);
 
-		pane.add(newButton);
+			pane.add(newButton);
 
-		// Se actualiza el layout del panel para que se ajuste automáticamente
-		pane.revalidate();
-		pane.repaint();
+			// Se actualiza el layout del panel para que se ajuste automáticamente
+			pane.revalidate();
+			pane.repaint();
+
+		} catch (SQLException e) {
+			e.getMessage();
+		}
 
 	}
 
@@ -215,11 +217,10 @@ public class ViewMetodoak {
 
 		return lm;
 	}
-	
+
 	public static DefaultListModel<Audio> getMusikariAbestiak(int idAlbum) {
 
 		DefaultListModel<Audio> lm = new DefaultListModel();
-		
 		ArrayList<Audio> abestiak = AbestiaDao.getAbestiak(idAlbum);
 	
 		for (Audio i : abestiak) {
@@ -228,10 +229,6 @@ public class ViewMetodoak {
 
 		return lm;
 	}
-	
-	
-	
-	
 
 	public static void setIrudia(JLabel lbl, Blob m) {
 
