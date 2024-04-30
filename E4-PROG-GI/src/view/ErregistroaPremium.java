@@ -117,10 +117,20 @@ public class ErregistroaPremium extends Erregistroa {
                     	if(Alerta()) {
                     		//Datuak aldatko ditu
                     	} else {
-                    		//Datuak ez ditu aldatuko
-                            btnGorde.setText("Aldatu datuak");
-                            ezarriTextua();
-                    		setIdatzi(false);
+                    		//Datuak ez ditu aldatuko (Defektuz jarri datuak ala gorde BD)
+                    		if (AlertaGorde()) {
+                    			//Defektuz ezarri datuak
+                                btnGorde.setText("Aldatu datuak");
+                                ezarriTextua();
+                        		setIdatzi(false);
+                    		}
+                    		else {
+                    			//Konexioa datuak gordetzeko
+                                btnGorde.setText("Aldatu datuak");
+                                //gordePremium();
+                        		setIdatzi(false);
+                    		}
+
                     	}
                     }
                     
@@ -198,7 +208,7 @@ public class ErregistroaPremium extends Erregistroa {
     
     
     private boolean Alerta() {
-        String[] opciones = {"Utzi", "Eguneratu nire datuak"};
+        String[] opciones = {"Utzi", "Jarraitu"};
         int opcionSeleccionada = JOptionPane.showOptionDialog(null,
                 "Datuak desberdinak dira.",
                 "Alerta",
@@ -208,7 +218,25 @@ public class ErregistroaPremium extends Erregistroa {
                 opciones,
                 opciones[0]);
 
-        // Procesar la opción seleccionada
+        if (opcionSeleccionada == JOptionPane.YES_OPTION) {
+        	return true;
+        } else if (opcionSeleccionada == JOptionPane.NO_OPTION) {
+        	return false;
+        }
+        return false;
+    }
+    
+    private boolean AlertaGorde() {
+        String[] opciones = {"Berriro ezarri bezteak", "Eguneratu nire datuak"};
+        int opcionSeleccionada = JOptionPane.showOptionDialog(null,
+                "Zer egin nahi duzu datuekin?.",
+                "Alerta",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE,
+                null,
+                opciones,
+                opciones[0]);
+
         if (opcionSeleccionada == JOptionPane.YES_OPTION) {
         	return true;
         } else if (opcionSeleccionada == JOptionPane.NO_OPTION) {
