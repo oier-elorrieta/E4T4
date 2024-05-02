@@ -62,8 +62,8 @@ public class JFrameSortu {
 		playlistAbestiakSortu.setVisible(true);
 	}
 	
-	public static void erreprodukzioaSortu(ArrayList<Audio> abestiak, int abestiAukera) throws SQLException{
-		Erreprodukzioa erreprodukzioaSortu = new Erreprodukzioa(abestiak,abestiAukera);
+	public static void erreprodukzioaSortu(ArrayList<Audio> abestiak, int abestiAukera, String izenaAlbum) throws SQLException{
+		Erreprodukzioa erreprodukzioaSortu = new Erreprodukzioa(abestiak,abestiAukera,izenaAlbum);
 		erreprodukzioaSortu.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		erreprodukzioaSortu.setVisible(true);
 	}

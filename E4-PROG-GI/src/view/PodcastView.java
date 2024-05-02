@@ -116,7 +116,7 @@ public class PodcastView extends JFrame {
 				try {
 					int podcastAukera = list.getSelectedIndex();
 					dispose();
-					JFrameSortu.erreprodukzioaSortu(p, podcastAukera);
+					JFrameSortu.erreprodukzioaSortu(p, podcastAukera, izena);
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
