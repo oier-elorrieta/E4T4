@@ -13,7 +13,14 @@ public abstract class Artista {
 	protected String izena;
 	protected String deskription;
 	protected Blob irudia;
+	protected int entzunaldiak;
 	
+	public int getEntzunaldiak() {
+		return entzunaldiak;
+	}
+	public void setEntzunaldiak(int entzunaldiak) {
+		this.entzunaldiak = entzunaldiak;
+	}
 	/**
 	 * Artistak klasearen eraikitzailea.
 	 * @param izena artistaren izena
