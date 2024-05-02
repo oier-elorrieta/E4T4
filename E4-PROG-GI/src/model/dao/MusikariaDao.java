@@ -1,11 +1,9 @@
 package model.dao;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 import model.Musikaria;
 import model.sql.Kone;
 
@@ -16,6 +14,11 @@ public class MusikariaDao {
 	private static PreparedStatement pstm;
 	private static ResultSet rs;
 	
+	/**
+	 * Entzunaldi guztiak itzultzen dituen metodoa.
+	 * 
+	 * @return Entzunaldi guztiak itzultzen dituen ResultSet objektua.
+	 */
 	public static ResultSet getMusikariakEntzunaldiak() {
 		Connection konexioa = Kone.konektatu();
 		try {
@@ -30,6 +33,12 @@ public class MusikariaDao {
 
 	}
 	
+	/**
+	 * Musikaria itzultzen duen metodoa.
+	 * 
+	 * @param izena Musikariaren izena.
+	 * @return Eskatutako izenarekin bat datorren Musikaria objektua.
+	 */
 	public static Musikaria getMusikaria(String izena) {
 
 		Connection konexioa = Kone.konektatu();

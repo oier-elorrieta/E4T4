@@ -12,15 +12,22 @@ import model.Podcast;
 import model.Podcasterra;
 import model.sql.Kone;
 
+/**
+ * Klase honek podcast-ak kudeatzeko funtzionalitateak eskaintzen ditu.
+ */
 public class PodcastDao {
 	private static String kontsulta;
 	private static Statement stm = null;
 	private static PreparedStatement pstm;
 	private static ResultSet rs;
 	
+	/**
+	 * Podcast-ak lortzeko metodoa.
+	 * 
+	 * @param podcaster Podcast-ak lortzeko erabiltzen den podcaster objektua.
+	 * @return podcast-ak ArrayList moduan itzultzen ditu.
+	 */
 	public static ArrayList<Audio> getPodcastak(Podcasterra podcaster) {
-		
-		
 		ArrayList<Audio> podcastList = new ArrayList<Audio>();
 
 		Connection konexioa = Kone.konektatu();

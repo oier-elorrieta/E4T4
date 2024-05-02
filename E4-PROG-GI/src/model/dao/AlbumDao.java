@@ -1,5 +1,4 @@
 package model.dao;
-
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,10 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
 import model.Album;
 import model.Musikaria;
 import model.sql.Kone;
+
+
+
 
 public class AlbumDao {
 	private static String kontsulta;
@@ -18,6 +19,12 @@ public class AlbumDao {
 	private static PreparedStatement pstm;
 	private static ResultSet rs;
 	
+	/**
+	 * Musikariaren albumak itzultzen dituen metodoa.
+	 * 
+	 * @param musikari Musikari objektua
+	 * @return Album objektuen ArrayList bat
+	 */
 	public static ArrayList<Album> getAlbumak(Musikaria musikari) {
 		Connection konexioa = Kone.konektatu();
 		ArrayList<Album> albumak = new ArrayList<Album>();
@@ -33,6 +40,12 @@ public class AlbumDao {
 		}
 		return albumak;
 	}
+	
+	/**
+	 * Albumen kanta kopurua betetzen duen metodoa.
+	 * 
+	 * @param albumak Album objektuen ArrayList bat
+	 */
 	public static void beteAlbumakKantaKop(ArrayList<Album> albumak) {
 		Connection konexioa = Kone.konektatu();
 		for (Album i : albumak) {

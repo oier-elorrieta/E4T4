@@ -1,15 +1,14 @@
 package model.dao;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
 import model.PlayListak;
 import model.SesioAldagaiak;
 import model.sql.Kone;
+
 
 public class PlayListakDao {
 	private static String kontsulta;
@@ -17,6 +16,11 @@ public class PlayListakDao {
 	private static PreparedStatement pstm;
 	private static ResultSet rs;
 	
+	/**
+	 * Erabiltzailearen playlist-ak itzultzen dituen metodoa.
+	 * 
+	 * @return Erabiltzailearen playlist-ak ArrayList<PlayListak> moduan itzultzen ditu.
+	 */
 	public static ArrayList<PlayListak> getPlaylist() {
 		ArrayList<PlayListak> playlistList = new ArrayList<PlayListak>();
 		PlayListak playLista;
@@ -47,6 +51,11 @@ public class PlayListakDao {
 		return playlistList;
 	}
 	
+	/**
+	 * Playlist bati abesti bat gehitzeko metodoa.
+	 * 
+	 * @param izenburua Gehitu nahi den abestiaren izenburua.
+	 */
 	public static void playlistGehitu(String izenburua) {
 
 		Connection konexioa = Kone.konektatu();
@@ -75,6 +84,12 @@ public class PlayListakDao {
 		Kone.itxiConexioa();
 	}
 	
+	/**
+	 * Playlist bat ezabatzeko metodoa.
+	 * 
+	 * @param idPlaylist Ezabatu nahi den playlist-aren identifikadorea.
+	 * @throws SQLException SQL errore bat gertatu bada.
+	 */
 	public static void playlistEzabatu(int idPlaylist) throws SQLException {
 		Connection konexioa = Kone.konektatu();
 
@@ -84,6 +99,13 @@ public class PlayListakDao {
 		Kone.itxiConexioa();
 	}
 	
+	/**
+	 * Playlist bateko abesti bat ezabatzeko metodoa.
+	 * 
+	 * @param idPlaylist Playlist-aren identifikadorea.
+	 * @param idAbestia Ezabatu nahi den abestiaren identifikadorea.
+	 * @throws SQLException SQL errore bat gertatu bada.
+	 */
 	public static void abestiPlaylistEzabatu(int idPlaylist, int idAbestia) throws SQLException {
 		Connection konexioa = Kone.konektatu();
 		kontsulta = "DELETE FROM PlaylistAbestiak WHERE IdList = " + idPlaylist + " AND IdAudio = " + idAbestia;

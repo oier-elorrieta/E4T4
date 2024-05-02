@@ -1,13 +1,13 @@
 package model.dao;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 import model.Podcasterra;
 import model.sql.Kone;
+
+
 
 public class PodcasterraDao {
 	private static String kontsulta;
@@ -15,7 +15,11 @@ public class PodcasterraDao {
 	private static PreparedStatement pstm;
 	private static ResultSet rs;
 	
-	
+	/**
+	 * Emandako kontsulta erabiliz, podcasterraren entzunaldi guztiak itzultzen ditu.
+	 * 
+	 * @return Entzunaldi guztiak itzultzen dituen ResultSet objektua.
+	 */
 	public static ResultSet getPodcasterEntzunaldiak() {
 
 		Connection konexioa = Kone.konektatu();
@@ -31,6 +35,12 @@ public class PodcasterraDao {
 
 	}
 	
+	/**
+	 * Emandako izenaren arabera, podcasterra bat itzultzen du.
+	 * 
+	 * @param izena Podcasterra izena
+	 * @return Podcasterra objektua
+	 */
 	public static Podcasterra getPodcasterra(String izena) {
 		Connection konexioa = Kone.konektatu();
 		Podcasterra podcaster = null;
