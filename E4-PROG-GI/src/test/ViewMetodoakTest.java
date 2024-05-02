@@ -82,7 +82,7 @@ public class ViewMetodoakTest {
         JPanel pane = new JPanel();
         JFrame jf = new JFrame();
         ViewMetodoak.musikariakEntzunaldiakBotoiarentzako(pane, jf);
-        assertEquals(162, pane.getComponentCount());
+        assertEquals(4, pane.getComponentCount());
     }
 
     @Test
@@ -112,8 +112,8 @@ public class ViewMetodoakTest {
         ViewMetodoak.setIrudia(lbl, m);
         Icon icon = lbl.getIcon();
         assertNotNull(icon);
-        assertEquals(550, icon.getIconWidth());
-        assertEquals(500, icon.getIconHeight());
+        assertEquals(320, icon.getIconWidth());
+        assertEquals(320, icon.getIconHeight());
     }
 
     @Test

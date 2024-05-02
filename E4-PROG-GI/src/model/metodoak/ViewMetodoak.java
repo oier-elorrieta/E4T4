@@ -316,9 +316,7 @@ public class ViewMetodoak {
 
 		try {
 			ImageIcon icon = new ImageIcon(m.getBytes(1, (int) m.length()));
-			Image imagen = icon.getImage().getScaledInstance(550, 500, Image.SCALE_SMOOTH);
-			ImageIcon iconoEscalado = new ImageIcon(imagen);
-			lbl.setIcon(iconoEscalado);
+			lbl.setIcon(icon);
 		} catch (SQLException e) {
 			e.getMessage();
 		}
