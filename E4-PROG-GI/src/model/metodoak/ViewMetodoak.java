@@ -27,6 +27,11 @@ import com.mysql.cj.protocol.x.SyncFlushDeflaterOutputStream;
 
 import model.ErabiltzaileFree;
 import model.SesioAldagaiak;
+import model.dao.AbestiaDao;
+import model.dao.AlbumDao;
+import model.dao.MusikariaDao;
+import model.dao.PodcastDao;
+import model.dao.PodcasterraDao;
 import model.sql.Kone;
 import view.MusikariView;
 import view.PodcastView;
@@ -135,8 +140,9 @@ public class ViewMetodoak {
 	}
 
 	public static void musikariakEntzunaldiakBotoiarentzako(JPanel pane, JFrame jf) {
-
-		ResultSet rs = Kone.getMusikariakEntzunaldiak();
+		
+		ResultSet rs = MusikariaDao.getMusikariakEntzunaldiak();
+		//ResultSet rs = Kone.getMusikariakEntzunaldiak();
 		try {
 			while (rs.next()) {
 
@@ -151,8 +157,8 @@ public class ViewMetodoak {
 	}
 
 	public static void podcasterrakEntzunaldiakBotoiarentzako(JPanel pane, JFrame jf) {
-
-		ResultSet rs = Kone.getPodcasterEntzunaldiak();
+		ResultSet rs = PodcasterraDao.getPodcasterEntzunaldiak();
+		//ResultSet rs = Kone.getPodcasterEntzunaldiak();
 		try {
 			while (rs.next()) {
 
@@ -201,9 +207,9 @@ public class ViewMetodoak {
 	public static DefaultListModel<Album> getMusikariAlbumak(String izena) {
 
 		DefaultListModel<Album> lm = new DefaultListModel();
-		Musikaria musikari = Kone.getMusikaria(izena);
-		ArrayList<Album> albumak = Kone.getAlbumak(musikari);
-		Kone.beteAlbumakKantaKop(albumak);
+		Musikaria musikari = MusikariaDao.getMusikaria(izena);
+		ArrayList<Album> albumak = AlbumDao.getAlbumak(musikari);
+		AlbumDao.beteAlbumakKantaKop(albumak);
 
 		for (Album i : albumak) {
 			lm.addElement(i);
@@ -215,9 +221,8 @@ public class ViewMetodoak {
 	public static DefaultListModel<Audio> getMusikariAbestiak(int idAlbum) {
 
 		DefaultListModel<Audio> lm = new DefaultListModel();
-
-		ArrayList<Audio> abestiak = Kone.getAbestiak(idAlbum);
-
+		ArrayList<Audio> abestiak = AbestiaDao.getAbestiak(idAlbum);
+	
 		for (Audio i : abestiak) {
 			lm.addElement(i);
 		}
@@ -239,8 +244,8 @@ public class ViewMetodoak {
 
 	public static ArrayList<Audio> getPodcastList(String izena) {
 		ArrayList<Audio> podcastList = new ArrayList<Audio>();
-		Podcasterra podcaster = Kone.getPodcasterra(izena);
-		podcastList = Kone.getPodcastak(podcaster);
+		Podcasterra podcaster = PodcasterraDao.getPodcasterra(izena);
+		podcastList = PodcastDao.getPodcastak(podcaster);
 		return podcastList;
 
 	}

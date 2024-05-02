@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import model.dao.PlayListakDao;
 import model.metodoak.JFrameSortu;
 import model.metodoak.ViewMetodoak;
 import model.sql.Kone;
@@ -64,7 +65,7 @@ public class PlayListaSortu extends JFrame {
 		btnSortuPlayList.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Kone.playlistGehitu(txtIzena.getText());
+				PlayListakDao.playlistGehitu(txtIzena.getText());
 				dispose();
 				JFrameSortu.nirePlaylistaSortu();
 			}

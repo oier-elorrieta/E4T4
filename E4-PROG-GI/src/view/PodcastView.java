@@ -18,6 +18,7 @@ import model.Album;
 import model.Audio;
 import model.Podcast;
 import model.Podcasterra;
+import model.dao.PodcasterraDao;
 import model.metodoak.JFrameSortu;
 import model.metodoak.ViewMetodoak;
 import model.sql.Kone;
@@ -85,7 +86,7 @@ public class PodcastView extends JFrame {
 		panel_1.add(lblNewLabel);
 
 		// irudia seteatu lbl-ari
-		Podcasterra podcaster = Kone.getPodcasterra(izena);
+		Podcasterra podcaster = PodcasterraDao.getPodcasterra(izena);
 		ViewMetodoak.setIrudia(lblNewLabel, podcaster.getIrudia());
 
 		// Deskripzioa

@@ -20,6 +20,7 @@ import model.Abestia;
 import model.Album;
 import model.Audio;
 import model.Musikaria;
+import model.dao.AbestiaDao;
 import model.metodoak.JFrameSortu;
 import model.metodoak.ViewMetodoak;
 import model.sql.Kone;
@@ -73,7 +74,7 @@ public class AbestiakMusikaria extends JFrame {
 		panel.setBounds(10, 152, 359, 389);
 		contentPane.add(panel);
 
-		ArrayList<Audio> abestiak = Kone.getAbestiak(album.getId());
+		ArrayList<Audio> abestiak = AbestiaDao.getAbestiak(album.getId());
 		DefaultListModel<Audio> modeloList = ViewMetodoak.getMusikariAbestiak(album.getId());
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
 
