@@ -101,7 +101,7 @@ public class ViewMetodoak {
 		return Kone.konektatuAdmin(user, pass);
 	}
 
-	public static void btnGeneratu(JPanel pane, Blob irudia, String izena, String entzunaldiak, JFrame jf) {
+	public static void btnGeneratu(JPanel pane, Blob irudia, String izena, int entzunaldiak, JFrame jf) {
 		JButton newButton = new JButton();
 		newButton.setText(izena + " Entzunaldiak: " + entzunaldiak);
 
@@ -141,7 +141,7 @@ public class ViewMetodoak {
 			while (rs.next()) {
 
 				String izena = rs.getString("Izena");
-				String entzunaldiak = rs.getString("Totala");
+				int entzunaldiak = rs.getInt("Totala");
 				Blob irudia = rs.getBlob("Irudia");
 				btnGeneratu(pane, irudia, izena, entzunaldiak, jf);
 			}
@@ -157,7 +157,7 @@ public class ViewMetodoak {
 			while (rs.next()) {
 
 				String izena = rs.getString("Izena");
-				String entzunaldiak = rs.getString("Totala");
+				int entzunaldiak = rs.getInt("Totala");
 				Blob irudia = rs.getBlob("Irudia");
 				btnGeneratuPodcaster(pane, irudia, izena, entzunaldiak, jf);
 			}
@@ -166,7 +166,7 @@ public class ViewMetodoak {
 		}
 	}
 
-	public static void btnGeneratuPodcaster(JPanel pane, Blob irudia, String izena, String entzunaldiak, JFrame jf) {
+	public static void btnGeneratuPodcaster(JPanel pane, Blob irudia, String izena, int entzunaldiak, JFrame jf) {
 		JButton newButton = new JButton();
 		newButton.setText(izena + " Entzunaldiak: " + entzunaldiak);
 		try {
