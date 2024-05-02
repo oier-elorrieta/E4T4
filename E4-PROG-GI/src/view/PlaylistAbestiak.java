@@ -17,9 +17,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-
-import org.junit.jupiter.params.shadow.com.univocity.parsers.common.processor.core.AbstractBatchedColumnProcessor;
-
 import model.Abestia;
 import model.Audio;
 import model.PlayListak;
