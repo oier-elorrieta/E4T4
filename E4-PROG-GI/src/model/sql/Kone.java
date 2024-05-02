@@ -60,7 +60,6 @@ public class Kone {
 		} catch (SQLException e) {
 			LoginOk = false;
 		}
-		System.out.println(LoginOk);
 		return LoginOk;
 	}
 

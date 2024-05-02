@@ -28,10 +28,9 @@ public class ViewMetodoakTest {
     @Test
     public void testKomprobatuAdmin() {
         boolean result = ViewMetodoak.komprobatuAdmin("admin", "headmin");
-        System.out.println(result);
         assertTrue(result);
     }
-	/*
+
     @Test
     public void testCboHizkuntzaModeloaSortu() {
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
@@ -96,20 +95,20 @@ public class ViewMetodoakTest {
 
     @Test
     public void testGetMusikariAlbumak() {
-        DefaultListModel<Album> result = ViewMetodoak.getMusikariAlbumak("Musikari");
+        DefaultListModel<Album> result = ViewMetodoak.getMusikariAlbumak("Melendi");
         assertEquals(2, result.getSize());
     }
 
     @Test
     public void testGetMusikariAbestiak() {
-        DefaultListModel<Audio> result = ViewMetodoak.getMusikariAbestiak(1);
-        assertEquals(5, result.getSize());
+        DefaultListModel<Audio> result = ViewMetodoak.getMusikariAbestiak(5);
+        assertEquals(3, result.getSize());
     }
 
     @Test
     public void testSetIrudia() {
         JLabel lbl = new JLabel();
-        Blob m = null;
+        Blob m = MusikariaDao.getMusikaria("LiSa").getIrudia();
         ViewMetodoak.setIrudia(lbl, m);
         Icon icon = lbl.getIcon();
         assertNotNull(icon);
@@ -119,7 +118,7 @@ public class ViewMetodoakTest {
 
     @Test
     public void testGetPodcastList() {
-        ArrayList<Audio> result = ViewMetodoak.getPodcastList("LiSa");
-        assertEquals(3, result.size());
-    }*/
+        ArrayList<Audio> result = ViewMetodoak.getPodcastList("Jordi Wild");
+        assertEquals(2, result.size());
+    }
 }
