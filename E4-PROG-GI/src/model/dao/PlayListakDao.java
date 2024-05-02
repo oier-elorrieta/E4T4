@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
+import model.Audio;
 import model.PlayListak;
 import model.SesioAldagaiak;
 import model.sql.Kone;
@@ -110,6 +112,27 @@ public class PlayListakDao {
 		Connection konexioa = Kone.konektatu();
 		kontsulta = "DELETE FROM PlaylistAbestiak WHERE IdList = " + idPlaylist + " AND IdAudio = " + idAbestia;
 		stm.executeUpdate(kontsulta);
+		Kone.itxiConexioa();
+	}
+	
+	public static void playlisteanAbestiaGehitu(PlayListak playlist, Audio audio) {
+
+		Connection konexioa = Kone.konektatu();
+
+		java.util.Date dataOrain = new java.util.Date();
+		java.sql.Date sqlDataOrain = new java.sql.Date(dataOrain.getTime());
+
+		kontsulta = "INSERT into PlaylistAbestiak(IdList, IdAudio, PData) VALUES(?,?,?)";
+		try {
+			pstm = konexioa.prepareStatement(kontsulta);
+			pstm.setInt(1, playlist.getIdPlayList());
+			pstm.setInt(2, audio.getIdAudio());
+			pstm.setDate(3, sqlDataOrain);
+			pstm.execute();
+		} catch (SQLException e) {
+			System.out.println("Kontsulta txarto" + e.getMessage());
+		}
+
 		Kone.itxiConexioa();
 	}
 }

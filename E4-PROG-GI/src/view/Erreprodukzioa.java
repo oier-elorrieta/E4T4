@@ -165,11 +165,16 @@ public class Erreprodukzioa extends JFrame {
 		btnMenua.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Object[] aukerakMenu = { "Gorde", "Kompartitu" };
+				Object[] aukerakMenu = { "Playlistean Sartu", "Kompartitu" };
 				int menuAukera = JOptionPane.showOptionDialog(null, "Zer nahi duzu egin?", "Menu",
 						JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, aukerakMenu, aukerakMenu[0]);
 				if (menuAukera == JOptionPane.YES_OPTION) {
-					System.out.println("go");
+					try {
+						JFrameSortu.abestiaPlayListeanSartuSortu(abestiak.get(abestiAukera));
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				} else if (menuAukera == JOptionPane.NO_OPTION) {
 					System.out.println("kompa");
 				}

@@ -1,3 +1,5 @@
+package model.metodoak;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.WindowConstants;
@@ -5,6 +7,7 @@ import model.Abestia;
 import model.Audio;
 import model.PlayListak;
 import model.Podcast;
+import view.AbestiaPlayListeanSartu;
 import view.Erregistroa;
 import view.ErregistroaPremium;
 import view.Erreprodukzioa;
@@ -14,7 +17,7 @@ import view.NirePlaylista;
 import view.PlayListaSortu;
 import view.PlaylistAbestiak;
 
-package model.metodoak;
+
 
 
 
@@ -98,9 +101,9 @@ public class JFrameSortu {
 		erreprodukzioaSortu.setVisible(true);
 	}
 	
-	/*public static void erreprodukzioaSortuPodcast(ArrayList<Podcast> podcast, int podcastAukera) throws SQLException{
-		Erreprodukzioa erreprodukzioaSortu = new Erreprodukzioa(podcast,podcastAukera,"podcast");
-		erreprodukzioaSortu.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		erreprodukzioaSortu.setVisible(true);
-	}*/
+	public static void abestiaPlayListeanSartuSortu(Audio audio) throws SQLException{
+		AbestiaPlayListeanSartu abestiaPlayListeanSartuSortu = new AbestiaPlayListeanSartu(audio);
+		abestiaPlayListeanSartuSortu.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		abestiaPlayListeanSartuSortu.setVisible(true);
+	}
 }
