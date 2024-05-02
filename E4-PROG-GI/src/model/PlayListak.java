@@ -11,6 +11,12 @@ public class PlayListak {
 	private String izena;
 	private Date sorreraData;
 	
+	public PlayListak() {
+		
+	}
+	
+	
+	
 	/**
 	 * PlayListak klasearen eraikitzailea.
 	 * @param izena PlayListaren izena

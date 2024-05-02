@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -17,9 +18,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import model.Audio;
 import model.PlayListak;
 import model.SesioAldagaiak;
 import model.dao.PlayListakDao;
@@ -57,7 +60,7 @@ public class NirePlaylista extends JFrame {
 
 		JButton btnErabiltzaile = ViewMetodoak.btnErabiltzaileaSortu();
 		ArrayList<PlayListak> playlistLista = PlayListakDao.getPlaylist();
-		//ArrayList<PlayListak> playlistLista = Kone.getPlaylist();
+		// ArrayList<PlayListak> playlistLista = Kone.getPlaylist();
 		DefaultListModel<String> modeloLista = new DefaultListModel<>();
 		for (int i = 0; i < playlistLista.size(); i++) {
 			modeloLista.addElement(playlistLista.get(i).getIzena());
@@ -108,9 +111,11 @@ public class NirePlaylista extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					if (jListPlayList.getSelectedValue() == null) {
-						JOptionPane.showMessageDialog(null, "Ez duzu Playlist bat aukeratu ezabatzeko", "Error", JOptionPane.ERROR_MESSAGE);
-					} else if (jListPlayList.getSelectedIndex() == 0){
-						JOptionPane.showMessageDialog(null, "Ezin duzu Playlist hau ezabatu", "Error", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Ez duzu Playlist bat aukeratu ezabatzeko", "Error",
+								JOptionPane.ERROR_MESSAGE);
+					} else if (jListPlayList.getSelectedIndex() == 0) {
+						JOptionPane.showMessageDialog(null, "Ezin duzu Playlist hau ezabatu", "Error",
+								JOptionPane.ERROR_MESSAGE);
 					} else {
 						int aukeraPlaylist = jListPlayList.getSelectedIndex();
 						PlayListakDao.playlistEzabatu(playlistLista.get(aukeraPlaylist).getIdPlayList());
@@ -125,28 +130,58 @@ public class NirePlaylista extends JFrame {
 
 		btnImportatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				String[] aux = ImportExportMetodoak.importatuPlaylist();
-				PlayListakDao.playlistGehitu(aux[0]);
+
+				JPanel pan = new JPanel(new BorderLayout());
+				JTextField gg = new JTextField();
+				pan.add(gg, BorderLayout.CENTER);
+				int opcion = JOptionPane.showConfirmDialog(null, pan, "Por favor, ingresa un texto:",
+						JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+				if (opcion == JOptionPane.OK_OPTION) {
+					aux[0] = gg.getText();
+
+					PlayListakDao.playlistGehitu(aux[0]);
+					PlayListak p = new PlayListak();
+					p.setIdPlayList(PlayListakDao.getPlayListIzenarekin(aux[0]));
+
+					Audio a = new Audio();
+
+					for (int i = 1; i < aux.length; i++) {
+						a.setIdAudio(Integer.parseInt(aux[i]));
+						PlayListakDao.playlisteanAbestiaGehitu(p, a);
+					}
+					
+					dispose();
+					JFrameSortu.nirePlaylistaSortu();
+
+				} else {
+
+					System.out.println("El usuario canceló la operación.");
+				}
+				
+				
 				
 			}
 		});
 
 		btnExportatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				PlayListak selectedPlay = playlistLista.get(jListPlayList.getSelectedIndex());
+
 				ImportExportMetodoak.exportatuPlaylist(selectedPlay);
-				
-				
+
 			}
-			
+
 		});
 
 		btnAukeratu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (jListPlayList.getSelectedValue() == null) {
-					JOptionPane.showMessageDialog(null, "Ez duzu Playlist bat aukeratu", "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Ez duzu Playlist bat aukeratu", "Error",
+							JOptionPane.ERROR_MESSAGE);
 				} else {
 					int aukeraPlaylist = jListPlayList.getSelectedIndex();
 					PlayListak aukeraPlaylistO = playlistLista.get(aukeraPlaylist);
@@ -174,8 +209,6 @@ public class NirePlaylista extends JFrame {
 				JFrameSortu.loginAukeraSortu();
 			}
 		});
-		
-		
-		
+
 	}
 }

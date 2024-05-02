@@ -1,15 +1,14 @@
 package model.dao;
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-<<<<<<< HEAD
 import model.Abestia;
-=======
->>>>>>> 5713f47f2517ab49b1067000bc37ec607ecee533
+
 import model.Audio;
 import model.PlayListak;
 import model.SesioAldagaiak;
@@ -119,7 +118,7 @@ public class PlayListakDao {
 		Kone.itxiConexioa();
 	}
 	
-<<<<<<< HEAD
+
 	
 	public static ArrayList<Audio> getPlayListAbestiak(PlayListak aukeraPlaylist) {
 		ArrayList<Audio> abestiakList = new ArrayList<Audio>();
@@ -159,7 +158,7 @@ public class PlayListakDao {
 	}
 	
 	
-=======
+
 	public static void playlisteanAbestiaGehitu(PlayListak playlist, Audio audio) {
 
 		Connection konexioa = Kone.konektatu();
@@ -180,5 +179,24 @@ public class PlayListakDao {
 
 		Kone.itxiConexioa();
 	}
->>>>>>> 5713f47f2517ab49b1067000bc37ec607ecee533
+	
+	public static int getPlayListIzenarekin(String izena) {
+		int idList = 0;
+		Connection konexioa = Kone.konektatu();
+		kontsulta = "Select IdList from Playlist where Izenburua='"+izena+"'";
+		try {
+			stm = konexioa.createStatement();
+			rs = stm.executeQuery(kontsulta);
+			rs.next();
+			idList = rs.getInt("IdList");
+		} catch (SQLException e) {
+			System.out.println("Kontsulta txarto" + e.getMessage());
+		}
+		
+		return idList;
+		
+	}
+	
+	
+
 }
