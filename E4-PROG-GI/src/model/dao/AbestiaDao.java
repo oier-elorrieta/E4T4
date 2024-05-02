@@ -6,11 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
 import model.Abestia;
 import model.Audio;
 import model.SesioAldagaiak;
 import model.sql.Kone;
+
 
 public class AbestiaDao {
 	private static String kontsulta;
@@ -18,7 +18,12 @@ public class AbestiaDao {
 	private static PreparedStatement pstm;
 	private static ResultSet rs;
 	
-/*	public static ArrayList<Abestia> getAbestiGustokoak() {
+	/**
+	 * Erabiltzailearen gustoko abestiak itzultzen ditu.
+	 * 
+	 * @return Abestiak ArrayList moduan itzultzen ditu.
+	 */
+	public static ArrayList<Abestia> getAbestiGustokoak() {
 		ArrayList<Abestia> abestiakList = new ArrayList<Abestia>();
 		Abestia abestia;
 
@@ -33,7 +38,7 @@ public class AbestiaDao {
 		}
 
 		try {
-			stm = konexioa.createStatement();
+			Statement stm = konexioa.createStatement();
 			kontsulta = "SELECT a.IdAudio, a.Izena, a.Iraupena, a.Irudia FROM Gustokoak g join Audio a using (IdAudio) where IdBezeroa = "
 					+ id;
 			rs = stm.executeQuery(kontsulta);
@@ -48,8 +53,13 @@ public class AbestiaDao {
 		Kone.itxiConexioa();
 		return abestiakList;
 	}
-	*/
 	
+	/**
+	 * Album baten abestiak itzultzen ditu.
+	 * 
+	 * @param idAlbum Albumaren identifikadorea.
+	 * @return Abestiak ArrayList moduan itzultzen ditu.
+	 */
 	public static ArrayList<Audio> getAbestiak(int idAlbum) {
 		Connection konexioa = Kone.konektatu();
 		try {
@@ -68,6 +78,12 @@ public class AbestiaDao {
 		}
 	}
 	
+	/**
+	 * Abestia gustukoa ezabatzen du.
+	 * 
+	 * @param idAbestia Abestiaren identifikadorea.
+	 * @throws SQLException
+	 */
 	public static void abestiGuztokoaEzabatu(int idAbestia) throws SQLException {
 
 		int id = 0;
@@ -84,6 +100,13 @@ public class AbestiaDao {
 		Kone.itxiConexioa();
 	}
 	
+	/**
+	 * Abestia gustukoa den ala ez konprobatzen du.
+	 * 
+	 * @param abestia Konprobatu nahi den abestia.
+	 * @return Abestia gustukoa den ala ez.
+	 * @throws SQLException
+	 */
 	public static boolean gustukoaKomprobatu(Audio abestia) throws SQLException {
 		boolean gustokoaDu;
 		int id = 0;
@@ -109,6 +132,13 @@ public class AbestiaDao {
 
 		return gustokoaDu;
 	}
+	
+	/**
+	 * Abestia gustukoa gisa gehitzen du.
+	 * 
+	 * @param abestia Gehitu nahi den abestia.
+	 * @throws SQLException
+	 */
 	public static void abestiGustokoaGehitu(Audio abestia) throws SQLException {
 		int id = 0;
 

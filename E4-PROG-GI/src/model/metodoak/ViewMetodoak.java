@@ -36,8 +36,17 @@ import model.sql.Kone;
 import view.MusikariView;
 import view.PodcastView;
 
+/**
+ * ViewMetodoak klasea aplikazioaren ikuspegia kudeatzeko metodoak dituen klasea da.
+ */
 public class ViewMetodoak {
 
+	/**
+	 * Metodo honek ComboBoxModel bat sortzen du, hizkuntza guztiak gehituz.
+	 *
+	 * @param modeloa ComboBoxModel bat, hizkuntzak gehitzeko.
+	 * @return Sortutako ComboBoxModela.
+	 */
 	public static DefaultComboBoxModel cboHizkuntzaModeloaSortu(DefaultComboBoxModel modeloa) {
 		try {
 			Kone.konektatu();
@@ -52,6 +61,13 @@ public class ViewMetodoak {
 		return modeloa;
 	}
 
+	/**
+	 * Metodo honek erabiltzailearen sartutako erabiltzaile-izena eta pasahitza egiaztatzen du.
+	 *
+	 * @param erabiltzailea Erabiltzaile-izena.
+	 * @param pasahitza Pasahitza.
+	 * @return Sartutako erabiltzailea eta pasahitza egiaztatzen badira, true itzultzen du. Bestela, false.
+	 */
 	public static boolean comprobatuLogin(String erabiltzailea, String pasahitza) {
 		boolean loginOK = false;
 		try {
@@ -71,6 +87,12 @@ public class ViewMetodoak {
 		return loginOK;
 	}
 
+	/**
+	 * Metodo honek erabiltzailea kargatzen du, motaren arabera.
+	 *
+	 * @param id Erabiltzailearen identifikadorea.
+	 * @param mota Erabiltzailearen mota ("free" edo "premium").
+	 */
 	public static void erabiltzaileaKargatu(int id, String mota) {
 		switch (mota) {
 		case "free":
@@ -85,6 +107,11 @@ public class ViewMetodoak {
 		}
 	}
 
+	/**
+	 * Metodo honek JButton bat sortzen du, erabiltzailea sortzeko.
+	 *
+	 * @return Sortutako JButtona.
+	 */
 	public static JButton btnErabiltzaileaSortu() {
 		JButton btnErabiltzaile = null;
 		if (!SesioAldagaiak.erabiltzailePremium) {
@@ -102,11 +129,27 @@ public class ViewMetodoak {
 		return btnErabiltzaile;
 	}
 
+	/**
+	 * Metodo honek erabiltzailea eta pasahitza egiaztatzen du, administrazioa egiteko.
+	 *
+	 * @param user Erabiltzaile-izena.
+	 * @param pass Pasahitza.
+	 * @return Sartutako erabiltzailea eta pasahitza egiaztatzen badira, true itzultzen du. Bestela, false.
+	 */
 	public static boolean komprobatuAdmin(String user, String pass) {
 		return Kone.konektatuAdmin(user, pass);
 	}
 
-	public static void btnGeneratu(JPanel pane, Blob irudia, String izena, String entzunaldiak, JFrame jf) {
+	/**
+	 * Metodo honek JButton bat sortzen du, musikariaren irudia eta entzunaldi kopurua erakusteko.
+	 *
+	 * @param pane JPanel bat, botoiak gehitzeko.
+	 * @param irudia Musikariaren irudia.
+	 * @param izena Musikariaren izena.
+	 * @param entzunaldiak Musikariaren entzunaldi kopurua.
+	 * @param jf JFrame bat, berriz kargatzeko.
+	 */
+	public static void btnGeneratu(JPanel pane, Blob irudia, String izena, int entzunaldiak, JFrame jf) {
 		JButton newButton = new JButton();
 		newButton.setText(izena + " Entzunaldiak: " + entzunaldiak);
 
@@ -139,6 +182,12 @@ public class ViewMetodoak {
 
 	}
 
+	/**
+	 * Metodo honek JPanel batean musikarien entzunaldiak erakusteko botoiak sortzen ditu.
+	 *
+	 * @param pane JPanel bat, botoiak gehitzeko.
+	 * @param jf JFrame bat, berriz kargatzeko.
+	 */
 	public static void musikariakEntzunaldiakBotoiarentzako(JPanel pane, JFrame jf) {
 		
 		ResultSet rs = MusikariaDao.getMusikariakEntzunaldiak();
@@ -147,7 +196,7 @@ public class ViewMetodoak {
 			while (rs.next()) {
 
 				String izena = rs.getString("Izena");
-				String entzunaldiak = rs.getString("Totala");
+				int entzunaldiak = rs.getInt("Totala");
 				Blob irudia = rs.getBlob("Irudia");
 				btnGeneratu(pane, irudia, izena, entzunaldiak, jf);
 			}
@@ -156,6 +205,12 @@ public class ViewMetodoak {
 		}
 	}
 
+	/**
+	 * Metodo honek JPanel batean podcasterrak entzunaldiak erakusteko botoiak sortzen ditu.
+	 *
+	 * @param pane JPanel bat, botoiak gehitzeko.
+	 * @param jf JFrame bat, berriz kargatzeko.
+	 */
 	public static void podcasterrakEntzunaldiakBotoiarentzako(JPanel pane, JFrame jf) {
 		ResultSet rs = PodcasterraDao.getPodcasterEntzunaldiak();
 		//ResultSet rs = Kone.getPodcasterEntzunaldiak();
@@ -163,7 +218,7 @@ public class ViewMetodoak {
 			while (rs.next()) {
 
 				String izena = rs.getString("Izena");
-				String entzunaldiak = rs.getString("Totala");
+				int entzunaldiak = rs.getInt("Totala");
 				Blob irudia = rs.getBlob("Irudia");
 				btnGeneratuPodcaster(pane, irudia, izena, entzunaldiak, jf);
 			}
@@ -172,7 +227,16 @@ public class ViewMetodoak {
 		}
 	}
 
-	public static void btnGeneratuPodcaster(JPanel pane, Blob irudia, String izena, String entzunaldiak, JFrame jf) {
+	/**
+	 * Metodo honek JButton bat sortzen du, podcasterraren irudia eta entzunaldi kopurua erakusteko.
+	 *
+	 * @param pane JPanel bat, botoiak gehitzeko.
+	 * @param irudia Podcasterraren irudia.
+	 * @param izena Podcasterraren izena.
+	 * @param entzunaldiak Podcasterraren entzunaldi kopurua.
+	 * @param jf JFrame bat, berriz kargatzeko.
+	 */
+	public static void btnGeneratuPodcaster(JPanel pane, Blob irudia, String izena, int entzunaldiak, JFrame jf) {
 		JButton newButton = new JButton();
 		newButton.setText(izena + " Entzunaldiak: " + entzunaldiak);
 		try {
@@ -204,6 +268,12 @@ public class ViewMetodoak {
 
 	}
 
+	/**
+	 * Metodo honek musikariaren albumak lortzen ditu eta DefaultListModel bat itzultzen du.
+	 *
+	 * @param izena Musikariaren izena.
+	 * @return Musikariaren albumak dituen DefaultListModel bat.
+	 */
 	public static DefaultListModel<Album> getMusikariAlbumak(String izena) {
 
 		DefaultListModel<Album> lm = new DefaultListModel();
@@ -218,6 +288,12 @@ public class ViewMetodoak {
 		return lm;
 	}
 
+	/**
+	 * Metodo honek musikariaren abestiak lortzen ditu eta DefaultListModel bat itzultzen du.
+	 *
+	 * @param idAlbum Albumaren identifikadorea.
+	 * @return Musikariaren abestiak dituen DefaultListModel bat.
+	 */
 	public static DefaultListModel<Audio> getMusikariAbestiak(int idAlbum) {
 
 		DefaultListModel<Audio> lm = new DefaultListModel();
@@ -230,18 +306,28 @@ public class ViewMetodoak {
 		return lm;
 	}
 
+	/**
+	 * Metodo honek irudia jartzen du JLabel batean.
+	 *
+	 * @param lbl JLabel bat, irudia jartzeko.
+	 * @param m Irudia gordetzen duen Blob objektua.
+	 */
 	public static void setIrudia(JLabel lbl, Blob m) {
 
 		try {
 			ImageIcon icon = new ImageIcon(m.getBytes(1, (int) m.length()));
-			Image imagen = icon.getImage().getScaledInstance(550, 500, Image.SCALE_SMOOTH);
-			ImageIcon iconoEscalado = new ImageIcon(imagen);
 			lbl.setIcon(icon);
 		} catch (SQLException e) {
 			e.getMessage();
 		}
 	}
 
+	/**
+	 * Metodo honek podcasterraren abestiak lortzen ditu eta ArrayList bat itzultzen du.
+	 *
+	 * @param izena Podcasterraren izena.
+	 * @return Podcasterraren abestiak dituen ArrayList bat.
+	 */
 	public static ArrayList<Audio> getPodcastList(String izena) {
 		ArrayList<Audio> podcastList = new ArrayList<Audio>();
 		Podcasterra podcaster = PodcasterraDao.getPodcasterra(izena);

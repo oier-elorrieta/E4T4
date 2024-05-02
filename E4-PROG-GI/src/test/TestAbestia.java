@@ -1,7 +1,5 @@
 package test;
 
-import org.junit.jupiter.api.Test;
-
 import model.*;
 
 import static org.junit.Assert.*;

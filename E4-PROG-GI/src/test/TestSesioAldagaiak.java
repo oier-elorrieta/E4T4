@@ -1,9 +1,6 @@
 package test;
 import java.util.Date;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
 import model.ErabiltzaileFree;
 import model.ErabiltzailePremium;
 import model.SesioAldagaiak;

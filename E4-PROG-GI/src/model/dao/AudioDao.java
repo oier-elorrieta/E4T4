@@ -1,17 +1,17 @@
 package model.dao;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
 import model.Abestia;
 import model.Audio;
 import model.PlayListak;
 import model.SesioAldagaiak;
 import model.sql.Kone;
+
+
 
 public class AudioDao {
 	private static String kontsulta;
@@ -19,6 +19,12 @@ public class AudioDao {
 	private static PreparedStatement pstm;
 	private static ResultSet rs;
 	
+	/**
+	 * Aukeratutako PlayListaren abestiak itzultzen dituen metodoa.
+	 * 
+	 * @param aukeraPlaylist Aukeratutako PlayLista
+	 * @return Abestiak ArrayList moduan
+	 */
 	public static ArrayList<Audio> getPlayListAbestiak(PlayListak aukeraPlaylist) {
 		ArrayList<Audio> abestiakList = new ArrayList<Audio>();
 		Abestia abestia;

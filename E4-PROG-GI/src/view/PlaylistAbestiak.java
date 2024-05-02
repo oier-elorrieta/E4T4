@@ -17,9 +17,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-
-import org.junit.jupiter.params.shadow.com.univocity.parsers.common.processor.core.AbstractBatchedColumnProcessor;
-
 import model.Abestia;
 import model.Audio;
 import model.PlayListak;
@@ -97,7 +94,7 @@ public class PlaylistAbestiak extends JFrame {
 					try {
 						int aukeraAbestia = jListAbestiak.getSelectedIndex();
 						dispose();
-						JFrameSortu.erreprodukzioaSortu(abestiakList, aukeraAbestia);
+						JFrameSortu.erreprodukzioaSortu(abestiakList, aukeraAbestia, aukeraPlaylist.getIzena());
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();

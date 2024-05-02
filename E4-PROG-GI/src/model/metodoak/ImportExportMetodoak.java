@@ -1,6 +1,9 @@
+<<<<<<< HEAD
 package model.metodoak;
 
 import java.io.BufferedReader;
+=======
+>>>>>>> 5713f47f2517ab49b1067000bc37ec607ecee533
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -8,13 +11,23 @@ import java.io.IOException;
 import java.sql.Blob;
 import java.sql.Time;
 import java.util.ArrayList;
+<<<<<<< HEAD
 
 import model.Abestia;
+=======
+>>>>>>> 5713f47f2517ab49b1067000bc37ec607ecee533
 import model.Audio;
 import model.PlayListak;
 import model.dao.PlayListakDao;
 import model.sql.Kone;
 
+package model.metodoak;
+
+
+
+/**
+ * ImportExportMetodoak klasea, fitxategiak inportatzeko eta esportatzeko metodoak dituena.
+ */
 public class ImportExportMetodoak {
 
 	public static void exportatuPlaylist(PlayListak pl) {
@@ -64,6 +77,7 @@ public class ImportExportMetodoak {
 		return playlist;
 	}
 	
+<<<<<<< HEAD
 	public static void exportatuAbesti(Audio a) {
 		
 		String nombreArchivo = "C:\\Users\\in1dm3-d\\Desktop\\4.Erronka\\E4T4\\E4-PROG-GI\\src\\Importazioak\\Abestia.txt"; // Nombre del archivo a leer
@@ -89,5 +103,34 @@ public class ImportExportMetodoak {
 	}
 	
 	
+=======
+	/**
+	 * Plaistlist bat inportatzen du.
+	 * @param pl Inportatu nahi den PlayListak objektua.
+	 */
+	public static void importatuPlaylist(PlayListak pl) {
+		
+		ArrayList<Audio> abestiak = Kone.getPlayListAbestiak(pl);
+		
+		// Definir el nombre del archivo
+		String nombreArchivo = "C:\\Users\\in1dm3-d\\Desktop\\4.Erronka\\E4T4\\E4-PROG-GI\\src\\Importazioak\\Playlist.txt";
 
+		try {
+			// Crear un objeto BufferedWriter
+			BufferedWriter writer = new BufferedWriter(new FileWriter(nombreArchivo));
+
+			// Escribir en el archivo
+			writer.write();
+			writer.newLine(); // Agregar una nueva línea
+			writer.write("Este es un ejemplo de BufferedWriter en Java.");
+>>>>>>> 5713f47f2517ab49b1067000bc37ec607ecee533
+
+			// Cerrar el BufferedWriter
+			writer.close();
+
+			System.out.println("Se ha escrito en el archivo correctamente.");
+		} catch (IOException e) {
+			System.err.println("Error al escribir en el archivo: " + e.getMessage());
+		}
+	}
 }

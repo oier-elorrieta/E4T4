@@ -1,8 +1,11 @@
 package test;
 
 import org.junit.Test;
+<<<<<<< HEAD
 
 import org.junit.jupiter.api.Assertions;
+=======
+>>>>>>> 5713f47f2517ab49b1067000bc37ec607ecee533
 
 import model.Musikaria;
 
