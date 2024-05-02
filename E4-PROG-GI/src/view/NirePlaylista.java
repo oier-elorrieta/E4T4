@@ -23,6 +23,7 @@ import javax.swing.border.EmptyBorder;
 import model.PlayListak;
 import model.SesioAldagaiak;
 import model.dao.PlayListakDao;
+import model.metodoak.ImportExportMetodoak;
 import model.metodoak.JFrameSortu;
 import model.metodoak.ViewMetodoak;
 import model.sql.Kone;
@@ -124,6 +125,10 @@ public class NirePlaylista extends JFrame {
 
 		btnImportatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				String[] aux = ImportExportMetodoak.importatuPlaylist();
+				PlayListakDao.playlistGehitu(aux[0]);
+				
 			}
 		});
 
@@ -131,7 +136,7 @@ public class NirePlaylista extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				PlayListak selectedPlay = playlistLista.get(jListPlayList.getSelectedIndex());
-				
+				ImportExportMetodoak.exportatuPlaylist(selectedPlay);
 				
 				
 			}

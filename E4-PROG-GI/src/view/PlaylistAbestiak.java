@@ -27,6 +27,7 @@ import model.SesioAldagaiak;
 import model.dao.AbestiaDao;
 import model.dao.AudioDao;
 import model.dao.PlayListakDao;
+import model.metodoak.ImportExportMetodoak;
 import model.metodoak.JFrameSortu;
 import model.metodoak.ViewMetodoak;
 import model.sql.Kone;
@@ -142,6 +143,13 @@ public class PlaylistAbestiak extends JFrame {
 				SesioAldagaiak.erabiltzaileLogeatutaPremium = null;
 				dispose();
 				JFrameSortu.loginAukeraSortu();
+			}
+		});
+		
+		btnKompartitu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ImportExportMetodoak.exportatuAbesti(abestiakList.get(jListAbestiak.getSelectedIndex()));
 			}
 		});
 	}
