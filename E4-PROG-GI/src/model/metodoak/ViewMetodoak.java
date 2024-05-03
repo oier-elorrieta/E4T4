@@ -359,6 +359,6 @@ public class ViewMetodoak {
 				System.out.println("skip");
 			}
 		};
-		timer.schedule(task, 5000);
+		timer.schedule(task, 10000);
 	}
 }

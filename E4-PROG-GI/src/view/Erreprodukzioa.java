@@ -154,7 +154,6 @@ public class Erreprodukzioa extends JFrame {
 		contentPane.add(btnAtzera);
 		contentPane.add(btnErabiltzaile);
 
-				
 		String filepath = "src\\audioak\\" + abestiak.get(abestiAukera).getIzena() + ".wav";
 		File f = new File(filepath);
 		AudioInputStream aui;
@@ -212,9 +211,9 @@ public class Erreprodukzioa extends JFrame {
 						dispose();
 						if (SesioAldagaiak.iragarkiaAtera || !SesioAldagaiak.erabiltzailePremium) {
 							JFrameSortu.iragarkiaErreproduzituSortu(abestiak, abestiAukeraAux, izenaAlbum);
-							} else {
+						} else {
 							JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux, izenaAlbum);
-							}
+						}
 					} catch (SQLException e1) {
 						e1.printStackTrace();
 					}
@@ -254,10 +253,12 @@ public class Erreprodukzioa extends JFrame {
 						SesioAldagaiak.doSkip = false;
 						ViewMetodoak.skipBaimendu();
 						dispose();
-						if (SesioAldagaiak.iragarkiaAtera) {
-						JFrameSortu.iragarkiaErreproduzituSortu(abestiak, abestiAukeraAux, izenaAlbum);
+						if ((SesioAldagaiak.iragarkiaAtera && SesioAldagaiak.erreprodukzioKop >= 1) && !SesioAldagaiak.erabiltzailePremium) {
+							SesioAldagaiak.erreprodukzioKop = 0;
+							JFrameSortu.iragarkiaErreproduzituSortu(abestiak, abestiAukeraAux, izenaAlbum);
 						} else {
-						JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux, izenaAlbum);
+							SesioAldagaiak.erreprodukzioKop++;
+							JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux, izenaAlbum);
 						}
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block

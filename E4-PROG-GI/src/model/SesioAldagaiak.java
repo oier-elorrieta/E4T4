@@ -16,4 +16,5 @@ public class SesioAldagaiak {
 	public static JButton jb = null;
 	public static boolean doSkip = true;
 	public static boolean iragarkiaAtera = true;
+	public static int erreprodukzioKop = 0;
 }

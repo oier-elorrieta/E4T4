@@ -42,7 +42,7 @@ public class IragarkiaErreproduzitu extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-
+private Timer timer;
 	private Clip clip;
 
 	public IragarkiaErreproduzitu(ArrayList<Audio> abestiak, int abestiAukera, String izenaAlbum) throws SQLException {
@@ -88,7 +88,7 @@ public class IragarkiaErreproduzitu extends JFrame {
 	}
 
 	public void hurrengoAudioaHasi(ArrayList<Audio> abestiak, int abestiAukera, String izenaAlbum, Long l) {
-		Timer timer = new Timer();
+		timer = new Timer();
 		TimerTask task = new TimerTask() {
 			public void run() {
 				try {
