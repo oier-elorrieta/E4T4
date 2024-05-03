@@ -18,7 +18,7 @@ public class ErreproduzioSpeed {
 	
 	
 public static void erreproduzitu() {	
-	Clip clip;
+/*	Clip clip;
 	String filepath = "src\\audioak\\" + abestiak.get(abestiAukera).getIzena() + ".wav";
 	File f = new File(filepath);
 	AudioInputStream aui;
@@ -60,7 +60,7 @@ public static void erreproduzitu() {
 	} catch (LineUnavailableException e1) {
 		e1.printStackTrace();
 	}
-	
+*/	
 	 }
 
 }

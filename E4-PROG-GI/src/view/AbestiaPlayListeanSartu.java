@@ -108,9 +108,20 @@ public class AbestiaPlayListeanSartu extends JFrame {
 		btnAtzera.setFont(new Font("SansSerif", Font.BOLD, 22));
 		btnAtzera.setFocusPainted(false);
 
-		model.SesioAldagaiak.jb = ViewMetodoak.btnErabiltzaileaSortu();
-		JButton btnErabiltzaile = model.SesioAldagaiak.jb;
+		JButton btnErabiltzaile = null;
+		if (!SesioAldagaiak.erabiltzailePremium) {
+			btnErabiltzaile = new JButton(SesioAldagaiak.erabiltzaileLogeatutaFree.getIzena());
+			SesioAldagaiak.logErabiltzailea = SesioAldagaiak.erabiltzaileLogeatutaFree;
+		} else {
+			btnErabiltzaile = new JButton(SesioAldagaiak.erabiltzaileLogeatutaPremium.getIzena());
+			SesioAldagaiak.logErabiltzailea = SesioAldagaiak.erabiltzaileLogeatutaPremium;
+		}
+		btnErabiltzaile.setBackground(Color.LIGHT_GRAY);
+		btnErabiltzaile.setForeground(Color.BLACK);
 		btnErabiltzaile.setBounds(400, 60, 144, 50);
+		btnErabiltzaile.setFont(new Font("SansSerif", Font.BOLD, 22));
+		btnErabiltzaile.setFocusPainted(false);
+		
 
 		contentPane.add(lblInfo);
 		contentPane.add(lblIzena);

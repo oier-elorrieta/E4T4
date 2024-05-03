@@ -23,6 +23,8 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<!--
 	<classpathentry kind="lib" path="C:/Users/in1dm3-d/Downloads/jar_files/TarsosDSP-2.4.1.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
+	-->
 </classpath>

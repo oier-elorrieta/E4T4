@@ -94,7 +94,7 @@ private Timer timer;
 				try {
 					clip.stop();
 					dispose();
-					JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukera, izenaAlbum);
+					JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukera, izenaAlbum, 1);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

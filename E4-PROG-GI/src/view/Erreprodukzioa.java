@@ -48,12 +48,9 @@ public class Erreprodukzioa extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private Clip clip;
-<<<<<<< HEAD
-	
-=======
->>>>>>> 856c56ab9e308503390c288145414219d52872d2
 
-	public Erreprodukzioa(ArrayList<Audio> abestiak, int abestiAukera, String izenaAlbum) throws SQLException {
+	public Erreprodukzioa(ArrayList<Audio> abestiak, int abestiAukera, String izenaAlbum, float abiadura)
+			throws SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 250, 906, 594);
 		setTitle("Menu Nagusia - Talde 4");
@@ -61,6 +58,69 @@ public class Erreprodukzioa extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+
+		String filepath = "src\\audioak\\" + abestiak.get(abestiAukera).getIzena() + ".wav";
+		errepoduzituAudioa(filepath, abiadura);
+		/*
+		File f = new File(filepath);
+		AudioInputStream aui;
+
+		try {
+			aui = AudioSystem.getAudioInputStream(f.getAbsoluteFile());
+			AudioFormat format = aui.getFormat();
+			float speed = abiadura;
+			AudioFormat newFormat = new AudioFormat(format.getEncoding(), format.getSampleRate() * speed,
+					format.getSampleSizeInBits(), format.getChannels(), format.getFrameSize(),
+					format.getFrameRate() * speed, format.isBigEndian());
+			clip = AudioSystem.getClip();
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			byte[] buffer = new byte[4096];
+			int bytesRead;
+			while ((bytesRead = aui.read(buffer)) != -1) {
+				baos.write(buffer, 0, bytesRead);
+			}
+			byte[] audioData = baos.toByteArray();
+			ByteArrayInputStream bais = new ByteArrayInputStream(audioData);
+
+			// Convertir el ByteArrayInputStream a AudioInputStream
+			aui = new AudioInputStream(bais, newFormat, audioData.length / newFormat.getFrameSize());
+			clip.open(aui);
+		} catch (UnsupportedAudioFileException | IOException e) {
+			e.printStackTrace();
+		} catch (LineUnavailableException e1) {
+			e1.printStackTrace();
+		}
+		
+		*/
+		/*
+		 * try { aui = AudioSystem.getAudioInputStream(f);
+		 * 
+		 * // Crear un nuevo formato de audio con velocidad x2 AudioFormat format =
+		 * aui.getFormat();
+		 * 
+		 * float speed = 2.0f;
+		 * 
+		 * AudioFormat newFormat = new AudioFormat(format.getEncoding(),
+		 * format.getSampleRate() * speed, format.getSampleSizeInBits(),
+		 * format.getChannels(), format.getFrameSize(), format.getFrameRate() * speed,
+		 * format.isBigEndian());
+		 * 
+		 * clip = AudioSystem.getClip(); ByteArrayOutputStream baos = new
+		 * ByteArrayOutputStream(); byte[] buffer = new byte[4096]; int bytesRead; while
+		 * ((bytesRead = aui.read(buffer)) != -1) { baos.write(buffer, 0, bytesRead); }
+		 * byte[] audioData = baos.toByteArray(); ByteArrayInputStream bais = new
+		 * ByteArrayInputStream(audioData);
+		 * 
+		 * Convertir el ByteArrayInputStream a AudioInputStream AudioInputStream
+		 * audioInputStream = new AudioInputStream(bais, newFormat, audioData.length /
+		 * newFormat.getFrameSize());
+		 * 
+		 * //Abrir el Clip con el AudioInputStream clip.open(audioInputStream);
+		 * 
+		 * clip = AudioSystem.getClip(); clip.open(aui); } catch
+		 * (UnsupportedAudioFileException | IOException e) { e.printStackTrace(); }
+		 * catch (LineUnavailableException e1) { e1.printStackTrace(); }
+		 */
 
 		JLabel lblIzenaAlbum = new JLabel(izenaAlbum);
 		lblIzenaAlbum.setHorizontalAlignment(SwingConstants.CENTER);
@@ -95,7 +155,7 @@ public class Erreprodukzioa extends JFrame {
 		btnAurrekoa.setBounds(325, 450, 50, 50);
 		btnAurrekoa.setFont(new Font("SansSerif", Font.BOLD, 15));
 
-		JButton btnPlay = new JButton("Play");
+		JButton btnPlay = new JButton("Pause");
 		btnPlay.setBounds(400, 450, 100, 50);
 		btnPlay.setFont(new Font("SansSerif", Font.BOLD, 15));
 
@@ -103,50 +163,49 @@ public class Erreprodukzioa extends JFrame {
 		btnHurrengoa.setBounds(525, 450, 50, 50);
 		btnHurrengoa.setFont(new Font("SansSerif", Font.BOLD, 15));
 
-<<<<<<< HEAD
-		String filepath = "src\\audioak\\" + abestiak.get(abestiAukera).getIzena() + ".wav";
-		File f = new File(filepath);
-		AudioInputStream aui;
+		JButton btnX05 = new JButton("x0.5");
+		btnX05.setBounds(600, 450, 75, 50);
+		btnX05.setFont(new Font("SansSerif", Font.BOLD, 15));
+		btnX05.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (abiadura != 0.5f) {
+					clip.close();
+					errepoduzituAudioa(filepath, 0.5f);
+				}
+			}
+		});
 
-		try {
-			aui = AudioSystem.getAudioInputStream(f);
+		JButton btnX1 = new JButton("x1");
+		btnX1.setBounds(675, 450, 50, 50);
+		btnX1.setFont(new Font("SansSerif", Font.BOLD, 15));
+		btnX1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					clip.close();
+					errepoduzituAudioa(filepath, 1);
+			}
+		});
 
-			// Crear un nuevo formato de audio con velocidad x2
-            AudioFormat format = aui.getFormat();
-            
-            float speed = 2.0f;
-            
-            AudioFormat newFormat = new AudioFormat(format.getEncoding(), format.getSampleRate() * speed,
-                    format.getSampleSizeInBits(), format.getChannels(), format.getFrameSize(),
-                    format.getFrameRate() * speed, format.isBigEndian());
+		JButton btnX15 = new JButton("x1.5");
+		btnX15.setBounds(725, 450, 75, 50);
+		btnX15.setFont(new Font("SansSerif", Font.BOLD, 15));
+		btnX15.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (abiadura != 1.5f) {
+					clip.close();
+					errepoduzituAudioa(filepath, 1.5f);
+				}
+			}
+		});
 
-            
-            clip = AudioSystem.getClip();
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            byte[] buffer = new byte[4096];
-            int bytesRead;
-            while ((bytesRead = aui.read(buffer)) != -1) {
-                baos.write(buffer, 0, bytesRead);
-            }
-            byte[] audioData = baos.toByteArray();
-            ByteArrayInputStream bais = new ByteArrayInputStream(audioData);
+		JButton btnErabiltzaile = SesioAldagaiak.jb;
 
-            // Convertir el ByteArrayInputStream a AudioInputStream
-            AudioInputStream audioInputStream = new AudioInputStream(bais, newFormat, audioData.length / newFormat.getFrameSize());
+		JButton btnAtzera = new JButton("Atzera");
+		btnAtzera.setBackground(Color.BLACK);
+		btnAtzera.setForeground(Color.RED);
+		btnAtzera.setBounds(50, 60, 144, 50);
+		btnAtzera.setFont(new Font("SansSerif", Font.BOLD, 22));
+		btnAtzera.setFocusPainted(false);
 
-            // Abrir el Clip con el AudioInputStream
-            clip.open(audioInputStream);
-		
-			//clip = AudioSystem.getClip();
-			//clip.open(aui);
-		} catch (UnsupportedAudioFileException | IOException e) {
-			e.printStackTrace();
-		} catch (LineUnavailableException e1) {
-			e1.printStackTrace();
-		}
-
-=======
->>>>>>> 856c56ab9e308503390c288145414219d52872d2
 		Abestia a = new Abestia();
 		if (abestiak.get(abestiAukera).getClass().toString().equals(a.getClass().toString())) {
 			boolean gustokoaDu = AbestiaDao.gustukoaKomprobatu(abestiak.get(abestiAukera));
@@ -174,7 +233,7 @@ public class Erreprodukzioa extends JFrame {
 									JOptionPane.INFORMATION_MESSAGE);
 						}
 						dispose();
-						JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukera, izenaAlbum);
+						JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukera, izenaAlbum, abiadura);
 					} catch (SQLException e1) {
 
 						e1.printStackTrace();
@@ -183,36 +242,10 @@ public class Erreprodukzioa extends JFrame {
 			});
 			// en este else va ir todo lo de la velocidad de reproduccion
 		} else {
-
-			JButton btnX2 = new JButton("X 2");
-			btnX2.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					
-
-				}
-			});
-			btnX2.setBounds(603, 454, 69, 46);
-			contentPane.add(btnX2);
-
-			JButton btnX15 = new JButton("X 1.5");
-			btnX15.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-
-				}
-			});
-			btnX15.setBounds(677, 450, 57, 50);
+			contentPane.add(btnX05);
+			contentPane.add(btnX1);
 			contentPane.add(btnX15);
-
 		}
-
-		JButton btnAtzera = new JButton("Atzera");
-		btnAtzera.setBackground(Color.BLACK);
-		btnAtzera.setForeground(Color.RED);
-		btnAtzera.setBounds(50, 60, 144, 50);
-		btnAtzera.setFont(new Font("SansSerif", Font.BOLD, 22));
-		btnAtzera.setFocusPainted(false);
-
-		JButton btnErabiltzaile = SesioAldagaiak.jb;
 
 		contentPane.add(lblIzenaAlbum);
 		contentPane.add(lblIrudia);
@@ -229,23 +262,6 @@ public class Erreprodukzioa extends JFrame {
 
 		contentPane.add(btnAtzera);
 		contentPane.add(btnErabiltzaile);
-<<<<<<< HEAD
-=======
-
-		String filepath = "src\\audioak\\" + abestiak.get(abestiAukera).getIzena() + ".wav";
-		File f = new File(filepath);
-		AudioInputStream aui;
-
-		try {
-			aui = AudioSystem.getAudioInputStream(f.getAbsoluteFile());
-			clip = AudioSystem.getClip();
-			clip.open(aui);
-		} catch (UnsupportedAudioFileException | IOException e) {
-			e.printStackTrace();
-		} catch (LineUnavailableException e1) {
-			e1.printStackTrace();
-		}
->>>>>>> 856c56ab9e308503390c288145414219d52872d2
 
 		btnKompartitu.addMouseListener(new MouseAdapter() {
 			@Override
@@ -291,7 +307,7 @@ public class Erreprodukzioa extends JFrame {
 						if (SesioAldagaiak.iragarkiaAtera || !SesioAldagaiak.erabiltzailePremium) {
 							JFrameSortu.iragarkiaErreproduzituSortu(abestiak, abestiAukeraAux, izenaAlbum);
 						} else {
-							JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux, izenaAlbum);
+							JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux, izenaAlbum, 1);
 						}
 					} catch (SQLException e1) {
 						e1.printStackTrace();
@@ -332,12 +348,13 @@ public class Erreprodukzioa extends JFrame {
 						SesioAldagaiak.doSkip = false;
 						ViewMetodoak.skipBaimendu();
 						dispose();
-						if ((SesioAldagaiak.iragarkiaAtera && SesioAldagaiak.erreprodukzioKop >= 1) && !SesioAldagaiak.erabiltzailePremium) {
+						if ((SesioAldagaiak.iragarkiaAtera && SesioAldagaiak.erreprodukzioKop >= 1)
+								&& !SesioAldagaiak.erabiltzailePremium) {
 							SesioAldagaiak.erreprodukzioKop = 0;
 							JFrameSortu.iragarkiaErreproduzituSortu(abestiak, abestiAukeraAux, izenaAlbum);
 						} else {
 							SesioAldagaiak.erreprodukzioKop++;
-							JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux, izenaAlbum);
+							JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux, izenaAlbum, 1);
 						}
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
@@ -353,6 +370,7 @@ public class Erreprodukzioa extends JFrame {
 		btnAtzera.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				clip.close();
 				dispose();
 				JFrameSortu.menuNagusiaAukeraSortu();
 			}
@@ -363,9 +381,41 @@ public class Erreprodukzioa extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				SesioAldagaiak.erabiltzaileLogeatutaFree = null;
 				SesioAldagaiak.erabiltzaileLogeatutaPremium = null;
+				clip.close();
 				dispose();
 				JFrameSortu.loginAukeraSortu();
 			}
 		});
+	}
+	
+	private void errepoduzituAudioa (String filepath, float abiadura) {
+		try {
+			File f = new File(filepath);
+			AudioInputStream aui;
+			aui = AudioSystem.getAudioInputStream(f.getAbsoluteFile());
+			AudioFormat format = aui.getFormat();
+			float speed = abiadura;
+			AudioFormat newFormat = new AudioFormat(format.getEncoding(), format.getSampleRate() * speed,
+					format.getSampleSizeInBits(), format.getChannels(), format.getFrameSize(),
+					format.getFrameRate() * speed, format.isBigEndian());
+			clip = AudioSystem.getClip();
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			byte[] buffer = new byte[4096];
+			int bytesRead;
+			while ((bytesRead = aui.read(buffer)) != -1) {
+				baos.write(buffer, 0, bytesRead);
+			}
+			byte[] audioData = baos.toByteArray();
+			ByteArrayInputStream bais = new ByteArrayInputStream(audioData);
+
+			// Convertir el ByteArrayInputStream a AudioInputStream
+			aui = new AudioInputStream(bais, newFormat, audioData.length / newFormat.getFrameSize());
+			clip.open(aui);
+			clip.start();
+		} catch (UnsupportedAudioFileException | IOException e) {
+			e.printStackTrace();
+		} catch (LineUnavailableException e1) {
+			e1.printStackTrace();
+		}
 	}
 }
