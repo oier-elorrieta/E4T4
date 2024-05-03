@@ -46,13 +46,28 @@ public class AbestiaPlayListeanSartu extends JFrame {
 
 	public AbestiaPlayListeanSartu(Audio audio) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(400, 250, 906, 594);
+		setBounds(400, 250, 600, 425);
 		setTitle("Menu Nagusia - Talde 4");
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
+		JLabel lblInfo = new JLabel("Abesti Informazioa:");
+		lblInfo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblInfo.setFont(new Font("Arial Black", Font.BOLD | Font.ITALIC, 15));
+		lblInfo.setBounds(50, 125, 200, 75);
+		
+		JLabel lblIzena = new JLabel(audio.getIzena());
+		lblIzena.setHorizontalAlignment(SwingConstants.CENTER);
+		lblIzena.setFont(new Font("Arial Black", Font.BOLD | Font.ITALIC, 12));
+		lblIzena.setBounds(50, 150, 200, 75);
+		
+		JLabel lblIraupena = new JLabel(audio.getIraupena() + "");
+		lblIraupena.setHorizontalAlignment(SwingConstants.CENTER);
+		lblIraupena.setFont(new Font("Arial Black", Font.BOLD | Font.ITALIC, 12));
+		lblIraupena.setBounds(50, 175, 200, 75);
+		
 		ArrayList<PlayListak> playlistLista = PlayListakDao.getPlaylist();
 		DefaultListModel<String> modeloLista = new DefaultListModel<>();
 		for (int i = 0; i < playlistLista.size(); i++) {
@@ -61,7 +76,7 @@ public class AbestiaPlayListeanSartu extends JFrame {
 		JList<String> jListPlayList = new JList(modeloLista);
 		jListPlayList.setBorder(new LineBorder(new Color(0, 0, 0)));
 		JScrollPane scrollPane = new JScrollPane(jListPlayList);
-		jListPlayList.setBounds(50, 150, 550, 350);
+		jListPlayList.setBounds(300, 150, 250, 200);
 
 		JButton btnAtzera = new JButton("Atzera");
 		btnAtzera.setBackground(Color.BLACK);
@@ -72,7 +87,11 @@ public class AbestiaPlayListeanSartu extends JFrame {
 
 		model.SesioAldagaiak.jb = ViewMetodoak.btnErabiltzaileaSortu();
 		JButton btnErabiltzaile = model.SesioAldagaiak.jb;
-
+		btnErabiltzaile.setBounds(400, 60, 144, 50);
+		
+		contentPane.add(lblInfo);
+		contentPane.add(lblIzena);
+		contentPane.add(lblIraupena);
 		contentPane.add(jListPlayList);
 		contentPane.add(btnAtzera);
 		contentPane.add(btnErabiltzaile);
@@ -81,7 +100,6 @@ public class AbestiaPlayListeanSartu extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				dispose();
-				JFrameSortu.loginAukeraSortu();
 			}
 		});
 
