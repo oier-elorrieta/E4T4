@@ -42,7 +42,7 @@ public class Erreprodukzioa extends JFrame {
 	private JPanel contentPane;
 
 	private Clip clip;
-	
+
 	public Erreprodukzioa(ArrayList<Audio> abestiak, int abestiAukera, String izenaAlbum) throws SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 250, 906, 594);
@@ -56,7 +56,7 @@ public class Erreprodukzioa extends JFrame {
 		lblIzenaAlbum.setHorizontalAlignment(SwingConstants.CENTER);
 		lblIzenaAlbum.setFont(new Font("Arial Black", Font.BOLD | Font.ITALIC, 15));
 		lblIzenaAlbum.setBounds(10, 35, 870, 25);
-		
+
 		ImageIcon irudia = new ImageIcon(abestiak.get(abestiAukera).getIrudia().getBytes(1,
 				(int) abestiak.get(abestiAukera).getIrudia().length()));
 		JLabel lblIrudia = new JLabel();
@@ -66,13 +66,13 @@ public class Erreprodukzioa extends JFrame {
 		JLabel lblIzenaAbesti = new JLabel(abestiak.get(abestiAukera).getIzena());
 		lblIzenaAbesti.setFont(new Font("Arial Black", Font.BOLD | Font.ITALIC, 17));
 		lblIzenaAbesti.setHorizontalAlignment(SwingConstants.CENTER);
-		lblIzenaAbesti.setBounds(10, 350, 870 , 25);
+		lblIzenaAbesti.setBounds(10, 350, 870, 25);
 
 		JLabel lblIraupena = new JLabel(abestiak.get(abestiAukera).getIraupena() + "");
 		lblIraupena.setFont(new Font("Arial Black", Font.BOLD | Font.ITALIC, 17));
 		lblIraupena.setHorizontalAlignment(SwingConstants.CENTER);
-		lblIraupena.setBounds(10, 375, 870 , 25);
-		
+		lblIraupena.setBounds(10, 375, 870, 25);
+
 		JButton btnMenua = new JButton("Menua");
 		btnMenua.setBounds(150, 450, 150, 50);
 		btnMenua.setFont(new Font("SansSerif", Font.BOLD, 15));
@@ -92,9 +92,7 @@ public class Erreprodukzioa extends JFrame {
 		JButton btnHurrengoa = new JButton("->");
 		btnHurrengoa.setBounds(525, 450, 50, 50);
 		btnHurrengoa.setFont(new Font("SansSerif", Font.BOLD, 15));
-		
-		
-		
+
 		Abestia a = new Abestia();
 		if (abestiak.get(abestiAukera).getClass().toString().equals(a.getClass().toString())) {
 			boolean gustokoaDu = AbestiaDao.gustukoaKomprobatu(abestiak.get(abestiAukera));
@@ -107,17 +105,19 @@ public class Erreprodukzioa extends JFrame {
 			btnGuztokoa.setBounds(600, 450, 150, 50);
 			btnGuztokoa.setFont(new Font("SansSerif", Font.BOLD, 15));
 			contentPane.add(btnGuztokoa);
-			
+
 			btnGuztokoa.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					try {
 						if (gustokoaDu) {
 							AbestiaDao.abestiGuztokoaEzabatu(abestiak.get(abestiAukera).getIdAudio());
-							JOptionPane.showMessageDialog(null, "Gustoko listatik ondo kendu da", "Eginda!", JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Gustoko listatik ondo kendu da", "Eginda!",
+									JOptionPane.INFORMATION_MESSAGE);
 						} else {
 							AbestiaDao.abestiGustokoaGehitu(abestiak.get(abestiAukera));
-							JOptionPane.showMessageDialog(null, "Gustoko listan ondo sartu da", "Eginda!", JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Gustoko listan ondo sartu da", "Eginda!",
+									JOptionPane.INFORMATION_MESSAGE);
 						}
 						dispose();
 						JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukera, izenaAlbum);
@@ -128,7 +128,7 @@ public class Erreprodukzioa extends JFrame {
 				}
 			});
 		}
-		
+
 		JButton btnAtzera = new JButton("Atzera");
 		btnAtzera.setBackground(Color.BLACK);
 		btnAtzera.setForeground(Color.RED);
@@ -142,25 +142,23 @@ public class Erreprodukzioa extends JFrame {
 		contentPane.add(lblIrudia);
 		contentPane.add(lblIzenaAbesti);
 		contentPane.add(lblIraupena);
-		if(abestiak.get(abestiAukera).getClass().getName().equals("model.Abestia")) {
+		if (abestiak.get(abestiAukera).getClass().getName().equals("model.Abestia")) {
 			contentPane.add(btnMenua);
-		} else if (abestiak.get(abestiAukera).getClass().getName().equals("model.Podcast")){
+		} else if (abestiak.get(abestiAukera).getClass().getName().equals("model.Podcast")) {
 			contentPane.add(btnKompartitu);
 		}
 		contentPane.add(btnAurrekoa);
 		contentPane.add(btnPlay);
 		contentPane.add(btnHurrengoa);
-	
+
 		contentPane.add(btnAtzera);
 		contentPane.add(btnErabiltzaile);
-	
-		
-		
-		
+
+				
 		String filepath = "src\\audioak\\" + abestiak.get(abestiAukera).getIzena() + ".wav";
 		File f = new File(filepath);
 		AudioInputStream aui;
-		
+
 		try {
 			aui = AudioSystem.getAudioInputStream(f.getAbsoluteFile());
 			clip = AudioSystem.getClip();
@@ -174,10 +172,10 @@ public class Erreprodukzioa extends JFrame {
 		btnKompartitu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-			
+
 			}
 		});
-		
+
 		btnMenua.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -200,22 +198,29 @@ public class Erreprodukzioa extends JFrame {
 		btnAurrekoa.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				try {
-					int abestiAukeraAux = abestiAukera;
-					abestiAukeraAux--;
+				if (SesioAldagaiak.doSkip || SesioAldagaiak.erabiltzailePremium) {
+					try {
+						int abestiAukeraAux = abestiAukera;
+						abestiAukeraAux--;
 
-					if (abestiAukeraAux >= 0) {
+						if (abestiAukeraAux < 0) {
+							abestiAukeraAux = abestiak.size() - 1;
+						}
 						clip.stop();
+						SesioAldagaiak.doSkip = false;
+						ViewMetodoak.skipBaimendu();
 						dispose();
-						JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux, izenaAlbum);
-					} else {
-						clip.stop();
-						abestiAukeraAux = abestiak.size() - 1;
-						dispose();
-						JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux, izenaAlbum);
+						if (SesioAldagaiak.iragarkiaAtera || !SesioAldagaiak.erabiltzailePremium) {
+							JFrameSortu.iragarkiaErreproduzituSortu(abestiak, abestiAukeraAux, izenaAlbum);
+							} else {
+							JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux, izenaAlbum);
+							}
+					} catch (SQLException e1) {
+						e1.printStackTrace();
 					}
-				} catch (SQLException e1) {
-					e1.printStackTrace();
+				} else {
+					JOptionPane.showMessageDialog(null, "Ez dira pasatu 10 minuto", "Eginda!",
+							JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
@@ -236,27 +241,34 @@ public class Erreprodukzioa extends JFrame {
 		btnHurrengoa.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				try {
-					int abestiAukeraAux = abestiAukera;
-					abestiAukeraAux++;
 
-					if (abestiak.size() > abestiAukeraAux) {
+				if (SesioAldagaiak.doSkip || SesioAldagaiak.erabiltzailePremium) {
+					try {
+						int abestiAukeraAux = abestiAukera;
+						abestiAukeraAux++;
+
+						if (abestiak.size() <= abestiAukeraAux) {
+							abestiAukeraAux = 0;
+						}
 						clip.stop();
+						SesioAldagaiak.doSkip = false;
+						ViewMetodoak.skipBaimendu();
 						dispose();
+						if (SesioAldagaiak.iragarkiaAtera) {
+						JFrameSortu.iragarkiaErreproduzituSortu(abestiak, abestiAukeraAux, izenaAlbum);
+						} else {
 						JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux, izenaAlbum);
-					} else {
-						clip.stop();
-						abestiAukeraAux = 0;
-						dispose();
-						JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux, izenaAlbum);
+						}
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+				} else {
+					JOptionPane.showMessageDialog(null, "Ez dira pasatu 10 minuto", "Eginda!",
+							JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
-
 
 		btnAtzera.addMouseListener(new MouseAdapter() {
 			@Override

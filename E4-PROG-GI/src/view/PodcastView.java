@@ -67,10 +67,10 @@ public class PodcastView extends JFrame {
 		JPanel panel = new JPanel();
 		panel.setBounds(10, 152, 359, 389);
 		contentPane.add(panel);
-		ArrayList<Audio> p = ViewMetodoak.getPodcastList(izena);
+		ArrayList<Audio> podcastak = ViewMetodoak.getPodcastList(izena);
 		DefaultListModel<String> modeloList = new DefaultListModel<>();
-		for (int i = 0; i < p.size(); i++) {
-			modeloList.addElement(p.get(i).getIzena());
+		for (int i = 0; i < podcastak.size(); i++) {
+			modeloList.addElement(podcastak.get(i).getIzena());
 		}
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
 
@@ -118,7 +118,7 @@ public class PodcastView extends JFrame {
 				try {
 					int podcastAukera = list.getSelectedIndex();
 					dispose();
-					JFrameSortu.erreprodukzioaSortu(p, podcastAukera, izena);
+					JFrameSortu.erreprodukzioaSortu(podcastak, podcastAukera, izena);
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}

@@ -14,4 +14,6 @@ public class SesioAldagaiak {
 	public static ErabiltzailePremium erabiltzaileLogeatutaPremium = null;
 	public static boolean erabiltzailePremium;
 	public static JButton jb = null;
+	public static boolean doSkip = true;
+	public static boolean iragarkiaAtera = true;
 }

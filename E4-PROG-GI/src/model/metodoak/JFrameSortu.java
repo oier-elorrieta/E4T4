@@ -11,6 +11,7 @@ import view.AbestiaPlayListeanSartu;
 import view.Erregistroa;
 import view.ErregistroaPremium;
 import view.Erreprodukzioa;
+import view.IragarkiaErreproduzitu;
 import view.Login;
 import view.MenuNagusia;
 import view.NirePlaylista;
@@ -99,6 +100,12 @@ public class JFrameSortu {
 		Erreprodukzioa erreprodukzioaSortu = new Erreprodukzioa(abestiak,abestiAukera,izenaAlbum);
 		erreprodukzioaSortu.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		erreprodukzioaSortu.setVisible(true);
+	}
+	
+	public static void iragarkiaErreproduzituSortu(ArrayList<Audio> abestiak, int abestiAukera, String izenaAlbum) throws SQLException{
+		IragarkiaErreproduzitu iragarkiaErreproduzituSortu = new IragarkiaErreproduzitu(abestiak,abestiAukera,izenaAlbum);
+		iragarkiaErreproduzituSortu.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		iragarkiaErreproduzituSortu.setVisible(true);
 	}
 	
 	public static void abestiaPlayListeanSartuSortu(Audio audio) throws SQLException{
