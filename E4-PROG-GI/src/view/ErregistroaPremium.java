@@ -65,7 +65,21 @@ public class ErregistroaPremium extends Erregistroa {
 	public ErregistroaPremium() {
 		super();
 
-		ActionListener[] actionListeners = btnErregistratu.getActionListeners();
+		ActionListener[] actionListeners = super.btnAtzera.getActionListeners();
+		for (ActionListener listener : actionListeners) {
+			btnAtzera.removeActionListener(listener);
+		}
+		
+		btnAtzera.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFrameSortu.menuNagusiaAukeraSortu();
+				dispose();
+			}
+		});
+		
+		
+		
+		actionListeners = btnErregistratu.getActionListeners();
 		for (ActionListener listener : actionListeners) {
 			btnErregistratu.removeActionListener(listener);
 		}

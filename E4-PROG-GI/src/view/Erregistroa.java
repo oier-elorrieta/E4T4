@@ -32,6 +32,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
@@ -62,6 +65,7 @@ public class Erregistroa extends JFrame {
 	protected DefaultComboBoxModel<String> cboModelHizkuntza = new DefaultComboBoxModel<>(); 
 	private boolean idatzi = true;
 	protected JButton btnErregistratu;
+	protected JButton btnAtzera;
 
 	public boolean isIdatzi() {
 		return idatzi;
@@ -172,7 +176,7 @@ public class Erregistroa extends JFrame {
 		
 		cboHizkuntza.setEnabled(idatzi);
 		
-		JButton btnAtzera = new JButton("Atzera");
+		btnAtzera = new JButton("Atzera");
 		btnAtzera.setBounds(200, 462, 136, 29);
 		btnAtzera.setForeground(SystemColor.text);
 		btnAtzera.setBackground(SystemColor.desktop);
@@ -197,10 +201,11 @@ public class Erregistroa extends JFrame {
 			}
 		});
 		
-		btnAtzera.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
+	
+		btnAtzera.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFrameSortu.loginAukeraSortu();
+				dispose();
 			}
 		});
 	}
