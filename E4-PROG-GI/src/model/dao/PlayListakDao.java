@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import com.mysql.cj.protocol.x.SyncFlushDeflaterOutputStream;
+
 import model.Audio;
 import model.PlayListak;
 import model.SesioAldagaiak;
@@ -135,4 +137,23 @@ public class PlayListakDao {
 
 		Kone.itxiConexioa();
 	}
+	
+	public static boolean komprobatuAbestiaBadago(PlayListak playlist, Audio audio) {
+		boolean badago = false;
+		Connection konexioa = Kone.konektatu();
+		try {
+			stm = konexioa.createStatement();
+			kontsulta = "select count(*) as cont from PlaylistAbestiak where IdAudio = " + audio.getIdAudio() + " and IdList = " + playlist.getIdPlayList() + ";";
+			rs = stm.executeQuery(kontsulta);
+			rs.next();
+			if (rs.getInt("cont") != 0) {
+				badago = true;
+			}			
+		} catch (SQLException e) {
+			e.getMessage();
+		}
+		Kone.itxiConexioa();
+		return badago;
+	}
+	
 }

@@ -26,6 +26,8 @@ import model.sql.Kone;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
 import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.awt.FlowLayout;
@@ -121,6 +123,14 @@ public class PodcastView extends JFrame {
 					e1.printStackTrace();
 				}
 
+			}
+		});
+		
+		btnAtzera.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+				JFrameSortu.menuNagusiaAukeraSortu();
 			}
 		});
 

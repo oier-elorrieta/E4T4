@@ -77,6 +77,10 @@ public class Erreprodukzioa extends JFrame {
 		btnMenua.setBounds(150, 450, 150, 50);
 		btnMenua.setFont(new Font("SansSerif", Font.BOLD, 15));
 
+		JButton btnKompartitu = new JButton("Kompartitu");
+		btnKompartitu.setBounds(150, 450, 150, 50);
+		btnKompartitu.setFont(new Font("SansSerif", Font.BOLD, 15));
+
 		JButton btnAurrekoa = new JButton("<-");
 		btnAurrekoa.setBounds(325, 450, 50, 50);
 		btnAurrekoa.setFont(new Font("SansSerif", Font.BOLD, 15));
@@ -138,7 +142,11 @@ public class Erreprodukzioa extends JFrame {
 		contentPane.add(lblIrudia);
 		contentPane.add(lblIzenaAbesti);
 		contentPane.add(lblIraupena);
-		contentPane.add(btnMenua);
+		if(abestiak.get(abestiAukera).getClass().getName().equals("model.Abestia")) {
+			contentPane.add(btnMenua);
+		} else if (abestiak.get(abestiAukera).getClass().getName().equals("model.Podcast")){
+			contentPane.add(btnKompartitu);
+		}
 		contentPane.add(btnAurrekoa);
 		contentPane.add(btnPlay);
 		contentPane.add(btnHurrengoa);
@@ -163,6 +171,13 @@ public class Erreprodukzioa extends JFrame {
 			e1.printStackTrace();
 		}
 
+		btnKompartitu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			
+			}
+		});
+		
 		btnMenua.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

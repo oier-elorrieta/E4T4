@@ -3,7 +3,6 @@ package model;
 import java.sql.Blob;
 import java.util.ArrayList;
 
-
 public class Album {
 
 	private int id;
@@ -12,14 +11,18 @@ public class Album {
 	private Blob irudia;
 	private int kantaKop;
 
-	
-	public Album(int id,String izenburua, String generoa, Blob irudia) {
-		
+	public Album(int id, String izenburua, String generoa, Blob irudia) {
+
 		this.izenburua = izenburua;
 		this.generoa = generoa;
 		this.irudia = irudia;
 		this.id = id;
-		
+
+	}
+
+	public Album(int id, String izenburua) {
+		this.id = id;
+		this.izenburua = izenburua;
 	}
 
 	public String getIzenburua() {
@@ -53,8 +56,6 @@ public class Album {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-	
 
 	public int getKantaKop() {
 		return kantaKop;
@@ -66,14 +67,7 @@ public class Album {
 
 	@Override
 	public String toString() {
-		return "Izenburua: " + izenburua + "  || Generoa: " + generoa + "  || Kantak: "+ kantaKop;
+		return "Izenburua: " + izenburua + "  || Generoa: " + generoa + "  || Kantak: " + kantaKop;
 	}
-	
 
-	
-	
-	
-	
-	
-	
 }

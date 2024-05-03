@@ -6,7 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
+import model.Abestia;
 import model.Album;
+import model.Audio;
 import model.Musikaria;
 import model.sql.Kone;
 
@@ -59,5 +62,21 @@ public class AlbumDao {
 				e.getMessage();
 			}
 		}
+	}
+	
+	public static Album getAlbumByAbesti(Audio audio) {
+		Album albumAbestia = null;
+		Connection konexioa = Kone.konektatu();
+		try {
+			stm = konexioa.createStatement();
+			kontsulta = "SELECT al.IdAlbum, al.Izenburua  from Album al Inner join Abestia ab using (IdAlbum) inner join Audio au where au.IdAudio = " + audio.getIdAudio() + " and ab.IdAudio = " + audio.getIdAudio() + ";";
+			rs = stm.executeQuery(kontsulta);
+			rs.next();
+			albumAbestia = new Album(rs.getInt("al.IdAlbum"), rs.getString("al.Izenburua"));			
+		} catch (SQLException e) {
+			e.getMessage();
+		}
+		Kone.itxiConexioa();
+		return albumAbestia;
 	}
 }

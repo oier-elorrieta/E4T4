@@ -19,6 +19,7 @@ import com.mysql.cj.jdbc.Blob;
 import model.Album;
 import model.Musikaria;
 import model.dao.MusikariaDao;
+import model.metodoak.JFrameSortu;
 import model.metodoak.ViewMetodoak;
 import model.sql.Kone;
 
@@ -27,6 +28,8 @@ import javax.swing.JSplitPane;
 import javax.swing.JList;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.awt.FlowLayout;
 import javax.swing.JTextField;
@@ -131,6 +134,13 @@ public class MusikariView extends JFrame {
             }
         });
 		
+        btnAtzera.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+				JFrameSortu.menuNagusiaAukeraSortu();
+			}
+		});
         
         
 		
