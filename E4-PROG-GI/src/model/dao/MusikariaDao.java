@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import model.Audio;
 import model.Musikaria;
 import model.sql.Kone;
 
@@ -57,6 +59,25 @@ public class MusikariaDao {
 
 		}
 		return musikari;
+	}
+	
+	public static Musikaria getMusikariaByAudio(Audio audio) {
+		Musikaria musikaria = null;
+		Connection konexioa = Kone.konektatu();
+		try {
+			stm = konexioa.createStatement();
+			kontsulta = "SELECT ar.IzenArtistikoa, ar.Deskripzioa, ar.Irudia from Artista ar inner join Album al using (IdArtista) Inner join Abestia ab using (IdAlbum) inner join Audio au where au.IdAudio = " + audio.getIdAudio() + " and ab.IdAudio = " + audio.getIdAudio() + ";";
+			rs = stm.executeQuery(kontsulta);
+			rs.next();
+			musikaria = new Musikaria(rs.getString("ar.IzenArtistikoa"),
+					rs.getString("ar.Deskripzioa"), rs.getBlob("ar.Irudia"));
+		} catch (SQLException e) {
+			e.getMessage();
 
+		}
+		Kone.itxiConexioa();
+		
+		
+		return musikaria;
 	}
 }

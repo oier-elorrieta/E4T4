@@ -30,6 +30,8 @@ import javax.swing.JSplitPane;
 import javax.swing.JList;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.awt.FlowLayout;
@@ -127,6 +129,14 @@ public class AbestiakMusikaria extends JFrame {
 					e1.printStackTrace();
 				}
 
+			}
+		});
+		
+		btnAtzera.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+				JFrameSortu.menuNagusiaAukeraSortu();
 			}
 		});
 	}

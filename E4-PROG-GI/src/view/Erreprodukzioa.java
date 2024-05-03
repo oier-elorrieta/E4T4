@@ -48,7 +48,10 @@ public class Erreprodukzioa extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private Clip clip;
+<<<<<<< HEAD
 	
+=======
+>>>>>>> 856c56ab9e308503390c288145414219d52872d2
 
 	public Erreprodukzioa(ArrayList<Audio> abestiak, int abestiAukera, String izenaAlbum) throws SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -84,6 +87,10 @@ public class Erreprodukzioa extends JFrame {
 		btnMenua.setBounds(150, 450, 150, 50);
 		btnMenua.setFont(new Font("SansSerif", Font.BOLD, 15));
 
+		JButton btnKompartitu = new JButton("Kompartitu");
+		btnKompartitu.setBounds(150, 450, 150, 50);
+		btnKompartitu.setFont(new Font("SansSerif", Font.BOLD, 15));
+
 		JButton btnAurrekoa = new JButton("<-");
 		btnAurrekoa.setBounds(325, 450, 50, 50);
 		btnAurrekoa.setFont(new Font("SansSerif", Font.BOLD, 15));
@@ -96,6 +103,7 @@ public class Erreprodukzioa extends JFrame {
 		btnHurrengoa.setBounds(525, 450, 50, 50);
 		btnHurrengoa.setFont(new Font("SansSerif", Font.BOLD, 15));
 
+<<<<<<< HEAD
 		String filepath = "src\\audioak\\" + abestiak.get(abestiAukera).getIzena() + ".wav";
 		File f = new File(filepath);
 		AudioInputStream aui;
@@ -137,6 +145,8 @@ public class Erreprodukzioa extends JFrame {
 			e1.printStackTrace();
 		}
 
+=======
+>>>>>>> 856c56ab9e308503390c288145414219d52872d2
 		Abestia a = new Abestia();
 		if (abestiak.get(abestiAukera).getClass().toString().equals(a.getClass().toString())) {
 			boolean gustokoaDu = AbestiaDao.gustukoaKomprobatu(abestiak.get(abestiAukera));
@@ -208,13 +218,41 @@ public class Erreprodukzioa extends JFrame {
 		contentPane.add(lblIrudia);
 		contentPane.add(lblIzenaAbesti);
 		contentPane.add(lblIraupena);
-		contentPane.add(btnMenua);
+		if (abestiak.get(abestiAukera).getClass().getName().equals("model.Abestia")) {
+			contentPane.add(btnMenua);
+		} else if (abestiak.get(abestiAukera).getClass().getName().equals("model.Podcast")) {
+			contentPane.add(btnKompartitu);
+		}
 		contentPane.add(btnAurrekoa);
 		contentPane.add(btnPlay);
 		contentPane.add(btnHurrengoa);
 
 		contentPane.add(btnAtzera);
 		contentPane.add(btnErabiltzaile);
+<<<<<<< HEAD
+=======
+
+		String filepath = "src\\audioak\\" + abestiak.get(abestiAukera).getIzena() + ".wav";
+		File f = new File(filepath);
+		AudioInputStream aui;
+
+		try {
+			aui = AudioSystem.getAudioInputStream(f.getAbsoluteFile());
+			clip = AudioSystem.getClip();
+			clip.open(aui);
+		} catch (UnsupportedAudioFileException | IOException e) {
+			e.printStackTrace();
+		} catch (LineUnavailableException e1) {
+			e1.printStackTrace();
+		}
+>>>>>>> 856c56ab9e308503390c288145414219d52872d2
+
+		btnKompartitu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+
+			}
+		});
 
 		btnMenua.addMouseListener(new MouseAdapter() {
 			@Override
@@ -238,22 +276,29 @@ public class Erreprodukzioa extends JFrame {
 		btnAurrekoa.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				try {
-					int abestiAukeraAux = abestiAukera;
-					abestiAukeraAux--;
+				if (SesioAldagaiak.doSkip || SesioAldagaiak.erabiltzailePremium) {
+					try {
+						int abestiAukeraAux = abestiAukera;
+						abestiAukeraAux--;
 
-					if (abestiAukeraAux >= 0) {
+						if (abestiAukeraAux < 0) {
+							abestiAukeraAux = abestiak.size() - 1;
+						}
 						clip.stop();
+						SesioAldagaiak.doSkip = false;
+						ViewMetodoak.skipBaimendu();
 						dispose();
-						JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux, izenaAlbum);
-					} else {
-						clip.stop();
-						abestiAukeraAux = abestiak.size() - 1;
-						dispose();
-						JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux, izenaAlbum);
+						if (SesioAldagaiak.iragarkiaAtera || !SesioAldagaiak.erabiltzailePremium) {
+							JFrameSortu.iragarkiaErreproduzituSortu(abestiak, abestiAukeraAux, izenaAlbum);
+						} else {
+							JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux, izenaAlbum);
+						}
+					} catch (SQLException e1) {
+						e1.printStackTrace();
 					}
-				} catch (SQLException e1) {
-					e1.printStackTrace();
+				} else {
+					JOptionPane.showMessageDialog(null, "Ez dira pasatu 10 minuto", "Eginda!",
+							JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
@@ -274,23 +319,33 @@ public class Erreprodukzioa extends JFrame {
 		btnHurrengoa.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				try {
-					int abestiAukeraAux = abestiAukera;
-					abestiAukeraAux++;
 
-					if (abestiak.size() > abestiAukeraAux) {
+				if (SesioAldagaiak.doSkip || SesioAldagaiak.erabiltzailePremium) {
+					try {
+						int abestiAukeraAux = abestiAukera;
+						abestiAukeraAux++;
+
+						if (abestiak.size() <= abestiAukeraAux) {
+							abestiAukeraAux = 0;
+						}
 						clip.stop();
+						SesioAldagaiak.doSkip = false;
+						ViewMetodoak.skipBaimendu();
 						dispose();
-						JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux, izenaAlbum);
-					} else {
-						clip.stop();
-						abestiAukeraAux = 0;
-						dispose();
-						JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux, izenaAlbum);
+						if ((SesioAldagaiak.iragarkiaAtera && SesioAldagaiak.erreprodukzioKop >= 1) && !SesioAldagaiak.erabiltzailePremium) {
+							SesioAldagaiak.erreprodukzioKop = 0;
+							JFrameSortu.iragarkiaErreproduzituSortu(abestiak, abestiAukeraAux, izenaAlbum);
+						} else {
+							SesioAldagaiak.erreprodukzioKop++;
+							JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux, izenaAlbum);
+						}
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+				} else {
+					JOptionPane.showMessageDialog(null, "Ez dira pasatu 10 minuto", "Eginda!",
+							JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});

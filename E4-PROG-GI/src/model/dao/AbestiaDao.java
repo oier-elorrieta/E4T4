@@ -139,7 +139,7 @@ public class AbestiaDao {
 	 * @param abestia Gehitu nahi den abestia.
 	 * @throws SQLException
 	 */
-	public static void abestiGustokoaGehitu(Audio abestia) throws SQLException {
+	public static void abestiGustokoaGehitu(Audio audio) throws SQLException {
 		int id = 0;
 
 		if (!SesioAldagaiak.erabiltzailePremium) {
@@ -154,7 +154,7 @@ public class AbestiaDao {
 		try {
 			pstm = konexioa.prepareStatement(kontsulta);
 			pstm.setInt(1, id);
-			pstm.setInt(2, abestia.getIdAudio());
+			pstm.setInt(2, audio.getIdAudio());
 			pstm.execute();
 		} catch (SQLException e) {
 			System.out.println("Kontsulta txarto" + e.getMessage());
