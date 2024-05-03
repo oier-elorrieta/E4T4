@@ -136,7 +136,8 @@ public class NirePlaylista extends JFrame {
 				JPanel pan = new JPanel(new BorderLayout());
 				JTextField gg = new JTextField();
 				pan.add(gg, BorderLayout.CENTER);
-				int opcion = JOptionPane.showConfirmDialog(null, pan, "Por favor, ingresa un texto:",
+				
+				int opcion = JOptionPane.showConfirmDialog(null, pan, "Mesedez, Sartu PlayListaren Izen Berria:",
 						JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
 				if (opcion == JOptionPane.OK_OPTION) {
@@ -158,7 +159,7 @@ public class NirePlaylista extends JFrame {
 
 				} else {
 
-					System.out.println("El usuario canceló la operación.");
+					System.out.println("Importazioa kanzelatua bezeroarengatik");
 				}
 				
 				

@@ -183,7 +183,7 @@ public class PlayListakDao {
 	public static int getPlayListIzenarekin(String izena) {
 		int idList = 0;
 		Connection konexioa = Kone.konektatu();
-		kontsulta = "Select IdList from Playlist where Izenburua='"+izena+"'";
+		kontsulta = "Select  IdList from Playlist where Izenburua='"+izena+"' ORDER BY IdList desc LIMIT 1";
 		try {
 			stm = konexioa.createStatement();
 			rs = stm.executeQuery(kontsulta);
