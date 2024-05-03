@@ -6,13 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
-<<<<<<< HEAD
-import com.mysql.cj.protocol.x.SyncFlushDeflaterOutputStream;
-=======
 import model.Abestia;
->>>>>>> 544843cc2f929d763f5f272e0f583e456fa3024b
-
 import model.Audio;
 import model.PlayListak;
 import model.SesioAldagaiak;
@@ -184,7 +178,7 @@ public class PlayListakDao {
 		Kone.itxiConexioa();
 	}
 	
-<<<<<<< HEAD
+
 	public static boolean komprobatuAbestiaBadago(PlayListak playlist, Audio audio) {
 		boolean badago = false;
 		Connection konexioa = Kone.konektatu();
@@ -202,8 +196,7 @@ public class PlayListakDao {
 		Kone.itxiConexioa();
 		return badago;
 	}
-	
-=======
+
 	public static int getPlayListIzenarekin(String izena) {
 		int idList = 0;
 		Connection konexioa = Kone.konektatu();
@@ -220,8 +213,5 @@ public class PlayListakDao {
 		return idList;
 		
 	}
-	
-	
 
->>>>>>> 544843cc2f929d763f5f272e0f583e456fa3024b
 }
