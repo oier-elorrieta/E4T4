@@ -58,6 +58,10 @@ public class Abestia extends Audio {
 	public void setGustokoena(boolean gustokoena) {
 		this.gustokoena = gustokoena;
 	}
+	
+	public boolean getGustokoena() {
+		return gustokoena;
+	}
 
 	@Override
 	public String toString() {

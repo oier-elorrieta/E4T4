@@ -60,6 +60,7 @@ public class Kone {
 		} catch (SQLException e) {
 			LoginOk = false;
 		}
+		
 		return LoginOk;
 	}
 

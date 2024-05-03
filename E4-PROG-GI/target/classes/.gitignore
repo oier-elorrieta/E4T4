@@ -1,4 +1,11 @@
-/view/
-/model/
-/test/
 /META-INF/
+/model/
+<<<<<<< HEAD
+/view/
+=======
+/test/
+<<<<<<< HEAD
+/META-INF/
+=======
+>>>>>>> 4f85307b68f61477973392a601b91739d50ff130
+>>>>>>> 544843cc2f929d763f5f272e0f583e456fa3024b
