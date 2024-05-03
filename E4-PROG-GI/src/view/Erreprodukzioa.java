@@ -48,6 +48,7 @@ public class Erreprodukzioa extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private Clip clip;
+	private long posicion = 0;
 
 	public Erreprodukzioa(ArrayList<Audio> abestiak, int abestiAukera, String izenaAlbum, float abiadura)
 			throws SQLException {
@@ -60,7 +61,7 @@ public class Erreprodukzioa extends JFrame {
 		contentPane.setLayout(null);
 
 		String filepath = "src\\audioak\\" + abestiak.get(abestiAukera).getIzena() + ".wav";
-		errepoduzituAudioa(filepath, abiadura);
+		errepoduzituAudioa(filepath,abiadura,posicion);
 		/*
 		File f = new File(filepath);
 		AudioInputStream aui;
@@ -169,8 +170,9 @@ public class Erreprodukzioa extends JFrame {
 		btnX05.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (abiadura != 0.5f) {
+					posicion = clip.getMicrosecondPosition();
 					clip.close();
-					errepoduzituAudioa(filepath, 0.5f);
+					errepoduzituAudioa(filepath, 0.5f,posicion);
 				}
 			}
 		});
@@ -180,8 +182,9 @@ public class Erreprodukzioa extends JFrame {
 		btnX1.setFont(new Font("SansSerif", Font.BOLD, 15));
 		btnX1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+					posicion = clip.getMicrosecondPosition();
 					clip.close();
-					errepoduzituAudioa(filepath, 1);
+					errepoduzituAudioa(filepath, 1,posicion);
 			}
 		});
 
@@ -191,8 +194,9 @@ public class Erreprodukzioa extends JFrame {
 		btnX15.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (abiadura != 1.5f) {
+					posicion = clip.getMicrosecondPosition();
 					clip.close();
-					errepoduzituAudioa(filepath, 1.5f);
+					errepoduzituAudioa(filepath, 1.5f,posicion);
 				}
 			}
 		});
@@ -388,7 +392,7 @@ public class Erreprodukzioa extends JFrame {
 		});
 	}
 	
-	private void errepoduzituAudioa (String filepath, float abiadura) {
+	private void errepoduzituAudioa (String filepath, float abiadura,long posizioa) {
 		try {
 			File f = new File(filepath);
 			AudioInputStream aui;
@@ -411,6 +415,7 @@ public class Erreprodukzioa extends JFrame {
 			// Convertir el ByteArrayInputStream a AudioInputStream
 			aui = new AudioInputStream(bais, newFormat, audioData.length / newFormat.getFrameSize());
 			clip.open(aui);
+			clip.setMicrosecondPosition(posizioa);
 			clip.start();
 		} catch (UnsupportedAudioFileException | IOException e) {
 			e.printStackTrace();
