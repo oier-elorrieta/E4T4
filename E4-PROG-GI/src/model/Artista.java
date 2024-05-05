@@ -42,6 +42,11 @@ public abstract class Artista {
 		this.idArtista = idArtista;
 	}
 
+	public Artista(String izena, Blob irudia, int entzunaldiak) {
+		this.izena = izena;
+		this.irudia = irudia;
+		this.entzunaldiak = entzunaldiak;
+	}
 	/**
 	 * Objektu hau eta beste objektu bat berdinak diren ala ez adierazten duen metodoa.
 	 * @param obj beste objektu bat

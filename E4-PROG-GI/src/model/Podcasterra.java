@@ -13,6 +13,11 @@ public class Podcasterra extends Artista {
 		super(idArtista, izena, deskription, irudia);
 		// TODO Auto-generated constructor stub
 	}
+	
+	public Podcasterra(String izena, Blob irudia, int entzunaldiak) {
+		super(izena, irudia, entzunaldiak);
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * Podcaterra klasearen eraikitzailea.

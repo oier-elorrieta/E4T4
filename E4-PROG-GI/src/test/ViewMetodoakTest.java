@@ -76,7 +76,7 @@ public class ViewMetodoakTest {
         JButton button = (JButton) pane.getComponent(0);
         assertEquals(izena + " Entzunaldiak: " + entzunaldiak, button.getText());
     }
-
+    
     @Test
     public void testMusikariakEntzunaldiakBotoiarentzako() {
         JPanel pane = new JPanel();

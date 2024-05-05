@@ -1,6 +1,7 @@
 package view;
 
 import model.SesioAldagaiak;
+import model.dao.MusikariaDao;
 import model.metodoak.*;
 
 import java.awt.BorderLayout;

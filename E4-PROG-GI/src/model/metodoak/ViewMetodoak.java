@@ -27,8 +27,6 @@ import javax.swing.SwingConstants;
 
 import com.mysql.cj.protocol.x.SyncFlushDeflaterOutputStream;
 
-import model.ErabiltzaileFree;
-import model.SesioAldagaiak;
 import model.dao.AbestiaDao;
 import model.dao.AlbumDao;
 import model.dao.MusikariaDao;
@@ -199,22 +197,11 @@ public class ViewMetodoak {
 	 * @param jf   JFrame bat, berriz kargatzeko.
 	 */
 	public static void musikariakEntzunaldiakBotoiarentzako(JPanel pane, JFrame jf) {
-
-		ResultSet rs = MusikariaDao.getMusikariakEntzunaldiak();
-		// ResultSet rs = Kone.getMusikariakEntzunaldiak();
-		try {
-			while (rs.next()) {
-
-				String izena = rs.getString("Izena");
-				int entzunaldiak = rs.getInt("Totala");
-				Blob irudia = rs.getBlob("Irudia");
-				btnGeneratu(pane, irudia, izena, entzunaldiak, jf);
-			}
-		} catch (SQLException e) {
-
-		}
+		ArrayList<Musikaria> musikariak = MusikariaDao.getMusikariakEntzunaldiak();		
+			for (int i = 0; i < musikariak.size(); i++) {
+				btnGeneratu(pane, musikariak.get(i).getIrudia(), musikariak.get(i).getIzena(), musikariak.get(i).getEntzunaldiak(), jf);
+			}				
 	}
-
 	/**
 	 * Metodo honek JPanel batean podcasterrak entzunaldiak erakusteko botoiak
 	 * sortzen ditu.
@@ -223,18 +210,10 @@ public class ViewMetodoak {
 	 * @param jf   JFrame bat, berriz kargatzeko.
 	 */
 	public static void podcasterrakEntzunaldiakBotoiarentzako(JPanel pane, JFrame jf) {
-		ResultSet rs = PodcasterraDao.getPodcasterEntzunaldiak();
-		// ResultSet rs = Kone.getPodcasterEntzunaldiak();
-		try {
-			while (rs.next()) {
-
-				String izena = rs.getString("Izena");
-				int entzunaldiak = rs.getInt("Totala");
-				Blob irudia = rs.getBlob("Irudia");
-				btnGeneratuPodcaster(pane, irudia, izena, entzunaldiak, jf);
-			}
-		} catch (SQLException e) {
-
+		ArrayList<Podcasterra> podcasterrak = PodcasterraDao.getPodcasterEntzunaldiak();
+		for (int i = 0; i < podcasterrak.size(); i++) {
+			btnGeneratuPodcaster(pane, podcasterrak.get(i).getIrudia(), podcasterrak.get(i).getIzena(),
+					podcasterrak.get(i).getEntzunaldiak(), jf);
 		}
 	}
 

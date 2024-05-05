@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+
 import model.Podcasterra;
 import model.sql.Kone;
 
@@ -20,18 +22,23 @@ public class PodcasterraDao {
 	 * 
 	 * @return Entzunaldi guztiak itzultzen dituen ResultSet objektua.
 	 */
-	public static ResultSet getPodcasterEntzunaldiak() {
-
+	public static ArrayList<Podcasterra> getPodcasterEntzunaldiak() {
+		ArrayList<Podcasterra> podcasterrak = new ArrayList<Podcasterra>();
+		Podcasterra podcasterraSartu;
+		
 		Connection konexioa = Kone.konektatu();
-
 		try {
 			stm = konexioa.createStatement();
 			kontsulta = "SELECT * FROM EstatistikakAurkestuPodcasterraTotala";
 			rs = stm.executeQuery(kontsulta);
+			while (rs.next()) {
+				podcasterraSartu = new Podcasterra(rs.getString("Izena"), rs.getBlob("Irudia"), rs.getInt("Totala"));
+				podcasterrak.add(podcasterraSartu);
+			}
 		} catch (SQLException e) {
 			e.getMessage();
 		}
-		return rs;
+		return podcasterrak;
 
 	}
 	

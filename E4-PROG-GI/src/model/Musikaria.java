@@ -26,8 +26,12 @@ public class Musikaria extends Artista {
 	
 	public Musikaria(String izena, String deskription, Blob irudia) {
 		super(izena, deskription, irudia);
-
 	}
+	
+	public Musikaria(String izena, Blob irudia, int entzunaldiak) {
+		super(izena, irudia, entzunaldiak);
+	}
+	
 	@Override
 	public String toString() {
 		return "Musikaria [ezaugarria=" + ezaugarria + ", idArtista=" + idArtista + ", izena=" + izena
