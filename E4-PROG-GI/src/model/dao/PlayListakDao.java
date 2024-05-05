@@ -111,6 +111,7 @@ public class PlayListakDao {
 	 */
 	public static void abestiPlaylistEzabatu(int idPlaylist, int idAbestia) throws SQLException {
 		Connection konexioa = Kone.konektatu();
+		stm = konexioa.createStatement();
 		kontsulta = "DELETE FROM PlaylistAbestiak WHERE IdList = " + idPlaylist + " AND IdAudio = " + idAbestia;
 		stm.executeUpdate(kontsulta);
 		Kone.itxiConexioa();

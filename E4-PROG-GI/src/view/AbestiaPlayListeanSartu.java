@@ -121,7 +121,6 @@ public class AbestiaPlayListeanSartu extends JFrame {
 		btnErabiltzaile.setBounds(400, 60, 144, 50);
 		btnErabiltzaile.setFont(new Font("SansSerif", Font.BOLD, 22));
 		btnErabiltzaile.setFocusPainted(false);
-		
 
 		contentPane.add(lblInfo);
 		contentPane.add(lblIzena);
@@ -136,10 +135,9 @@ public class AbestiaPlayListeanSartu extends JFrame {
 		btnSartu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+
 				if (jListPlayList.getSelectedValue() == null) {
-					JOptionPane.showMessageDialog(null, "Ez duzu ezer aukeratu.",
-							"Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Ez duzu ezer aukeratu.", "Error", JOptionPane.ERROR_MESSAGE);
 				} else {
 					int index = jListPlayList.getSelectedIndex();
 					if (index == 0) {
@@ -151,6 +149,7 @@ public class AbestiaPlayListeanSartu extends JFrame {
 								AbestiaDao.abestiGustokoaGehitu(audio);
 								JOptionPane.showMessageDialog(null, "Abestia ondo sartu da Playlistean.", "Eginda!",
 										JOptionPane.INFORMATION_MESSAGE);
+								dispose();
 							}
 						} catch (SQLException e1) {
 							e1.printStackTrace();
@@ -160,6 +159,7 @@ public class AbestiaPlayListeanSartu extends JFrame {
 							PlayListakDao.playlisteanAbestiaGehitu(playlistLista.get(index), audio);
 							JOptionPane.showMessageDialog(null, "Abestia ondo sartu da Playlistean.", "Eginda!",
 									JOptionPane.INFORMATION_MESSAGE);
+							dispose();
 						} else {
 							JOptionPane.showMessageDialog(null, "Ezin da sartu abestia, zerrendan baitago.", "Error",
 									JOptionPane.ERROR_MESSAGE);
