@@ -48,10 +48,11 @@ public class Erreprodukzioa extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private Clip clip;
+	private boolean erreproduzitzen;
 	private long posicion = 0;
 
-	public Erreprodukzioa(ArrayList<Audio> abestiak, int abestiAukera, String izenaAlbum, float abiadura)
-			throws SQLException {
+	public Erreprodukzioa(ArrayList<Audio> abestiak, int abestiAukera, boolean isrunning, String izenaAlbum,
+			float abiadura) throws SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 250, 906, 594);
 		setTitle("Menu Nagusia - Talde 4");
@@ -60,68 +61,9 @@ public class Erreprodukzioa extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
+		erreproduzitzen = isrunning;
 		String filepath = "src\\audioak\\" + abestiak.get(abestiAukera).getIzena() + ".wav";
-		errepoduzituAudioa(filepath,abiadura,posicion);
-		/*
-		File f = new File(filepath);
-		AudioInputStream aui;
-
-		try {
-			aui = AudioSystem.getAudioInputStream(f.getAbsoluteFile());
-			AudioFormat format = aui.getFormat();
-			float speed = abiadura;
-			AudioFormat newFormat = new AudioFormat(format.getEncoding(), format.getSampleRate() * speed,
-					format.getSampleSizeInBits(), format.getChannels(), format.getFrameSize(),
-					format.getFrameRate() * speed, format.isBigEndian());
-			clip = AudioSystem.getClip();
-			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			byte[] buffer = new byte[4096];
-			int bytesRead;
-			while ((bytesRead = aui.read(buffer)) != -1) {
-				baos.write(buffer, 0, bytesRead);
-			}
-			byte[] audioData = baos.toByteArray();
-			ByteArrayInputStream bais = new ByteArrayInputStream(audioData);
-
-			// Convertir el ByteArrayInputStream a AudioInputStream
-			aui = new AudioInputStream(bais, newFormat, audioData.length / newFormat.getFrameSize());
-			clip.open(aui);
-		} catch (UnsupportedAudioFileException | IOException e) {
-			e.printStackTrace();
-		} catch (LineUnavailableException e1) {
-			e1.printStackTrace();
-		}
-		
-		*/
-		/*
-		 * try { aui = AudioSystem.getAudioInputStream(f);
-		 * 
-		 * // Crear un nuevo formato de audio con velocidad x2 AudioFormat format =
-		 * aui.getFormat();
-		 * 
-		 * float speed = 2.0f;
-		 * 
-		 * AudioFormat newFormat = new AudioFormat(format.getEncoding(),
-		 * format.getSampleRate() * speed, format.getSampleSizeInBits(),
-		 * format.getChannels(), format.getFrameSize(), format.getFrameRate() * speed,
-		 * format.isBigEndian());
-		 * 
-		 * clip = AudioSystem.getClip(); ByteArrayOutputStream baos = new
-		 * ByteArrayOutputStream(); byte[] buffer = new byte[4096]; int bytesRead; while
-		 * ((bytesRead = aui.read(buffer)) != -1) { baos.write(buffer, 0, bytesRead); }
-		 * byte[] audioData = baos.toByteArray(); ByteArrayInputStream bais = new
-		 * ByteArrayInputStream(audioData);
-		 * 
-		 * Convertir el ByteArrayInputStream a AudioInputStream AudioInputStream
-		 * audioInputStream = new AudioInputStream(bais, newFormat, audioData.length /
-		 * newFormat.getFrameSize());
-		 * 
-		 * //Abrir el Clip con el AudioInputStream clip.open(audioInputStream);
-		 * 
-		 * clip = AudioSystem.getClip(); clip.open(aui); } catch
-		 * (UnsupportedAudioFileException | IOException e) { e.printStackTrace(); }
-		 * catch (LineUnavailableException e1) { e1.printStackTrace(); }
-		 */
+		errepoduzituAudioa(filepath, abiadura, posicion, erreproduzitzen);
 
 		JLabel lblIzenaAlbum = new JLabel(izenaAlbum);
 		lblIzenaAlbum.setHorizontalAlignment(SwingConstants.CENTER);
@@ -156,7 +98,12 @@ public class Erreprodukzioa extends JFrame {
 		btnAurrekoa.setBounds(325, 450, 50, 50);
 		btnAurrekoa.setFont(new Font("SansSerif", Font.BOLD, 15));
 
-		JButton btnPlay = new JButton("Pause");
+		JButton btnPlay = new JButton();
+		if (isrunning) {
+			btnPlay.setText("Pause");
+		} else {
+			btnPlay.setText("Play");
+		}
 		btnPlay.setBounds(400, 450, 100, 50);
 		btnPlay.setFont(new Font("SansSerif", Font.BOLD, 15));
 
@@ -172,7 +119,7 @@ public class Erreprodukzioa extends JFrame {
 				if (abiadura != 0.5f) {
 					posicion = clip.getMicrosecondPosition();
 					clip.close();
-					errepoduzituAudioa(filepath, 0.5f,posicion);
+					errepoduzituAudioa(filepath, 0.5f, posicion, erreproduzitzen);
 				}
 			}
 		});
@@ -182,9 +129,9 @@ public class Erreprodukzioa extends JFrame {
 		btnX1.setFont(new Font("SansSerif", Font.BOLD, 15));
 		btnX1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					posicion = clip.getMicrosecondPosition();
-					clip.close();
-					errepoduzituAudioa(filepath, 1,posicion);
+				posicion = clip.getMicrosecondPosition();
+				clip.close();
+				errepoduzituAudioa(filepath, 1, posicion, erreproduzitzen);
 			}
 		});
 
@@ -196,7 +143,7 @@ public class Erreprodukzioa extends JFrame {
 				if (abiadura != 1.5f) {
 					posicion = clip.getMicrosecondPosition();
 					clip.close();
-					errepoduzituAudioa(filepath, 1.5f,posicion);
+					errepoduzituAudioa(filepath, 1.5f, posicion, erreproduzitzen);
 				}
 			}
 		});
@@ -236,8 +183,9 @@ public class Erreprodukzioa extends JFrame {
 							JOptionPane.showMessageDialog(null, "Gustoko listan ondo sartu da", "Eginda!",
 									JOptionPane.INFORMATION_MESSAGE);
 						}
+						clip.close();
 						dispose();
-						JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukera, izenaAlbum, abiadura);
+						JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukera, erreproduzitzen, izenaAlbum, abiadura);
 					} catch (SQLException e1) {
 
 						e1.printStackTrace();
@@ -308,10 +256,13 @@ public class Erreprodukzioa extends JFrame {
 						SesioAldagaiak.doSkip = false;
 						ViewMetodoak.skipBaimendu();
 						dispose();
-						if (SesioAldagaiak.iragarkiaAtera || !SesioAldagaiak.erabiltzailePremium) {
-							JFrameSortu.iragarkiaErreproduzituSortu(abestiak, abestiAukeraAux, izenaAlbum);
+						if ((SesioAldagaiak.iragarkiaAtera && SesioAldagaiak.erreprodukzioKop >= 1)
+								&& !SesioAldagaiak.erabiltzailePremium) {
+							SesioAldagaiak.erreprodukzioKop = 0;
+							JFrameSortu.iragarkiaErreproduzituSortu(abestiak, abestiAukeraAux, erreproduzitzen, izenaAlbum);
 						} else {
-							JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux, izenaAlbum, 1);
+							SesioAldagaiak.erreprodukzioKop++;
+							JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux, erreproduzitzen, izenaAlbum, 1);
 						}
 					} catch (SQLException e1) {
 						e1.printStackTrace();
@@ -327,9 +278,11 @@ public class Erreprodukzioa extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (clip.isRunning()) {
+					erreproduzitzen = false;
 					clip.stop();
 					btnPlay.setText("Play");
 				} else {
+					erreproduzitzen = true;
 					clip.start();
 					btnPlay.setText("Pause");
 				}
@@ -355,10 +308,10 @@ public class Erreprodukzioa extends JFrame {
 						if ((SesioAldagaiak.iragarkiaAtera && SesioAldagaiak.erreprodukzioKop >= 1)
 								&& !SesioAldagaiak.erabiltzailePremium) {
 							SesioAldagaiak.erreprodukzioKop = 0;
-							JFrameSortu.iragarkiaErreproduzituSortu(abestiak, abestiAukeraAux, izenaAlbum);
+							JFrameSortu.iragarkiaErreproduzituSortu(abestiak, abestiAukeraAux, erreproduzitzen, izenaAlbum);
 						} else {
 							SesioAldagaiak.erreprodukzioKop++;
-							JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux, izenaAlbum, 1);
+							JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux, erreproduzitzen, izenaAlbum, 1);
 						}
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
@@ -391,8 +344,8 @@ public class Erreprodukzioa extends JFrame {
 			}
 		});
 	}
-	
-	private void errepoduzituAudioa (String filepath, float abiadura,long posizioa) {
+
+	private void errepoduzituAudioa(String filepath, float abiadura, long posizioa, boolean erreproduzitzen) {
 		try {
 			File f = new File(filepath);
 			AudioInputStream aui;
@@ -416,7 +369,9 @@ public class Erreprodukzioa extends JFrame {
 			aui = new AudioInputStream(bais, newFormat, audioData.length / newFormat.getFrameSize());
 			clip.open(aui);
 			clip.setMicrosecondPosition(posizioa);
-			clip.start();
+			if (erreproduzitzen) {
+				clip.start();
+			}
 		} catch (UnsupportedAudioFileException | IOException e) {
 			e.printStackTrace();
 		} catch (LineUnavailableException e1) {

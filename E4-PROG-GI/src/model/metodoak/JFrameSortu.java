@@ -96,14 +96,14 @@ public class JFrameSortu {
 	 * @param izenaAlbum Albumaren izena
 	 * @throws SQLException SQL errorea
 	 */
-	public static void erreprodukzioaSortu(ArrayList<Audio> abestiak, int abestiAukera, String izenaAlbum, float abiadura) throws SQLException{
-		Erreprodukzioa erreprodukzioaSortu = new Erreprodukzioa(abestiak,abestiAukera,izenaAlbum, abiadura);
+	public static void erreprodukzioaSortu(ArrayList<Audio> abestiak, int abestiAukera, boolean isrunning, String izenaAlbum, float abiadura) throws SQLException{
+		Erreprodukzioa erreprodukzioaSortu = new Erreprodukzioa(abestiak,abestiAukera, isrunning, izenaAlbum, abiadura);
 		erreprodukzioaSortu.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		erreprodukzioaSortu.setVisible(true);
 	}
 	
-	public static void iragarkiaErreproduzituSortu(ArrayList<Audio> abestiak, int abestiAukera, String izenaAlbum) throws SQLException{
-		IragarkiaErreproduzitu iragarkiaErreproduzituSortu = new IragarkiaErreproduzitu(abestiak,abestiAukera,izenaAlbum);
+	public static void iragarkiaErreproduzituSortu(ArrayList<Audio> abestiak, int abestiAukera, boolean isrunning, String izenaAlbum) throws SQLException{
+		IragarkiaErreproduzitu iragarkiaErreproduzituSortu = new IragarkiaErreproduzitu(abestiak,abestiAukera, isrunning, izenaAlbum);
 		iragarkiaErreproduzituSortu.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		iragarkiaErreproduzituSortu.setVisible(true);
 	}

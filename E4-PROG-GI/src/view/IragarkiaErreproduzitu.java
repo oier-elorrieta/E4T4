@@ -45,7 +45,7 @@ public class IragarkiaErreproduzitu extends JFrame {
 private Timer timer;
 	private Clip clip;
 
-	public IragarkiaErreproduzitu(ArrayList<Audio> abestiak, int abestiAukera, String izenaAlbum) throws SQLException {
+	public IragarkiaErreproduzitu(ArrayList<Audio> abestiak, int abestiAukera, boolean isrunning, String izenaAlbum) throws SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 250, 906, 594);
 		setTitle("Menu Nagusia - Talde 4");
@@ -84,17 +84,17 @@ private Timer timer;
 		}
 
 		long l = clip.getMicrosecondLength() / 1000;
-		hurrengoAudioaHasi(abestiak, abestiAukera, izenaAlbum, l);
+		hurrengoAudioaHasi(abestiak, abestiAukera, isrunning, izenaAlbum, l);
 	}
 
-	public void hurrengoAudioaHasi(ArrayList<Audio> abestiak, int abestiAukera, String izenaAlbum, Long l) {
+	public void hurrengoAudioaHasi(ArrayList<Audio> abestiak, int abestiAukera, boolean isrunning, String izenaAlbum, Long l) {
 		timer = new Timer();
 		TimerTask task = new TimerTask() {
 			public void run() {
 				try {
 					clip.stop();
 					dispose();
-					JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukera, izenaAlbum, 1);
+					JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukera, isrunning, izenaAlbum, 1);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
