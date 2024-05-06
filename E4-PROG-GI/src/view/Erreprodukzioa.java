@@ -261,10 +261,19 @@ public class Erreprodukzioa extends JFrame {
 							abestiAukeraAux = abestiak.size() - 1;
 						}
 						clip.stop();
+<<<<<<< HEAD
 
 						SesioAldagaiak.doSkip = false;
 						ViewMetodoak.skipBaimendu();
 
+=======
+						
+						if (!SesioAldagaiak.erabiltzailePremium) {
+						SesioAldagaiak.doSkip = false;
+						ViewMetodoak.skipBaimendu();
+						}
+						
+>>>>>>> 7b51087316411b6170b12fee9fc3450bbbc487c8
 						dispose();
 						if ((SesioAldagaiak.iragarkiaAtera && SesioAldagaiak.erreprodukzioKop >= 1)
 								&& !SesioAldagaiak.erabiltzailePremium) {
@@ -313,8 +322,10 @@ public class Erreprodukzioa extends JFrame {
 							abestiAukeraAux = 0;
 						}
 						clip.stop();
-						SesioAldagaiak.doSkip = false;
-						ViewMetodoak.skipBaimendu();
+						if (!SesioAldagaiak.erabiltzailePremium) {
+							SesioAldagaiak.doSkip = false;
+							ViewMetodoak.skipBaimendu();
+							}
 						dispose();
 						if ((SesioAldagaiak.iragarkiaAtera && SesioAldagaiak.erreprodukzioKop >= 1)
 								&& !SesioAldagaiak.erabiltzailePremium) {
