@@ -3,6 +3,8 @@ package view;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
@@ -45,7 +47,7 @@ public class PlaylistAbestiak extends JFrame {
 		contentPane.setLayout(null);
 
 		abestiakList = AudioDao.getPlayListAbestiak(aukeraPlaylist);
-		//abestiakList = Kone.getPlayListAbestiak(aukeraPlaylist);
+		// abestiakList = Kone.getPlayListAbestiak(aukeraPlaylist);
 
 		DefaultListModel<String> modeloLista = new DefaultListModel<>();
 		for (int i = 0; i < abestiakList.size(); i++) {
@@ -75,7 +77,15 @@ public class PlaylistAbestiak extends JFrame {
 		btnAtzera.setFont(new Font("SansSerif", Font.BOLD, 22));
 		btnAtzera.setFocusPainted(false);
 
-		JButton btnErabiltzaile = ViewMetodoak.btnErabiltzaileaSortu();
+		JButton btnErabiltzaile = SesioAldagaiak.jb;
+		btnErabiltzaile.removeActionListener(btnErabiltzaile.getActionListeners()[0]);
+
+		btnErabiltzaile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				JFrameSortu.premiumErregistroAukeraSortu();
+			}
+		});
 
 		contentPane.add(jListAbestiak);
 		contentPane.add(btnErreproduzitu);
@@ -94,7 +104,8 @@ public class PlaylistAbestiak extends JFrame {
 					try {
 						int aukeraAbestia = jListAbestiak.getSelectedIndex();
 						dispose();
-						JFrameSortu.erreprodukzioaSortu(abestiakList, aukeraAbestia, false, aukeraPlaylist.getIzena(), 1);
+						JFrameSortu.erreprodukzioaSortu(abestiakList, aukeraAbestia, false, aukeraPlaylist.getIzena(),
+								1);
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -116,7 +127,7 @@ public class PlaylistAbestiak extends JFrame {
 					} else {
 						AbestiaDao.abestiGuztokoaEzabatu(abestiakList.get(aukeraAbestia).getIdAudio());
 					}
-					
+
 					dispose();
 					JFrameSortu.playlistAbestiakSortu(aukeraPlaylist);
 				} catch (SQLException e1) {
@@ -142,7 +153,7 @@ public class PlaylistAbestiak extends JFrame {
 				JFrameSortu.loginAukeraSortu();
 			}
 		});
-		
+
 		btnKompartitu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

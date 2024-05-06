@@ -35,7 +35,14 @@ public class PodcastDeskubritu extends JFrame {
 		contentPane.setLayout(null);
 
 		JButton btnErabiltzaile = SesioAldagaiak.jb;
+		btnErabiltzaile.removeActionListener(btnErabiltzaile.getActionListeners()[0]);
 
+		btnErabiltzaile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				JFrameSortu.premiumErregistroAukeraSortu();
+			}
+		});
 		JButton btnAtzera = new JButton("Atzera");
 		btnAtzera.setBackground(Color.BLACK);
 		btnAtzera.setForeground(Color.RED);
@@ -55,8 +62,8 @@ public class PodcastDeskubritu extends JFrame {
 		artistaPane.setBounds(96, 121, 686, 372);
 		jsp.setViewportView(artistaPane);
 
-		ViewMetodoak.podcasterrakEntzunaldiakBotoiarentzako(artistaPane,this);		
-		
+		ViewMetodoak.podcasterrakEntzunaldiakBotoiarentzako(artistaPane, this);
+
 		btnAtzera.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

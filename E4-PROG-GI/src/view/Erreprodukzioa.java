@@ -149,6 +149,14 @@ public class Erreprodukzioa extends JFrame {
 		});
 
 		JButton btnErabiltzaile = SesioAldagaiak.jb;
+		btnErabiltzaile.removeActionListener(btnErabiltzaile.getActionListeners()[0]);
+
+		btnErabiltzaile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				JFrameSortu.premiumErregistroAukeraSortu();
+			}
+		});
 
 		JButton btnAtzera = new JButton("Atzera");
 		btnAtzera.setBackground(Color.BLACK);
@@ -253,15 +261,16 @@ public class Erreprodukzioa extends JFrame {
 							abestiAukeraAux = abestiak.size() - 1;
 						}
 						clip.stop();
-						
+
 						SesioAldagaiak.doSkip = false;
 						ViewMetodoak.skipBaimendu();
-						
+
 						dispose();
 						if ((SesioAldagaiak.iragarkiaAtera && SesioAldagaiak.erreprodukzioKop >= 1)
 								&& !SesioAldagaiak.erabiltzailePremium) {
 							SesioAldagaiak.erreprodukzioKop = 0;
-							JFrameSortu.iragarkiaErreproduzituSortu(abestiak, abestiAukeraAux, erreproduzitzen, izenaAlbum);
+							JFrameSortu.iragarkiaErreproduzituSortu(abestiak, abestiAukeraAux, erreproduzitzen,
+									izenaAlbum);
 						} else {
 							SesioAldagaiak.erreprodukzioKop++;
 							JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux, erreproduzitzen, izenaAlbum, 1);
@@ -310,7 +319,8 @@ public class Erreprodukzioa extends JFrame {
 						if ((SesioAldagaiak.iragarkiaAtera && SesioAldagaiak.erreprodukzioKop >= 1)
 								&& !SesioAldagaiak.erabiltzailePremium) {
 							SesioAldagaiak.erreprodukzioKop = 0;
-							JFrameSortu.iragarkiaErreproduzituSortu(abestiak, abestiAukeraAux, erreproduzitzen, izenaAlbum);
+							JFrameSortu.iragarkiaErreproduzituSortu(abestiak, abestiAukeraAux, erreproduzitzen,
+									izenaAlbum);
 						} else {
 							SesioAldagaiak.erreprodukzioKop++;
 							JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux, erreproduzitzen, izenaAlbum, 1);

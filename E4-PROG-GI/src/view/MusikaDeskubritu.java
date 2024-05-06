@@ -36,7 +36,18 @@ public class MusikaDeskubritu extends JFrame {
 		contentPane.setLayout(null);
 
 		JButton btnErabiltzaile = SesioAldagaiak.jb;
-
+		
+		btnErabiltzaile.removeActionListener(btnErabiltzaile.getActionListeners()[0]);
+		
+		btnErabiltzaile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				JFrameSortu.premiumErregistroAukeraSortu();
+			}
+		});
+		
+		
+		
 		JButton btnAtzera = new JButton("Atzera");
 		btnAtzera.setBackground(Color.BLACK);
 		btnAtzera.setForeground(Color.RED);

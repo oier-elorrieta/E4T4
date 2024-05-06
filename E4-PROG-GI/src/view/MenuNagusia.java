@@ -78,6 +78,7 @@ public class MenuNagusia extends JFrame {
 		model.SesioAldagaiak.jb = ViewMetodoak.btnErabiltzaileaSortu();
 		JButton btnErabiltzaile = model.SesioAldagaiak.jb;
 
+		
 		contentPane.add(lblaukeratu);
 		contentPane.add(btnMusikaDeskubritu);
 		contentPane.add(btnPodcastDeskubritu);
@@ -93,14 +94,16 @@ public class MenuNagusia extends JFrame {
 			}
 		});
 
-		btnErabiltzaile.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		
+
+		btnErabiltzaile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				dispose();
 				JFrameSortu.premiumErregistroAukeraSortu();
 			}
 		});
-
+		
+		
 		btnMusikaDeskubritu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MusikaDeskubritu MusikaDesk = new MusikaDeskubritu();

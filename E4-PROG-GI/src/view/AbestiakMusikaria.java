@@ -30,6 +30,8 @@ import javax.swing.JSplitPane;
 import javax.swing.JList;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
@@ -58,6 +60,15 @@ public class AbestiakMusikaria extends JFrame {
 		setContentPane(contentPane);
 
 		JButton btnErabiltzaile = model.SesioAldagaiak.jb;
+
+		btnErabiltzaile.removeActionListener(btnErabiltzaile.getActionListeners()[0]);
+
+		btnErabiltzaile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				JFrameSortu.premiumErregistroAukeraSortu();
+			}
+		});
 
 		JButton btnAtzera = new JButton("Atzera");
 		btnAtzera.setBounds(50, 60, 144, 50);
@@ -116,7 +127,6 @@ public class AbestiakMusikaria extends JFrame {
 		lblLista.setBounds(111, 127, 162, 14);
 		contentPane.add(lblLista);
 
-
 		// Agregar un ListSelectionListener a la lista
 		list.addListSelectionListener(new ListSelectionListener() {
 			@Override
@@ -124,14 +134,14 @@ public class AbestiakMusikaria extends JFrame {
 				try {
 					int abestiAukera = list.getSelectedIndex();
 					dispose();
-					JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukera,false, album.getIzenburua(), 1);
+					JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukera, false, album.getIzenburua(), 1);
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
 
 			}
 		});
-		
+
 		btnAtzera.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

@@ -58,7 +58,16 @@ public class NirePlaylista extends JFrame {
 		btnAtzera.setFont(new Font("SansSerif", Font.BOLD, 22));
 		btnAtzera.setFocusPainted(false);
 
-		JButton btnErabiltzaile = ViewMetodoak.btnErabiltzaileaSortu();
+		JButton btnErabiltzaile = SesioAldagaiak.jb;
+		btnErabiltzaile.removeActionListener(btnErabiltzaile.getActionListeners()[0]);
+
+		btnErabiltzaile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				JFrameSortu.premiumErregistroAukeraSortu();
+			}
+		});
+
 		ArrayList<PlayListak> playlistLista = PlayListakDao.getPlaylist();
 		// ArrayList<PlayListak> playlistLista = Kone.getPlaylist();
 		DefaultListModel<String> modeloLista = new DefaultListModel<>();
@@ -136,7 +145,7 @@ public class NirePlaylista extends JFrame {
 				JPanel pan = new JPanel(new BorderLayout());
 				JTextField gg = new JTextField();
 				pan.add(gg, BorderLayout.CENTER);
-				
+
 				int opcion = JOptionPane.showConfirmDialog(null, pan, "Mesedez, Sartu PlayListaren Izen Berria:",
 						JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
@@ -153,7 +162,7 @@ public class NirePlaylista extends JFrame {
 						a.setIdAudio(Integer.parseInt(aux[i]));
 						PlayListakDao.playlisteanAbestiaGehitu(p, a);
 					}
-					
+
 					dispose();
 					JFrameSortu.nirePlaylistaSortu();
 
@@ -161,9 +170,7 @@ public class NirePlaylista extends JFrame {
 
 					System.out.println("Importazioa kanzelatua bezeroarengatik");
 				}
-				
-				
-				
+
 			}
 		});
 

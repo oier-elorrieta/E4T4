@@ -26,6 +26,8 @@ import model.sql.Kone;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
@@ -52,6 +54,14 @@ public class PodcastView extends JFrame {
 		setContentPane(contentPane);
 
 		JButton btnErabiltzaile = model.SesioAldagaiak.jb;
+		btnErabiltzaile.removeActionListener(btnErabiltzaile.getActionListeners()[0]);
+
+		btnErabiltzaile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				JFrameSortu.premiumErregistroAukeraSortu();
+			}
+		});
 
 		JButton btnAtzera = new JButton("Atzera");
 		btnAtzera.setBackground(Color.BLACK);
@@ -110,7 +120,6 @@ public class PodcastView extends JFrame {
 		lblLista.setBounds(111, 127, 162, 14);
 		contentPane.add(lblLista);
 
-		
 		// Agregar un ListSelectionListener a la lista
 		list.addListSelectionListener(new ListSelectionListener() {
 			@Override
@@ -125,7 +134,7 @@ public class PodcastView extends JFrame {
 
 			}
 		});
-		
+
 		btnAtzera.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
