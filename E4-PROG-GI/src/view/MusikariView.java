@@ -125,12 +125,11 @@ public class MusikariView extends JFrame {
 		lblLista.setBounds(111, 127, 162, 14);
 		contentPane.add(lblLista);
 
-		// Agregar un ListSelectionListener a la lista
+		
 		list.addListSelectionListener(new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
 
-				// Obtener el valor del elemento seleccionado
 				Album selectedValue = (Album) list.getSelectedValue();
 
 				AbestiakMusikaria ab = new AbestiakMusikaria(selectedValue);

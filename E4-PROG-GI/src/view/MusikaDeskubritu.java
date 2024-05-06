@@ -37,6 +37,7 @@ public class MusikaDeskubritu extends JFrame {
 
 		JButton btnErabiltzaile = SesioAldagaiak.jb;
 		
+		
 		btnErabiltzaile.removeActionListener(btnErabiltzaile.getActionListeners()[0]);
 		
 		btnErabiltzaile.addActionListener(new ActionListener() {

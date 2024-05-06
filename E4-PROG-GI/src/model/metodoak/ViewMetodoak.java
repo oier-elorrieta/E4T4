@@ -156,30 +156,30 @@ public class ViewMetodoak {
 	 * @param entzunaldiak Musikariaren entzunaldi kopurua.
 	 * @param jf           JFrame bat, berriz kargatzeko.
 	 */
-	public static void btnGeneratu(JPanel pane, Blob irudia, String izena, int entzunaldiak, JFrame jf) {
+	public static void btnGeneratu(JPanel pane,Musikaria musikaria, JFrame jf) {
 		JButton newButton = new JButton();
-		newButton.setText(izena + " Entzunaldiak: " + entzunaldiak);
-
+		newButton.setText(musikaria.getIzena() + " Entzunaldiak: " + musikaria.getEntzunaldiak());
+		
+		
 		try {
-			ImageIcon icono = new ImageIcon(irudia.getBytes(1, (int) irudia.length()));
+			ImageIcon icono = new ImageIcon(musikaria.getIrudia().getBytes(1, (int) musikaria.getIrudia().length()));
 			newButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					MusikariView mv = new MusikariView(izena);
-					mv.setVisible(true);
+					JFrameSortu.musikaViewSortu(musikaria.getIzena());
 					jf.dispose();
 				}
 			});
 
-			// Escala la imagen al tamaño deseado
+			
 			Image imagen = icono.getImage().getScaledInstance(150, 100, Image.SCALE_SMOOTH);
 
-			// Crea un nuevo ImageIcon con la imagen escalada
+		
 			ImageIcon iconoEscalado = new ImageIcon(imagen);
 			newButton.setIcon(iconoEscalado);
 
 			pane.add(newButton);
 
-			// Se actualiza el layout del panel para que se ajuste automáticamente
+		
 			pane.revalidate();
 			pane.repaint();
 
@@ -199,7 +199,7 @@ public class ViewMetodoak {
 	public static void musikariakEntzunaldiakBotoiarentzako(JPanel pane, JFrame jf) {
 		ArrayList<Musikaria> musikariak = MusikariaDao.getMusikariakEntzunaldiak();		
 			for (int i = 0; i < musikariak.size(); i++) {
-				btnGeneratu(pane, musikariak.get(i).getIrudia(), musikariak.get(i).getIzena(), musikariak.get(i).getEntzunaldiak(), jf);
+				btnGeneratu(pane,musikariak.get(i), jf);
 			}				
 	}
 	/**
@@ -212,8 +212,7 @@ public class ViewMetodoak {
 	public static void podcasterrakEntzunaldiakBotoiarentzako(JPanel pane, JFrame jf) {
 		ArrayList<Podcasterra> podcasterrak = PodcasterraDao.getPodcasterEntzunaldiak();
 		for (int i = 0; i < podcasterrak.size(); i++) {
-			btnGeneratuPodcaster(pane, podcasterrak.get(i).getIrudia(), podcasterrak.get(i).getIzena(),
-					podcasterrak.get(i).getEntzunaldiak(), jf);
+			btnGeneratuPodcaster(pane,podcasterrak.get(i), jf);
 		}
 	}
 
@@ -227,29 +226,28 @@ public class ViewMetodoak {
 	 * @param entzunaldiak Podcasterraren entzunaldi kopurua.
 	 * @param jf           JFrame bat, berriz kargatzeko.
 	 */
-	public static void btnGeneratuPodcaster(JPanel pane, Blob irudia, String izena, int entzunaldiak, JFrame jf) {
+	public static void btnGeneratuPodcaster(JPanel pane, Podcasterra podcasterra, JFrame jf) {
 		JButton newButton = new JButton();
-		newButton.setText(izena + " Entzunaldiak: " + entzunaldiak);
+		newButton.setText(podcasterra.getIzena() + " Entzunaldiak: " + podcasterra.getEntzunaldiak());
 		try {
-			ImageIcon icono = new ImageIcon(irudia.getBytes(1, (int) irudia.length()));
+			ImageIcon icono = new ImageIcon(podcasterra.getIrudia().getBytes(1, (int) podcasterra.getIrudia().length()));
 			newButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					PodcastView mv = new PodcastView(izena);
-					mv.setVisible(true);
+				JFrameSortu.podcastViewSortu(podcasterra.getIzena());
 					jf.dispose();
 				}
 			});
 
-			// Escala la imagen al tamaño deseado
+		
 			Image imagen = icono.getImage().getScaledInstance(150, 100, Image.SCALE_SMOOTH);
 
-			// Crea un nuevo ImageIcon con la imagen escalada
+			
 			ImageIcon iconoEscalado = new ImageIcon(imagen);
 			newButton.setIcon(iconoEscalado);
 
 			pane.add(newButton);
 
-			// Se actualiza el layout del panel para que se ajuste automáticamente
+			
 			pane.revalidate();
 			pane.repaint();
 

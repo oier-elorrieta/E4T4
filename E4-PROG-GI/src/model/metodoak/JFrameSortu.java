@@ -14,9 +14,11 @@ import view.Erreprodukzioa;
 import view.IragarkiaErreproduzitu;
 import view.Login;
 import view.MenuNagusia;
+import view.MusikariView;
 import view.NirePlaylista;
 import view.PlayListaSortu;
 import view.PlaylistAbestiak;
+import view.PodcastView;
 
 
 
@@ -102,6 +104,18 @@ public class JFrameSortu {
 		erreprodukzioaSortu.setVisible(true);
 	}
 	
+	public static void musikaViewSortu(String izena) {
+		MusikariView musicariView = new MusikariView(izena);
+		musicariView.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		musicariView.setVisible(true);
+	}
+	
+	public static void podcastViewSortu(String izena) {
+		PodcastView podcastView = new PodcastView(izena);
+		podcastView.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		podcastView.setVisible(true);
+	}
+	
 	public static void iragarkiaErreproduzituSortu(ArrayList<Audio> abestiak, int abestiAukera, boolean isrunning, String izenaAlbum) throws SQLException{
 		IragarkiaErreproduzitu iragarkiaErreproduzituSortu = new IragarkiaErreproduzitu(abestiak,abestiAukera, isrunning, izenaAlbum);
 		iragarkiaErreproduzituSortu.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -113,4 +127,6 @@ public class JFrameSortu {
 		abestiaPlayListeanSartuSortu.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		abestiaPlayListeanSartuSortu.setVisible(true);
 	}
+	
+	
 }

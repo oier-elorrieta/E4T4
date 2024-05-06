@@ -66,13 +66,12 @@ public class ViewMetodoakTest {
     @Test
     public void testBtnGeneratu() {
         JPanel pane = new JPanel();
-        Musikaria m;
-        m = MusikariaDao.getMusikaria("Estopa");
+        Musikaria m = MusikariaDao.getMusikaria("Estopa");
         Blob irudia = m.getIrudia();
         String izena = m.getIzena();
         int entzunaldiak = m.getEntzunaldiak();
         JFrame jf = new JFrame();
-        ViewMetodoak.btnGeneratu(pane, irudia, izena, entzunaldiak, jf);
+        ViewMetodoak.btnGeneratu(pane,m, jf);
         JButton button = (JButton) pane.getComponent(0);
         assertEquals(izena + " Entzunaldiak: " + entzunaldiak, button.getText());
     }

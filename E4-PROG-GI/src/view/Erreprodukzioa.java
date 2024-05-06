@@ -200,7 +200,7 @@ public class Erreprodukzioa extends JFrame {
 					}
 				}
 			});
-			// en este else va ir todo lo de la velocidad de reproduccion
+			
 		} else {
 			contentPane.add(btnX05);
 			contentPane.add(btnX1);
@@ -261,19 +261,19 @@ public class Erreprodukzioa extends JFrame {
 							abestiAukeraAux = abestiak.size() - 1;
 						}
 						clip.stop();
-<<<<<<< HEAD
+
 
 						SesioAldagaiak.doSkip = false;
 						ViewMetodoak.skipBaimendu();
 
-=======
+
 						
 						if (!SesioAldagaiak.erabiltzailePremium) {
 						SesioAldagaiak.doSkip = false;
 						ViewMetodoak.skipBaimendu();
 						}
 						
->>>>>>> 7b51087316411b6170b12fee9fc3450bbbc487c8
+
 						dispose();
 						if ((SesioAldagaiak.iragarkiaAtera && SesioAldagaiak.erreprodukzioKop >= 1)
 								&& !SesioAldagaiak.erabiltzailePremium) {
