@@ -253,8 +253,10 @@ public class Erreprodukzioa extends JFrame {
 							abestiAukeraAux = abestiak.size() - 1;
 						}
 						clip.stop();
+						
 						SesioAldagaiak.doSkip = false;
 						ViewMetodoak.skipBaimendu();
+						
 						dispose();
 						if ((SesioAldagaiak.iragarkiaAtera && SesioAldagaiak.erreprodukzioKop >= 1)
 								&& !SesioAldagaiak.erabiltzailePremium) {
