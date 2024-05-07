@@ -94,6 +94,7 @@ public class Erreprodukzioa extends JFrame {
 		lblIzenaArtista.setBounds(10, 370, 870, 25);
 
 		JLabel lblIraupena = new JLabel(abestiak.get(abestiAukera).getIraupena() + "");
+
 		lblIraupena.setFont(new Font("Arial Black", Font.BOLD | Font.ITALIC, 16));
 		lblIraupena.setHorizontalAlignment(SwingConstants.CENTER);
 		lblIraupena.setBounds(10, 400, 870, 25);
@@ -311,6 +312,11 @@ public class Erreprodukzioa extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (clip.isRunning()) {
+					
+					int segunduak = (int) clip.getMicrosecondPosition()/1000000;
+					String iraupena = ViewMetodoak.kalkulatuIraupena(segunduak);
+					lblIraupena.setText(iraupena);
+					
 					erreproduzitzen = false;
 					clip.stop();
 					btnPlay.setText("Play");

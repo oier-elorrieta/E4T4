@@ -193,8 +193,6 @@ public class AbestiaDao {
 			idBezero = SesioAldagaiak.erabiltzaileLogeatutaPremium.getIdErabiltzailea();
 		}
 		
-		System.out.println(idBezero);
-		
 		try {
 		Connection konexioa = Kone.konektatu();
 			kontsulta = "INSERT into Erreprodukzioak (IdBezeroa, IdAudio, ErreData) VALUES(?,?,?)";
