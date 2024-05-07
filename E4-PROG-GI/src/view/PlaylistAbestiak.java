@@ -94,7 +94,7 @@ public class PlaylistAbestiak extends JFrame {
 		contentPane.add(btnAtzera);
 		contentPane.add(btnErabiltzaile);
 
-		btnErreproduzitu.addMouseListener(new MouseAdapter() {
+		btnErreproduzitu.addMouseListener(new MouseAdapter() { 
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (jListAbestiak.getSelectedValue() == null) {

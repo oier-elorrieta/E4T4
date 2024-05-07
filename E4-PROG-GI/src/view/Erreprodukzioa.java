@@ -100,16 +100,18 @@ public class Erreprodukzioa extends JFrame {
 		JButton btnAurrekoa = new JButton("<-");
 		btnAurrekoa.setBounds(325, 450, 50, 50);
 		btnAurrekoa.setFont(new Font("SansSerif", Font.BOLD, 15));
-
 		
-		System.out.println(AbestiaDao.areGaurkoEntzunaldiak(abestiak.get(abestiAukera).getIdAudio()));
-			AbestiaDao.setEntzunaldiak(abestiak.get(abestiAukera).getIdAudio());
-		
+		if(clip.isRunning() && clip.getFramePosition() == 0) {
+		AbestiaDao.erregistratuErreprodukzioa(abestiak.get(abestiAukera));
+		}
 		
 		JButton btnPlay = new JButton();
 		if (isrunning) {
 			btnPlay.setText("Pause");
 		} else {
+			if(clip.getFramePosition() == 0) {
+				AbestiaDao.erregistratuErreprodukzioa(abestiak.get(abestiAukera));
+			}
 			btnPlay.setText("Play");
 		}
 		btnPlay.setBounds(400, 450, 100, 50);
@@ -178,7 +180,7 @@ public class Erreprodukzioa extends JFrame {
 			boolean gustokoaDu = AbestiaDao.gustukoaKomprobatu(abestiak.get(abestiAukera));
 			JButton btnGuztokoa = new JButton();
 			if (gustokoaDu) {
-				btnGuztokoa.setText("Gustokoetatik atera");
+				btnGuztokoa.setText("Guztokotik atera");
 			} else {
 				btnGuztokoa.setText("Gustokoan sartu");
 			}
@@ -273,9 +275,7 @@ public class Erreprodukzioa extends JFrame {
 
 						SesioAldagaiak.doSkip = false;
 						ViewMetodoak.skipBaimendu();
-
-
-						
+		
 						if (!SesioAldagaiak.erabiltzailePremium) {
 						SesioAldagaiak.doSkip = false;
 						ViewMetodoak.skipBaimendu();
