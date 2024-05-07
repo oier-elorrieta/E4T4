@@ -30,11 +30,18 @@ public class AlbumDaoTest {
     }
 
     @Test
-    public void testBeteAlbumakKantaKop() {
+    public void testBeteAlbumakKantaKop1() {
     	Musikaria musikari = MusikariaDao.getMusikaria("LiSa");
         ArrayList<Album> albumak = AlbumDao.getAlbumak(musikari);
         AlbumDao.beteAlbumakKantaKop(albumak);
         assertEquals(3, albumak.get(0).getKantaKop());
+    }
+    
+    @Test
+    public void testBeteAlbumakKantaKop2() {
+    	Musikaria musikari = MusikariaDao.getMusikaria("LiSa");
+        ArrayList<Album> albumak = AlbumDao.getAlbumak(musikari);
+        AlbumDao.beteAlbumakKantaKop(albumak);
         assertEquals(0, albumak.get(1).getKantaKop());
     }
 
