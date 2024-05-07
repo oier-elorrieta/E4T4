@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
@@ -50,6 +52,7 @@ public class Erreprodukzioa extends JFrame {
 	private Clip clip;
 	private boolean erreproduzitzen;
 	private long posicion = 0;
+	private int iraupena = 0;
 
 	public Erreprodukzioa(ArrayList<Audio> abestiak, int abestiAukera, boolean isrunning, String izenaAlbum,
 			float abiadura) throws SQLException {
@@ -304,7 +307,7 @@ public class Erreprodukzioa extends JFrame {
 				} else {
 					erreproduzitzen = true;
 					clip.start();
-					btnPlay.setText("Pause");
+					btnPlay.setText("Pause");					 
 				}
 			}
 		});
@@ -367,7 +370,7 @@ public class Erreprodukzioa extends JFrame {
 			}
 		});
 	}
-
+	
 	private void errepoduzituAudioa(String filepath, float abiadura, long posizioa, boolean erreproduzitzen) {
 		try {
 			File f = new File(filepath);
