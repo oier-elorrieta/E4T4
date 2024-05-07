@@ -100,7 +100,7 @@ public class Erreprodukzioa extends JFrame {
 
 		
 		
-			AbestiaDao.setEntzunaldiak(abestiak.get(abestiAukera).getIdAudio());
+		AbestiaDao.setEntzunaldiak(abestiak.get(abestiAukera).getIdAudio());
 		
 		
 		JButton btnPlay = new JButton();
