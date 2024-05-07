@@ -50,7 +50,7 @@ public class AbestiakMusikaria extends JFrame {
 	private Musikaria musikari;
 	private JLabel lblIzena;
 
-	public AbestiakMusikaria(Album album) {
+	public AbestiakMusikaria(Musikaria musikaria, Album album) {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 250, 906, 594);
@@ -134,7 +134,7 @@ public class AbestiakMusikaria extends JFrame {
 				try {
 					int abestiAukera = list.getSelectedIndex();
 					dispose();
-					JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukera, false, album.getIzenburua(), 1);
+					JFrameSortu.erreprodukzioaSortu(musikaria, abestiak, abestiAukera, false, album.getIzenburua(), 1);
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}

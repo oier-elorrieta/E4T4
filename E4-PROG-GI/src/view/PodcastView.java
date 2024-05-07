@@ -44,7 +44,7 @@ public class PodcastView extends JFrame {
 	private JPanel contentPane;
 	private JLabel lblIzena;
 
-	public PodcastView(String izena) {
+	public PodcastView(Podcasterra podcasterra) {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 250, 906, 594);
@@ -77,7 +77,7 @@ public class PodcastView extends JFrame {
 		JPanel panel = new JPanel();
 		panel.setBounds(10, 152, 359, 389);
 		contentPane.add(panel);
-		ArrayList<Audio> podcastak = ViewMetodoak.getPodcastList(izena);
+		ArrayList<Audio> podcastak = ViewMetodoak.getPodcastList(podcasterra.getIzena());
 		DefaultListModel<String> modeloList = new DefaultListModel<>();
 		for (int i = 0; i < podcastak.size(); i++) {
 			modeloList.addElement(podcastak.get(i).getIzena());
@@ -98,7 +98,7 @@ public class PodcastView extends JFrame {
 		panel_1.add(lblNewLabel);
 
 		// irudia seteatu lbl-ari
-		Podcasterra podcaster = PodcasterraDao.getPodcasterra(izena);
+		Podcasterra podcaster = PodcasterraDao.getPodcasterra(podcasterra.getIzena());
 		ViewMetodoak.setIrudia(lblNewLabel, podcaster.getIrudia());
 
 		// Deskripzioa
@@ -127,7 +127,7 @@ public class PodcastView extends JFrame {
 				try {
 					int podcastAukera = list.getSelectedIndex();
 					dispose();
-					JFrameSortu.erreprodukzioaSortu(podcastak, podcastAukera, false, izena, 1);
+					JFrameSortu.erreprodukzioaSortu(podcasterra,podcastak, podcastAukera, false, podcasterra.getIzena(), 1);
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}

@@ -1,5 +1,5 @@
 package view;
-
+// Hazme un test por cada una de las funciones que haya, cada uno de esos test solo puede tener un assert, las pruebas tienen que estar en Junit 4.
 import java.awt.EventQueue;
 
 import java.text.DateFormat;
@@ -78,7 +78,10 @@ public class ErregistroaPremium extends Erregistroa {
 		
 		
 		
+<<<<<<< HEAD
 		
+=======
+>>>>>>> 10a2f5de3a811ea7b3543010d594523d8dc07b96
 		ActionListener[] actionListeners = super.btnErregistratu.getActionListeners();
 		for (ActionListener listener : actionListeners) {
 			btnErregistratu.removeActionListener(listener);

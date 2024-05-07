@@ -165,7 +165,7 @@ public class ViewMetodoak {
 			ImageIcon icono = new ImageIcon(musikaria.getIrudia().getBytes(1, (int) musikaria.getIrudia().length()));
 			newButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					JFrameSortu.musikaViewSortu(musikaria.getIzena());
+					JFrameSortu.musikaViewSortu(musikaria);
 					jf.dispose();
 				}
 			});
@@ -233,7 +233,7 @@ public class ViewMetodoak {
 			ImageIcon icono = new ImageIcon(podcasterra.getIrudia().getBytes(1, (int) podcasterra.getIrudia().length()));
 			newButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-				JFrameSortu.podcastViewSortu(podcasterra.getIzena());
+				JFrameSortu.podcastViewSortu(podcasterra);
 					jf.dispose();
 				}
 			});
@@ -338,4 +338,46 @@ public class ViewMetodoak {
 		};
 		timer.schedule(task, 10000);
 	}
+	
+	public static String kalkulatuIraupena(int seg) {
+		boolean b = false;
+		int h = 0;
+		int min = 0;
+		String hString;
+		String minString;
+		String segString;
+		String iraupena;
+		
+		do {
+			b = false;
+			if (seg >= 60) {
+				min++;
+				seg = seg - 60;
+				b = true;
+				}
+			if (min>=60) {
+				h++;
+				min = min - 60;
+				b=true;
+			}
+		} while (b);
+		
+		hString = iraupenaToString(h);
+		minString = iraupenaToString(min);
+		segString = iraupenaToString(seg);
+		
+		iraupena = hString + ":" + minString + ":" + segString;
+		return iraupena;
+	}
+	
+	public static String iraupenaToString(int zbk) {
+		String zbkString;
+		if (zbk < 10) {
+			zbkString = "0" + zbk;
+		} else {
+			zbkString = zbk + "";
+		}
+		return zbkString;
+	}
+	
 }

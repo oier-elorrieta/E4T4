@@ -163,14 +163,14 @@ public class AbestiaDao {
 	}
 	
 	
-	
+	/*
 	public static boolean areGaurkoEntzunaldiak(int idAudio) {
 		
 		boolean badago = false;
 		try {
 		Connection konexioa = Kone.konektatu();
 		Statement stm = konexioa.createStatement();
-		kontsulta = "SELECT * FROM EstadistikakEgunean WHERE IdAudio = "+idAudio /*falta da data*/;
+		kontsulta = "SELECT * FROM EstadistikakEgunean WHERE IdAudio = "+idAudio falta da data;
 		ResultSet rs = stm.executeQuery(kontsulta);
 		
 		if(rs.next()) {
@@ -182,31 +182,25 @@ public class AbestiaDao {
 		}
 		return badago;
 	}
-		
-		
+		*/
 
-	
-	
-	
-	public static void setEntzunaldiak(int idAudio) {
+	public static void erregistratuErreprodukzioa(Audio audio) {
+		
+		int idBezero;
+		if (!SesioAldagaiak.erabiltzailePremium) {
+			idBezero = SesioAldagaiak.erabiltzaileLogeatutaFree.getIdErabiltzailea();
+		} else {
+			idBezero = SesioAldagaiak.erabiltzaileLogeatutaPremium.getIdErabiltzailea();
+		}
 		
 		try {
 		Connection konexioa = Kone.konektatu();
-		
-		
-		if (!areGaurkoEntzunaldiak(idAudio)) {
-			kontsulta = "INSERT into EstadistikakEgunean VALUES(?,?,?)";
+			kontsulta = "INSERT into Erreprodukzioak (IdBezeroa, IdAudio, ErreData) VALUES(?,?,?)";
 			pstm = konexioa.prepareStatement(kontsulta);
-			pstm.setInt(1, idAudio);
-			pstm.setDate(2, new java.sql.Date(new java.util.Date().getTime()));
-			pstm.setInt(3, 1);
+			pstm.setInt(1, idBezero);
+			pstm.setInt(2, audio.getIdAudio());
+			pstm.setDate(3, new java.sql.Date(new java.util.Date().getTime()));
 			pstm.execute();
-		}else {
-			kontsulta = "UPDATE EstadistikakEgunean SET Entzunaldiak = Entzunaldiak + 1 WHERE IdAudio = "+idAudio /*falta da data*/;
-			pstm = konexioa.prepareStatement(kontsulta);
-			pstm.execute();
-		}
-		
 		
 		} catch (SQLException e) {
 			System.out.println("Kontsulta txarto" + e.getMessage());

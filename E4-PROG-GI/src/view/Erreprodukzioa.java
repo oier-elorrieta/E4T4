@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
@@ -34,6 +36,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import model.Abestia;
+import model.Artista;
 import model.Audio;
 import model.Podcast;
 import model.SesioAldagaiak;
@@ -50,9 +53,10 @@ public class Erreprodukzioa extends JFrame {
 	private Clip clip;
 	private boolean erreproduzitzen;
 	private long posicion = 0;
+	private int iraupena = 0;
 
-	public Erreprodukzioa(ArrayList<Audio> abestiak, int abestiAukera, boolean isrunning, String izenaAlbum,
-			float abiadura) throws SQLException {
+	public Erreprodukzioa(Artista artista, ArrayList<Audio> abestiak, int abestiAukera, boolean isrunning,
+			String izenaAlbum, float abiadura) throws SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 250, 906, 594);
 		setTitle("Menu Nagusia - Talde 4");
@@ -67,8 +71,11 @@ public class Erreprodukzioa extends JFrame {
 
 		JLabel lblIzenaAlbum = new JLabel(izenaAlbum);
 		lblIzenaAlbum.setHorizontalAlignment(SwingConstants.CENTER);
-		lblIzenaAlbum.setFont(new Font("Arial Black", Font.BOLD | Font.ITALIC, 15));
+		lblIzenaAlbum.setFont(new Font("Arial Black", Font.BOLD | Font.ITALIC, 17));
 		lblIzenaAlbum.setBounds(10, 35, 870, 25);
+		if (artista.getClass().getSimpleName().equals("Musikaria")) {
+			contentPane.add(lblIzenaAlbum);
+		}
 
 		ImageIcon irudia = new ImageIcon(abestiak.get(abestiAukera).getIrudia().getBytes(1,
 				(int) abestiak.get(abestiAukera).getIrudia().length()));
@@ -77,14 +84,20 @@ public class Erreprodukzioa extends JFrame {
 		lblIrudia.setIcon(irudia);
 
 		JLabel lblIzenaAbesti = new JLabel(abestiak.get(abestiAukera).getIzena());
-		lblIzenaAbesti.setFont(new Font("Arial Black", Font.BOLD | Font.ITALIC, 17));
+		lblIzenaAbesti.setFont(new Font("Arial Black", Font.BOLD | Font.ITALIC, 20));
 		lblIzenaAbesti.setHorizontalAlignment(SwingConstants.CENTER);
-		lblIzenaAbesti.setBounds(10, 350, 870, 25);
+		lblIzenaAbesti.setBounds(10, 340, 870, 25);
+
+		JLabel lblIzenaArtista = new JLabel(artista.getIzena());
+		lblIzenaArtista.setFont(new Font("Arial Black", Font.ITALIC, 16));
+		lblIzenaArtista.setHorizontalAlignment(SwingConstants.CENTER);
+		lblIzenaArtista.setBounds(10, 370, 870, 25);
 
 		JLabel lblIraupena = new JLabel(abestiak.get(abestiAukera).getIraupena() + "");
-		lblIraupena.setFont(new Font("Arial Black", Font.BOLD | Font.ITALIC, 17));
+
+		lblIraupena.setFont(new Font("Arial Black", Font.BOLD | Font.ITALIC, 16));
 		lblIraupena.setHorizontalAlignment(SwingConstants.CENTER);
-		lblIraupena.setBounds(10, 375, 870, 25);
+		lblIraupena.setBounds(10, 400, 870, 25);
 
 		JButton btnMenua = new JButton("Menua");
 		btnMenua.setBounds(150, 450, 150, 50);
@@ -98,11 +111,18 @@ public class Erreprodukzioa extends JFrame {
 		btnAurrekoa.setBounds(325, 450, 50, 50);
 		btnAurrekoa.setFont(new Font("SansSerif", Font.BOLD, 15));
 
+<<<<<<< HEAD
 		
 		
 		AbestiaDao.setEntzunaldiak(abestiak.get(abestiAukera).getIdAudio());
 		
 		
+=======
+		if (clip.isRunning() && clip.getFramePosition() == 0) {
+			AbestiaDao.erregistratuErreprodukzioa(abestiak.get(abestiAukera));
+		}
+
+>>>>>>> 10a2f5de3a811ea7b3543010d594523d8dc07b96
 		JButton btnPlay = new JButton();
 		if (isrunning) {
 			btnPlay.setText("Pause");
@@ -175,7 +195,7 @@ public class Erreprodukzioa extends JFrame {
 			boolean gustokoaDu = AbestiaDao.gustukoaKomprobatu(abestiak.get(abestiAukera));
 			JButton btnGuztokoa = new JButton();
 			if (gustokoaDu) {
-				btnGuztokoa.setText("Gustokoetatik atera");
+				btnGuztokoa.setText("Guztokotik atera");
 			} else {
 				btnGuztokoa.setText("Gustokoan sartu");
 			}
@@ -198,23 +218,23 @@ public class Erreprodukzioa extends JFrame {
 						}
 						clip.close();
 						dispose();
-						JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukera, erreproduzitzen, izenaAlbum, abiadura);
+						JFrameSortu.erreprodukzioaSortu(artista, abestiak, abestiAukera, erreproduzitzen, izenaAlbum,
+								abiadura);
 					} catch (SQLException e1) {
 
 						e1.printStackTrace();
 					}
 				}
 			});
-			
+
 		} else {
 			contentPane.add(btnX05);
 			contentPane.add(btnX1);
 			contentPane.add(btnX15);
 		}
-
-		contentPane.add(lblIzenaAlbum);
 		contentPane.add(lblIrudia);
 		contentPane.add(lblIzenaAbesti);
+		contentPane.add(lblIzenaArtista);
 		contentPane.add(lblIraupena);
 		if (abestiak.get(abestiAukera).getClass().getName().equals("model.Abestia")) {
 			contentPane.add(btnMenua);
@@ -267,27 +287,24 @@ public class Erreprodukzioa extends JFrame {
 						}
 						clip.stop();
 
-
 						SesioAldagaiak.doSkip = false;
 						ViewMetodoak.skipBaimendu();
 
-
-						
 						if (!SesioAldagaiak.erabiltzailePremium) {
-						SesioAldagaiak.doSkip = false;
-						ViewMetodoak.skipBaimendu();
+							SesioAldagaiak.doSkip = false;
+							ViewMetodoak.skipBaimendu();
 						}
-						
 
 						dispose();
 						if ((SesioAldagaiak.iragarkiaAtera && SesioAldagaiak.erreprodukzioKop >= 1)
 								&& !SesioAldagaiak.erabiltzailePremium) {
 							SesioAldagaiak.erreprodukzioKop = 0;
-							JFrameSortu.iragarkiaErreproduzituSortu(abestiak, abestiAukeraAux, erreproduzitzen,
+							JFrameSortu.iragarkiaErreproduzituSortu(artista, abestiak, abestiAukeraAux, erreproduzitzen,
 									izenaAlbum);
 						} else {
 							SesioAldagaiak.erreprodukzioKop++;
-							JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux, erreproduzitzen, izenaAlbum, 1);
+							JFrameSortu.erreprodukzioaSortu(artista, abestiak, abestiAukeraAux, erreproduzitzen,
+									izenaAlbum, 1);
 						}
 					} catch (SQLException e1) {
 						e1.printStackTrace();
@@ -303,10 +320,18 @@ public class Erreprodukzioa extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (clip.isRunning()) {
+					
+					int segunduak = (int) clip.getMicrosecondPosition()/1000000;
+					String iraupena = ViewMetodoak.kalkulatuIraupena(segunduak);
+					lblIraupena.setText(iraupena);
+					
 					erreproduzitzen = false;
 					clip.stop();
 					btnPlay.setText("Play");
 				} else {
+					if (clip.getFramePosition() == 0) {
+						AbestiaDao.erregistratuErreprodukzioa(abestiak.get(abestiAukera));
+					}
 					erreproduzitzen = true;
 					clip.start();
 					btnPlay.setText("Pause");
@@ -330,16 +355,17 @@ public class Erreprodukzioa extends JFrame {
 						if (!SesioAldagaiak.erabiltzailePremium) {
 							SesioAldagaiak.doSkip = false;
 							ViewMetodoak.skipBaimendu();
-							}
+						}
 						dispose();
 						if ((SesioAldagaiak.iragarkiaAtera && SesioAldagaiak.erreprodukzioKop >= 1)
 								&& !SesioAldagaiak.erabiltzailePremium) {
 							SesioAldagaiak.erreprodukzioKop = 0;
-							JFrameSortu.iragarkiaErreproduzituSortu(abestiak, abestiAukeraAux, erreproduzitzen,
+							JFrameSortu.iragarkiaErreproduzituSortu(artista, abestiak, abestiAukeraAux, erreproduzitzen,
 									izenaAlbum);
 						} else {
 							SesioAldagaiak.erreprodukzioKop++;
-							JFrameSortu.erreprodukzioaSortu(abestiak, abestiAukeraAux, erreproduzitzen, izenaAlbum, 1);
+							JFrameSortu.erreprodukzioaSortu(artista, abestiak, abestiAukeraAux, erreproduzitzen,
+									izenaAlbum, 1);
 						}
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
