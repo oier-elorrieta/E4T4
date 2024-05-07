@@ -99,7 +99,7 @@ public class Erreprodukzioa extends JFrame {
 		btnAurrekoa.setFont(new Font("SansSerif", Font.BOLD, 15));
 
 		
-		System.out.println(AbestiaDao.areGaurkoEntzunaldiak(abestiak.get(abestiAukera).getIdAudio()));
+		
 			AbestiaDao.setEntzunaldiak(abestiak.get(abestiAukera).getIdAudio());
 		
 		
