@@ -11,39 +11,60 @@ import model.Album;
 import model.Audio;
 import model.Musikaria;
 import model.dao.AlbumDao;
+import model.dao.MusikariaDao;
 
 public class AlbumDaoTest {
 
     @Test
-    public void testGetAlbumak() {
-        Musikaria musikari = new Musikaria();
-        musikari.setIdArtista(1);
+    public void testGetAlbumakDaude() {
+        Musikaria musikari = MusikariaDao.getMusikaria("LiSa");
         ArrayList<Album> result = AlbumDao.getAlbumak(musikari);
         assertNotNull(result);
+    }
+    
+    @Test
+    public void testGetAlbumakBete() {
+        Musikaria musikari = MusikariaDao.getMusikaria("LiSa");
+        ArrayList<Album> result = AlbumDao.getAlbumak(musikari);
         assertEquals(2, result.size());
     }
 
     @Test
-    public void testBeteAlbumakKantaKop() {
-        ArrayList<Album> albumak = new ArrayList<>();
-        Album album1 = new Album();
-        album1.setId(1);
-        Album album2 = new Album();
-        album2.setId(2);
-        albumak.add(album1);
-        albumak.add(album2);
+    public void testBeteAlbumakKantaKop1() {
+    	Musikaria musikari = MusikariaDao.getMusikaria("LiSa");
+        ArrayList<Album> albumak = AlbumDao.getAlbumak(musikari);
         AlbumDao.beteAlbumakKantaKop(albumak);
-        assertEquals(3, album1.getKantaKop());
-        assertEquals(2, album2.getKantaKop());
+        assertEquals(3, albumak.get(0).getKantaKop());
+    }
+    
+    @Test
+    public void testBeteAlbumakKantaKop2() {
+    	Musikaria musikari = MusikariaDao.getMusikaria("LiSa");
+        ArrayList<Album> albumak = AlbumDao.getAlbumak(musikari);
+        AlbumDao.beteAlbumakKantaKop(albumak);
+        assertEquals(0, albumak.get(1).getKantaKop());
     }
 
     @Test
-    public void testGetAlbumByAbesti() {
+    public void testGetAlbumByAbesti1() {
         Audio audio = new Audio();
         audio.setIdAudio(1);
         Album result = AlbumDao.getAlbumByAbesti(audio);
         assertNotNull(result);
+
+    }
+    @Test
+    public void testGetAlbumByAbesti2() {
+        Audio audio = new Audio();
+        audio.setIdAudio(1);
+        Album result = AlbumDao.getAlbumByAbesti(audio);
         assertEquals(1, result.getId());
-        assertEquals("Album1", result.getIzenburua());
+    }
+    @Test
+    public void testGetAlbumByAbesti3() {
+        Audio audio = new Audio();
+        audio.setIdAudio(1);
+        Album result = AlbumDao.getAlbumByAbesti(audio);
+        assertEquals("BS - Singles", result.getIzenburua());
     }
 }

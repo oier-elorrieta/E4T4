@@ -78,6 +78,10 @@ public class ErregistroaPremium extends Erregistroa {
 		
 		
 		
+<<<<<<< HEAD
+		
+=======
+>>>>>>> 10a2f5de3a811ea7b3543010d594523d8dc07b96
 		ActionListener[] actionListeners = super.btnErregistratu.getActionListeners();
 		for (ActionListener listener : actionListeners) {
 			btnErregistratu.removeActionListener(listener);
