@@ -4,10 +4,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.WindowConstants;
 import model.Abestia;
+import model.Album;
+import model.Artista;
 import model.Audio;
+import model.Musikaria;
 import model.PlayListak;
 import model.Podcast;
+import model.Podcasterra;
 import view.AbestiaPlayListeanSartu;
+import view.AbestiakMusikaria;
 import view.Erregistroa;
 import view.ErregistroaPremium;
 import view.Erreprodukzioa;
@@ -98,26 +103,32 @@ public class JFrameSortu {
 	 * @param izenaAlbum Albumaren izena
 	 * @throws SQLException SQL errorea
 	 */
-	public static void erreprodukzioaSortu(ArrayList<Audio> abestiak, int abestiAukera, boolean isrunning, String izenaAlbum, float abiadura) throws SQLException{
-		Erreprodukzioa erreprodukzioaSortu = new Erreprodukzioa(abestiak,abestiAukera, isrunning, izenaAlbum, abiadura);
+	public static void erreprodukzioaSortu(Artista artista, ArrayList<Audio> abestiak, int abestiAukera, boolean isrunning, String izenaAlbum, float abiadura) throws SQLException{
+		Erreprodukzioa erreprodukzioaSortu = new Erreprodukzioa(artista, abestiak,abestiAukera, isrunning, izenaAlbum, abiadura);
 		erreprodukzioaSortu.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		erreprodukzioaSortu.setVisible(true);
 	}
 	
-	public static void musikaViewSortu(String izena) {
-		MusikariView musicariView = new MusikariView(izena);
+	public static void musikaViewSortu(Musikaria musikaria) {
+		MusikariView musicariView = new MusikariView(musikaria);
 		musicariView.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		musicariView.setVisible(true);
 	}
 	
-	public static void podcastViewSortu(String izena) {
-		PodcastView podcastView = new PodcastView(izena);
+	public static void abestiakMusikaria(Musikaria musikaria, Album album) {
+		AbestiakMusikaria abestiakMusikaria = new AbestiakMusikaria(musikaria,album);
+		abestiakMusikaria.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		abestiakMusikaria.setVisible(true);
+	}
+	
+	public static void podcastViewSortu(Podcasterra podcasterra) {
+		PodcastView podcastView = new PodcastView(podcasterra);
 		podcastView.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		podcastView.setVisible(true);
 	}
 	
-	public static void iragarkiaErreproduzituSortu(ArrayList<Audio> abestiak, int abestiAukera, boolean isrunning, String izenaAlbum) throws SQLException{
-		IragarkiaErreproduzitu iragarkiaErreproduzituSortu = new IragarkiaErreproduzitu(abestiak,abestiAukera, isrunning, izenaAlbum);
+	public static void iragarkiaErreproduzituSortu(Artista artista, ArrayList<Audio> abestiak, int abestiAukera, boolean isrunning, String izenaAlbum) throws SQLException{
+		IragarkiaErreproduzitu iragarkiaErreproduzituSortu = new IragarkiaErreproduzitu(artista, abestiak,abestiAukera, isrunning, izenaAlbum);
 		iragarkiaErreproduzituSortu.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		iragarkiaErreproduzituSortu.setVisible(true);
 	}

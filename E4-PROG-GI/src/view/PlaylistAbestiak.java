@@ -21,10 +21,12 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import model.Abestia;
 import model.Audio;
+import model.Musikaria;
 import model.PlayListak;
 import model.SesioAldagaiak;
 import model.dao.AbestiaDao;
 import model.dao.AudioDao;
+import model.dao.MusikariaDao;
 import model.dao.PlayListakDao;
 import model.metodoak.ImportExportMetodoak;
 import model.metodoak.JFrameSortu;
@@ -103,8 +105,9 @@ public class PlaylistAbestiak extends JFrame {
 				} else {
 					try {
 						int aukeraAbestia = jListAbestiak.getSelectedIndex();
+						Musikaria musikaria = MusikariaDao.getMusikariaByAudio(abestiakList.get(aukeraAbestia));
 						dispose();
-						JFrameSortu.erreprodukzioaSortu(abestiakList, aukeraAbestia, false, aukeraPlaylist.getIzena(),
+						JFrameSortu.erreprodukzioaSortu(musikaria, abestiakList, aukeraAbestia, false, aukeraPlaylist.getIzena(),
 								1);
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block

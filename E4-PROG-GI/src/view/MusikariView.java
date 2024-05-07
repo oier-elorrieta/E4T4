@@ -47,7 +47,7 @@ public class MusikariView extends JFrame {
 	private Musikaria musikari;
 	private JLabel lblIzena;
 
-	public MusikariView(String izena) {
+	public MusikariView(Musikaria musikaria) {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 250, 906, 594);
@@ -83,7 +83,7 @@ public class MusikariView extends JFrame {
 		panel.setBounds(10, 152, 359, 389);
 		contentPane.add(panel);
 
-		DefaultListModel<Album> modeloList = ViewMetodoak.getMusikariAlbumak(izena);
+		DefaultListModel<Album> modeloList = ViewMetodoak.getMusikariAlbumak(musikaria.getIzena());
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
 
 		JList list = new JList(modeloList);
@@ -101,7 +101,7 @@ public class MusikariView extends JFrame {
 		panel_1.add(lblNewLabel);
 
 		// Aukeratutako musikaria
-		musikari = MusikariaDao.getMusikaria(izena);
+		musikari = MusikariaDao.getMusikaria(musikaria.getIzena());
 
 		// irudia seteatu lbl-ari
 		ViewMetodoak.setIrudia(lblNewLabel, musikari.getIrudia());
@@ -129,12 +129,9 @@ public class MusikariView extends JFrame {
 		list.addListSelectionListener(new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
-
 				Album selectedValue = (Album) list.getSelectedValue();
-
-				AbestiakMusikaria ab = new AbestiakMusikaria(selectedValue);
-				ab.setVisible(true);
 				dispose();
+				JFrameSortu.abestiakMusikaria(musikaria, selectedValue);
 			}
 		});
 

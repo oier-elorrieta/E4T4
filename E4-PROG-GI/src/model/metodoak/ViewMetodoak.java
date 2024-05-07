@@ -165,7 +165,7 @@ public class ViewMetodoak {
 			ImageIcon icono = new ImageIcon(musikaria.getIrudia().getBytes(1, (int) musikaria.getIrudia().length()));
 			newButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					JFrameSortu.musikaViewSortu(musikaria.getIzena());
+					JFrameSortu.musikaViewSortu(musikaria);
 					jf.dispose();
 				}
 			});
@@ -233,7 +233,7 @@ public class ViewMetodoak {
 			ImageIcon icono = new ImageIcon(podcasterra.getIrudia().getBytes(1, (int) podcasterra.getIrudia().length()));
 			newButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-				JFrameSortu.podcastViewSortu(podcasterra.getIzena());
+				JFrameSortu.podcastViewSortu(podcasterra);
 					jf.dispose();
 				}
 			});
