@@ -1,6 +1,7 @@
 package model.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -163,7 +164,54 @@ public class AbestiaDao {
 	
 	
 	
+	public static boolean areGaurkoEntzunaldiak(int idAudio) {
+		
+		boolean badago = false;
+		try {
+		Connection konexioa = Kone.konektatu();
+		Statement stm = konexioa.createStatement();
+		kontsulta = "SELECT * FROM EstadistikakEgunean WHERE IdAudio = "+idAudio /*falta da data*/;
+		ResultSet rs = stm.executeQuery(kontsulta);
+		
+		if(rs.next()) {
+			badago = true;
+		}
+		
+		}catch(SQLException e) {
+			e.getMessage();
+		}
+		return badago;
+	}
+		
+		
+
 	
+	
+	
+	public static void setEntzunaldiak(int idAudio) {
+		
+		try {
+		Connection konexioa = Kone.konektatu();
+		
+		
+		if (!areGaurkoEntzunaldiak(idAudio)) {
+			kontsulta = "INSERT into EstadistikakEgunean VALUES(?,?,?)";
+			pstm = konexioa.prepareStatement(kontsulta);
+			pstm.setInt(1, idAudio);
+			pstm.setDate(2, new java.sql.Date(new java.util.Date().getTime()));
+			pstm.setInt(3, 1);
+			pstm.execute();
+		}else {
+			kontsulta = "UPDATE EstadistikakEgunean SET Entzunaldiak = Entzunaldiak + 1 WHERE IdAudio = "+idAudio /*falta da data*/;
+			pstm = konexioa.prepareStatement(kontsulta);
+			pstm.execute();
+		}
+		
+		
+		} catch (SQLException e) {
+			System.out.println("Kontsulta txarto" + e.getMessage());
+		}
+	}
 	
 	
 }
