@@ -1,6 +1,8 @@
 package model;
 
 import java.sql.Blob;
+import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.Objects;
 
 
@@ -61,8 +63,16 @@ public abstract class Artista {
 		if (getClass() != obj.getClass())
 			return false;
 		Artista other = (Artista) obj;
-		return Objects.equals(deskription, other.deskription) && Objects.equals(irudia, other.irudia)
+		try {
+		  byte[] thisBytes = this.irudia.getBytes(1, (int) this.irudia.length());
+          byte[] otherBytes = other.irudia.getBytes(1, (int) other.irudia.length());
+          
+		return Objects.equals(deskription, other.deskription) && Arrays.equals(thisBytes, otherBytes)
 				&& Objects.equals(izena, other.izena);
+		} catch (SQLException e) {
+			// TODO: handle exception
+		}
+		return false;
 	}
 
 	/**
