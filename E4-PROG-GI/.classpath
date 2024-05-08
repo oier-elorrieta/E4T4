@@ -33,6 +33,4 @@
 			<attribute name="m2e-apt" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/in1dm3-d/Downloads/jdk-17.0.10_windows-x64_bin.zip"/>
-	<classpathentry kind="output" path="target/classes"/>
 </classpath>

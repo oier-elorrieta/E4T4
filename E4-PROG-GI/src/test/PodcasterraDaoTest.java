@@ -17,26 +17,10 @@ import model.sql.Kone;
 
 public class PodcasterraDaoTest {
 
-    @Test
-    public void getPodcasterraTest() {
-    	Podcasterra podcasterTest1 = null;
-    	Podcasterra podcasterTest2 = null;
-    	
-    	Connection konexioa = Kone.konektatu();
-    	try {
-			Statement stm = konexioa.createStatement();
-			String kontsulta = "SELECT  FROM Podcaster p INNER JOIN Artista a on p.IdArtista = a.IdArtista WHERE IzenArtistikoa='Ibai Llanos'";
-			ResultSet rs = stm.executeQuery(kontsulta);
-			rs.next();
-			podcasterTest1 = new Podcasterra(rs.getInt("a.IdArtista"), rs.getString("a.IzenArtistikoa"),
-					rs.getString("a.Deskripzioa"), rs.getBlob("a.Irudia"));
-			konexioa.close();
-		} catch (SQLException e) {
-			e.getMessage();
-		}
-    	
-    	podcasterTest2 = PodcasterraDao.getPodcasterra("Ibai Llanos");
-    	
-    	assertEquals(podcasterTest1, podcasterTest2);
-    }
+	@Test
+	public void getPodcasterraTest() {
+		Podcasterra podcasterTest = null;
+		podcasterTest = PodcasterraDao.getPodcasterra("Ibai Llanos");
+		assertEquals(podcasterTest, 1);
+	}
 }
