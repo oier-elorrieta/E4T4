@@ -44,7 +44,6 @@ import model.Audio;
 import model.Podcast;
 import model.SesioAldagaiak;
 import model.dao.AbestiaDao;
-import model.metodoak.ErreproduzioSpeed;
 import model.metodoak.JFrameSortu;
 import model.metodoak.ViewMetodoak;
 import model.sql.Kone;
