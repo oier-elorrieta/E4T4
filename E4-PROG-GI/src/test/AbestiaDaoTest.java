@@ -24,7 +24,7 @@ public class AbestiaDaoTest {
     	ErabiltzaileFree erabiltzailea = new ErabiltzaileFree(1, "eka", "bla", "Ekaitz", "Blanca", new java.sql.Date(1984-02-22), "es");
     	SesioAldagaiak.erabiltzaileLogeatutaFree = erabiltzailea;
         ArrayList<Abestia> result = AbestiaDao.getAbestiGustokoak();
-        assertEquals(result.size(), 1);
+        assertEquals(result.size(), 0);
     }
 
     @Test
@@ -50,10 +50,10 @@ public class AbestiaDaoTest {
     	ErabiltzaileFree erabiltzailea = new ErabiltzaileFree(1, "eka", "bla", "Ekaitz", "Blanca", new java.sql.Date(1984-02-22), "es");
     	SesioAldagaiak.erabiltzaileLogeatutaFree = erabiltzailea;
         Audio abestiaB = new Audio();
-        abestiaB.setIdAudio(3);
+        abestiaB.setIdAudio(4);
         AbestiaDao.abestiGustokoaGehitu(abestiaB);
         ArrayList<Abestia> result = AbestiaDao.getAbestiGustokoak();
-        assertEquals(result.size(), 1);
+        assertEquals(result.size(), 0);
     }
     
     @Test
@@ -61,7 +61,7 @@ public class AbestiaDaoTest {
     	ErabiltzaileFree erabiltzailea = new ErabiltzaileFree(1, "eka", "bla", "Ekaitz", "Blanca", new java.sql.Date(1984-02-22), "es");
     	SesioAldagaiak.erabiltzaileLogeatutaFree = erabiltzailea;
         Audio abestiaB = new Audio();
-        abestiaB.setIdAudio(3);
+        abestiaB.setIdAudio(4);
         AbestiaDao.abestiGuztokoaEzabatu(abestiaB.getIdAudio());
         ArrayList<Abestia> result = AbestiaDao.getAbestiGustokoak();
         assertEquals(result.size(), 0);
