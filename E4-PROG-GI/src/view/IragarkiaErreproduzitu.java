@@ -7,6 +7,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Blob;
@@ -55,6 +58,13 @@ private Timer timer;
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
+		this.addWindowListener((WindowListener) new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+               System.exit(0);
+            }
+        });
+		
 		ImageIcon irudia = new ImageIcon(abestiak.get(abestiAukera).getIrudia().getBytes(1,
 				(int) abestiak.get(abestiAukera).getIrudia().length()));
 		JLabel lblIrudia = new JLabel();
@@ -105,4 +115,6 @@ private Timer timer;
 
 		timer.schedule(task, l);
 	}
+	
+	
 }
