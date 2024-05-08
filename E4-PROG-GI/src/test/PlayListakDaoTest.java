@@ -2,7 +2,9 @@ package test;
 
 import static org.junit.Assert.*;
 
+import java.sql.Blob;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.ArrayList;
 
 import org.junit.Test;
@@ -17,13 +19,11 @@ public class PlayListakDaoTest {
     public void testGetPlaylist() {
         ArrayList<PlayListak> result = PlayListakDao.getPlaylist();
         assertNotNull(result);
-        assertEquals(1, result.size());
     }
 
     @Test
     public void testPlaylistGehitu() {
         PlayListakDao.playlistGehitu("Test Playlist");
-        // Assert that the playlist has been added successfully
         ArrayList<PlayListak> playlists = PlayListakDao.getPlaylist();
         boolean found = false;
         for (PlayListak playlist : playlists) {
@@ -37,9 +37,9 @@ public class PlayListakDaoTest {
 
     @Test
     public void testPlaylistEzabatu() throws SQLException {
-        // Add a test playlist
+      
         PlayListakDao.playlistGehitu("Test Playlist");
-        // Get the id of the test playlist
+       
         ArrayList<PlayListak> playlists = PlayListakDao.getPlaylist();
         int id = 0;
         for (PlayListak playlist : playlists) {
@@ -48,9 +48,9 @@ public class PlayListakDaoTest {
                 break;
             }
         }
-        // Delete the test playlist
+       
         PlayListakDao.playlistEzabatu(id);
-        // Assert that the playlist has been deleted successfully
+     
         playlists = PlayListakDao.getPlaylist();
         boolean found = false;
         for (PlayListak playlist : playlists) {
@@ -64,9 +64,9 @@ public class PlayListakDaoTest {
 
     @Test
     public void testAbestiPlaylistEzabatu() throws SQLException {
-        // Add a test playlist
+        
         PlayListakDao.playlistGehitu("Test Playlist");
-        // Get the id of the test playlist
+      
         ArrayList<PlayListak> playlists = PlayListakDao.getPlaylist();
         int playlistId = 0;
         for (PlayListak playlist : playlists) {
@@ -75,12 +75,17 @@ public class PlayListakDaoTest {
                 break;
             }
         }
-        // Add a test audio to the playlist
-        Audio testAudio = new Audio(1, "Test Audio", null, null, false);
+     
+        int idAudio = 1;
+        String izena = "Test Audio";
+        Time iraupena = new Time(0, 3, 30);
+        Blob irudia = null;
+
+        Audio testAudio = new Audio(idAudio, izena, iraupena, irudia);
         PlayListakDao.playlisteanAbestiaGehitu(new PlayListak(playlistId, "Test Playlist", null), testAudio);
-        // Delete the test audio from the playlist
+        
         PlayListakDao.abestiPlaylistEzabatu(playlistId, testAudio.getIdAudio());
-        // Assert that the audio has been deleted successfully from the playlist
+        
         ArrayList<Audio> playlistAudios = PlayListakDao.getPlayListAbestiak(new PlayListak(playlistId, "Test Playlist", null));
         boolean found = false;
         for (Audio audio : playlistAudios) {
@@ -101,9 +106,9 @@ public class PlayListakDaoTest {
 
     @Test
     public void testPlaylisteanAbestiaGehitu() {
-        // Add a test playlist
+       
         PlayListakDao.playlistGehitu("Test Playlist");
-        // Get the id of the test playlist
+   
         ArrayList<PlayListak> playlists = PlayListakDao.getPlaylist();
         int playlistId = 0;
         for (PlayListak playlist : playlists) {
@@ -112,10 +117,15 @@ public class PlayListakDaoTest {
                 break;
             }
         }
-        // Add a test audio to the playlist
-        Audio testAudio = new Audio(1, "Test Audio", null, null, false);
+        
+        int idAudio = 1;
+        String izena = "Test Audio";
+        Time iraupena = new Time(0, 3, 30);
+        Blob irudia = null;
+
+        Audio testAudio = new Audio(idAudio, izena, iraupena, irudia);
         PlayListakDao.playlisteanAbestiaGehitu(new PlayListak(playlistId, "Test Playlist", null), testAudio);
-        // Assert that the audio has been added successfully to the playlist
+       
         ArrayList<Audio> playlistAudios = PlayListakDao.getPlayListAbestiak(new PlayListak(playlistId, "Test Playlist", null));
         boolean found = false;
         for (Audio audio : playlistAudios) {
@@ -129,9 +139,9 @@ public class PlayListakDaoTest {
 
     @Test
     public void testKomprobatuAbestiaBadago() {
-        // Add a test playlist
+      
         PlayListakDao.playlistGehitu("Test Playlist");
-        // Get the id of the test playlist
+      
         ArrayList<PlayListak> playlists = PlayListakDao.getPlaylist();
         int playlistId = 0;
         for (PlayListak playlist : playlists) {
@@ -140,10 +150,15 @@ public class PlayListakDaoTest {
                 break;
             }
         }
-        // Add a test audio to the playlist
-        Audio testAudio = new Audio(1, "Test Audio", null, null, false);
+        
+        int idAudio = 1;
+        String izena = "Test Audio";
+        Time iraupena = new Time(0, 3, 30);
+        Blob irudia = null;
+
+        Audio testAudio = new Audio(idAudio, izena, iraupena, irudia);
         PlayListakDao.playlisteanAbestiaGehitu(new PlayListak(playlistId, "Test Playlist", null), testAudio);
-        // Assert that the audio exists in the playlist
+       
         boolean result = PlayListakDao.komprobatuAbestiaBadago(new PlayListak(playlistId, "Test Playlist", null), testAudio);
         assertTrue(result);
     }

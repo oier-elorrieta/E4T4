@@ -111,18 +111,18 @@ public class Erreprodukzioa extends JFrame {
 		btnAurrekoa.setBounds(325, 450, 50, 50);
 		btnAurrekoa.setFont(new Font("SansSerif", Font.BOLD, 15));
 
-<<<<<<< HEAD
+
 		
 		
-		AbestiaDao.setEntzunaldiak(abestiak.get(abestiAukera).getIdAudio());
+		AbestiaDao.erregistratuErreprodukzioa(abestiak.get(abestiAukera));
 		
 		
-=======
+
 		if (clip.isRunning() && clip.getFramePosition() == 0) {
 			AbestiaDao.erregistratuErreprodukzioa(abestiak.get(abestiAukera));
 		}
 
->>>>>>> 10a2f5de3a811ea7b3543010d594523d8dc07b96
+
 		JButton btnPlay = new JButton();
 		if (isrunning) {
 			btnPlay.setText("Pause");
