@@ -193,10 +193,10 @@ public class Erregistroa extends JFrame {
 				passwordField, lblPasahitzaErrepikatu, passwordFieldErrepikatu,
 				lblJaiotzeData, txtJaiotzeData, lblHizkuntza, cboHizkuntza,
 				btnAtzera, btnErregistratu);
+	
 		
-		btnErregistratu.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		btnErregistratu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				datuakEzarri();
 			}
 		});

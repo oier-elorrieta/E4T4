@@ -25,7 +25,7 @@ public class PodcasterraDaoTest {
     	Connection konexioa = Kone.konektatu();
     	try {
 			Statement stm = konexioa.createStatement();
-			String kontsulta = "SELECT * FROM Podcaster p INNER JOIN Artista a on p.IdArtista = a.IdArtista WHERE IzenArtistikoa='Ibai Llanos'";
+			String kontsulta = "SELECT  FROM Podcaster p INNER JOIN Artista a on p.IdArtista = a.IdArtista WHERE IzenArtistikoa='Ibai Llanos'";
 			ResultSet rs = stm.executeQuery(kontsulta);
 			rs.next();
 			podcasterTest1 = new Podcasterra(rs.getInt("a.IdArtista"), rs.getString("a.IzenArtistikoa"),

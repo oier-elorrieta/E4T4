@@ -117,7 +117,6 @@ public class ErregistroaPremium extends Erregistroa {
 		}
 
 		editor.getTextField().setEditable(false);
-
 		spinner.setEditor(editor);
 		spinner.setBounds(580, 260, 200, 32);
 
@@ -133,15 +132,16 @@ public class ErregistroaPremium extends Erregistroa {
 
 		super.btnErregistratu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				
 				if (SesioAldagaiak.erabiltzaileLogeatutaPremium != null) {
-
 					Date dat = SesioAldagaiak.erabiltzaileLogeatutaPremium.getPremiumMuga();
 					dat = (Date) spinner.getValue();
 
 					if (dat.after(calendar.getTime())) {
 						// Premium data eguneratu (Urteak)
 						gordePremium((java.util.Date) dat);
+						dispose();
+						JFrameSortu.loginAukeraSortu();
 					} else {
 						JOptionPane.showMessageDialog(null, "Premiuma Erosteko lehenik Premium muga Aldatu", "heyyy!!",
 								JOptionPane.WARNING_MESSAGE);
@@ -154,12 +154,14 @@ public class ErregistroaPremium extends Erregistroa {
 					if (dat.after(calendar.getTime())) {
 						// Premium data eguneratu (Urteak)
 						gordePremium((java.util.Date) dat);
+						dispose();
+						JFrameSortu.loginAukeraSortu();
 					} else {
 						JOptionPane.showMessageDialog(null, "Premiuma Erosteko lehenik Premium muga Aldatu", "Error",
 								JOptionPane.WARNING_MESSAGE);
 					}
 				}
-
+				
 			}
 		});
 
@@ -189,10 +191,8 @@ public class ErregistroaPremium extends Erregistroa {
 								datuakEguneratu();
 								setIdatzi(false);
 							}
-
 						}
 					}
-
 				}
 				txtIzena.setEditable(isIdatzi());
 				txtAbizenak.setEditable(isIdatzi());
@@ -214,7 +214,6 @@ public class ErregistroaPremium extends Erregistroa {
 		passwordFieldErrepikatu.setText(SesioAldagaiak.logErabiltzailea.getPasahitza());
 		txtJaiotzeData.setText(AldatuData(SesioAldagaiak.logErabiltzailea.getJaiotzeData()));
 		cboHizkuntza.setSelectedItem(SesioAldagaiak.logErabiltzailea.getHizkuntza());
-		;
 	}
 
 	public String AldatuData(Date fecha) {
