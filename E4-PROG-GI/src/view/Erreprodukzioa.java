@@ -8,6 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -41,7 +44,7 @@ import model.Audio;
 import model.Podcast;
 import model.SesioAldagaiak;
 import model.dao.AbestiaDao;
-import model.metodoak.ErreproduzioSpeed;
+
 import model.metodoak.JFrameSortu;
 import model.metodoak.ViewMetodoak;
 import model.sql.Kone;
@@ -57,7 +60,7 @@ public class Erreprodukzioa extends JFrame {
 
 	public Erreprodukzioa(Artista artista, ArrayList<Audio> abestiak, int abestiAukera, boolean isrunning,
 			String izenaAlbum, float abiadura) throws SQLException {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
 		setBounds(400, 250, 906, 594);
 		setTitle("Menu Nagusia - Talde 4");
 		contentPane = new JPanel();
@@ -110,13 +113,6 @@ public class Erreprodukzioa extends JFrame {
 		JButton btnAurrekoa = new JButton("<-");
 		btnAurrekoa.setBounds(325, 450, 50, 50);
 		btnAurrekoa.setFont(new Font("SansSerif", Font.BOLD, 15));
-
-
-		
-		
-		AbestiaDao.erregistratuErreprodukzioa(abestiak.get(abestiAukera));
-		
-		
 
 		if (clip.isRunning() && clip.getFramePosition() == 0) {
 			AbestiaDao.erregistratuErreprodukzioa(abestiak.get(abestiAukera));
@@ -397,6 +393,13 @@ public class Erreprodukzioa extends JFrame {
 				JFrameSortu.loginAukeraSortu();
 			}
 		});
+		
+		 this.addWindowListener((WindowListener) new WindowAdapter() {
+	            @Override
+	            public void windowClosing(WindowEvent e) {
+	               System.exit(0);
+	            }
+	        });
 	}
 
 	private void errepoduzituAudioa(String filepath, float abiadura, long posizioa, boolean erreproduzitzen) {

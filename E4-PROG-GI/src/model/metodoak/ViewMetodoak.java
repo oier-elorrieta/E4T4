@@ -333,7 +333,6 @@ public class ViewMetodoak {
 		TimerTask task = new TimerTask() {
 			public void run() {
 				SesioAldagaiak.doSkip = true;
-				System.out.println("skip");
 			}
 		};
 		timer.schedule(task, 10000);
