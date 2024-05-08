@@ -21,6 +21,6 @@ public class PodcasterraDaoTest {
 	public void getPodcasterraTest() {
 		Podcasterra podcasterTest = null;
 		podcasterTest = PodcasterraDao.getPodcasterra("Ibai Llanos");
-		assertEquals(podcasterTest, 1);
+		assertEquals(podcasterTest.getIdArtista(), 4);
 	}
 }
