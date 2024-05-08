@@ -2,17 +2,22 @@ package test;
 
 import static org.junit.Assert.*;
 
+import java.sql.Time;
+
 import org.junit.Test;
 
 import model.Audio;
+import model.PlayListak;
 import model.metodoak.ImportExportMetodoak;
+import model.sql.Kone;
 
 public class ImportExportMetodoakTest {
 
     @Test
     public void testExportatuPlaylist() {
+    	Kone.kargatuErabiltzaileFree(1);
         PlayListak pl = new PlayListak();
-        pl.setIzena("Test Playlist");
+        pl.setIzena("Lo egiteko");
         ImportExportMetodoak.exportatuPlaylist(pl);
     }
 
@@ -26,14 +31,10 @@ public class ImportExportMetodoakTest {
 
     @Test
     public void testExportatuAbesti() {
-        // Create a dummy Audio object for testing
         Audio a = new Audio();
-        a.setIzena("Test Audio");
-        a.setIraupena("00:03:30");
-
-        // Call the exportatuAbesti() method
+        a.setIzena("Fly High");
+        Time t = new Time(0,3,12);
+        a.setIraupena(t);
         ImportExportMetodoak.exportatuAbesti(a);
-
-        // TODO: Add assertion to check if the audio is exported correctly
     }
 }
