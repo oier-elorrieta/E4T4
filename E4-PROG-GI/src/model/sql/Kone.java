@@ -45,6 +45,7 @@ public class Kone {
 			if (konexioa == null || konexioa.isClosed()) {
 				konexioa = DriverManager.getConnection(url, user, pass);
 				stm = konexioa.createStatement();
+
 			}
 		} catch (SQLException e) {
 			System.out.println("Errorea datu-basearekin konexioa egiten: " + e.getMessage());

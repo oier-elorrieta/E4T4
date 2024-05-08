@@ -44,6 +44,10 @@ import model.Audio;
 import model.Podcast;
 import model.SesioAldagaiak;
 import model.dao.AbestiaDao;
+<<<<<<< HEAD
+=======
+
+>>>>>>> beb5b2f2c1bed1982d1e126ce5ff21e22f6af93c
 import model.metodoak.JFrameSortu;
 import model.metodoak.ViewMetodoak;
 import model.sql.Kone;
@@ -112,7 +116,7 @@ public class Erreprodukzioa extends JFrame {
 		JButton btnAurrekoa = new JButton("<-");
 		btnAurrekoa.setBounds(325, 450, 50, 50);
 		btnAurrekoa.setFont(new Font("SansSerif", Font.BOLD, 15));
-		
+
 		if (clip.isRunning() && clip.getFramePosition() == 0) {
 			AbestiaDao.erregistratuErreprodukzioa(abestiak.get(abestiAukera));
 		}
