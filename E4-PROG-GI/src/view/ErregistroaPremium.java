@@ -184,43 +184,51 @@ public class ErregistroaPremium extends Erregistroa {
 							throw new pasahitzaEzKointziditu();
 						}
 
-						if (btnGorde.getText().equals("Aldatu datuak")) {
-							btnGorde.setText("Gorde");
-							setIdatzi(true);
+						Date jaioData = balidatuData(txtJaiotzeData.getText());
+						if (jaioData.after(new Date())) {
+							JOptionPane.showMessageDialog(null, "Data oso handia!!!", "heyyy!!",
+									JOptionPane.WARNING_MESSAGE);
 						} else {
-							if (balidatuAldaketak()) {
-								// Datuak ondo daude
-								btnGorde.setText("Aldatu datuak");
-								setIdatzi(false);
+
+							if (btnGorde.getText().equals("Aldatu datuak")) {
+								btnGorde.setText("Gorde");
+								setIdatzi(true);
 							} else {
-								if (Alerta()) {
-									// Datuak aldatko ditu
+								if (balidatuAldaketak()) {
+									// Datuak ondo daude
+									btnGorde.setText("Aldatu datuak");
+									setIdatzi(false);
 								} else {
-									// Datuak ez ditu aldatuko (Defektuz jarri datuak ala gorde BD)
-									if (AlertaGorde()) {
-										// Defektuz ezarri datuak
-										btnGorde.setText("Aldatu datuak");
-										ezarriTextua();
-										setIdatzi(false);
+									if (Alerta()) {
+										// Datuak aldatko ditu
 									} else {
-										// Konexioa datuak gordetzeko
-										btnGorde.setText("Aldatu datuak");
-										datuakEguneratu();
-										setIdatzi(false);
+										// Datuak ez ditu aldatuko (Defektuz jarri datuak ala gorde BD)
+										if (AlertaGorde()) {
+											// Defektuz ezarri datuak
+											btnGorde.setText("Aldatu datuak");
+											ezarriTextua();
+											setIdatzi(false);
+										} else {
+											// Konexioa datuak gordetzeko
+											btnGorde.setText("Aldatu datuak");
+											datuakEguneratu();
+											setIdatzi(false);
+										}
 									}
 								}
 							}
+							txtIzena.setEditable(isIdatzi());
+							txtAbizenak.setEditable(isIdatzi());
+							txtErabiltzailea.setEditable(isIdatzi());
+							passwordField.setEditable(isIdatzi());
+							passwordFieldErrepikatu.setEditable(isIdatzi());
+							txtJaiotzeData.setEditable(isIdatzi());
+							cboHizkuntza.setEnabled(isIdatzi());
+							spinner.setEnabled(!isIdatzi());
 						}
-						txtIzena.setEditable(isIdatzi());
-						txtAbizenak.setEditable(isIdatzi());
-						txtErabiltzailea.setEditable(isIdatzi());
-						passwordField.setEditable(isIdatzi());
-						passwordFieldErrepikatu.setEditable(isIdatzi());
-						txtJaiotzeData.setEditable(isIdatzi());
-						cboHizkuntza.setEnabled(isIdatzi());
-						spinner.setEnabled(!isIdatzi());
 					}
 				} catch (Exception j) {
+					
 					JOptionPane.showMessageDialog(null, "Pasahitzak ez dira berdinak", "heyyy!!",
 							JOptionPane.WARNING_MESSAGE);
 				}
@@ -246,21 +254,13 @@ public class ErregistroaPremium extends Erregistroa {
 
 	protected void datuakEguneratu() {
 
-		Date jaioData = balidatuData(txtJaiotzeData.getText());
-
-		if (jaioData.after(new Date())) {
-			JOptionPane.showMessageDialog(null, "Data oso handia!!!", "heyyy!!", JOptionPane.WARNING_MESSAGE);
-		} else {
-
-			ErabiltzaileFree erabiltzailefree = new ErabiltzaileFree(0, txtErabiltzailea.getText(),
-					passwordField.getText(), txtIzena.getText(), txtAbizenak.getText(),
-					new java.sql.Date(jaioData.getTime()), (String) cboHizkuntza.getSelectedItem());
-			Kone.eguneratuErabiltzailea(erabiltzailefree);
-			ViewMetodoak.comprobatuLogin(txtErabiltzailea.getText(), passwordField.getText());
-			dispose();
-			JFrameSortu.menuNagusiaAukeraSortu();
-		}
-
+		ErabiltzaileFree erabiltzailefree = new ErabiltzaileFree(0, txtErabiltzailea.getText(), passwordField.getText(),
+				txtIzena.getText(), txtAbizenak.getText(), new java.sql.Date(jaioData.getTime()),
+				(String) cboHizkuntza.getSelectedItem());
+		Kone.eguneratuErabiltzailea(erabiltzailefree);
+		ViewMetodoak.comprobatuLogin(txtErabiltzailea.getText(), passwordField.getText());
+		dispose();
+		JFrameSortu.menuNagusiaAukeraSortu();
 	}
 
 	private void gordePremium(Date eguna) {
