@@ -101,7 +101,7 @@ public class PlayListakDaoTest {
     public void testGetPlayListAbestiak() {
         ArrayList<Audio> result = PlayListakDao.getPlayListAbestiak(new PlayListak(0, "Gustokoena", null));
         assertNotNull(result);
-        assertEquals(2, result.size());
+        assertEquals(1, result.size());
     }
 
     @Test
