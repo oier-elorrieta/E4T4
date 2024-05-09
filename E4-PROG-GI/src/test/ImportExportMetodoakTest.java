@@ -25,8 +25,6 @@ public class ImportExportMetodoakTest {
     public void testImportatuPlaylist() {
         String[] result = ImportExportMetodoak.importatuPlaylist();
         assertEquals(result[0],"Lo egiteko");
-        
-
     }
 
     @Test
