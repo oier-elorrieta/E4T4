@@ -60,7 +60,7 @@ public class ImportExportMetodoak {
 			// Cerrar el BufferedWriter
 			writer.close();
 
-			System.out.println("Se ha escrito en el archivo correctamente.");
+			
 		} catch (IOException e) {
 			System.err.println("Error al escribir en el archivo: " + e.getMessage());
 		}
@@ -103,7 +103,7 @@ public class ImportExportMetodoak {
 			// Cerrar el BufferedWriter
 			writer.close();
 
-			System.out.println("Se ha escrito en el archivo correctamente.");
+			
 		} catch (IOException e) {
 			System.err.println("Error al escribir en el archivo: " + e.getMessage());
 		}

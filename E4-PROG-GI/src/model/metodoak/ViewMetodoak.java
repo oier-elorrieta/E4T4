@@ -379,4 +379,13 @@ public class ViewMetodoak {
 		return zbkString;
 	}
 	
+	
+	private boolean Balidatu(Erabiltzailea e) {
+		
+		boolean ondo = true;
+		 
+		return ondo;
+			
+		}
+	
 }
