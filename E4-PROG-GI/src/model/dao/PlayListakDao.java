@@ -84,7 +84,6 @@ public class PlayListakDao {
 		} catch (SQLException e) {
 			System.out.println("Kontsulta txarto" + e.getMessage());
 		}
-
 		Kone.itxiConexioa();
 	}
 	
@@ -99,7 +98,6 @@ public class PlayListakDao {
 		stm = konexioa.createStatement();
 		kontsulta = "DELETE FROM Playlist WHERE IdList = " + idPlaylist;
 		stm.executeUpdate(kontsulta);
-
 		Kone.itxiConexioa();
 	}
 	
@@ -176,7 +174,6 @@ public class PlayListakDao {
 		} catch (SQLException e) {
 			System.out.println("Kontsulta txarto" + e.getMessage());
 		}
-
 		Kone.itxiConexioa();
 	}
 	
@@ -199,21 +196,21 @@ public class PlayListakDao {
 		return badago;
 	}
 
-	public static int getPlayListIzenarekin(String izena) {
-		int idList = 0;
+	public static PlayListak getPlayListIzenarekin(String izena) {
+		PlayListak playlista = null;
 		Connection konexioa = Kone.konektatu();
-		kontsulta = "Select  IdList from Playlist where Izenburua='"+izena+"' ORDER BY IdList desc LIMIT 1";
+		kontsulta = "Select * from Playlist where Izenburua='"+izena+"' ORDER BY IdList desc LIMIT 1";
 		try {
 			stm = konexioa.createStatement();
 			rs = stm.executeQuery(kontsulta);
-			rs.next();
-			idList = rs.getInt("IdList");
+			while(rs.next()) {
+			playlista = new PlayListak(rs.getInt("IdList"), rs.getString("Izenburua"), rs.getDate("SorreraData"));
+			}
 		} catch (SQLException e) {
 			System.out.println("Kontsulta txarto" + e.getMessage());
 		}
-		
-		return idList;
-		
+		Kone.itxiConexioa();
+		return playlista;
 	}
 
 }

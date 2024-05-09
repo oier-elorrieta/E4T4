@@ -154,7 +154,7 @@ public class NirePlaylista extends JFrame {
 
 					PlayListakDao.playlistGehitu(aux[0]);
 					PlayListak p = new PlayListak();
-					p.setIdPlayList(PlayListakDao.getPlayListIzenarekin(aux[0]));
+					p = PlayListakDao.getPlayListIzenarekin(aux[0]);
 
 					Audio a = new Audio();
 
