@@ -75,6 +75,7 @@ public class PlayListakDao {
 
 		kontsulta = "INSERT into Playlist(Izenburua, SorreraData, IdBezeroa) VALUES(?,?,?)";
 		try {
+			stm = konexioa.createStatement();
 			pstm = konexioa.prepareStatement(kontsulta);
 			pstm.setString(1, izenburua);
 			pstm.setDate(2, sqlDataOrain);
@@ -95,7 +96,7 @@ public class PlayListakDao {
 	 */
 	public static void playlistEzabatu(int idPlaylist) throws SQLException {
 		Connection konexioa = Kone.konektatu();
-
+		stm = konexioa.createStatement();
 		kontsulta = "DELETE FROM Playlist WHERE IdList = " + idPlaylist;
 		stm.executeUpdate(kontsulta);
 

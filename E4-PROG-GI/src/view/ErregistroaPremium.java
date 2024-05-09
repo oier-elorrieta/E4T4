@@ -172,6 +172,7 @@ public class ErregistroaPremium extends Erregistroa {
 
 		btnGorde.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				if (btnGorde.getText().equals("Aldatu datuak")) {
 					btnGorde.setText("Gorde");
 					setIdatzi(true);
@@ -231,18 +232,20 @@ public class ErregistroaPremium extends Erregistroa {
 			if (!passwordField.getText().equals(passwordFieldErrepikatu.getText())) {
 				throw new pasahitzaEzKointziditu();
 			}
+
 			Date jaioData = balidatuData(txtJaiotzeData.getText());
 			
+
 			if (jaioData.after(new Date())) {
 				JOptionPane.showMessageDialog(null, "Data oso handia!!!", "heyyy!!",
 						JOptionPane.WARNING_MESSAGE);
 			}else {
-			Erabiltzailea erabiltzaile = new ErabiltzaileFree(0, txtErabiltzailea.getText(),
+
+
+			ErabiltzaileFree erabiltzailefree = new ErabiltzaileFree(0, txtErabiltzailea.getText(),
 					passwordField.getText(), txtIzena.getText(), txtAbizenak.getText(),
 					new java.sql.Date(jaioData.getTime()), (String) cboHizkuntza.getSelectedItem());
-			
-			
-			Kone.eguneratuErabiltzailea(erabiltzaile);
+			Kone.eguneratuErabiltzailea(erabiltzailefree);
 			ViewMetodoak.comprobatuLogin(txtErabiltzailea.getText(), passwordField.getText());
 			dispose();
 			JFrameSortu.menuNagusiaAukeraSortu();

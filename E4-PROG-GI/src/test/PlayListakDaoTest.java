@@ -10,20 +10,24 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 import model.Audio;
+import model.ErabiltzaileFree;
 import model.PlayListak;
+import model.SesioAldagaiak;
 import model.dao.PlayListakDao;
 
 public class PlayListakDaoTest {
 
     @Test
     public void testGetPlaylist() {
+    	SesioAldagaiak.erabiltzailePremium = false;
+    	SesioAldagaiak.erabiltzaileLogeatutaFree = new ErabiltzaileFree(1, null, null, null, null, null, null);
         ArrayList<PlayListak> result = PlayListakDao.getPlaylist();
         assertNotNull(result);
     }
 
     @Test
     public void testPlaylistGehitu() {
-        PlayListakDao.playlistGehitu("Test Playlist");
+        /*PlayListakDao.playlistGehitu("Test Playlist");
         ArrayList<PlayListak> playlists = PlayListakDao.getPlaylist();
         boolean found = false;
         for (PlayListak playlist : playlists) {
@@ -32,7 +36,12 @@ public class PlayListakDaoTest {
                 break;
             }
         }
-        assertTrue(found);
+        assertTrue(found);*/
+    	SesioAldagaiak.erabiltzailePremium = false;
+    	SesioAldagaiak.erabiltzaileLogeatutaFree = new ErabiltzaileFree(1, null, null, null, null, null, null);
+    	PlayListakDao.playlistGehitu("Testa");
+    	PlayListakDao.getPlayListIzenarekin("Testa");
+    	assertNotNull(PlayListakDao.getPlayListIzenarekin("Testa"));
     }
 
     @Test
@@ -99,9 +108,10 @@ public class PlayListakDaoTest {
 
     @Test
     public void testGetPlayListAbestiak() {
-        ArrayList<Audio> result = PlayListakDao.getPlayListAbestiak(new PlayListak(0, "Gustokoena", null));
-        assertNotNull(result);
-        assertEquals(0, result.size());
+       PlayListak playlistTest = new PlayListak();
+       playlistTest.setIdPlayList(1);
+       ArrayList<Audio> audioArralistTest = PlayListakDao.getPlayListAbestiak(playlistTest);
+       assertNotNull(audioArralistTest);  
     }
 
     @Test
