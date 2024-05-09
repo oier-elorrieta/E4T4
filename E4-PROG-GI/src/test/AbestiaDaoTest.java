@@ -45,6 +45,7 @@ public class AbestiaDaoTest {
         assertFalse(result);
     }
 
+
     @Test
     public void testAbestiGustokoaGehitu() throws SQLException {
     	ErabiltzaileFree erabiltzailea = new ErabiltzaileFree(1, "eka", "bla", "Ekaitz", "Blanca", new java.sql.Date(1984-02-22), "es");
@@ -56,6 +57,7 @@ public class AbestiaDaoTest {
         assertEquals(result.get(0).toString(),"Izena:Podcast Ibai Llanos|| Iraupena: 01:21:02");
         
     }
+
     
     @Test
     public void testAbestiGuztokoaEzabatu() throws SQLException {
@@ -68,6 +70,9 @@ public class AbestiaDaoTest {
         assertEquals(result.size(), 0);
     }
 
+    
+    
+    
     @Test
     public void testErregistratuErreprodukzioa() {
     	ErabiltzaileFree erabiltzailea = new ErabiltzaileFree(1, "eka", "bla", "Ekaitz", "Blanca", new java.sql.Date(1984-02-22), "es");
