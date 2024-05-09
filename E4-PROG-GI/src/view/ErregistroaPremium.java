@@ -120,10 +120,10 @@ public class ErregistroaPremium extends Erregistroa {
 		editor.getTextField().setEditable(false);
 		spinner.setEditor(editor);
 		spinner.setBounds(580, 260, 200, 32);
-
+		spinner.setEnabled(!isIdatzi());		
 		super.addComponents(lblPremiumMuga, spinner);
 
-		JButton btnGorde = new JButton("Aldatu datuak");
+		JButton btnGorde = new JButton("Gorde");
 		btnGorde.setBounds(380, 462, 170, 29);
 		btnGorde.setForeground(SystemColor.text);
 		btnGorde.setBackground(SystemColor.desktop);
@@ -141,6 +141,8 @@ public class ErregistroaPremium extends Erregistroa {
 					if (dat.after(calendar.getTime())) {
 						// Premium data eguneratu (Urteak)
 						gordePremium((java.util.Date) dat);
+						JOptionPane.showMessageDialog(null, "Premium muga handitua,Eskerrik askoo!!", "Succesfull",
+						JOptionPane.INFORMATION_MESSAGE);
 						dispose();
 						JFrameSortu.loginAukeraSortu();
 					} else {
@@ -155,6 +157,8 @@ public class ErregistroaPremium extends Erregistroa {
 					if (dat.after(calendar.getTime())) {
 						// Premium data eguneratu (Urteak)
 						gordePremium((java.util.Date) dat);
+						JOptionPane.showMessageDialog(null, "Premium muga handitua,Eskerrik askoo!!", "Succesfull",
+								JOptionPane.INFORMATION_MESSAGE);
 						dispose();
 						JFrameSortu.loginAukeraSortu();
 					} else {
@@ -233,7 +237,12 @@ public class ErregistroaPremium extends Erregistroa {
 			String[] data = txtJaiotzeData.getText().split("-");
 			Date jaioData = new Date(Integer.parseInt(data[0]) - 1900, Integer.parseInt(data[1]) - 1,
 					Integer.parseInt(data[2]));
-			
+
+			if (jaioData.after(new Date())) {
+				JOptionPane.showMessageDialog(null, "Data oso handia!!!", "heyyy!!",
+						JOptionPane.WARNING_MESSAGE);
+			}else {
+
 			ErabiltzaileFree erabiltzailefree = new ErabiltzaileFree(0, txtErabiltzailea.getText(),
 					passwordField.getText(), txtIzena.getText(), txtAbizenak.getText(),
 					new java.sql.Date(jaioData.getTime()), (String) cboHizkuntza.getSelectedItem());
@@ -243,6 +252,7 @@ public class ErregistroaPremium extends Erregistroa {
 			ViewMetodoak.comprobatuLogin(txtErabiltzailea.getText(), passwordField.getText());
 			dispose();
 			JFrameSortu.menuNagusiaAukeraSortu();
+			}
 		} catch (pasahitzaEzKointziditu e1) {
 			System.err.println(e1.getMessage());
 		}
@@ -260,7 +270,7 @@ public class ErregistroaPremium extends Erregistroa {
 		erabiltzailea.setAbizena(txtAbizenak.getText());
 		erabiltzailea.setHizkuntza((String) cboHizkuntza.getSelectedItem());
 		erabiltzailea.setErabiltzailea(txtErabiltzailea.getText());
-
+		
 		erabiltzailea.setJaiotzeData(new java.sql.Date(balidatuData(txtJaiotzeData.getText()).getTime()));
 		erabiltzailea.setPasahitza(passwordField.getText());
 

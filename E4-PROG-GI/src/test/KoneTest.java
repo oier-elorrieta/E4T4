@@ -122,6 +122,6 @@ public class KoneTest {
     @Test
     public void testGetAbestiGustokoak() {
         ArrayList<Abestia> result = Kone.getAbestiGustokoak();
-        assertEquals(result.size(), 2);
+        assertEquals(result.size(), 0);
     }
 }

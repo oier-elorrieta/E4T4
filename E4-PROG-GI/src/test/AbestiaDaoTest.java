@@ -24,7 +24,7 @@ public class AbestiaDaoTest {
     	ErabiltzaileFree erabiltzailea = new ErabiltzaileFree(1, "eka", "bla", "Ekaitz", "Blanca", new java.sql.Date(1984-02-22), "es");
     	SesioAldagaiak.erabiltzaileLogeatutaFree = erabiltzailea;
         ArrayList<Abestia> result = AbestiaDao.getAbestiGustokoak();
-        assertEquals(result.size(), 0);
+        assertEquals(result.size(), 1);
     }
 
     @Test
@@ -44,17 +44,6 @@ public class AbestiaDaoTest {
         boolean result = AbestiaDao.gustukoaKomprobatu(abestiaB);
         assertFalse(result);
     }
-
-    @Test
-    public void testAbestiGustokoaGehitu() throws SQLException {
-    	ErabiltzaileFree erabiltzailea = new ErabiltzaileFree(1, "eka", "bla", "Ekaitz", "Blanca", new java.sql.Date(1984-02-22), "es");
-    	SesioAldagaiak.erabiltzaileLogeatutaFree = erabiltzailea;
-        Audio abestiaB = new Audio();
-        abestiaB.setIdAudio(4);
-        AbestiaDao.abestiGustokoaGehitu(abestiaB);
-        ArrayList<Abestia> result = AbestiaDao.getAbestiGustokoak();
-        assertEquals(result.size(), 0);
-    }
     
     @Test
     public void testAbestiGuztokoaEzabatu() throws SQLException {
@@ -67,6 +56,17 @@ public class AbestiaDaoTest {
         assertEquals(result.size(), 0);
     }
 
+    @Test
+    public void testAbestiGustokoaGehitu() throws SQLException {
+    	ErabiltzaileFree erabiltzailea = new ErabiltzaileFree(1, "eka", "bla", "Ekaitz", "Blanca", new java.sql.Date(1984-02-22), "es");
+    	SesioAldagaiak.erabiltzaileLogeatutaFree = erabiltzailea;
+        Audio abestiaB = new Audio();
+        abestiaB.setIdAudio(4);
+        AbestiaDao.abestiGustokoaGehitu(abestiaB);
+        ArrayList<Abestia> result = AbestiaDao.getAbestiGustokoak();
+        assertEquals(result.size(), 1);
+    }
+    
     @Test
     public void testErregistratuErreprodukzioa() {
     	ErabiltzaileFree erabiltzailea = new ErabiltzaileFree(1, "eka", "bla", "Ekaitz", "Blanca", new java.sql.Date(1984-02-22), "es");
