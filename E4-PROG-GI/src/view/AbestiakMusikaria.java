@@ -134,7 +134,7 @@ public class AbestiakMusikaria extends JFrame {
 				try {
 					int abestiAukera = list.getSelectedIndex();
 					dispose();
-					JFrameSortu.erreprodukzioaSortu(musikaria, abestiak, abestiAukera, false, album.getIzenburua(), 1);
+					JFrameSortu.erreprodukzioaSortu(musikaria, abestiak, abestiAukera, true, album.getIzenburua(), 1);
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}

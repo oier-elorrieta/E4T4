@@ -107,7 +107,7 @@ public class PlaylistAbestiak extends JFrame {
 						int aukeraAbestia = jListAbestiak.getSelectedIndex();
 						Musikaria musikaria = MusikariaDao.getMusikariaByAudio(abestiakList.get(aukeraAbestia));
 						dispose();
-						JFrameSortu.erreprodukzioaSortu(musikaria, abestiakList, aukeraAbestia, false, aukeraPlaylist.getIzena(),
+						JFrameSortu.erreprodukzioaSortu(musikaria, abestiakList, aukeraAbestia, true, aukeraPlaylist.getIzena(),
 								1);
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
