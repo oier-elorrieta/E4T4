@@ -56,7 +56,8 @@ public class Erreprodukzioa extends JFrame {
 	private boolean erreproduzitzen;
 	private long posicion = 0;
 	private int iraupena = 0;
-
+	private JFrame j = this;
+	
 	public Erreprodukzioa(Artista artista, ArrayList<Audio> abestiak, int abestiAukera, boolean isrunning,
 			String izenaAlbum, float abiadura) throws SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
@@ -169,7 +170,13 @@ public class Erreprodukzioa extends JFrame {
 		});
 
 		JButton btnErabiltzaile = SesioAldagaiak.jb;
-		btnErabiltzaile.removeActionListener(btnErabiltzaile.getActionListeners()[0]);
+		
+		ActionListener[] li = btnErabiltzaile.getActionListeners();
+		for(ActionListener i : li) {
+			btnErabiltzaile.removeActionListener(i);	
+		}
+			
+		//btnErabiltzaile.removeActionListener(btnErabiltzaile.getActionListeners()[0]);
 
 		btnErabiltzaile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -382,16 +389,24 @@ public class Erreprodukzioa extends JFrame {
 			}
 		});
 
-		btnErabiltzaile.addMouseListener(new MouseAdapter() {
+		
+		
+		btnErabiltzaile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					clip.close();
+					
+			}
+		});
+		/*btnErabiltzaile.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				clip.close();
 				SesioAldagaiak.erabiltzaileLogeatutaFree = null;
 				SesioAldagaiak.erabiltzaileLogeatutaPremium = null;
-				clip.close();
 				dispose();
 				JFrameSortu.loginAukeraSortu();
 			}
-		});
+		});*/
 		
 		 this.addWindowListener((WindowListener) new WindowAdapter() {
 	            @Override
