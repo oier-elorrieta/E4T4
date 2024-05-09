@@ -190,9 +190,9 @@ public class Erreprodukzioa extends JFrame {
 			boolean gustokoaDu = AbestiaDao.gustukoaKomprobatu(abestiak.get(abestiAukera));
 			JButton btnGuztokoa = new JButton();
 			if (gustokoaDu) {
-				btnGuztokoa.setText("Guztokotik atera");
+				btnGuztokoa.setText("♥");
 			} else {
-				btnGuztokoa.setText("Gustokoan sartu");
+				btnGuztokoa.setText("♡");
 			}
 			btnGuztokoa.setBounds(600, 450, 150, 50);
 			btnGuztokoa.setFont(new Font("SansSerif", Font.BOLD, 15));
