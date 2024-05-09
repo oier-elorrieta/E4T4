@@ -184,7 +184,8 @@ public class ErregistroaPremium extends Erregistroa {
 							throw new pasahitzaEzKointziditu();
 						}
 
-						Date jaioData = balidatuData(txtJaiotzeData.getText());
+						jaioData = balidatuData(txtJaiotzeData.getText());
+						
 						if (jaioData.after(new Date())) {
 							JOptionPane.showMessageDialog(null, "Data oso handia!!!", "heyyy!!",
 									JOptionPane.WARNING_MESSAGE);
@@ -228,9 +229,9 @@ public class ErregistroaPremium extends Erregistroa {
 						}
 					}
 				} catch (Exception j) {
-					
+					System.out.println(j.getMessage());
 					JOptionPane.showMessageDialog(null, "Pasahitzak ez dira berdinak", "heyyy!!",
-							JOptionPane.WARNING_MESSAGE);
+					JOptionPane.WARNING_MESSAGE);
 				}
 
 			}
