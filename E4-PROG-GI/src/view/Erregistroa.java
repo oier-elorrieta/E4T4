@@ -216,11 +216,18 @@ public class Erregistroa extends JFrame {
 			}
 			String[] data = txtJaiotzeData.getText().split("-");
 			Date jaioData = new Date(Integer.parseInt(data[0])-1900, Integer.parseInt(data[1])-1,Integer.parseInt(data[2]));
+			
+			if (jaioData.after(new Date())) {
+				JOptionPane.showMessageDialog(null, "Data oso handia!!!", "heyyy!!",
+				JOptionPane.WARNING_MESSAGE);
+			}else {
+			
 			ErabiltzaileFree erabiltzaileFree = new ErabiltzaileFree(0,txtErabiltzailea.getText(), passwordField.getText(), txtIzena.getText(),txtAbizenak.getText(), new java.sql.Date( jaioData.getTime()) ,(String) cboHizkuntza.getSelectedItem());
 			Kone.erregistratu(erabiltzaileFree);
 			ViewMetodoak.comprobatuLogin(txtErabiltzailea.getText(), passwordField.getText());
 			dispose();
 			JFrameSortu.menuNagusiaAukeraSortu();
+			}
 		} catch (pasahitzaEzKointziditu e1) {
 			System.err.println(e1.getMessage());
 		} 
