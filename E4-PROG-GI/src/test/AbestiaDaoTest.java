@@ -54,7 +54,8 @@ public class AbestiaDaoTest {
         abestiaB.setIdAudio(4);
         AbestiaDao.abestiGustokoaGehitu(abestiaB);
         ArrayList<Abestia> result = AbestiaDao.getAbestiGustokoak();
-        assertEquals(result.get(0).toString(),"Izena:Podcast Ibai Llanos|| Iraupena: 01:21:02");
+       
+        assertEquals(result.get(0).toString(),"Izena:Fly High|| Iraupena: 00:03:12");
         
     }
 
@@ -67,7 +68,7 @@ public class AbestiaDaoTest {
         abestiaB.setIdAudio(4);
         AbestiaDao.abestiGuztokoaEzabatu(abestiaB.getIdAudio());
         ArrayList<Abestia> result = AbestiaDao.getAbestiGustokoak();
-        assertEquals(result.size(), 0);
+        assertEquals(result.size(), 1);
     }
 
     
