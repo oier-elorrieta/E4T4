@@ -23,15 +23,13 @@ public class ImportExportMetodoakTest {
 
     @Test
     public void testImportatuPlaylist() {
-        // Call the importatuPlaylist() method
         String[] result = ImportExportMetodoak.importatuPlaylist();
-
-        // TODO: Add assertion to check if the playlist is imported correctly
     }
 
     @Test
     public void testExportatuAbesti() {
         Audio a = new Audio();
+        a.setIdAudio(1);
         a.setIzena("Fly High");
         Time t = new Time(0,3,12);
         a.setIraupena(t);
