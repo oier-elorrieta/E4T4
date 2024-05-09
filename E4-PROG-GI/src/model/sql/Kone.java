@@ -17,6 +17,7 @@ import model.Album;
 import model.Audio;
 import model.ErabiltzaileFree;
 import model.ErabiltzailePremium;
+import model.Erabiltzailea;
 import model.Musikaria;
 import model.PlayListak;
 import model.Podcast;
@@ -106,7 +107,7 @@ public class Kone {
 
 	}
 
-	public static void eguneratuErabiltzailea(ErabiltzaileFree erab) {
+	public static void eguneratuErabiltzailea(Erabiltzailea erab) {
 		konektatu();
 		try {
 			stm = konexioa.createStatement();
