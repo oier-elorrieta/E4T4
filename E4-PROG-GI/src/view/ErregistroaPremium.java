@@ -229,7 +229,7 @@ public class ErregistroaPremium extends Erregistroa {
 						}
 					}
 				} catch (Exception j) {
-					System.out.println(j.getMessage());
+					
 					JOptionPane.showMessageDialog(null, "Pasahitzak ez dira berdinak", "heyyy!!",
 					JOptionPane.WARNING_MESSAGE);
 				}
