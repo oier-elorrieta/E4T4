@@ -120,10 +120,10 @@ public class ErregistroaPremium extends Erregistroa {
 		editor.getTextField().setEditable(false);
 		spinner.setEditor(editor);
 		spinner.setBounds(580, 260, 200, 32);
-
+		spinner.setEnabled(!isIdatzi());		
 		super.addComponents(lblPremiumMuga, spinner);
 
-		JButton btnGorde = new JButton("Aldatu datuak");
+		JButton btnGorde = new JButton("Gorde");
 		btnGorde.setBounds(380, 462, 170, 29);
 		btnGorde.setForeground(SystemColor.text);
 		btnGorde.setBackground(SystemColor.desktop);
