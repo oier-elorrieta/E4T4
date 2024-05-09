@@ -271,17 +271,7 @@ public class ErregistroaPremium extends Erregistroa {
 		return SesioAldagaiak.logErabiltzailea.equals(erabiltzailea);
 	}
 
-	public static Date balidatuData(String fechaString) {
-
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		dateFormat.setLenient(false);
-
-		try {
-			return dateFormat.parse(fechaString);
-		} catch (ParseException e) {
-			return null;
-		}
-	}
+	
 
 	private boolean Alerta() {
 		String[] opciones = { "Utzi", "Jarraitu" };
