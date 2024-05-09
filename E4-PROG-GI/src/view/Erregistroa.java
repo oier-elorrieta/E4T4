@@ -209,7 +209,8 @@ public class Erregistroa extends JFrame {
 		try {
 
 			if (!balidatu()) {
-				JOptionPane.showMessageDialog(null, "Data txarto edo Daturen Bat bete gabe", "heyyy!!", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Data txarto edo Daturen Bat bete gabe", "heyyy!!",
+						JOptionPane.WARNING_MESSAGE);
 			} else {
 				jaioData = balidatuData(txtJaiotzeData.getText());
 
@@ -224,12 +225,20 @@ public class Erregistroa extends JFrame {
 					ErabiltzaileFree erabiltzaileFree = new ErabiltzaileFree(0, txtErabiltzailea.getText(),
 							passwordField.getText(), txtIzena.getText(), txtAbizenak.getText(),
 							new java.sql.Date(jaioData.getTime()), (String) cboHizkuntza.getSelectedItem());
-					Kone.erregistratu(erabiltzaileFree);
-					ViewMetodoak.comprobatuLogin(txtErabiltzailea.getText(), passwordField.getText());
-					dispose();
-					JFrameSortu.menuNagusiaAukeraSortu();
+
+					if (!Kone.erregistratu(erabiltzaileFree)) {
+						JOptionPane.showMessageDialog(null, "Erabiltzaile hori badago ya sortuta", "heyyy!!",
+								JOptionPane.WARNING_MESSAGE);
+					} else {
+
+						ViewMetodoak.comprobatuLogin(txtErabiltzailea.getText(), passwordField.getText());
+						dispose();
+						JFrameSortu.menuNagusiaAukeraSortu();
+					}
 				}
+
 			}
+
 		} catch (pasahitzaEzKointziditu e1) {
 			JOptionPane.showMessageDialog(null, "Pasahitzak ez dira berdinak", "heyyy!!", JOptionPane.WARNING_MESSAGE);
 
@@ -261,8 +270,8 @@ public class Erregistroa extends JFrame {
 
 	public boolean balidatu() {
 		boolean beteta = true;
-		if (txtErabiltzailea.getText().equals("") ||passwordField.getText().equals("") || txtIzena.getText().equals("") || txtAbizenak.getText().equals("") ||
-			balidatuData(txtJaiotzeData.getText()) == null) {
+		if (txtErabiltzailea.getText().equals("") || passwordField.getText().equals("") || txtIzena.getText().equals("")
+				|| txtAbizenak.getText().equals("") || balidatuData(txtJaiotzeData.getText()) == null) {
 			beteta = false;
 		}
 		return beteta;

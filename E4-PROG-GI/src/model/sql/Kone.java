@@ -11,6 +11,8 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import javax.swing.JOptionPane;
+
 import com.mysql.cj.jdbc.Blob;
 import model.Abestia;
 import model.Album;
@@ -89,7 +91,7 @@ public class Kone {
 		return rs;
 	}
 
-	public static void erregistratu(ErabiltzaileFree erab) {
+	public static boolean erregistratu(ErabiltzaileFree erab) {
 		konektatu();
 		kontsulta = "INSERT into Bezeroa(Izena,Abizena,Erabiltzailea,Pasahitza,JaiotzeData,IdHizkuntza) VALUES(?,?,?,?,?,?)";
 		try {
@@ -101,8 +103,12 @@ public class Kone {
 			pstm.setDate(5, (java.sql.Date) erab.getJaiotzeData());
 			pstm.setString(6, erab.getHizkuntza());
 			pstm.execute();
+			return true;
 		} catch (SQLException e) {
+			
 			System.out.println("Kontsulta txarto" + e.getMessage());
+			return false;
+			
 		}
 
 	}
