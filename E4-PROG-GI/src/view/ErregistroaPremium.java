@@ -123,7 +123,7 @@ public class ErregistroaPremium extends Erregistroa {
 		spinner.setEnabled(!isIdatzi());		
 		super.addComponents(lblPremiumMuga, spinner);
 
-		JButton btnGorde = new JButton("Aldatu datuak");
+		JButton btnGorde = new JButton("Gorde");
 		btnGorde.setBounds(380, 462, 170, 29);
 		btnGorde.setForeground(SystemColor.text);
 		btnGorde.setBackground(SystemColor.desktop);
