@@ -64,19 +64,19 @@ private Timer timer;
                System.exit(0);
             }
         });
-		
+		/*
 		ImageIcon irudia = new ImageIcon(abestiak.get(abestiAukera).getIrudia().getBytes(1,
 				(int) abestiak.get(abestiAukera).getIrudia().length()));
 		JLabel lblIrudia = new JLabel();
 		lblIrudia.setBounds(325, 71, 250, 250);
 		lblIrudia.setIcon(irudia);
-
+*/
 		JLabel lblIzenaAbesti = new JLabel("Nocilla");
 		lblIzenaAbesti.setFont(new Font("Arial Black", Font.BOLD | Font.ITALIC, 17));
 		lblIzenaAbesti.setHorizontalAlignment(SwingConstants.CENTER);
 		lblIzenaAbesti.setBounds(10, 350, 870, 25);
 
-		contentPane.add(lblIrudia);
+		//contentPane.add(lblIrudia);
 		contentPane.add(lblIzenaAbesti);
 
 		String filepath = "src\\audioak\\iragarkiak\\nocilla.wav";

@@ -1,4 +1,5 @@
 package view;
+
 // Hazme un test por cada una de las funciones que haya, cada uno de esos test solo puede tener un assert, las pruebas tienen que estar en Junit 4.
 import java.awt.EventQueue;
 
@@ -66,16 +67,15 @@ public class ErregistroaPremium extends Erregistroa {
 		super();
 
 		btnAtzera.removeActionListener(btnAtzera.getActionListeners()[0]);
-		
+
 		btnAtzera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				JFrameSortu.menuNagusiaAukeraSortu();
 				dispose();
-				
+
 			}
 		});
-		
 
 		ActionListener[] actionListeners = super.btnErregistratu.getActionListeners();
 		for (ActionListener listener : actionListeners) {
@@ -101,15 +101,15 @@ public class ErregistroaPremium extends Erregistroa {
 		Calendar calendar = Calendar.getInstance();
 
 		if (SesioAldagaiak.erabiltzaileLogeatutaPremium != null) {
-			
+
 			calendar.setTime(SesioAldagaiak.erabiltzaileLogeatutaPremium.getPremiumMuga());
 			model = new SpinnerDateModel(calendar.getTime(), null, null, Calendar.DAY_OF_MONTH);
 			spinner = new JSpinner(model);
 			editor = new JSpinner.DateEditor(spinner, "yyyy-MM-dd");
 			model.setStart(calendar.getTime());
-			
+
 		} else {
-			
+
 			calendar.add(Calendar.DAY_OF_MONTH, 1);
 			model = new SpinnerDateModel(calendar.getTime(), null, null, Calendar.DAY_OF_MONTH);
 			spinner = new JSpinner(model);
@@ -120,7 +120,7 @@ public class ErregistroaPremium extends Erregistroa {
 		editor.getTextField().setEditable(false);
 		spinner.setEditor(editor);
 		spinner.setBounds(580, 260, 200, 32);
-		spinner.setEnabled(!isIdatzi());		
+		spinner.setEnabled(!isIdatzi());
 		super.addComponents(lblPremiumMuga, spinner);
 
 		JButton btnGorde = new JButton("Gorde");
@@ -133,7 +133,7 @@ public class ErregistroaPremium extends Erregistroa {
 
 		super.btnErregistratu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				if (SesioAldagaiak.erabiltzaileLogeatutaPremium != null) {
 					Date dat = SesioAldagaiak.erabiltzaileLogeatutaPremium.getPremiumMuga();
 					dat = (Date) spinner.getValue();
@@ -142,7 +142,7 @@ public class ErregistroaPremium extends Erregistroa {
 						// Premium data eguneratu (Urteak)
 						gordePremium((java.util.Date) dat);
 						JOptionPane.showMessageDialog(null, "Premium muga handitua,Eskerrik askoo!!", "Succesfull",
-						JOptionPane.INFORMATION_MESSAGE);
+								JOptionPane.INFORMATION_MESSAGE);
 						dispose();
 						JFrameSortu.loginAukeraSortu();
 					} else {
@@ -166,48 +166,74 @@ public class ErregistroaPremium extends Erregistroa {
 								JOptionPane.WARNING_MESSAGE);
 					}
 				}
-				
+
 			}
 		});
 
 		btnGorde.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				if (btnGorde.getText().equals("Aldatu datuak")) {
-					btnGorde.setText("Gorde");
-					setIdatzi(true);
-				} else {
-					if (balidatuAldaketak()) {
-						// Datuak ondo daude
-						btnGorde.setText("Aldatu datuak");
-						setIdatzi(false);
+
+				try {
+
+					if (!balidatu()) {
+						JOptionPane.showMessageDialog(null, "Data txarto edo Daturen bat falta da", "heyyy!!",
+								JOptionPane.WARNING_MESSAGE);
 					} else {
-						if (Alerta()) {
-							// Datuak aldatko ditu
+
+						if (!passwordField.getText().equals(passwordFieldErrepikatu.getText())) {
+							throw new pasahitzaEzKointziditu();
+						}
+
+						jaioData = balidatuData(txtJaiotzeData.getText());
+						
+						if (jaioData.after(new Date())) {
+							JOptionPane.showMessageDialog(null, "Data oso handia!!!", "heyyy!!",
+									JOptionPane.WARNING_MESSAGE);
 						} else {
-							// Datuak ez ditu aldatuko (Defektuz jarri datuak ala gorde BD)
-							if (AlertaGorde()) {
-								// Defektuz ezarri datuak
-								btnGorde.setText("Aldatu datuak");
-								ezarriTextua();
-								setIdatzi(false);
+
+							if (btnGorde.getText().equals("Aldatu datuak")) {
+								btnGorde.setText("Gorde");
+								setIdatzi(true);
 							} else {
-								// Konexioa datuak gordetzeko
-								btnGorde.setText("Aldatu datuak");
-								datuakEguneratu();
-								setIdatzi(false);
+								if (balidatuAldaketak()) {
+									// Datuak ondo daude
+									btnGorde.setText("Aldatu datuak");
+									setIdatzi(false);
+								} else {
+									if (Alerta()) {
+										// Datuak aldatko ditu
+									} else {
+										// Datuak ez ditu aldatuko (Defektuz jarri datuak ala gorde BD)
+										if (AlertaGorde()) {
+											// Defektuz ezarri datuak
+											btnGorde.setText("Aldatu datuak");
+											ezarriTextua();
+											setIdatzi(false);
+										} else {
+											// Konexioa datuak gordetzeko
+											btnGorde.setText("Aldatu datuak");
+											datuakEguneratu();
+											setIdatzi(false);
+										}
+									}
+								}
 							}
+							txtIzena.setEditable(isIdatzi());
+							txtAbizenak.setEditable(isIdatzi());
+							txtErabiltzailea.setEditable(isIdatzi());
+							passwordField.setEditable(isIdatzi());
+							passwordFieldErrepikatu.setEditable(isIdatzi());
+							txtJaiotzeData.setEditable(isIdatzi());
+							cboHizkuntza.setEnabled(isIdatzi());
+							spinner.setEnabled(!isIdatzi());
 						}
 					}
+				} catch (Exception j) {
+					
+					JOptionPane.showMessageDialog(null, "Pasahitzak ez dira berdinak", "heyyy!!",
+					JOptionPane.WARNING_MESSAGE);
 				}
-				txtIzena.setEditable(isIdatzi());
-				txtAbizenak.setEditable(isIdatzi());
-				txtErabiltzailea.setEditable(isIdatzi());
-				passwordField.setEditable(isIdatzi());
-				passwordFieldErrepikatu.setEditable(isIdatzi());
-				txtJaiotzeData.setEditable(isIdatzi());
-				cboHizkuntza.setEnabled(isIdatzi());
-				spinner.setEnabled(!isIdatzi());
+
 			}
 		});
 	}
@@ -228,31 +254,14 @@ public class ErregistroaPremium extends Erregistroa {
 	}
 
 	protected void datuakEguneratu() {
-		try {
-			if (!passwordField.getText().equals(passwordFieldErrepikatu.getText())) {
-				throw new pasahitzaEzKointziditu();
-			}
 
-			Date jaioData = balidatuData(txtJaiotzeData.getText());
-			
-
-			if (jaioData.after(new Date())) {
-				JOptionPane.showMessageDialog(null, "Data oso handia!!!", "heyyy!!",
-						JOptionPane.WARNING_MESSAGE);
-			}else {
-
-
-			ErabiltzaileFree erabiltzailefree = new ErabiltzaileFree(0, txtErabiltzailea.getText(),
-					passwordField.getText(), txtIzena.getText(), txtAbizenak.getText(),
-					new java.sql.Date(jaioData.getTime()), (String) cboHizkuntza.getSelectedItem());
-			Kone.eguneratuErabiltzailea(erabiltzailefree);
-			ViewMetodoak.comprobatuLogin(txtErabiltzailea.getText(), passwordField.getText());
-			dispose();
-			JFrameSortu.menuNagusiaAukeraSortu();
-			}
-		} catch (pasahitzaEzKointziditu e1) {
-			System.err.println(e1.getMessage());
-		}
+		ErabiltzaileFree erabiltzailefree = new ErabiltzaileFree(0, txtErabiltzailea.getText(), passwordField.getText(),
+				txtIzena.getText(), txtAbizenak.getText(), new java.sql.Date(jaioData.getTime()),
+				(String) cboHizkuntza.getSelectedItem());
+		Kone.eguneratuErabiltzailea(erabiltzailefree);
+		ViewMetodoak.comprobatuLogin(txtErabiltzailea.getText(), passwordField.getText());
+		dispose();
+		JFrameSortu.menuNagusiaAukeraSortu();
 	}
 
 	private void gordePremium(Date eguna) {
@@ -267,14 +276,12 @@ public class ErregistroaPremium extends Erregistroa {
 		erabiltzailea.setAbizena(txtAbizenak.getText());
 		erabiltzailea.setHizkuntza((String) cboHizkuntza.getSelectedItem());
 		erabiltzailea.setErabiltzailea(txtErabiltzailea.getText());
-		
+
 		erabiltzailea.setJaiotzeData(new java.sql.Date(balidatuData(txtJaiotzeData.getText()).getTime()));
 		erabiltzailea.setPasahitza(passwordField.getText());
 
 		return SesioAldagaiak.logErabiltzailea.equals(erabiltzailea);
 	}
-
-	
 
 	private boolean Alerta() {
 		String[] opciones = { "Utzi", "Jarraitu" };
@@ -301,7 +308,5 @@ public class ErregistroaPremium extends Erregistroa {
 		}
 		return false;
 	}
-	
-	
-	
+
 }
