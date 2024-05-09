@@ -169,6 +169,7 @@ public class ErregistroaPremium extends Erregistroa {
 
 			}
 		});
+		btnErregistratu.setEnabled(!isIdatzi());
 
 		btnGorde.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -226,6 +227,7 @@ public class ErregistroaPremium extends Erregistroa {
 							txtJaiotzeData.setEditable(isIdatzi());
 							cboHizkuntza.setEnabled(isIdatzi());
 							spinner.setEnabled(!isIdatzi());
+							btnErregistratu.setEnabled(!isIdatzi());
 						}
 					}
 				} catch (Exception j) {
