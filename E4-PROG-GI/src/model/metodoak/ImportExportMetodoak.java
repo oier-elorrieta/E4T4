@@ -41,7 +41,7 @@ public class ImportExportMetodoak {
 		ArrayList<Audio> abestiak = PlayListakDao.getPlayListAbestiak(pl);
 
 		// Definir el nombre del archivo
-		String nombreArchivo = "C:\\Users\\in1dm3-d\\Desktop\\4.Erronka\\E4T4\\E4-PROG-GI\\src\\Importazioak\\Playlist.txt";
+		String nombreArchivo = "src\\Importazioak\\Playlist.txt";
 		
 		try {
 			// Crear un objeto BufferedWriter
@@ -69,7 +69,7 @@ public class ImportExportMetodoak {
 	
 	public static String[] importatuPlaylist() {
 
-		String nombreArchivo = "C:\\Users\\in1dm3-d\\Desktop\\4.Erronka\\E4T4\\E4-PROG-GI\\src\\Importazioak\\Playlist.txt"; // Nombre del archivo a leer
+		String nombreArchivo = "src\\Importazioak\\Playlist.txt"; // Nombre del archivo a leer
 		String[] playlist = null;
 		try {
 			
@@ -88,7 +88,7 @@ public class ImportExportMetodoak {
 
 	public static void exportatuAbesti(Audio a) {
 		
-		String nombreArchivo = "C:\\Users\\in1dm3-d\\Desktop\\4.Erronka\\E4T4\\E4-PROG-GI\\src\\Importazioak\\Abestia.txt"; // Nombre del archivo a leer
+		String nombreArchivo = "src\\Importazioak\\Abestia.txt"; // Nombre del archivo a leer
 	
 		try {
 			// Crear un objeto BufferedWriter
