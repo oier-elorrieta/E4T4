@@ -161,6 +161,8 @@ public class PlaylistAbestiak extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				ImportExportMetodoak.exportatuAbesti(abestiakList.get(jListAbestiak.getSelectedIndex()));
+				JOptionPane.showMessageDialog(null, "Ondo partekatu da", "Partekatuta",
+						JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 	}

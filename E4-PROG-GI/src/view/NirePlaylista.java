@@ -180,6 +180,8 @@ public class NirePlaylista extends JFrame {
 				PlayListak selectedPlay = playlistLista.get(jListPlayList.getSelectedIndex());
 
 				ImportExportMetodoak.exportatuPlaylist(selectedPlay);
+				JOptionPane.showMessageDialog(null, "Ondo exportatu da Playlista", "Exportatuta",
+						JOptionPane.INFORMATION_MESSAGE);
 
 			}
 
