@@ -38,7 +38,10 @@ public class MenuNagusia extends JFrame {
 	protected static final String String = null;
 	private JPanel contentPane;
 
+	
+	
 	public MenuNagusia() {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 250, 906, 594);
 		setTitle("Menu Nagusia - Talde 4");

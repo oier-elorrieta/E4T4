@@ -37,22 +37,7 @@ public class Login extends JFrame {
 	private JTextField txtErabiltzaile;
 	private JPasswordField passwordField;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Login frame = new Login();
-					frame.setVisible(false);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	
 	/**
 	 * Create the frame.
 	 */
@@ -130,6 +115,7 @@ public class Login extends JFrame {
 						JOptionPane.showMessageDialog(null, "Pasahitza edo erabiltzailea txarto!!", "Error", JOptionPane.ERROR_MESSAGE);
 					}			
 				} else if (Kone.konektatuAdmin(txtErabiltzaile.getText(), passwordField.getText())) {
+					JFrameSortu.menuAdminAukeraSortu();
 					dispose();
 				}else {
 					JOptionPane.showMessageDialog(null, "Pasahitza edo erabiltzailea txarto!!", "Error", JOptionPane.ERROR_MESSAGE);
