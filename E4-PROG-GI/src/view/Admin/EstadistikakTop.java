@@ -10,55 +10,53 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EstadistikakTop extends JFrame {
+public abstract class EstadistikakTop extends JFrame {
 	protected DefaultTableModel model = new DefaultTableModel();
+	protected JScrollPane scrollPane;
+	JButton btnAstea;
+	JButton btnHilabetea;
+	JButton btnUrtea;
 
-public  EstadistikakTop() {
+	public EstadistikakTop() {
 
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    setTitle("Estadistikak");
-    setBounds(400, 250, 906, 594);
-    
-    
-    //model.addColumn("ID");
- 
-    JTable table = new JTable(model);
-    JScrollPane scrollPane = new JScrollPane(table);
- 
-    getContentPane().setLayout(new BorderLayout());
-    JPanel buttonPanel = new JPanel();
- 
-    JButton btnBueltagenero = new JButton("EstadistikaMenua");
-    
-    btnBueltagenero.addActionListener(new ActionListener() {
-    	public void actionPerformed(ActionEvent e) {
-    		EstadistikaMenua genero_lehioa = new EstadistikaMenua();
-    		dispose();
-    		genero_lehioa.setVisible(true);
-    	}
-    });
-    
-    buttonPanel.add(btnBueltagenero);
-    getContentPane().add(scrollPane, BorderLayout.CENTER);
- 
-    JToolBar toolBar = new JToolBar();
-    scrollPane.setColumnHeaderView(toolBar);
- 
-    JButton btnNewButton = new JButton("New button");
-    scrollPane.setColumnHeaderView(btnNewButton);
- 
-    JToolBar toolBar_1 = new JToolBar();
-    scrollPane.setColumnHeaderView(toolBar_1);
-    getContentPane().add(buttonPanel, BorderLayout.SOUTH);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle("Estadistikak");
+		setBounds(400, 250, 906, 594);
+
+		model.addColumn("Pos");
+
+		JTable table = new JTable(model);
+		scrollPane = new JScrollPane(table);
+
+		getContentPane().setLayout(new BorderLayout());
+		JPanel buttonPanel = new JPanel();
+
+		JButton btnAtzera = new JButton("Atzera");
+
+		btnAtzera.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				EstadistikaMenua genero_lehioa = new EstadistikaMenua();
+				dispose();
+				genero_lehioa.setVisible(true);
+			}
+		});
+
+		btnAstea = new JButton("Astekoa");
+		btnHilabetea = new JButton("Hilabetekoa");
+		btnUrtea = new JButton("Urtekoa");
+
+		buttonPanel.add(btnAtzera);
+		buttonPanel.add(btnAstea);
+		buttonPanel.add(btnHilabetea);
+		buttonPanel.add(btnUrtea);
+
+		getContentPane().add(scrollPane, BorderLayout.CENTER);
+
+		JToolBar toolBar = new JToolBar();
+		scrollPane.setColumnHeaderView(toolBar);
+
+		JToolBar toolBar_1 = new JToolBar();
+		scrollPane.setColumnHeaderView(toolBar_1);
+		getContentPane().add(buttonPanel, BorderLayout.NORTH);
+	}
 }
-
-public static void main(String[] args) {
-    SwingUtilities.invokeLater(new Runnable() {
-        public void run() {
-            new  EstadistikakTop().setVisible(true);
-        }
-    });
-}
-}
-
-
