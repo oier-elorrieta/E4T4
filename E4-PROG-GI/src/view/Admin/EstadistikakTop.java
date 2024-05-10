@@ -3,6 +3,10 @@ package view.Admin;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 237ab0f8450cae3371db81e02f3bd32dbe755367
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EstadistikakTop extends JFrame {
+<<<<<<< HEAD
 	private DefaultTableModel model;
 	private int selectedRow = -1;
 	private int idnumber = 1;
@@ -79,6 +84,36 @@ public  EstadistikakTop() {
     });
     buttonPanel.add(btnBueltagenero);
     buttonPanel.add(addButton);
+=======
+	protected DefaultTableModel model = new DefaultTableModel();
+
+public  EstadistikakTop() {
+
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setTitle("Estadistikak");
+    setBounds(400, 250, 906, 594);
+    
+    
+    //model.addColumn("ID");
+ 
+    JTable table = new JTable(model);
+    JScrollPane scrollPane = new JScrollPane(table);
+ 
+    getContentPane().setLayout(new BorderLayout());
+    JPanel buttonPanel = new JPanel();
+ 
+    JButton btnBueltagenero = new JButton("EstadistikaMenua");
+    
+    btnBueltagenero.addActionListener(new ActionListener() {
+    	public void actionPerformed(ActionEvent e) {
+    		EstadistikaMenua genero_lehioa = new EstadistikaMenua();
+    		dispose();
+    		genero_lehioa.setVisible(true);
+    	}
+    });
+    
+    buttonPanel.add(btnBueltagenero);
+>>>>>>> 237ab0f8450cae3371db81e02f3bd32dbe755367
     getContentPane().add(scrollPane, BorderLayout.CENTER);
  
     JToolBar toolBar = new JToolBar();
@@ -91,6 +126,7 @@ public  EstadistikakTop() {
     scrollPane.setColumnHeaderView(toolBar_1);
     getContentPane().add(buttonPanel, BorderLayout.SOUTH);
 }
+<<<<<<< HEAD
  /**
  *
  * @param denboraBerria
@@ -174,6 +210,9 @@ public void denborakenketa(JTable table, int selectedRow, int denboratotalaL, in
 	   setdenboraS(denboratotalaL);
 	
 }
+=======
+
+>>>>>>> 237ab0f8450cae3371db81e02f3bd32dbe755367
 public static void main(String[] args) {
     SwingUtilities.invokeLater(new Runnable() {
         public void run() {
