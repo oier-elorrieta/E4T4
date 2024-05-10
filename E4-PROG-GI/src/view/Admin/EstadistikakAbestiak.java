@@ -1,42 +1,81 @@
 package view.Admin;
 
-import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+import javax.swing.SwingUtilities;
 
-public class EstadistikakAbestiak extends JFrame {
+public class EstadistikakAbestiak extends EstadistikakTop {
 
-	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					EstadistikakAbestiak frame = new EstadistikakAbestiak();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public EstadistikakAbestiak() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
-		setContentPane(contentPane);
-	}
-
+    public EstadistikakAbestiak() {
+        super();
+        setTitle("Estadistikak Astekoa");
+        
+        super.btnAstea.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                EstadistikakAbestiak ea = new EstadistikakAbestiak();
+                dispose();
+                ea.setVisible(true);
+            }
+        });
+        
+        super.btnHilabetea.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                EstadistikakAbestiak ea = new EstadistikakAbestiak(2);
+                dispose();
+                ea.setVisible(true);
+            }
+        });
+        
+        super.btnUrtea.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                EstadistikakAbestiak ea = new EstadistikakAbestiak(3);
+                dispose();
+                ea.setVisible(true);
+            }
+        });
+        
+    }
+    
+    public EstadistikakAbestiak(int Aukera) {
+        super();
+        
+        super.btnAstea.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                EstadistikakAbestiak ea = new EstadistikakAbestiak();
+                dispose();
+                ea.setVisible(true);
+            }
+        });
+        
+        super.btnHilabetea.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                EstadistikakAbestiak ea = new EstadistikakAbestiak(2);
+                dispose();
+                ea.setVisible(true);
+            }
+        });
+        
+        super.btnUrtea.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                EstadistikakAbestiak ea = new EstadistikakAbestiak(3);
+                dispose();
+                ea.setVisible(true);
+            }
+        });
+        
+        if (Aukera == 2) {
+            setTitle("Estadistikak Hilabetekoa");
+        } else {
+            setTitle("Estadistikak Urtekoa");
+        }
+    }
+    
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                new EstadistikakAbestiak().setVisible(true);
+            }
+        });
+    }
 }
