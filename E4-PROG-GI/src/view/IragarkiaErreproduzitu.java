@@ -35,9 +35,11 @@ import javax.swing.border.EmptyBorder;
 import model.Abestia;
 import model.Artista;
 import model.Audio;
+import model.Iragarkia;
 import model.Podcast;
 import model.SesioAldagaiak;
 import model.dao.AbestiaDao;
+import model.dao.IragarkiaDao;
 import model.metodoak.JFrameSortu;
 import model.metodoak.ViewMetodoak;
 import model.sql.Kone;
@@ -64,22 +66,26 @@ private Timer timer;
                System.exit(0);
             }
         });
-		/*
-		ImageIcon irudia = new ImageIcon(abestiak.get(abestiAukera).getIrudia().getBytes(1,
-				(int) abestiak.get(abestiAukera).getIrudia().length()));
+		
+		ArrayList<Iragarkia> iragarkiak = IragarkiaDao.getIragarkiak();
+		int iragarkiaRandom = (int) (Math.random() * (iragarkiak.size()));
+		
+		ImageIcon irudia = new ImageIcon(iragarkiak.get(iragarkiaRandom).getIrudia().getBytes(1,
+				(int) iragarkiak.get(iragarkiaRandom).getIrudia().length()));
 		JLabel lblIrudia = new JLabel();
-		lblIrudia.setBounds(325, 71, 250, 250);
+		lblIrudia.setHorizontalAlignment(SwingConstants.CENTER);
+		lblIrudia.setBounds(285, 29, 324, 310);
 		lblIrudia.setIcon(irudia);
-*/
-		JLabel lblIzenaAbesti = new JLabel("Nocilla");
+
+		JLabel lblIzenaAbesti = new JLabel(iragarkiak.get(iragarkiaRandom).getIzena());
 		lblIzenaAbesti.setFont(new Font("Arial Black", Font.BOLD | Font.ITALIC, 17));
 		lblIzenaAbesti.setHorizontalAlignment(SwingConstants.CENTER);
 		lblIzenaAbesti.setBounds(10, 350, 870, 25);
-
-		//contentPane.add(lblIrudia);
+		
+		contentPane.add(lblIrudia);
 		contentPane.add(lblIzenaAbesti);
 
-		String filepath = "src\\audioak\\iragarkiak\\nocilla.wav";
+		String filepath = "\\\\10.5.6.111\\audioak\\iragarkiak\\" + iragarkiak.get(iragarkiaRandom).getIzena() + ".wav";
 		File f = new File(filepath);
 		AudioInputStream aui;
 

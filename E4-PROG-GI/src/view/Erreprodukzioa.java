@@ -69,7 +69,7 @@ public class Erreprodukzioa extends JFrame {
 		contentPane.setLayout(null);
 
 		erreproduzitzen = isrunning;
-		String filepath = "src\\audioak\\" + abestiak.get(abestiAukera).getIzena() + ".wav";
+		String filepath = "\\\\10.5.6.111\\audioak\\" + abestiak.get(abestiAukera).getIzena() + ".wav";
 		errepoduzituAudioa(filepath, abiadura, posicion, erreproduzitzen);
 
 		JLabel lblIzenaAlbum = new JLabel(izenaAlbum);
