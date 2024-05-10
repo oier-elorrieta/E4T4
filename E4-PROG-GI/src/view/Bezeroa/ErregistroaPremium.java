@@ -99,18 +99,22 @@ public class ErregistroaPremium extends Erregistroa {
 		lblPremiumMuga.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 15));
 
 		Calendar calendar = Calendar.getInstance();
-		spinner = new JSpinner(model);
-		editor = new JSpinner.DateEditor(spinner, "yyyy-MM-dd");
+		
 		
 		if (SesioAldagaiak.erabiltzaileLogeatutaPremium != null) {
 			calendar.setTime(SesioAldagaiak.erabiltzaileLogeatutaPremium.getPremiumMuga());
 			model = new SpinnerDateModel(calendar.getTime(), null, null, Calendar.DAY_OF_MONTH);
+			spinner = new JSpinner(model);
 			model.setStart(calendar.getTime());
+			editor = new JSpinner.DateEditor(spinner, "yyyy-MM-dd");
 
 		} else {
 			calendar.add(Calendar.DAY_OF_MONTH, 1);
 			model = new SpinnerDateModel(calendar.getTime(), null, null, Calendar.DAY_OF_MONTH);
+			spinner = new JSpinner(model);
 			model.setStart(new Date());
+			editor = new JSpinner.DateEditor(spinner, "yyyy-MM-dd");
+			
 		}
 
 		editor.getTextField().setEditable(false);
@@ -131,6 +135,7 @@ public class ErregistroaPremium extends Erregistroa {
 			public void actionPerformed(ActionEvent e) {
 
 				if (SesioAldagaiak.erabiltzaileLogeatutaPremium != null) {
+					
 					Date dat = SesioAldagaiak.erabiltzaileLogeatutaPremium.getPremiumMuga();
 					dat = (Date) spinner.getValue();
 
