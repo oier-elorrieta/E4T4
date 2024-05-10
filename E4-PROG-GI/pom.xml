@@ -5,12 +5,16 @@
 	<groupId>Consultas</groupId>
 	<artifactId>Consultas</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.mindrot</groupId>
 			<artifactId>jbcrypt</artifactId>
 			<version>0.4</version>
 		</dependency>
+
+
+		
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>

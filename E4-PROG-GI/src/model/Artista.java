@@ -1,27 +1,54 @@
 package model;
 
+import java.sql.Blob;
+import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.Objects;
+
+
 
 /**
  * Artistak klasea abstraktoa da, eta artisten informazioa gordetzeko erabiltzen da.
  */
 public abstract class Artista {
+	protected int idArtista;
 	protected String izena;
 	protected String deskription;
-	protected String irudia;
+	protected Blob irudia;
+	protected int entzunaldiak;
 	
+	public int getEntzunaldiak() {
+		return entzunaldiak;
+	}
+	public void setEntzunaldiak(int entzunaldiak) {
+		this.entzunaldiak = entzunaldiak;
+	}
 	/**
 	 * Artistak klasearen eraikitzailea.
 	 * @param izena artistaren izena
 	 * @param deskription artistaren deskribapena
 	 * @param irudia artistaren irudia
-	 */
-	public Artista(String izena, String deskription, String irudia) {
+*/
+	public Artista(int idArtista,String izena, String deskription, Blob irudia) {
+		this.idArtista=idArtista;
 		this.izena = izena;
 		this.deskription = deskription;
 		this.irudia = irudia;
+		this.idArtista = idArtista;
+	}
+	public Artista(String izena, String deskription, Blob irudia) {
+
+		this.izena = izena;
+		this.deskription = deskription;
+		this.irudia = irudia;
+		this.idArtista = idArtista;
 	}
 
+	public Artista(String izena, Blob irudia, int entzunaldiak) {
+		this.izena = izena;
+		this.irudia = irudia;
+		this.entzunaldiak = entzunaldiak;
+	}
 	/**
 	 * Objektu hau eta beste objektu bat berdinak diren ala ez adierazten duen metodoa.
 	 * @param obj beste objektu bat
@@ -36,8 +63,16 @@ public abstract class Artista {
 		if (getClass() != obj.getClass())
 			return false;
 		Artista other = (Artista) obj;
-		return Objects.equals(deskription, other.deskription) && Objects.equals(irudia, other.irudia)
+		try {
+		  byte[] thisBytes = this.irudia.getBytes(1, (int) this.irudia.length());
+          byte[] otherBytes = other.irudia.getBytes(1, (int) other.irudia.length());
+          
+		return Objects.equals(deskription, other.deskription) && Arrays.equals(thisBytes, otherBytes)
 				&& Objects.equals(izena, other.izena);
+		} catch (SQLException e) {
+			// TODO: handle exception
+		}
+		return false;
 	}
 
 	/**
@@ -85,7 +120,7 @@ public abstract class Artista {
 	 * Artistaren irudia itzultzen duen metodoa.
 	 * @return artistaren irudia
 	 */
-	public String getIrudia() {
+	public Blob getIrudia() {
 		return irudia;
 	}
 
@@ -93,7 +128,16 @@ public abstract class Artista {
 	 * Artistaren irudia ezartzen duen metodoa.
 	 * @param irudia artistaren irudia
 	 */
-	public void setIrudia(String irudia) {
+	public void setIrudia(Blob irudia) {
 		this.irudia = irudia;
 	}
+
+	public int getIdArtista() {
+		return idArtista;
+	}
+
+	public void setIdArtista(int idArtista) {
+		this.idArtista = idArtista;
+	}
+	
 }

@@ -7,15 +7,23 @@ import java.util.Objects;
  * PlayListak klasea errepresentatzen duen klasea.
  */
 public class PlayListak {
+	private int idPlayList;
 	private String izena;
 	private Date sorreraData;
+	
+	public PlayListak() {
+		
+	}
+	
+	
 	
 	/**
 	 * PlayListak klasearen eraikitzailea.
 	 * @param izena PlayListaren izena
 	 * @param sorreraData PlayListaren sorrera data
 	 */
-	public PlayListak(String izena, Date sorreraData) {
+	public PlayListak(int idPlayList, String izena, Date sorreraData) {
+		this.idPlayList = idPlayList;
 		this.izena = izena;
 		this.sorreraData = sorreraData;
 	}
@@ -43,13 +51,22 @@ public class PlayListak {
 	 */
 	@Override
 	public String toString() {
-		return "PlayListak [izena=" + izena + ", sorreraData=" + sorreraData + "]";
+		return izena;
 	}
 
 	/**
 	 * PlayListaren izena itzultzen duen metodoa.
 	 * @return PlayListaren izena
 	 */
+	
+	public int getIdPlayList() {
+		return idPlayList;
+	}
+
+	public void setIdPlayList(int idPlayList) {
+		this.idPlayList = idPlayList;
+	}
+	
 	public String getIzena() {
 		return izena;
 	}

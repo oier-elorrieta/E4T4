@@ -1,6 +1,10 @@
 package model;
 
-import java.util.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.sql.Date;
 import java.util.Objects;
 
 /**
@@ -14,6 +18,7 @@ public class Erabiltzailea {
 	protected String abizena;
 	protected Date jaiotzeData;
 	protected String hizkuntza;
+
 	
 	/**
 	 * Erabiltzailea klasearen eraikitzailea.
@@ -26,16 +31,23 @@ public class Erabiltzailea {
 	 * @param jaiotzeData Erabiltzailearen jaiotze data
 	 * @param hizkuntza Erabiltzailearen hizkuntza
 	 */
-	public Erabiltzailea(int idErabiltzailea, String erabiltzailea, String pasahitza, String izena, String abizena, Date jaiotzeData,
-			String hizkuntza) {
+	public Erabiltzailea() {
+		
+	}
+	
+
+
+	public Erabiltzailea(int idErabiltzailea, String erabiltzailea, String pasahitza, String izena, String abizena,Date jaiotzeData2, String hizkuntza) {
 		this.idErabiltzailea = idErabiltzailea;
 		this.erabiltzailea = erabiltzailea;
 		this.pasahitza = pasahitza;
 		this.izena = izena;
 		this.abizena = abizena;
-		this.jaiotzeData = jaiotzeData;
+		this.jaiotzeData = jaiotzeData2;
 		this.hizkuntza = hizkuntza;
 	}
+
+
 
 	/**
 	 * Objektu hau eta beste objektu bat berdinak diren ala ez jakiteko metodoa.
@@ -46,15 +58,9 @@ public class Erabiltzailea {
 	
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
 		Erabiltzailea other = (Erabiltzailea) obj;
 		return Objects.equals(abizena, other.abizena) && Objects.equals(erabiltzailea, other.erabiltzailea)
-				&& Objects.equals(hizkuntza, other.hizkuntza) && idErabiltzailea == other.idErabiltzailea
+				&& Objects.equals(hizkuntza, other.hizkuntza)
 				&& Objects.equals(izena, other.izena) && Objects.equals(jaiotzeData, other.jaiotzeData)
 				&& Objects.equals(pasahitza, other.pasahitza);
 	}
@@ -65,12 +71,7 @@ public class Erabiltzailea {
 	 * @return Erabiltzailearen testu errepresentazioa
 	 */
 
-	@Override
-	public String toString() {
-		return "Erabiltzailea [idErabiltzailea=" + idErabiltzailea + ", erabiltzailea=" + erabiltzailea + ", pasahitza="
-				+ pasahitza + ", izena=" + izena + ", abizena=" + abizena + ", jaiotzeData=" + jaiotzeData
-				+ ", hizkuntza=" + hizkuntza + "]";
-	}
+	
 	
 	/**
 	 * idErabiltzailearen erabiltzaile idea itzultzen duen metodoa.
@@ -82,6 +83,13 @@ public class Erabiltzailea {
 		return idErabiltzailea;
 	}
 	
+	@Override
+	public String toString() {
+		return "Erabiltzailea [idErabiltzailea=" + idErabiltzailea + ", erabiltzailea=" + erabiltzailea + ", pasahitza="
+				+ pasahitza + ", izena=" + izena + ", abizena=" + abizena + ", jaiotzeData=" + jaiotzeData
+				+ ", hizkuntza=" + hizkuntza + "]";
+	}
+
 	/**
 	 * Erabiltzailearen idea ezartzen duen metodoa.
 	 * 
@@ -176,10 +184,10 @@ public class Erabiltzailea {
 	/**
 	 * Erabiltzailearen jaiotze data ezartzen duen metodoa.
 	 * 
-	 * @param jaiotzeData Erabiltzailearen jaiotze data
+	 * @param date Erabiltzailearen jaiotze data
 	 */
-	public void setJaiotzeData(Date jaiotzeData) {
-		this.jaiotzeData = jaiotzeData;
+	public void setJaiotzeData(Date date) {
+		this.jaiotzeData = date;
 	}
 
 	/**
@@ -198,5 +206,6 @@ public class Erabiltzailea {
 	 */
 	public void setHizkuntza(String hizkuntza) {
 		this.hizkuntza = hizkuntza;
-	}	
+	}
+	
 }

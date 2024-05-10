@@ -1,6 +1,6 @@
 package model;
 
-import java.util.Date;
+import java.sql.Date;
 
 /**
  * Klase honek Erabiltzailea klasea heredatzen du eta ErabiltzailePremium motako erabiltzaileak
@@ -22,6 +22,11 @@ public class ErabiltzailePremium extends Erabiltzailea {
 	 * @param hizkuntza Erabiltzailearen hizkuntza
 	 * @param premiumMuga ErabiltzailePremium-aren premium mugaren data
 	 */
+	
+	public ErabiltzailePremium() {
+		
+	}
+	
 	public ErabiltzailePremium(int idErabiltzailea, String erabiltzailea, String pasahitza, String izena,
 			String abizena, Date jaiotzeData, String hizkuntza, Date premiumMuga) {
 		super(idErabiltzailea, erabiltzailea, pasahitza, izena, abizena, jaiotzeData, hizkuntza);

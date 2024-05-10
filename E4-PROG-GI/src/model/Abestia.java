@@ -1,5 +1,11 @@
 package model;
 
+
+import java.sql.Time;
+
+import java.time.LocalTime;
+
+import java.sql.Blob;
 import java.util.Objects;
 
 /**
@@ -18,10 +24,22 @@ public class Abestia extends Audio {
 	 * @param iraupena    abestiaren iraupena
 	 * @param gustokoena  abestia gustatzen zaion edo ez adierazten du
 	 */
-	public Abestia(String izena, int iraupena, boolean gustokoena) {
-		super(izena, iraupena);
+
+	public Abestia() {
+		
+	}
+	
+	public Abestia(int idAudio, String izena, Time iraupena, Blob irudia, boolean gustokoena) {
+		super(idAudio, izena, iraupena, irudia);
 		this.setGustokoena(gustokoena);
 	}
+	
+	public Abestia(int idAudio, String izena, Time iraupena) {
+		super(idAudio, izena, iraupena);
+		this.setGustokoena(gustokoena);
+	}
+	
+	
 
 	/**
 	 * Abestia gustatzen zaion edo ez itzultzen du.
@@ -40,5 +58,16 @@ public class Abestia extends Audio {
 	public void setGustokoena(boolean gustokoena) {
 		this.gustokoena = gustokoena;
 	}
+	
+	public boolean getGustokoena() {
+		return gustokoena;
+	}
+
+	@Override
+	public String toString() {
+		return "Izena:" + izena + "|| Iraupena: " + iraupena;
+	}	
+	
+	
 	
 }

@@ -1,31 +1,78 @@
 package model;
 
+import java.sql.Blob;
+import java.sql.Time;
+import java.time.LocalTime;
 import java.util.Objects;
 
 /**
  * Audio klasea errepresentazioa egiten du audio fitxategien datuei buruz.
  */
 public class Audio {
+	protected int idAudio;
 	protected String izena;
-	protected int iraupena;
-	
+	protected Time iraupena;
+	protected Blob irudia;
+
 	/**
 	 * Audio objektuaren eraikitzailea.
 	 * 
 	 * @param izena     audioaren izena
 	 * @param iraupena  audioaren iraupena
 	 */
-	public Audio(String izena, int iraupena) {
+	
+	public Audio() {
+	}
+	
+	public Audio(int idAudio, String izena, Time iraupena) {
+		this.idAudio = idAudio;
 		this.izena = izena;
 		this.iraupena = iraupena;
 	}
+	public Audio(int idAudio, String izena, Time iraupena, Blob irudia) {
+		this.idAudio = idAudio;
+		this.izena = izena;
+		this.iraupena = iraupena;
+		this.irudia = irudia;
+	}
 
-	/**
-	 * Objektu hau eta beste objektu bat berdinak diren ala ez adierazten du.
-	 * 
-	 * @param obj  konparatzeko objektua
-	 * @return     objektuak berdinak diren ala ez adierazten duen boolean balioa
-	 */
+	public int getIdAudio() {
+		return idAudio;
+	}
+
+	public void setIdAudio(int idAudio) {
+		this.idAudio = idAudio;
+	}
+
+	public String getIzena() {
+		return izena;
+	}
+
+	public void setIzena(String izena) {
+		this.izena = izena;
+	}
+
+	public Time getIraupena() {
+		return iraupena;
+	}
+
+	public void setIraupena(Time iraupena) {
+		this.iraupena = iraupena;
+	}
+
+	public Blob getIrudia() {
+		return irudia;
+	}
+
+	public void setIrudia(Blob irudia) {
+		this.irudia = irudia;
+	}
+
+	@Override
+	public String toString() {
+		return "Audio [idAudio=" + idAudio + ", izena=" + izena + ", iraupena=" + iraupena + ", irudia=" + irudia + "]";
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -35,52 +82,11 @@ public class Audio {
 		if (getClass() != obj.getClass())
 			return false;
 		Audio other = (Audio) obj;
-		return iraupena == other.iraupena && Objects.equals(izena, other.izena);
+		return idAudio == other.idAudio && Objects.equals(iraupena, other.iraupena)
+				&& Objects.equals(irudia, other.irudia) && Objects.equals(izena, other.izena);
 	}
 
-	/**
-	 * Objektuaren testu-representazioa itzultzen du.
-	 * 
-	 * @return  objektuaren testu-representazioa
-	 */
-	@Override
-	public String toString() {
-		return "Audio [izena=" + izena + ", iraupena=" + iraupena + "]";
-	}
-
-	/**
-	 * Audioaren izena itzultzen du.
-	 * 
-	 * @return  audioaren izena
-	 */
-	public String getIzena() {
-		return izena;
-	}
-
-	/**
-	 * Audioaren izena ezartzen du.
-	 * 
-	 * @param izena  audioaren izena
-	 */
-	public void setIzena(String izena) {
-		this.izena = izena;
-	}
-
-	/**
-	 * Audioaren iraupena itzultzen du.
-	 * 
-	 * @return  audioaren iraupena
-	 */
-	public int getIraupena() {
-		return iraupena;
-	}
-
-	/**
-	 * Audioaren iraupena ezartzen du.
-	 * 
-	 * @param iraupena  audioaren iraupena
-	 */
-	public void setIraupena(int iraupena) {
-		this.iraupena = iraupena;
-	}	
+	
+	
+	
 }
