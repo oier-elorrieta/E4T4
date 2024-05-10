@@ -1,6 +1,7 @@
-package view;
+package view.Bezeroa;
 
 import model.SesioAldagaiak;
+import model.dao.MusikariaDao;
 import model.metodoak.*;
 
 import java.awt.BorderLayout;
@@ -20,12 +21,12 @@ import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 
-public class PodcastDeskubritu extends JFrame {
+public class MusikaDeskubritu extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
-	public PodcastDeskubritu() {
+	public MusikaDeskubritu() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 250, 906, 594);
 		setTitle("Menu Nagusia - Talde 4");
@@ -35,14 +36,19 @@ public class PodcastDeskubritu extends JFrame {
 		contentPane.setLayout(null);
 
 		JButton btnErabiltzaile = SesioAldagaiak.jb;
+		
+		
 		btnErabiltzaile.removeActionListener(btnErabiltzaile.getActionListeners()[0]);
-
+		
 		btnErabiltzaile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				JFrameSortu.premiumErregistroAukeraSortu();
 			}
 		});
+		
+		
+		
 		JButton btnAtzera = new JButton("Atzera");
 		btnAtzera.setBackground(Color.BLACK);
 		btnAtzera.setForeground(Color.RED);
@@ -62,8 +68,8 @@ public class PodcastDeskubritu extends JFrame {
 		artistaPane.setBounds(96, 121, 686, 372);
 		jsp.setViewportView(artistaPane);
 
-		ViewMetodoak.podcasterrakEntzunaldiakBotoiarentzako(artistaPane, this);
-
+		ViewMetodoak.musikariakEntzunaldiakBotoiarentzako(artistaPane,this);
+		
 		btnAtzera.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -71,13 +77,6 @@ public class PodcastDeskubritu extends JFrame {
 				JFrameSortu.menuNagusiaAukeraSortu();
 			}
 		});
-
-		btnErabiltzaile.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				dispose();
-				JFrameSortu.loginAukeraSortu();
-			}
-		});
+		
 	}
 }

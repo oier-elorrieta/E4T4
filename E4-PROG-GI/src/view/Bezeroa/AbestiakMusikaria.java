@@ -1,4 +1,4 @@
-package view;
+package view.Bezeroa;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

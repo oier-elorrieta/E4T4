@@ -1,9 +1,11 @@
-package view;
+package view.Admin;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -28,32 +30,24 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 
-public class ArtistakKudeatu extends JFrame {
+public class KudeatuPlantilla extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ArtistakKudeatu frame = new ArtistakKudeatu();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	protected JButton btnAtzera;
+	protected JScrollPane scrollPane;
+	protected DefaultListModel<String> modeloList;
+	protected JList list;
+	protected JLabel lblArtistaKude = new JLabel();
+	protected JButton btnJarraitu;
+	protected JButton btnEzabatu;
+	protected JButton btnGehitu;
+	protected JButton btnDatuakAldatu;
 
-	/**
-	 * Create the frame.
-	 */
-	public ArtistakKudeatu() {
-		
+	
+	public KudeatuPlantilla() {
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 250, 906, 594);
 		setTitle("Menu Nagusia - Talde 4");
@@ -62,72 +56,63 @@ public class ArtistakKudeatu extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		contentPane.setLayout(null);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(23, 124, 840, 420);
+
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(23, 124, 840, 355);
 		contentPane.add(scrollPane);
-		
-		
-		JButton btnAtzera = new JButton("Atzera");
+
+		btnAtzera = new JButton("Atzera");
 		btnAtzera.setBackground(Color.BLACK);
 		btnAtzera.setForeground(Color.RED);
 		btnAtzera.setBounds(50, 60, 144, 50);
 		btnAtzera.setFont(new Font("SansSerif", Font.BOLD, 22));
 		btnAtzera.setFocusPainted(false);
 		contentPane.add(btnAtzera);
-		
-		
-		
-		
-		DefaultListModel<String> modeloList = ViewAdminMetodoak.getMusikariakList();
-		JList list = new JList(modeloList);
+
+		list = new JList(modeloList);
 		list.setForeground(new Color(0, 0, 0));
 		list.setFont(new Font("SansSerif", Font.PLAIN, 23));
 		scrollPane.setViewportView(list);
-		
-		JLabel lblArtistaKude = new JLabel("Aukeratu artista bat:");
+
 		lblArtistaKude.setFont(new Font("SansSerif", Font.PLAIN, 37));
 		lblArtistaKude.setBounds(290, 60, 370, 53);
 		contentPane.add(lblArtistaKude);
-		
-	
-		
-		
-		
-		
-		list.addListSelectionListener(new ListSelectionListener() {
-			@Override
-			public void valueChanged(ListSelectionEvent e) {
-				
-				
-				JPanel pan = new JPanel(new BorderLayout());
-				JButton deskubritu = new JButton("Gehiago deskubritu");
-				JButton kudeatu = new JButton("Kudeatu");
-				pan.add(deskubritu, BorderLayout.CENTER);
-				pan.add(kudeatu,BorderLayout.CENTER);
-				
-				int opcion = JOptionPane.showConfirmDialog(null, pan, "Mesedez, Sartu PlayListaren Izen Berria:",
-						JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
-				if (opcion == JOptionPane.OK_OPTION) {
-					
-					
-				} else {
+		btnJarraitu = new JButton("Albumak Ikusi");
 
-				
-				}
-				
-			}});
-		
-		
-		
-		
+		btnJarraitu.setForeground(Color.RED);
+		btnJarraitu.setFont(new Font("SansSerif", Font.BOLD, 22));
+		btnJarraitu.setFocusPainted(false);
+		btnJarraitu.setBackground(Color.BLACK);
+		btnJarraitu.setBounds(50, 490, 187, 50);
+		contentPane.add(btnJarraitu);
 
-		
-		
-		
-		
-		
+		btnEzabatu = new JButton("Ezabatu");
+		btnEzabatu.setForeground(Color.RED);
+		btnEzabatu.setFont(new Font("SansSerif", Font.BOLD, 22));
+		btnEzabatu.setFocusPainted(false);
+		btnEzabatu.setBackground(Color.BLACK);
+		btnEzabatu.setBounds(247, 490, 187, 50);
+		contentPane.add(btnEzabatu);
+
+		btnGehitu = new JButton("Gehitu Artista");
+
+		btnGehitu.setForeground(Color.RED);
+		btnGehitu.setFont(new Font("SansSerif", Font.BOLD, 22));
+		btnGehitu.setFocusPainted(false);
+		btnGehitu.setBackground(Color.BLACK);
+		btnGehitu.setBounds(444, 490, 206, 50);
+		contentPane.add(btnGehitu);
+
+		btnDatuakAldatu = new JButton("Datuak aldatu");
+
+		btnDatuakAldatu.setForeground(Color.RED);
+		btnDatuakAldatu.setFont(new Font("SansSerif", Font.BOLD, 22));
+		btnDatuakAldatu.setFocusPainted(false);
+		btnDatuakAldatu.setBackground(Color.BLACK);
+		btnDatuakAldatu.setBounds(657, 490, 206, 50);
+		contentPane.add(btnDatuakAldatu);
+
 		btnAtzera.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -135,7 +120,6 @@ public class ArtistakKudeatu extends JFrame {
 				JFrameSortu.menuAdminAukeraSortu();
 			}
 		});
-		
-		
+
 	}
 }
