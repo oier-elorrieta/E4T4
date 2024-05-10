@@ -99,21 +99,17 @@ public class ErregistroaPremium extends Erregistroa {
 		lblPremiumMuga.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 15));
 
 		Calendar calendar = Calendar.getInstance();
-
+		spinner = new JSpinner(model);
+		editor = new JSpinner.DateEditor(spinner, "yyyy-MM-dd");
+		
 		if (SesioAldagaiak.erabiltzaileLogeatutaPremium != null) {
-
 			calendar.setTime(SesioAldagaiak.erabiltzaileLogeatutaPremium.getPremiumMuga());
 			model = new SpinnerDateModel(calendar.getTime(), null, null, Calendar.DAY_OF_MONTH);
-			spinner = new JSpinner(model);
-			editor = new JSpinner.DateEditor(spinner, "yyyy-MM-dd");
 			model.setStart(calendar.getTime());
 
 		} else {
-
 			calendar.add(Calendar.DAY_OF_MONTH, 1);
 			model = new SpinnerDateModel(calendar.getTime(), null, null, Calendar.DAY_OF_MONTH);
-			spinner = new JSpinner(model);
-			editor = new JSpinner.DateEditor(spinner, "yyyy-MM-dd");
 			model.setStart(new Date());
 		}
 
