@@ -11,19 +11,20 @@ import model.Musikaria;
 import model.PlayListak;
 import model.Podcast;
 import model.Podcasterra;
-import view.AbestiaPlayListeanSartu;
-import view.AbestiakMusikaria;
-import view.Erregistroa;
-import view.ErregistroaPremium;
-import view.Erreprodukzioa;
-import view.IragarkiaErreproduzitu;
-import view.Login;
-import view.MenuNagusia;
-import view.MusikariView;
-import view.NirePlaylista;
-import view.PlayListaSortu;
-import view.PlaylistAbestiak;
-import view.PodcastView;
+import view.Admin.AdminMenuNagusia;
+import view.Bezeroa.AbestiaPlayListeanSartu;
+import view.Bezeroa.AbestiakMusikaria;
+import view.Bezeroa.Erregistroa;
+import view.Bezeroa.ErregistroaPremium;
+import view.Bezeroa.Erreprodukzioa;
+import view.Bezeroa.IragarkiaErreproduzitu;
+import view.Bezeroa.Login;
+import view.Bezeroa.MenuNagusia;
+import view.Bezeroa.MusikariView;
+import view.Bezeroa.NirePlaylista;
+import view.Bezeroa.PlayListaSortu;
+import view.Bezeroa.PlaylistAbestiak;
+import view.Bezeroa.PodcastView;
 
 
 
@@ -31,6 +32,17 @@ import view.PodcastView;
 
 
 public class JFrameSortu {
+	
+	
+	/**
+     * Adminaren menu nagusia sortzeko metodoa.
+     */
+    public static void menuAdminAukeraSortu() {
+        
+        AdminMenuNagusia adminMenu = new AdminMenuNagusia();
+        adminMenu.setVisible(true);
+    
+    }
 
 	/**
 	 * Login aukera sortzeko metodoa.

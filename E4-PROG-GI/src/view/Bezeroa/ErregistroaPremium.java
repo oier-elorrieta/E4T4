@@ -1,4 +1,4 @@
-package view;
+package view.Bezeroa;
 
 // Hazme un test por cada una de las funciones que haya, cada uno de esos test solo puede tener un assert, las pruebas tienen que estar en Junit 4.
 import java.awt.EventQueue;
