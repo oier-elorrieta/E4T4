@@ -49,7 +49,6 @@ public class PlaylistAbestiak extends JFrame {
 		contentPane.setLayout(null);
 
 		abestiakList = AudioDao.getPlayListAbestiak(aukeraPlaylist);
-		// abestiakList = Kone.getPlayListAbestiak(aukeraPlaylist);
 
 		DefaultListModel<String> modeloLista = new DefaultListModel<>();
 		for (int i = 0; i < abestiakList.size(); i++) {
