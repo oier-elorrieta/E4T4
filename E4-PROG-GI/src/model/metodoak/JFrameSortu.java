@@ -13,6 +13,7 @@ import model.Podcast;
 import model.Podcasterra;
 import view.AbestiaPlayListeanSartu;
 import view.AbestiakMusikaria;
+import view.AdminMenuNagusia;
 import view.Erregistroa;
 import view.ErregistroaPremium;
 import view.Erreprodukzioa;
@@ -32,6 +33,22 @@ import view.PodcastView;
 
 public class JFrameSortu {
 
+	
+	
+	
+	/**
+	 * Adminaren menu nagusia sortzeko metodoa.
+	 */
+	public static void menuAdminAukeraSortu() {
+		
+		AdminMenuNagusia adminMenu = new AdminMenuNagusia();
+		adminMenu.setVisible(true);
+	
+	}
+	
+	
+	
+	
 	/**
 	 * Login aukera sortzeko metodoa.
 	 */
