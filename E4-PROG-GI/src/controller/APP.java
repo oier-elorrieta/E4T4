@@ -4,7 +4,7 @@ import javax.swing.WindowConstants;
 
 import model.metodoak.JFrameSortu;
 import model.sql.Kone;
-import view.Bezeroa.Login;
+import view.bezeroa.Login;
 
 public class APP {
 
