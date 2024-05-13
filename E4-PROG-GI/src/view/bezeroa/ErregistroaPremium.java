@@ -102,8 +102,6 @@ public class ErregistroaPremium extends Erregistroa {
 
 		Calendar calendar = Calendar.getInstance();
 
-		System.out.println(SesioAldagaiak.logErabiltzailea.getClass().getSimpleName());
-
 		// if (SesioAldagaiak.erabiltzaileLogeatutaPremium != null) {
 		if (SesioAldagaiak.logErabiltzailea.getClass().getSimpleName().equals("ErabiltzailePremium")) {
 			// calendar.setTime(SesioAldagaiak.erabiltzaileLogeatutaPremium.getPremiumMuga());
