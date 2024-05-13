@@ -208,20 +208,5 @@ public class AbestiaDao {
 	}
 	
 	
-	public static ArrayList<String> getAbestiakTopAstea() {
-		Connection konexioa = Kone.konektatu();
-		try {
-			ArrayList<String> estadistika = new ArrayList<String>();
-			Statement stm = konexioa.createStatement();
-			kontsulta = "SELECT * FROM EstadistikakEgunean where Eguna = " + new Date(new java.util.Date().getTime());
-			rs = stm.executeQuery(kontsulta);
-			while (rs.next()) {
-				estadistika.get(rs.getRow())).add();
-			}
-			return estadistika;
-		} catch (SQLException e) {
-			e.getMessage();
-			return null;
-		}
-	}
+
 }
