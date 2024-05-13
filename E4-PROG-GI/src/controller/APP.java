@@ -4,12 +4,12 @@ import javax.swing.WindowConstants;
 
 import model.metodoak.JFrameSortu;
 import model.sql.Kone;
-import view.Bezeroa.Login;
+import view.bezeroa.Login;
 
 public class APP {
 
 	public static void main(String[] args) {
-			JFrameSortu.loginAukeraSortu();
+			JFrameSortu.loginSortu();
 			//sprint3
 	}
 

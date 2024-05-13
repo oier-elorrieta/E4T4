@@ -32,6 +32,10 @@ public class Kone {
 	private static String user = "erabiltzaile";
 	private static String pass = "4321";
 
+	//private static String url = "jdbc:mysql://localhost/Sphea";
+	//private static String user = "root";
+	//private static String pass = "";
+	
 	private static String userErabiltzailea;
 	private static String passErabiltzailea;
 
@@ -189,7 +193,12 @@ public class Kone {
 			kontsulta = "SELECT * FROM Bezeroa WHERE IdBezeroa = " + id;
 			rs = stm.executeQuery(kontsulta);
 			while (rs.next()) {
+				/*
 				SesioAldagaiak.erabiltzaileLogeatutaFree = new ErabiltzaileFree(rs.getInt("IdBezeroa"),
+						rs.getString("Erabiltzailea"), rs.getString("Pasahitza"), rs.getString("Izena"),
+						rs.getString("Abizena"), rs.getDate("JaiotzeData"), rs.getString("IdHizkuntza"));
+			*/
+				SesioAldagaiak.logErabiltzailea = new ErabiltzaileFree(rs.getInt("IdBezeroa"),
 						rs.getString("Erabiltzailea"), rs.getString("Pasahitza"), rs.getString("Izena"),
 						rs.getString("Abizena"), rs.getDate("JaiotzeData"), rs.getString("IdHizkuntza"));
 			}
@@ -208,7 +217,13 @@ public class Kone {
 					+ id;
 			rs = stm.executeQuery(kontsulta);
 			while (rs.next()) {
+				/*
 				SesioAldagaiak.erabiltzaileLogeatutaPremium = new ErabiltzailePremium(rs.getInt("b.IdBezeroa"),
+						rs.getString("b.Erabiltzailea"), rs.getString("b.Pasahitza"), rs.getString("b.Izena"),
+						rs.getString("b.Abizena"), rs.getDate("JaiotzeData"), rs.getString("b.IdHizkuntza"),
+						rs.getDate("p.IraungitzeData"));
+			*/
+				SesioAldagaiak.logErabiltzailea = new ErabiltzailePremium(rs.getInt("b.IdBezeroa"),
 						rs.getString("b.Erabiltzailea"), rs.getString("b.Pasahitza"), rs.getString("b.Izena"),
 						rs.getString("b.Abizena"), rs.getDate("JaiotzeData"), rs.getString("b.IdHizkuntza"),
 						rs.getDate("p.IraungitzeData"));
@@ -226,13 +241,15 @@ public class Kone {
 		int id = 0;
 
 		konektatu();
-
+/*
 		if (!SesioAldagaiak.erabiltzailePremium) {
 			id = SesioAldagaiak.erabiltzaileLogeatutaFree.getIdErabiltzailea();
 		} else {
 			id = SesioAldagaiak.erabiltzaileLogeatutaPremium.getIdErabiltzailea();
 		}
-
+*/
+		id = SesioAldagaiak.logErabiltzailea.getIdErabiltzailea();
+		
 		try {
 			stm = konexioa.createStatement();
 			kontsulta = "SELECT a.IdAudio, a.Izena, a.Iraupena, a.Irudia FROM Gustokoak g join Audio a using (IdAudio) where IdBezeroa = "

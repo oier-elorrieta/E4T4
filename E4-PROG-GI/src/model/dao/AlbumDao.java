@@ -69,10 +69,10 @@ public class AlbumDao {
 		Connection konexioa = Kone.konektatu();
 		try {
 			stm = konexioa.createStatement();
-			kontsulta = "SELECT al.IdAlbum, al.Izenburua  from Album al Inner join Abestia ab using (IdAlbum) inner join Audio au where au.IdAudio = " + audio.getIdAudio() + " and ab.IdAudio = " + audio.getIdAudio() + ";";
+			kontsulta = "SELECT al.IdAlbum, al.Izenburua, al.Generoa, al.Irudia  from Album al Inner join Abestia ab using (IdAlbum) inner join Audio au where au.IdAudio = " + audio.getIdAudio() + " and ab.IdAudio = " + audio.getIdAudio() + ";";
 			rs = stm.executeQuery(kontsulta);
 			rs.next();
-			albumAbestia = new Album(rs.getInt("al.IdAlbum"), rs.getString("al.Izenburua"));			
+			albumAbestia = new Album(rs.getInt("al.IdAlbum"), rs.getString("al.Izenburua"), rs.getString("al.Generoa"), rs.getBlob("al.Irudia"));			
 		} catch (SQLException e) {
 			e.getMessage();
 		}

@@ -33,9 +33,9 @@ import model.dao.MusikariaDao;
 import model.dao.PodcastDao;
 import model.dao.PodcasterraDao;
 import model.sql.Kone;
-import view.Bezeroa.IragarkiaErreproduzitu;
-import view.Bezeroa.MusikariView;
-import view.Bezeroa.PodcastView;
+import view.bezeroa.IragarkiaErreproduzitu;
+import view.bezeroa.MusikariView;
+import view.bezeroa.PodcastView;
 
 /**
  * ViewMetodoak klasea aplikazioaren ikuspegia kudeatzeko metodoak dituen klasea
@@ -101,12 +101,12 @@ public class ViewMetodoak {
 		switch (mota) {
 		case "free":
 			Kone.kargatuErabiltzaileFree(id);
-			SesioAldagaiak.erabiltzailePremium = false;
+			//SesioAldagaiak.erabiltzailePremium = false;
 
 			break;
 		case "premium":
 			Kone.kargatuErabiltzailePremium(id);
-			SesioAldagaiak.erabiltzailePremium = true;
+			//SesioAldagaiak.erabiltzailePremium = true;
 			break;
 		}
 	}
@@ -117,7 +117,9 @@ public class ViewMetodoak {
 	 * @return Sortutako JButtona.
 	 */
 	public static JButton btnErabiltzaileaSortu() {
-		JButton btnErabiltzaile = null;
+		//JButton btnErabiltzaile = null;
+		JButton btnErabiltzaile = new JButton(SesioAldagaiak.logErabiltzailea.getIzena());
+		/*
 		if (!SesioAldagaiak.erabiltzailePremium) {
 			btnErabiltzaile = new JButton(SesioAldagaiak.erabiltzaileLogeatutaFree.getIzena());
 			SesioAldagaiak.logErabiltzailea = SesioAldagaiak.erabiltzaileLogeatutaFree;
@@ -125,6 +127,7 @@ public class ViewMetodoak {
 			btnErabiltzaile = new JButton(SesioAldagaiak.erabiltzaileLogeatutaPremium.getIzena());
 			SesioAldagaiak.logErabiltzailea = SesioAldagaiak.erabiltzaileLogeatutaPremium;
 		}
+		*/
 		btnErabiltzaile.setBackground(Color.LIGHT_GRAY);
 		btnErabiltzaile.setForeground(Color.BLACK);
 		btnErabiltzaile.setBounds(700, 60, 144, 50);
@@ -165,7 +168,7 @@ public class ViewMetodoak {
 			ImageIcon icono = new ImageIcon(musikaria.getIrudia().getBytes(1, (int) musikaria.getIrudia().length()));
 			newButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					JFrameSortu.musikaViewSortu(musikaria);
+					JFrameSortu.musikariViewSortu(musikaria);
 					jf.dispose();
 				}
 			});
@@ -387,5 +390,4 @@ public class ViewMetodoak {
 		return ondo;
 			
 		}
-	
 }

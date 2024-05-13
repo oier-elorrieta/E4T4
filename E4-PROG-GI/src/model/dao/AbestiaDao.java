@@ -31,13 +31,14 @@ public class AbestiaDao {
 		int id = 0;
 
 		Connection konexioa = Kone.konektatu();
-
+/*
 		if (!SesioAldagaiak.erabiltzailePremium) {
 			id = SesioAldagaiak.erabiltzaileLogeatutaFree.getIdErabiltzailea();
 		} else {
 			id = SesioAldagaiak.erabiltzaileLogeatutaPremium.getIdErabiltzailea();
 		}
-
+*/
+		id = SesioAldagaiak.logErabiltzailea.getIdErabiltzailea();
 		try {
 			Statement stm = konexioa.createStatement();
 			kontsulta = "SELECT a.IdAudio, a.Izena, a.Iraupena, a.Irudia FROM Gustokoak g join Audio a using (IdAudio) where IdBezeroa = "
@@ -88,11 +89,14 @@ public class AbestiaDao {
 	public static void abestiGuztokoaEzabatu(int idAbestia) throws SQLException {
 
 		int id = 0;
+		/*
 		if (!SesioAldagaiak.erabiltzailePremium) {
 			id = SesioAldagaiak.erabiltzaileLogeatutaFree.getIdErabiltzailea();
 		} else {
 			id = SesioAldagaiak.erabiltzaileLogeatutaPremium.getIdErabiltzailea();
-		}
+		}*/
+		
+		id = SesioAldagaiak.logErabiltzailea.getIdErabiltzailea();
 
 		Connection konexioa = Kone.konektatu();
 		Statement stm =  konexioa.createStatement();
@@ -111,12 +115,13 @@ public class AbestiaDao {
 	public static boolean gustukoaKomprobatu(Audio abestia) throws SQLException {
 		boolean gustokoaDu;
 		int id = 0;
-
+/*
 		if (!SesioAldagaiak.erabiltzailePremium) {
 			id = SesioAldagaiak.erabiltzaileLogeatutaFree.getIdErabiltzailea();
 		} else {
 			id = SesioAldagaiak.erabiltzaileLogeatutaPremium.getIdErabiltzailea();
-		}
+		}*/
+		id = SesioAldagaiak.logErabiltzailea.getIdErabiltzailea();
 		Connection konexioa = Kone.konektatu();
 		Statement stm = konexioa.createStatement();
 		kontsulta = "SELECT count(IdAudio) as cont from Gustokoak where IdBezeroa = " + id + " and IdAudio = "
@@ -142,12 +147,15 @@ public class AbestiaDao {
 	 */
 	public static void abestiGustokoaGehitu(Audio audio) throws SQLException {
 		int id = 0;
-
+/*
 		if (!SesioAldagaiak.erabiltzailePremium) {
 			id = SesioAldagaiak.erabiltzaileLogeatutaFree.getIdErabiltzailea();
 		} else {
 			id = SesioAldagaiak.erabiltzaileLogeatutaPremium.getIdErabiltzailea();
 		}
+		*/
+		
+		id = SesioAldagaiak.logErabiltzailea.getIdErabiltzailea();
 		
 		Connection konexioa = Kone.konektatu();
 		Statement stm = konexioa.createStatement();
@@ -187,12 +195,15 @@ public class AbestiaDao {
 	public static void erregistratuErreprodukzioa(Audio audio) {
 		
 		int idBezero;
+		/*
 		if (!SesioAldagaiak.erabiltzailePremium) {
 			idBezero = SesioAldagaiak.erabiltzaileLogeatutaFree.getIdErabiltzailea();
 		} else {
 			idBezero = SesioAldagaiak.erabiltzaileLogeatutaPremium.getIdErabiltzailea();
 		}
+		*/
 		
+		idBezero = SesioAldagaiak.logErabiltzailea.getIdErabiltzailea();
 		try {
 		Connection konexioa = Kone.konektatu();
 			kontsulta = "INSERT into Erreprodukzioak (IdBezeroa, IdAudio, ErreData) VALUES(?,?,?)";
@@ -208,4 +219,5 @@ public class AbestiaDao {
 	}
 	
 	
+
 }

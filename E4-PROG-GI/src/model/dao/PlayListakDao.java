@@ -30,13 +30,14 @@ public class PlayListakDao {
 		int id = 0;
 
 		Connection konexioa = Kone.konektatu();
-
+/*
 		if (!SesioAldagaiak.erabiltzailePremium) {
 			id = SesioAldagaiak.erabiltzaileLogeatutaFree.getIdErabiltzailea();
 		} else {
 			id = SesioAldagaiak.erabiltzaileLogeatutaPremium.getIdErabiltzailea();
 		}
-
+*/
+		id = SesioAldagaiak.logErabiltzailea.getIdErabiltzailea();
 		try {
 			stm = konexioa.createStatement();
 			kontsulta = "SELECT * FROM Playlist where IdBezeroa = " + id;
@@ -64,12 +65,14 @@ public class PlayListakDao {
 		Connection konexioa = Kone.konektatu();
 
 		int id = 0;
+		/*
 		if (!SesioAldagaiak.erabiltzailePremium) {
 			id = SesioAldagaiak.erabiltzaileLogeatutaFree.getIdErabiltzailea();
 		} else {
 			id = SesioAldagaiak.erabiltzaileLogeatutaPremium.getIdErabiltzailea();
 		}
-
+*/
+		id = SesioAldagaiak.logErabiltzailea.getIdErabiltzailea();
 		java.util.Date dataOrain = new java.util.Date();
 		java.sql.Date sqlDataOrain = new java.sql.Date(dataOrain.getTime());
 
@@ -124,13 +127,14 @@ public class PlayListakDao {
 		int id = 0;
 
 		Connection konexioa = Kone.konektatu();
-
+/*
 		if (!SesioAldagaiak.erabiltzailePremium) {
 			id = SesioAldagaiak.erabiltzaileLogeatutaFree.getIdErabiltzailea();
 		} else {
 			id = SesioAldagaiak.erabiltzaileLogeatutaPremium.getIdErabiltzailea();
 		}
-
+*/
+		id = SesioAldagaiak.logErabiltzailea.getIdErabiltzailea();
 		try {
 			stm = konexioa.createStatement();
 
