@@ -32,6 +32,10 @@ public class Kone {
 	private static String user = "erabiltzaile";
 	private static String pass = "4321";
 
+	//private static String url = "jdbc:mysql://localhost/Sphea";
+	//private static String user = "root";
+	//private static String pass = "";
+	
 	private static String userErabiltzailea;
 	private static String passErabiltzailea;
 

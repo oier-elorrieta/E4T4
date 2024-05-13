@@ -33,9 +33,9 @@ import model.dao.MusikariaDao;
 import model.dao.PodcastDao;
 import model.dao.PodcasterraDao;
 import model.sql.Kone;
-import view.Bezeroa.IragarkiaErreproduzitu;
-import view.Bezeroa.MusikariView;
-import view.Bezeroa.PodcastView;
+import view.bezeroa.IragarkiaErreproduzitu;
+import view.bezeroa.MusikariView;
+import view.bezeroa.PodcastView;
 
 /**
  * ViewMetodoak klasea aplikazioaren ikuspegia kudeatzeko metodoak dituen klasea
@@ -165,7 +165,7 @@ public class ViewMetodoak {
 			ImageIcon icono = new ImageIcon(musikaria.getIrudia().getBytes(1, (int) musikaria.getIrudia().length()));
 			newButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					JFrameSortu.musikaViewSortu(musikaria);
+					JFrameSortu.musikariViewSortu(musikaria);
 					jf.dispose();
 				}
 			});
@@ -387,5 +387,4 @@ public class ViewMetodoak {
 		return ondo;
 			
 		}
-	
 }
