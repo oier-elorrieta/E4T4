@@ -39,10 +39,8 @@ public class PlaylistAbestiak extends JFrame {
 	private JPanel contentPane;
 	private static ArrayList<Audio> abestiakList;
 	private JFrame frame = this;
-
+	private String klasea = this.getClass().getSimpleName();
 	public PlaylistAbestiak(PlayListak aukeraPlaylist) {
-		String klasea = this.getClass().getSimpleName();
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 250, 906, 594);
 		setTitle("Menu Nagusia - Talde 4");
 		contentPane = new JPanel();

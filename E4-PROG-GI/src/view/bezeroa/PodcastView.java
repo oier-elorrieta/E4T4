@@ -44,11 +44,9 @@ public class PodcastView extends JFrame {
 	private JPanel contentPane;
 	private JLabel lblIzena;
 	private JFrame frame = this;
+	private String klasea = this.getClass().getSimpleName();
 	
 	public PodcastView(Podcasterra podcasterra) {
-		String klasea = this.getClass().getSimpleName();
-
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 250, 906, 594);
 		setTitle("Menu Nagusia - Talde 4");
 		contentPane = new JPanel();

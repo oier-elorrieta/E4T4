@@ -52,7 +52,6 @@ public class AbestiaPlayListeanSartu extends JFrame {
 	private JFrame frame = this;
 
 	public AbestiaPlayListeanSartu(Audio audio) throws SQLException {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 250, 600, 425);
 		setTitle("Menu Nagusia - Talde 4");
 		contentPane = new JPanel();

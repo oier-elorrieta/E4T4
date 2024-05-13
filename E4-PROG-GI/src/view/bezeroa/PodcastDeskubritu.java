@@ -27,7 +27,6 @@ public class PodcastDeskubritu extends JFrame {
 	private JFrame frame = this;
 
 	public PodcastDeskubritu() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 250, 906, 594);
 		setTitle("Menu Nagusia - Talde 4");
 		contentPane = new JPanel(new BorderLayout());
@@ -73,12 +72,6 @@ public class PodcastDeskubritu extends JFrame {
 			}
 		});
 
-		btnErabiltzaile.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				dispose();
-				JFrameSortu.loginAukeraSortu();
-			}
-		});
+		
 	}
 }

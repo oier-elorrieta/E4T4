@@ -25,7 +25,6 @@ public class PlayListaSortu extends JFrame {
 	private JPanel contentPane;
 
 	public PlayListaSortu() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 250, 900, 225);
 		setTitle("Sortu PlayList - Talde 4");
 		contentPane = new JPanel();

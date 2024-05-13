@@ -50,10 +50,9 @@ public class AbestiakMusikaria extends JFrame {
 	private Musikaria musikari;
 	private JLabel lblIzena;
 	private JFrame frame = this;
-
-	public AbestiakMusikaria(Musikaria musikaria, Album album) {		
-		String klasea = this.getClass().getSimpleName();
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	private String klasea = this.getClass().getSimpleName();
+	
+	public AbestiakMusikaria(Musikaria musikaria, Album album) {			
 		setBounds(400, 250, 906, 594);
 		setTitle("Abestiak Musikaria - Talde 4");
 		contentPane = new JPanel();

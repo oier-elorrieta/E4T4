@@ -40,7 +40,6 @@ public class MenuNagusia extends JFrame {
 	private JFrame frame = this;
 
 	public MenuNagusia() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 250, 906, 594);
 		setTitle("Menu Nagusia - Talde 4");
 		contentPane = new JPanel();
@@ -78,7 +77,6 @@ public class MenuNagusia extends JFrame {
 
 		model.SesioAldagaiak.jb = ViewMetodoak.btnErabiltzaileaSortu();
 		JButton btnErabiltzaile = model.SesioAldagaiak.jb;
-
 		
 		contentPane.add(lblaukeratu);
 		contentPane.add(btnMusikaDeskubritu);
@@ -91,7 +89,7 @@ public class MenuNagusia extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				dispose();
-				JFrameSortu.loginAukeraSortu();
+				JFrameSortu.loginSortu();
 			}
 		});
 

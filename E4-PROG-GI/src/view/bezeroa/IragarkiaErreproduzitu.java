@@ -52,7 +52,6 @@ private Timer timer;
 	private Clip clip;
 
 	public IragarkiaErreproduzitu(String aurrekoKlasea, Artista artista, ArrayList<Audio> abestiak, int abestiAukera, boolean isrunning) throws SQLException {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 250, 906, 594);
 		setTitle("Menu Nagusia - Talde 4");
 		contentPane = new JPanel();
@@ -60,13 +59,6 @@ private Timer timer;
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		this.addWindowListener((WindowListener) new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-               System.exit(0);
-            }
-        });
-		
 		ArrayList<Iragarkia> iragarkiak = IragarkiaDao.getIragarkiak();
 		int iragarkiaRandom = (int) (Math.random() * (iragarkiak.size()));
 		

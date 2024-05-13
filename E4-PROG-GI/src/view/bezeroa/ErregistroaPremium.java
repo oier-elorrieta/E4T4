@@ -21,7 +21,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import model.metodoak.JFrameSortu;
 import model.metodoak.ViewMetodoak;
 import model.salbuespenak.PremiumMugaEzAldatuta;
-import model.salbuespenak.pasahitzaEzKointziditu;
+import model.salbuespenak.PasahitzaEzKointziditu;
 import model.sql.Kone;
 import javax.swing.ButtonGroup;
 import java.awt.Color;
@@ -147,9 +147,8 @@ public class ErregistroaPremium extends Erregistroa {
 							JOptionPane.showMessageDialog(null, "Premium muga handitua,Eskerrik askoo!!", "Succesfull",
 									JOptionPane.INFORMATION_MESSAGE);
 							dispose();
-							JFrameSortu.loginAukeraSortu();
+							JFrameSortu.loginSortu();
 						} else {
-							// JOptionPane.showMessageDialog(null, "Premiuma Erosteko lehenik Premium muga Aldatu", "heyyy!!", JOptionPane.WARNING_MESSAGE);
 							throw new PremiumMugaEzAldatuta();
 						}
 
@@ -163,14 +162,12 @@ public class ErregistroaPremium extends Erregistroa {
 							JOptionPane.showMessageDialog(null, "Premium muga handitua,Eskerrik askoo!!", "Succesfull",
 									JOptionPane.INFORMATION_MESSAGE);
 							dispose();
-							JFrameSortu.loginAukeraSortu();
+							JFrameSortu.loginSortu();
 						} else {
-							//JOptionPane.showMessageDialog(null, "Premiuma Erosteko lehenik Premium muga Aldatu", "Error", JOptionPane.WARNING_MESSAGE);
 							throw new PremiumMugaEzAldatuta();
 						}
 					}
 				} catch (PremiumMugaEzAldatuta ex) {
-					
 					JOptionPane.showMessageDialog(null, ex.getMessage(), "heyyy!!", JOptionPane.WARNING_MESSAGE);
 				}
 			}
@@ -188,7 +185,7 @@ public class ErregistroaPremium extends Erregistroa {
 					} else {
 
 						if (!passwordField.getText().equals(passwordFieldErrepikatu.getText())) {
-							throw new pasahitzaEzKointziditu();
+							throw new PasahitzaEzKointziditu();
 						}
 
 						jaioData = balidatuData(txtJaiotzeData.getText());
