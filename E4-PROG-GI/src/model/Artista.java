@@ -16,6 +16,7 @@ public abstract class Artista {
 	protected String deskription;
 	protected Blob irudia;
 	protected int entzunaldiak;
+	protected String irudiaString;
 	
 	public int getEntzunaldiak() {
 		return entzunaldiak;
@@ -36,11 +37,20 @@ public abstract class Artista {
 		this.irudia = irudia;
 		this.idArtista = idArtista;
 	}
+	
 	public Artista(String izena, String deskription, Blob irudia) {
 
 		this.izena = izena;
 		this.deskription = deskription;
 		this.irudia = irudia;
+		this.idArtista = idArtista;
+	}
+	
+	public Artista(String izena, String deskription, String irudia) {
+
+		this.izena = izena;
+		this.deskription = deskription;
+		this.irudiaString = irudia;
 		this.idArtista = idArtista;
 	}
 
@@ -139,5 +149,12 @@ public abstract class Artista {
 	public void setIdArtista(int idArtista) {
 		this.idArtista = idArtista;
 	}
+	public String getIrudiaString() {
+		return irudiaString;
+	}
+	public void setIrudiaString(String irudiaString) {
+		this.irudiaString = irudiaString;
+	}
+	
 	
 }

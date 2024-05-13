@@ -93,6 +93,26 @@ public class MusikariaDao {
 		return musikaria;
 	}
 	
+	public static boolean gehituMusikaria(Musikaria musikari) {
+		boolean ondo = true;
+		
+		Connection konexioa = Kone.konektatu();
+		kontsulta = "CALL InsertatuMusikaria(?,?,?,?)";
+		try {
+			pstm = konexioa.prepareStatement(kontsulta);
+			pstm.setString(1,musikari.getIzena());
+			pstm.setString(2,musikari.getIrudiaString());
+			pstm.setString(3,musikari.getDeskription());
+			pstm.setString(4,musikari.getEzaugarria());
+			pstm.execute();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			ondo =  false;
+		}
+		
+		return ondo;
+	}
+	
 	
 	
 }

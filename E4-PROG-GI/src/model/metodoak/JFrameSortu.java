@@ -12,6 +12,7 @@ import model.PlayListak;
 import model.Podcast;
 import model.Podcasterra;
 import view.Admin.AdminMenuNagusia;
+import view.Admin.MusikaKudeatu;
 import view.Bezeroa.AbestiaPlayListeanSartu;
 import view.Bezeroa.AbestiakMusikaria;
 import view.Bezeroa.Erregistroa;
@@ -32,6 +33,19 @@ import view.Bezeroa.PodcastView;
 
 
 public class JFrameSortu {
+	
+	
+	
+	/**
+	 * Musika kudeatu menua sortzeko metodoa.
+	 */
+	public static void musikaKudeatuAukeraSortu() {
+        
+        MusikaKudeatu musikaKude = new MusikaKudeatu();
+        musikaKude.setVisible(true);
+    
+    }
+	
 	
 	
 	/**

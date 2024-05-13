@@ -84,7 +84,8 @@ public class AdminMenuNagusia extends JFrame {
         btnMusikaKudeatu.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 
-                
+             JFrameSortu.musikaKudeatuAukeraSortu();
+             dispose();
                 
             }
         });

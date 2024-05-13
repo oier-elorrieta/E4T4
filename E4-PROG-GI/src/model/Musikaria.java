@@ -28,6 +28,12 @@ public class Musikaria extends Artista {
 		super(izena, deskription, irudia);
 	}
 	
+	public Musikaria(String izena, String deskription, String irudia,String ezaugarria) {
+		super(izena, deskription, irudia);
+		
+		this.ezaugarria = ezaugarria;
+	}
+	
 	public Musikaria(String izena, Blob irudia, int entzunaldiak) {
 		super(izena, irudia, entzunaldiak);
 	}
@@ -37,5 +43,15 @@ public class Musikaria extends Artista {
 		return "Musikaria [ezaugarria=" + ezaugarria + ", idArtista=" + idArtista + ", izena=" + izena
 				+ ", deskription=" + deskription + ", irudia=" + irudia + "]";
 	}
+
+	public String getEzaugarria() {
+		return ezaugarria;
+	}
+
+	public void setEzaugarria(String ezaugarria) {
+		this.ezaugarria = ezaugarria;
+	}
+	
+	
 
 }
