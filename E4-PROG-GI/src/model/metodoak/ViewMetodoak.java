@@ -101,12 +101,12 @@ public class ViewMetodoak {
 		switch (mota) {
 		case "free":
 			Kone.kargatuErabiltzaileFree(id);
-			SesioAldagaiak.erabiltzailePremium = false;
+			//SesioAldagaiak.erabiltzailePremium = false;
 
 			break;
 		case "premium":
 			Kone.kargatuErabiltzailePremium(id);
-			SesioAldagaiak.erabiltzailePremium = true;
+			//SesioAldagaiak.erabiltzailePremium = true;
 			break;
 		}
 	}
@@ -117,7 +117,9 @@ public class ViewMetodoak {
 	 * @return Sortutako JButtona.
 	 */
 	public static JButton btnErabiltzaileaSortu() {
-		JButton btnErabiltzaile = null;
+		//JButton btnErabiltzaile = null;
+		JButton btnErabiltzaile = new JButton(SesioAldagaiak.logErabiltzailea.getIzena());
+		/*
 		if (!SesioAldagaiak.erabiltzailePremium) {
 			btnErabiltzaile = new JButton(SesioAldagaiak.erabiltzaileLogeatutaFree.getIzena());
 			SesioAldagaiak.logErabiltzailea = SesioAldagaiak.erabiltzaileLogeatutaFree;
@@ -125,6 +127,7 @@ public class ViewMetodoak {
 			btnErabiltzaile = new JButton(SesioAldagaiak.erabiltzaileLogeatutaPremium.getIzena());
 			SesioAldagaiak.logErabiltzailea = SesioAldagaiak.erabiltzaileLogeatutaPremium;
 		}
+		*/
 		btnErabiltzaile.setBackground(Color.LIGHT_GRAY);
 		btnErabiltzaile.setForeground(Color.BLACK);
 		btnErabiltzaile.setBounds(700, 60, 144, 50);
