@@ -85,8 +85,8 @@ private Timer timer;
 		contentPane.add(lblIrudia);
 		contentPane.add(lblIzenaAbesti);
 
-		//String filepath = "\\\\10.5.6.111\\audioak\\iragarkiak\\" + iragarkiak.get(iragarkiaRandom).getIzena() + ".wav";
-		String filepath = "C:\\Users\\Ekapro\\Desktop\\audioak\\iragarkiak\\" + iragarkiak.get(iragarkiaRandom).getIzena() + ".wav";
+		String filepath = "\\\\10.5.6.111\\audioak\\iragarkiak\\" + iragarkiak.get(iragarkiaRandom).getIzena() + ".wav";
+		//String filepath = "C:\\Users\\Ekapro\\Desktop\\audioak\\iragarkiak\\" + iragarkiak.get(iragarkiaRandom).getIzena() + ".wav";
 		File f = new File(filepath);
 		AudioInputStream aui;
 
