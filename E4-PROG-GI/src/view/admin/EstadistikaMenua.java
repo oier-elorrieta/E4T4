@@ -55,6 +55,14 @@ public class EstadistikaMenua extends JFrame {
         btnGustokoPodcast.setBounds(150, 275, 550, 54);
         btnGustokoPodcast.setFont(new Font("Segoe UI", Font.BOLD, 21));
         btnGustokoPodcast.setFocusPainted(false);
+        
+        btnGustokoPodcast.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                EstadistikakPodcast ep = new EstadistikakPodcast();
+                dispose();
+                ep.setVisible(true);
+            }
+        });
 
         JButton btnEntzunda = new JButton("Top Entzundakoak");
         btnEntzunda.setBounds(150, 375, 550, 54);
@@ -88,7 +96,7 @@ public class EstadistikaMenua extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 dispose();
-                JFrameSortu.loginAukeraSortu();
+                JFrameSortu.loginSortu();
             }
         });
 

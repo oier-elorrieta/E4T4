@@ -69,4 +69,23 @@ public class EstadistikaDao {
 			return null;
 		}
 	}
+	
+	public static ArrayList<Estadistika> getPodcastTopEguna() {
+		ResultSet rs;
+		String kontsulta;
+		Connection konexioa = Kone.konektatu();
+		try {
+			ArrayList<Estadistika> estadistika = new ArrayList<Estadistika>();
+			Statement stm = konexioa.createStatement();
+			kontsulta = "SELECT * FROM EstadistikaPodcastEgunean";
+			rs = stm.executeQuery(kontsulta);
+			while (rs.next()) {
+				estadistika.add(new Estadistika(rs.getString("Musikaria"), rs.getString("Abestia"), rs.getInt("Entzunaldiak")));
+			}
+			return estadistika;
+		} catch (SQLException e) {
+			e.getMessage();
+			return null;
+		}
+	}
 }

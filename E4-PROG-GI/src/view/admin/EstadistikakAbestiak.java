@@ -14,34 +14,7 @@ public class EstadistikakAbestiak extends EstadistikakTop {
     public EstadistikakAbestiak() {
         super();
         setTitle("Estadistikak Eguneakoa");
-    	model.addColumn("Musikaria");
-    	model.addColumn("Abestia");
-    	model.addColumn("Entzunaldiak");
         AurkeztuEgunekoa();
-        super.btnAstea.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                EstadistikakAbestiak ea = new EstadistikakAbestiak();
-                dispose();
-                ea.setVisible(true);
-            }
-        });
-        
-        super.btnHilabetea.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                EstadistikakAbestiak ea = new EstadistikakAbestiak(2);
-                dispose();
-                ea.setVisible(true);
-            }
-        });
-        
-        super.btnUrtea.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                EstadistikakAbestiak ea = new EstadistikakAbestiak(3);
-                dispose();
-                ea.setVisible(true);
-            }
-        });
-        
     }
     
     private void AurkeztuEgunekoa() {
@@ -49,10 +22,29 @@ public class EstadistikakAbestiak extends EstadistikakTop {
     	for (int i = 0; i < estadistika.size(); i++)
     	model.addRow(new String[]{Integer.toString(i + 1), estadistika.get(i).getS1(), estadistika.get(i).getS2(), Integer.toString(estadistika.get(i).getEntzunda())});
     }
+    private void AurkeztuHilekoa() {
+    	ArrayList<Estadistika> estadistika = EstadistikaDao.getAbestiakTopHilea();
+    	for (int i = 0; i < estadistika.size(); i++)
+    	model.addRow(new String[]{Integer.toString(i + 1), estadistika.get(i).getS1(), estadistika.get(i).getS2(), Integer.toString(estadistika.get(i).getEntzunda())});
+    }
+    private void AurkeztuUrtekoa() {
+    	ArrayList<Estadistika> estadistika = EstadistikaDao.getAbestiakTopUrtea();
+    	for (int i = 0; i < estadistika.size(); i++)
+    	model.addRow(new String[]{Integer.toString(i + 1), estadistika.get(i).getS1(), estadistika.get(i).getS2(), Integer.toString(estadistika.get(i).getEntzunda())});
+    }
     
     
     public EstadistikakAbestiak(int Aukera) {
         super();
+        if (Aukera == 2) {
+            setTitle("Estadistikak Hilabetekoa");
+            AurkeztuHilekoa();
+        } else if (Aukera == 3){
+            setTitle("Estadistikak Urtekoa");
+            AurkeztuUrtekoa();
+        }
+    }
+    private void SortuGenerikoa() {
     	model.addColumn("Musikaria");
     	model.addColumn("Abestia");
     	model.addColumn("Entzunaldiak");
@@ -79,12 +71,6 @@ public class EstadistikakAbestiak extends EstadistikakTop {
                 ea.setVisible(true);
             }
         });
-        
-        if (Aukera == 2) {
-            setTitle("Estadistikak Hilabetekoa");
-        } else if (Aukera == 3){
-            setTitle("Estadistikak Urtekoa");
-        }
     }
     /*
     private ArrayList<String> ezarriAbeztiakAstea() {
