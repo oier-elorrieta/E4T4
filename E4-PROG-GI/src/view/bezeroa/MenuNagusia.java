@@ -26,8 +26,8 @@ import model.*;
 import model.metodoak.JFrameSortu;
 import model.metodoak.ViewMetodoak;
 import model.sql.Kone;
-import view.bezeroa.PodcastDeskubritu.PodcasterrakView;
 import view.bezeroa.musikaDeskubritu.MusikariakView;
+import view.bezeroa.podcastDeskubritu.PodcasterrakView;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;

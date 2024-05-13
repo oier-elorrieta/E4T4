@@ -34,8 +34,8 @@ import model.dao.PodcastDao;
 import model.dao.PodcasterraDao;
 import model.sql.Kone;
 import view.bezeroa.IragarkiaErreproduzitu;
-import view.bezeroa.PodcastDeskubritu.PodcastakView;
 import view.bezeroa.musikaDeskubritu.AlbumakView;
+import view.bezeroa.podcastDeskubritu.PodcastakView;
 
 /**
  * ViewMetodoak klasea aplikazioaren ikuspegia kudeatzeko metodoak dituen klasea

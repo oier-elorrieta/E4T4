@@ -1,4 +1,4 @@
-package view.bezeroa.PodcastDeskubritu;
+package view.bezeroa.podcastDeskubritu;
 
 import model.SesioAldagaiak;
 import model.metodoak.*;

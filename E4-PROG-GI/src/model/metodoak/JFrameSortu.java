@@ -21,14 +21,14 @@ import view.bezeroa.Erreprodukzioa;
 import view.bezeroa.IragarkiaErreproduzitu;
 import view.bezeroa.Login;
 import view.bezeroa.MenuNagusia;
-import view.bezeroa.PodcastDeskubritu.PodcastakView;
-import view.bezeroa.PodcastDeskubritu.PodcasterrakView;
 import view.bezeroa.musikaDeskubritu.AbestiakView;
 import view.bezeroa.musikaDeskubritu.AlbumakView;
 import view.bezeroa.musikaDeskubritu.MusikariakView;
 import view.bezeroa.nirePlayListak.PlayListAbestiakView;
 import view.bezeroa.nirePlayListak.PlayListaSortuView;
 import view.bezeroa.nirePlayListak.PlayListakView;
+import view.bezeroa.podcastDeskubritu.PodcastakView;
+import view.bezeroa.podcastDeskubritu.PodcasterrakView;
 
 public class JFrameSortu{
 	
