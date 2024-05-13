@@ -49,10 +49,10 @@ public class AbestiakMusikaria extends JFrame {
 	private JPanel contentPane;
 	private Musikaria musikari;
 	private JLabel lblIzena;
+	private JFrame frame = this;
 
-	public AbestiakMusikaria(Musikaria musikaria, Album album) {
+	public AbestiakMusikaria(Musikaria musikaria, Album album) {		
 		String klasea = this.getClass().getSimpleName();
-
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 250, 906, 594);
 		setTitle("Abestiak Musikaria - Talde 4");
@@ -66,8 +66,8 @@ public class AbestiakMusikaria extends JFrame {
 
 		btnErabiltzaile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				JFrameSortu.premiumErregistroAukeraSortu();
+				setVisible(false);
+				JFrameSortu.premiumErregistroAukeraSortu(frame);
 			}
 		});
 

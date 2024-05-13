@@ -46,7 +46,8 @@ public class MusikariView extends JFrame {
 	private JPanel contentPane;
 	private Musikaria musikari;
 	private JLabel lblIzena;
-
+	private JFrame frame = this;
+	
 	public MusikariView(Musikaria musikaria) {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -61,8 +62,8 @@ public class MusikariView extends JFrame {
 
 		btnErabiltzaile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				JFrameSortu.premiumErregistroAukeraSortu();
+				setVisible(false);
+				JFrameSortu.premiumErregistroAukeraSortu(frame);
 			}
 		});
 

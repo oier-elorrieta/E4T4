@@ -41,6 +41,7 @@ public class NirePlaylista extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JFrame frame = this;
 
 	public NirePlaylista() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -204,8 +205,8 @@ public class NirePlaylista extends JFrame {
 		
 		btnErabiltzaile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				JFrameSortu.premiumErregistroAukeraSortu();
+				setVisible(false);
+				JFrameSortu.premiumErregistroAukeraSortu(frame);
 			}
 		});
 	}

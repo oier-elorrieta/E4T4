@@ -2,6 +2,8 @@ package model.metodoak;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 import model.Abestia;
 import model.Album;
@@ -68,8 +70,8 @@ public class JFrameSortu {
 	/**
 	 * Premium erregistro aukera sortzeko metodoa.
 	 */
-	public static void premiumErregistroAukeraSortu(){
-		ErregistroaPremium PerregistroAukera = new ErregistroaPremium();
+	public static void premiumErregistroAukeraSortu(JFrame aurrekoFrame){
+		ErregistroaPremium PerregistroAukera = new ErregistroaPremium(aurrekoFrame);
 		PerregistroAukera.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		PerregistroAukera.setVisible(true);
 	}

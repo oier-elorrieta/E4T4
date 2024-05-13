@@ -60,7 +60,7 @@ public class Erreprodukzioa extends JFrame {
 	private boolean erreproduzitzen;
 	private long posicion = 0;
 	private int iraupena = 0;
-	private JFrame j = this;
+	private JFrame frame = this;
 
 	public Erreprodukzioa(String aurrekoKlasea ,Artista artista, ArrayList<Audio> abestiak, int abestiAukera, boolean isrunning, float abiadura) throws SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -186,8 +186,11 @@ public class Erreprodukzioa extends JFrame {
 
 		btnErabiltzaile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				JFrameSortu.premiumErregistroAukeraSortu();
+				btnPlay.setText("Play");
+				erreproduzitzen = false;
+				clip.stop();
+				setVisible(false);
+				JFrameSortu.premiumErregistroAukeraSortu(frame);
 			}
 		});
 
@@ -398,19 +401,13 @@ public class Erreprodukzioa extends JFrame {
 					break;
 					//COMO HAGO ETO
 				case "PlaylistAbestiak":
-					JFrameSortu.playlistAbestiakSortu(null);
+					JFrameSortu.nirePlaylistaSortu();
 					break;
 				}
 			}
 
 		});
 
-		btnErabiltzaile.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				clip.close();
-
-			}
-		});
 		/*
 		 * btnErabiltzaile.addMouseListener(new MouseAdapter() {
 		 * 

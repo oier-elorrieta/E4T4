@@ -24,6 +24,7 @@ public class PodcastDeskubritu extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JFrame frame = this;
 
 	public PodcastDeskubritu() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -39,8 +40,8 @@ public class PodcastDeskubritu extends JFrame {
 
 		btnErabiltzaile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				JFrameSortu.premiumErregistroAukeraSortu();
+				setVisible(false);
+				JFrameSortu.premiumErregistroAukeraSortu(frame);
 			}
 		});
 		JButton btnAtzera = new JButton("Atzera");

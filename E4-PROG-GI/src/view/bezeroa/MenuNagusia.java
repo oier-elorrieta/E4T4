@@ -37,6 +37,7 @@ public class MenuNagusia extends JFrame {
 	private static final long serialVersionUID = 1L;
 	protected static final String String = null;
 	private JPanel contentPane;
+	private JFrame frame = this;
 
 	public MenuNagusia() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -98,8 +99,8 @@ public class MenuNagusia extends JFrame {
 
 		btnErabiltzaile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				JFrameSortu.premiumErregistroAukeraSortu();
+				setVisible(false);
+				JFrameSortu.premiumErregistroAukeraSortu(frame);
 			}
 		});
 		

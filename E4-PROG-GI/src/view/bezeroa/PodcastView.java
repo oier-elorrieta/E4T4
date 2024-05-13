@@ -43,7 +43,8 @@ public class PodcastView extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JLabel lblIzena;
-
+	private JFrame frame = this;
+	
 	public PodcastView(Podcasterra podcasterra) {
 		String klasea = this.getClass().getSimpleName();
 
@@ -59,8 +60,8 @@ public class PodcastView extends JFrame {
 
 		btnErabiltzaile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				JFrameSortu.premiumErregistroAukeraSortu();
+				setVisible(false);
+				JFrameSortu.premiumErregistroAukeraSortu(frame);
 			}
 		});
 
