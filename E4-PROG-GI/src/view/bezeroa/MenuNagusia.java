@@ -26,6 +26,8 @@ import model.*;
 import model.metodoak.JFrameSortu;
 import model.metodoak.ViewMetodoak;
 import model.sql.Kone;
+import view.bezeroa.PodcastDeskubritu.PodcasterrakView;
+import view.bezeroa.musikaDeskubritu.MusikariakView;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -105,7 +107,7 @@ public class MenuNagusia extends JFrame {
 		
 		btnMusikaDeskubritu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MusikaDeskubritu MusikaDesk = new MusikaDeskubritu();
+				MusikariakView MusikaDesk = new MusikariakView();
 				MusikaDesk.setVisible(true);
 				dispose();
 			}
@@ -113,7 +115,7 @@ public class MenuNagusia extends JFrame {
 
 		btnPodcastDeskubritu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PodcastDeskubritu podcastDeskubritu = new PodcastDeskubritu();
+				PodcasterrakView podcastDeskubritu = new PodcasterrakView();
 				podcastDeskubritu.setVisible(true);
 				dispose();
 			}
@@ -122,7 +124,7 @@ public class MenuNagusia extends JFrame {
 		btnNirePlayList.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				JFrameSortu.nirePlaylistaSortu();
+				JFrameSortu.playListakViewSortu();
 			}
 		});
 	}

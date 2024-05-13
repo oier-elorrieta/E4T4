@@ -1,4 +1,4 @@
-package view.bezeroa;
+package view.bezeroa.nirePlayListak;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -19,12 +19,12 @@ import model.metodoak.JFrameSortu;
 import model.metodoak.ViewMetodoak;
 import model.sql.Kone;
 
-public class PlayListaSortu extends JFrame {
+public class PlayListaSortuView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
-	public PlayListaSortu() {
+	public PlayListaSortuView() {
 		setBounds(400, 250, 900, 225);
 		setTitle("Sortu PlayList - Talde 4");
 		contentPane = new JPanel();
@@ -66,7 +66,7 @@ public class PlayListaSortu extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				PlayListakDao.playlistGehitu(txtIzena.getText());
 				dispose();
-				JFrameSortu.nirePlaylistaSortu();
+				JFrameSortu.playListakViewSortu();
 			}
 		});
 		
@@ -74,7 +74,7 @@ public class PlayListaSortu extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				dispose();
-				JFrameSortu.nirePlaylistaSortu();
+				JFrameSortu.playListakViewSortu();
 			}
 		});
 		

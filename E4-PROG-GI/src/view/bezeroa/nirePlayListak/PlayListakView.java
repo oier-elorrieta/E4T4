@@ -1,4 +1,4 @@
-package view.bezeroa;
+package view.bezeroa.nirePlayListak;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -38,13 +38,13 @@ import javax.swing.AbstractListModel;
 import javax.swing.DefaultListModel;
 import javax.swing.border.LineBorder;
 
-public class NirePlaylista extends JFrame {
+public class PlayListakView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JFrame frame = this;
 
-	public NirePlaylista() {
+	public PlayListakView() {
 		setBounds(400, 250, 906, 594);
 		setTitle("Menu Nagusia - Talde 4");
 		contentPane = new JPanel();
@@ -109,11 +109,11 @@ public class NirePlaylista extends JFrame {
 					if (SesioAldagaiak.logErabiltzailea.getClass().getSimpleName().equals("ErabiltzaileFree")
 							&& playlistLista.size() < 4) {
 						dispose();
-						JFrameSortu.playListaSortuSortu();
+						JFrameSortu.playListaSortuViewSortu();
 					} else if (SesioAldagaiak.logErabiltzailea.getClass().getSimpleName()
 							.equals("ErabiltzailePremium")) {
 						dispose();
-						JFrameSortu.playListaSortuSortu();
+						JFrameSortu.playListaSortuViewSortu();
 					} else {
 						throw new PlaylistSortuLimitazioa();
 					}
@@ -137,7 +137,7 @@ public class NirePlaylista extends JFrame {
 						int aukeraPlaylist = jListPlayList.getSelectedIndex();
 						PlayListakDao.playlistEzabatu(playlistLista.get(aukeraPlaylist).getIdPlayList());
 						dispose();
-						JFrameSortu.nirePlaylistaSortu();
+						JFrameSortu.playListakViewSortu();
 					}
 				} catch (SQLException e1) {
 					e1.printStackTrace();
@@ -172,7 +172,7 @@ public class NirePlaylista extends JFrame {
 					}
 
 					dispose();
-					JFrameSortu.nirePlaylistaSortu();
+					JFrameSortu.playListakViewSortu();
 
 				} else {
 
@@ -204,7 +204,7 @@ public class NirePlaylista extends JFrame {
 					int aukeraPlaylist = jListPlayList.getSelectedIndex();
 					PlayListak aukeraPlaylistO = playlistLista.get(aukeraPlaylist);
 					dispose();
-					JFrameSortu.playlistAbestiakSortu(aukeraPlaylistO);
+					JFrameSortu.playListAbestiakViewSortu(aukeraPlaylistO);
 				}
 			}
 		});

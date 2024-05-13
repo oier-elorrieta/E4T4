@@ -1,4 +1,4 @@
-package view.bezeroa;
+package view.bezeroa.musikaDeskubritu;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -16,11 +16,9 @@ import javax.swing.event.ListSelectionListener;
 
 import com.mysql.cj.jdbc.Blob;
 
-import model.Abestia;
 import model.Album;
-import model.Audio;
 import model.Musikaria;
-import model.dao.AbestiaDao;
+import model.dao.MusikariaDao;
 import model.metodoak.JFrameSortu;
 import model.metodoak.ViewMetodoak;
 import model.sql.Kone;
@@ -35,7 +33,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.awt.FlowLayout;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
@@ -43,24 +40,22 @@ import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextPane;
 
-public class AbestiakMusikaria extends JFrame {
+public class AlbumakView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private Musikaria musikari;
 	private JLabel lblIzena;
 	private JFrame frame = this;
-	private String klasea = this.getClass().getSimpleName();
 	
-	public AbestiakMusikaria(Musikaria musikaria, Album album) {			
+	public AlbumakView(Musikaria musikaria) {
 		setBounds(400, 250, 906, 594);
-		setTitle("Abestiak Musikaria - Talde 4");
+		setTitle("Menu Nagusia - Talde 4");
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 
 		JButton btnErabiltzaile = model.SesioAldagaiak.jb;
-
 		btnErabiltzaile.removeActionListener(btnErabiltzaile.getActionListeners()[0]);
 
 		btnErabiltzaile.addActionListener(new ActionListener() {
@@ -87,8 +82,7 @@ public class AbestiakMusikaria extends JFrame {
 		panel.setBounds(10, 152, 359, 389);
 		contentPane.add(panel);
 
-		ArrayList<Audio> abestiak = AbestiaDao.getAbestiak(album.getId());
-		DefaultListModel<Audio> modeloList = ViewMetodoak.getMusikariAbestiak(album.getId());
+		DefaultListModel<Album> modeloList = ViewMetodoak.getMusikariAlbumak(musikaria.getIzena());
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
 
 		JList list = new JList(modeloList);
@@ -105,20 +99,23 @@ public class AbestiakMusikaria extends JFrame {
 		JLabel lblNewLabel = new JLabel("");
 		panel_1.add(lblNewLabel);
 
+		// Aukeratutako musikaria
+		musikari = MusikariaDao.getMusikaria(musikaria.getIzena());
+
 		// irudia seteatu lbl-ari
-		ViewMetodoak.setIrudia(lblNewLabel, album.getIrudia());
+		ViewMetodoak.setIrudia(lblNewLabel, musikari.getIrudia());
 
 		// Deskripzioa
 		JTextPane textPane = new JTextPane();
 		JScrollPane scrollPane_1 = new JScrollPane(textPane);
-		textPane.setText(album.toString());
+		textPane.setText(musikari.getDeskription());
 		scrollPane_1.setBounds(373, 378, 469, 166);
 		contentPane.add(scrollPane_1);
 
 		// Izena lbl
 		lblIzena = new JLabel("");
 		lblIzena.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		lblIzena.setText(album.getIzenburua());
+		lblIzena.setText(musikari.getIzena());
 		lblIzena.setBounds(373, 63, 295, 38);
 		contentPane.add(lblIzena);
 
@@ -126,18 +123,14 @@ public class AbestiakMusikaria extends JFrame {
 		lblLista.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblLista.setBounds(111, 127, 162, 14);
 		contentPane.add(lblLista);
+
 		
 		list.addListSelectionListener(new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
-				try {
-					int abestiAukera = list.getSelectedIndex();
-					dispose();
-					JFrameSortu.erreprodukzioaSortu(klasea,musikaria, abestiak, abestiAukera, true, 1);
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}
-
+				Album selectedValue = (Album) list.getSelectedValue();
+				dispose();
+				JFrameSortu.abestiakViewSortu(musikaria, selectedValue);
 			}
 		});
 
@@ -145,8 +138,9 @@ public class AbestiakMusikaria extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				dispose();
-				JFrameSortu.musikariViewSortu(musikaria);
+				JFrameSortu.musikariakViewSortu();
 			}
 		});
+
 	}
 }
