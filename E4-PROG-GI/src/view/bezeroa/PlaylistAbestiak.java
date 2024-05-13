@@ -38,10 +38,9 @@ public class PlaylistAbestiak extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private static ArrayList<Audio> abestiakList;
-
+	private JFrame frame = this;
+	private String klasea = this.getClass().getSimpleName();
 	public PlaylistAbestiak(PlayListak aukeraPlaylist) {
-		String klasea = this.getClass().getSimpleName();
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 250, 906, 594);
 		setTitle("Menu Nagusia - Talde 4");
 		contentPane = new JPanel();
@@ -85,7 +84,7 @@ public class PlaylistAbestiak extends JFrame {
 		btnErabiltzaile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				JFrameSortu.premiumErregistroAukeraSortu();
+				JFrameSortu.premiumErregistroAukeraSortu(frame);
 			}
 		});
 
@@ -150,10 +149,8 @@ public class PlaylistAbestiak extends JFrame {
 		btnErabiltzaile.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				SesioAldagaiak.erabiltzaileLogeatutaFree = null;
-				SesioAldagaiak.erabiltzaileLogeatutaPremium = null;
-				dispose();
-				JFrameSortu.loginAukeraSortu();
+				setVisible(false);
+				JFrameSortu.premiumErregistroAukeraSortu(frame);
 			}
 		});
 

@@ -9,7 +9,7 @@ import view.bezeroa.Login;
 public class APP {
 
 	public static void main(String[] args) {
-			JFrameSortu.loginAukeraSortu();
+			JFrameSortu.loginSortu();
 			//sprint3
 	}
 

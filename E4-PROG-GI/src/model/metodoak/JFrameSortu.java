@@ -2,6 +2,8 @@ package model.metodoak;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 import model.Abestia;
 import model.Album;
@@ -28,132 +30,111 @@ import view.bezeroa.PlaylistAbestiak;
 import view.bezeroa.PodcastDeskubritu;
 import view.bezeroa.PodcastView;
 
-
-
-
-
-
 public class JFrameSortu {
-	
-	
-	/**
-     * Adminaren menu nagusia sortzeko metodoa.
-     */
-    public static void menuAdminAukeraSortu() {
-        
-        AdminMenuNagusia adminMenu = new AdminMenuNagusia();
-        adminMenu.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        adminMenu.setVisible(true);
-    
-    }
 
-	/**
-	 * Login aukera sortzeko metodoa.
-	 */
-	public static void loginAukeraSortu() {
-		Login loginAukera = new Login();
-		loginAukera.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		loginAukera.setVisible(true);
-	}
+	/*-----------------------LOGIN-----------------------*/
 	
-	/**
-	 * Erregistro aukera sortzeko metodoa.
-	 */
-	public static void erregistroAukeraSortu(){
+	public static void erregistroAukeraSortu() {
 		Erregistroa erregistroAukera = new Erregistroa();
-		erregistroAukera.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		erregistroAukera.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		erregistroAukera.setVisible(true);
 	}
-	
-	/**
-	 * Premium erregistro aukera sortzeko metodoa.
-	 */
-	public static void premiumErregistroAukeraSortu(){
-		ErregistroaPremium PerregistroAukera = new ErregistroaPremium();
-		PerregistroAukera.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+
+	public static void premiumErregistroAukeraSortu(JFrame aurrekoFrame) {
+		ErregistroaPremium PerregistroAukera = new ErregistroaPremium(aurrekoFrame);
+		PerregistroAukera.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		PerregistroAukera.setVisible(true);
 	}
-	
-	//--------------------
-	
-	public static void menuNagusiaAukeraSortu(){
+
+	public static void loginSortu() {
+		Login loginAukera = new Login();
+		loginAukera.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		loginAukera.setVisible(true);
+	}
+
+	/*-----------------------BEZEROA-----------------------*/
+
+	public static void menuNagusiaAukeraSortu() {
 		MenuNagusia menuNagusiaAukera = new MenuNagusia();
-		menuNagusiaAukera.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		menuNagusiaAukera.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		menuNagusiaAukera.setVisible(true);
 	}
-	
-	public static void musikaDeskubrituSortu(){
+
+	public static void musikaDeskubrituSortu() {
 		MusikaDeskubritu musikaDeskubrituSortu = new MusikaDeskubritu();
-		musikaDeskubrituSortu.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		musikaDeskubrituSortu.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		musikaDeskubrituSortu.setVisible(true);
 	}
-	
+
 	public static void musikariViewSortu(Musikaria musikaria) {
 		MusikariView musicariView = new MusikariView(musikaria);
-		musicariView.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		musicariView.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		musicariView.setVisible(true);
 	}
-	
+
 	public static void abestiakMusikaria(Musikaria musikaria, Album album) {
-		AbestiakMusikaria abestiakMusikaria = new AbestiakMusikaria(musikaria,album);
-		abestiakMusikaria.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		AbestiakMusikaria abestiakMusikaria = new AbestiakMusikaria(musikaria, album);
+		abestiakMusikaria.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		abestiakMusikaria.setVisible(true);
 	}
-	
+
 	public static void podcastDeskubrituSortu() {
 		PodcastDeskubritu podcastDeskubrituSortu = new PodcastDeskubritu();
-		podcastDeskubrituSortu.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		podcastDeskubrituSortu.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		podcastDeskubrituSortu.setVisible(true);
 	}
-	
+
 	public static void podcastViewSortu(Podcasterra podcasterra) {
 		PodcastView podcastView = new PodcastView(podcasterra);
-		podcastView.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		podcastView.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		podcastView.setVisible(true);
 	}
 
-	public static void nirePlaylistaSortu(){
+	public static void nirePlaylistaSortu() {
 		NirePlaylista nirePlaylista = new NirePlaylista();
-		nirePlaylista.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		nirePlaylista.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		nirePlaylista.setVisible(true);
 	}
-	
-	public static void playListaSortuSortu(){
+
+	public static void playListaSortuSortu() {
 		PlayListaSortu playListaSortu = new PlayListaSortu();
-		playListaSortu.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		playListaSortu.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		playListaSortu.setVisible(true);
 	}
-	
-	public static void playlistAbestiakSortu(PlayListak playlist){
+
+	public static void playlistAbestiakSortu(PlayListak playlist) {
 		PlaylistAbestiak playlistAbestiakSortu = new PlaylistAbestiak(playlist);
-		playlistAbestiakSortu.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		playlistAbestiakSortu.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		playlistAbestiakSortu.setVisible(true);
 	}
-	
-	
-	//--------------------
 
-	public static void erreprodukzioaSortu(String aurrekoKlasea, Artista artista, ArrayList<Audio> abestiak, int abestiAukera, boolean isrunning, float abiadura) throws SQLException{
-		Erreprodukzioa erreprodukzioaSortu = new Erreprodukzioa(aurrekoKlasea, artista, abestiak,abestiAukera, isrunning, abiadura);
-		erreprodukzioaSortu.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+	public static void erreprodukzioaSortu(String aurrekoKlasea, Artista artista, ArrayList<Audio> abestiak,
+			int abestiAukera, boolean isrunning, float abiadura) throws SQLException {
+		Erreprodukzioa erreprodukzioaSortu = new Erreprodukzioa(aurrekoKlasea, artista, abestiak, abestiAukera,
+				isrunning, abiadura);
+		erreprodukzioaSortu.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		erreprodukzioaSortu.setVisible(true);
 	}
-	
-	public static void abestiaPlayListeanSartuSortu(Audio audio) throws SQLException{
+
+	public static void abestiaPlayListeanSartuSortu(Audio audio) throws SQLException {
 		AbestiaPlayListeanSartu abestiaPlayListeanSartuSortu = new AbestiaPlayListeanSartu(audio);
-		abestiaPlayListeanSartuSortu.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		abestiaPlayListeanSartuSortu.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		abestiaPlayListeanSartuSortu.setVisible(true);
 	}
-		
-	public static void iragarkiaErreproduzituSortu(String aurrekoKlasea, Artista artista, ArrayList<Audio> abestiak, int abestiAukera, boolean isrunning) throws SQLException{
-		IragarkiaErreproduzitu iragarkiaErreproduzituSortu = new IragarkiaErreproduzitu(aurrekoKlasea, artista, abestiak,abestiAukera, isrunning);
-		iragarkiaErreproduzituSortu.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+
+	public static void iragarkiaErreproduzituSortu(String aurrekoKlasea, Artista artista, ArrayList<Audio> abestiak,
+			int abestiAukera, boolean isrunning) throws SQLException {
+		IragarkiaErreproduzitu iragarkiaErreproduzituSortu = new IragarkiaErreproduzitu(aurrekoKlasea, artista,
+				abestiak, abestiAukera, isrunning);
+		iragarkiaErreproduzituSortu.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		iragarkiaErreproduzituSortu.setVisible(true);
 	}
-	
-	//--------------------
-	
-	
-	
-	
+
+	/*------------------------ADMIN------------------------*/
+
+	public static void menuAdminAukeraSortu() {
+		AdminMenuNagusia adminMenu = new AdminMenuNagusia();
+		adminMenu.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		adminMenu.setVisible(true);
+	}
 }

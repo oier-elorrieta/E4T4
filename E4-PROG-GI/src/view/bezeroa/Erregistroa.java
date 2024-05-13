@@ -17,7 +17,7 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import model.metodoak.JFrameSortu;
 import model.metodoak.ViewMetodoak;
-import model.salbuespenak.pasahitzaEzKointziditu;
+import model.salbuespenak.PasahitzaEzKointziditu;
 import model.sql.Kone;
 import javax.swing.ButtonGroup;
 import java.awt.Color;
@@ -81,7 +81,6 @@ public class Erregistroa extends JFrame {
 	 */
 	public Erregistroa() {
 		setBackground(Color.WHITE);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 250, 906, 594);
 		setTitle("Erregistroa - Talde 4");
 		contentPane = new JPanel();
@@ -199,7 +198,7 @@ public class Erregistroa extends JFrame {
 
 		btnAtzera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JFrameSortu.loginAukeraSortu();
+				JFrameSortu.loginSortu();
 				dispose();
 			}
 		});
@@ -215,7 +214,7 @@ public class Erregistroa extends JFrame {
 				jaioData = balidatuData(txtJaiotzeData.getText());
 
 				if (!passwordField.getText().equals(passwordFieldErrepikatu.getText())) {
-					throw new pasahitzaEzKointziditu();
+					throw new PasahitzaEzKointziditu();
 				}
 
 				if (jaioData.after(new Date())) {
@@ -239,7 +238,7 @@ public class Erregistroa extends JFrame {
 
 			}
 
-		} catch (pasahitzaEzKointziditu e1) {
+		} catch (PasahitzaEzKointziditu e1) {
 			JOptionPane.showMessageDialog(null, "Pasahitzak ez dira berdinak", "heyyy!!", JOptionPane.WARNING_MESSAGE);
 
 		}
@@ -247,7 +246,7 @@ public class Erregistroa extends JFrame {
 
 	protected void atzeraEraman() {
 		dispose();
-		JFrameSortu.loginAukeraSortu();
+		JFrameSortu.loginSortu();
 	}
 
 	protected void addComponents(Component... components) {

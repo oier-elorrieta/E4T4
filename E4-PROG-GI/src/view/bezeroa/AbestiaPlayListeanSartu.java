@@ -49,9 +49,9 @@ public class AbestiaPlayListeanSartu extends JFrame {
 	private static final long serialVersionUID = 1L;
 	protected static final String String = null;
 	private JPanel contentPane;
+	private JFrame frame = this;
 
 	public AbestiaPlayListeanSartu(Audio audio) throws SQLException {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 250, 600, 425);
 		setTitle("Menu Nagusia - Talde 4");
 		contentPane = new JPanel();
@@ -180,8 +180,8 @@ public class AbestiaPlayListeanSartu extends JFrame {
 		btnErabiltzaile.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				dispose();
-				JFrameSortu.premiumErregistroAukeraSortu();
+				setVisible(false);
+				JFrameSortu.premiumErregistroAukeraSortu(frame);
 			}
 		});
 	}

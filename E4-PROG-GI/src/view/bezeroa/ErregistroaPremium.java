@@ -20,7 +20,8 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import model.metodoak.JFrameSortu;
 import model.metodoak.ViewMetodoak;
-import model.salbuespenak.pasahitzaEzKointziditu;
+import model.salbuespenak.PremiumMugaEzAldatuta;
+import model.salbuespenak.PasahitzaEzKointziditu;
 import model.sql.Kone;
 import javax.swing.ButtonGroup;
 import java.awt.Color;
@@ -62,17 +63,18 @@ public class ErregistroaPremium extends Erregistroa {
 	private SpinnerDateModel model;
 	JSpinner spinner;
 	JSpinner.DateEditor editor;
+	JFrame frame;
 
-	public ErregistroaPremium() {
+	public ErregistroaPremium(JFrame aurrekoFrame) {
 		super();
-
+		frame = aurrekoFrame;
 		btnAtzera.removeActionListener(btnAtzera.getActionListeners()[0]);
 
 		btnAtzera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-				JFrameSortu.menuNagusiaAukeraSortu();
+				// JFrameSortu.menuNagusiaAukeraSortu();
 				dispose();
+				aurrekoFrame.setVisible(true);
 
 			}
 		});
@@ -99,8 +101,7 @@ public class ErregistroaPremium extends Erregistroa {
 		lblPremiumMuga.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 15));
 
 		Calendar calendar = Calendar.getInstance();
-		
-		
+
 		if (SesioAldagaiak.erabiltzaileLogeatutaPremium != null) {
 			calendar.setTime(SesioAldagaiak.erabiltzaileLogeatutaPremium.getPremiumMuga());
 			model = new SpinnerDateModel(calendar.getTime(), null, null, Calendar.DAY_OF_MONTH);
@@ -114,7 +115,7 @@ public class ErregistroaPremium extends Erregistroa {
 			spinner = new JSpinner(model);
 			model.setStart(new Date());
 			editor = new JSpinner.DateEditor(spinner, "yyyy-MM-dd");
-			
+
 		}
 
 		editor.getTextField().setEditable(false);
@@ -134,40 +135,41 @@ public class ErregistroaPremium extends Erregistroa {
 		super.btnErregistratu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				if (SesioAldagaiak.erabiltzaileLogeatutaPremium != null) {
-					
-					Date dat = SesioAldagaiak.erabiltzaileLogeatutaPremium.getPremiumMuga();
-					dat = (Date) spinner.getValue();
+				try {
+					if (SesioAldagaiak.erabiltzaileLogeatutaPremium != null) {
 
-					if (dat.after(calendar.getTime())) {
-						// Premium data eguneratu (Urteak)
-						gordePremium((java.util.Date) dat);
-						JOptionPane.showMessageDialog(null, "Premium muga handitua,Eskerrik askoo!!", "Succesfull",
-								JOptionPane.INFORMATION_MESSAGE);
-						dispose();
-						JFrameSortu.loginAukeraSortu();
+						Date dat = SesioAldagaiak.erabiltzaileLogeatutaPremium.getPremiumMuga();
+						dat = (Date) spinner.getValue();
+
+						if (dat.after(calendar.getTime())) {
+							// Premium data eguneratu (Urteak)
+							gordePremium((java.util.Date) dat);
+							JOptionPane.showMessageDialog(null, "Premium muga handitua,Eskerrik askoo!!", "Succesfull",
+									JOptionPane.INFORMATION_MESSAGE);
+							dispose();
+							JFrameSortu.loginSortu();
+						} else {
+							throw new PremiumMugaEzAldatuta();
+						}
+
 					} else {
-						JOptionPane.showMessageDialog(null, "Premiuma Erosteko lehenik Premium muga Aldatu", "heyyy!!",
-								JOptionPane.WARNING_MESSAGE);
-					}
+						Date dat = new Date();
+						dat = (Date) spinner.getValue();
 
-				} else {
-					Date dat = new Date();
-					dat = (Date) spinner.getValue();
-
-					if (dat.after(calendar.getTime())) {
-						// Premium data eguneratu (Urteak)
-						gordePremium((java.util.Date) dat);
-						JOptionPane.showMessageDialog(null, "Premium muga handitua,Eskerrik askoo!!", "Succesfull",
-								JOptionPane.INFORMATION_MESSAGE);
-						dispose();
-						JFrameSortu.loginAukeraSortu();
-					} else {
-						JOptionPane.showMessageDialog(null, "Premiuma Erosteko lehenik Premium muga Aldatu", "Error",
-								JOptionPane.WARNING_MESSAGE);
+						if (dat.after(calendar.getTime())) {
+							// Premium data eguneratu (Urteak)
+							gordePremium((java.util.Date) dat);
+							JOptionPane.showMessageDialog(null, "Premium muga handitua,Eskerrik askoo!!", "Succesfull",
+									JOptionPane.INFORMATION_MESSAGE);
+							dispose();
+							JFrameSortu.loginSortu();
+						} else {
+							throw new PremiumMugaEzAldatuta();
+						}
 					}
+				} catch (PremiumMugaEzAldatuta ex) {
+					JOptionPane.showMessageDialog(null, ex.getMessage(), "heyyy!!", JOptionPane.WARNING_MESSAGE);
 				}
-
 			}
 		});
 		btnErregistratu.setEnabled(!isIdatzi());
@@ -183,11 +185,11 @@ public class ErregistroaPremium extends Erregistroa {
 					} else {
 
 						if (!passwordField.getText().equals(passwordFieldErrepikatu.getText())) {
-							throw new pasahitzaEzKointziditu();
+							throw new PasahitzaEzKointziditu();
 						}
 
 						jaioData = balidatuData(txtJaiotzeData.getText());
-						
+
 						if (jaioData.after(new Date())) {
 							JOptionPane.showMessageDialog(null, "Data oso handia!!!", "heyyy!!",
 									JOptionPane.WARNING_MESSAGE);
@@ -232,9 +234,9 @@ public class ErregistroaPremium extends Erregistroa {
 						}
 					}
 				} catch (Exception j) {
-					
+
 					JOptionPane.showMessageDialog(null, "Pasahitzak ez dira berdinak", "heyyy!!",
-					JOptionPane.WARNING_MESSAGE);
+							JOptionPane.WARNING_MESSAGE);
 				}
 
 			}

@@ -43,11 +43,10 @@ public class PodcastView extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JLabel lblIzena;
-
+	private JFrame frame = this;
+	private String klasea = this.getClass().getSimpleName();
+	
 	public PodcastView(Podcasterra podcasterra) {
-		String klasea = this.getClass().getSimpleName();
-
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 250, 906, 594);
 		setTitle("Menu Nagusia - Talde 4");
 		contentPane = new JPanel();
@@ -59,8 +58,8 @@ public class PodcastView extends JFrame {
 
 		btnErabiltzaile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				JFrameSortu.premiumErregistroAukeraSortu();
+				setVisible(false);
+				JFrameSortu.premiumErregistroAukeraSortu(frame);
 			}
 		});
 
