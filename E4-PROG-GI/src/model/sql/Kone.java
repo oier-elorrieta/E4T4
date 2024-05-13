@@ -28,13 +28,13 @@ import model.SesioAldagaiak;
 
 public class Kone {
 
-	//private static String url = "jdbc:mysql://10.5.6.111:3306/Sphea";
-	//private static String user = "erabiltzaile";
-	//private static String pass = "4321";
+	private static String url = "jdbc:mysql://10.5.6.111:3306/Sphea";
+	private static String user = "erabiltzaile";
+	private static String pass = "4321";
 
-	private static String url = "jdbc:mysql://localhost/Sphea";
-	private static String user = "root";
-	private static String pass = "";
+	//private static String url = "jdbc:mysql://localhost/Sphea";
+	//private static String user = "root";
+	//private static String pass = "";
 	
 	private static String userErabiltzailea;
 	private static String passErabiltzailea;
