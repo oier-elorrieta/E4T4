@@ -39,7 +39,7 @@ public abstract class EstadistikakTop extends JFrame {
             }
         });
 
-        btnAstea = new JButton("Astekoa");
+        btnAstea = new JButton("Egunekoa");
         btnHilabetea = new JButton("Hilabetekoa");
         btnUrtea = new JButton("Urtekoa");
 

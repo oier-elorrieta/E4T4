@@ -42,6 +42,14 @@ public class EstadistikaMenua extends JFrame {
         btnGustokoAbesti.setBounds(150, 175, 550, 54);
         btnGustokoAbesti.setFont(new Font("Segoe UI", Font.BOLD, 21));
         btnGustokoAbesti.setFocusPainted(false);
+        
+        btnGustokoAbesti.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                EstadistikakAbestiak ea = new EstadistikakAbestiak();
+                dispose();
+                ea.setVisible(true);
+            }
+        });
 
         JButton btnGustokoPodcast = new JButton("Top Gustoko Podcast");
         btnGustokoPodcast.setBounds(150, 275, 550, 54);
