@@ -102,8 +102,11 @@ public class ErregistroaPremium extends Erregistroa {
 
 		Calendar calendar = Calendar.getInstance();
 
-		if (SesioAldagaiak.erabiltzaileLogeatutaPremium != null) {
-			calendar.setTime(SesioAldagaiak.erabiltzaileLogeatutaPremium.getPremiumMuga());
+		// if (SesioAldagaiak.erabiltzaileLogeatutaPremium != null) {
+		if (SesioAldagaiak.logErabiltzailea.getClass().getSimpleName().equals("ErabiltzailePremium")) {
+			// calendar.setTime(SesioAldagaiak.erabiltzaileLogeatutaPremium.getPremiumMuga());
+			ErabiltzailePremium p1 = (ErabiltzailePremium) SesioAldagaiak.logErabiltzailea;
+			calendar.setTime(p1.getPremiumMuga());
 			model = new SpinnerDateModel(calendar.getTime(), null, null, Calendar.DAY_OF_MONTH);
 			spinner = new JSpinner(model);
 			model.setStart(calendar.getTime());
@@ -136,9 +139,11 @@ public class ErregistroaPremium extends Erregistroa {
 			public void actionPerformed(ActionEvent e) {
 
 				try {
-					if (SesioAldagaiak.erabiltzaileLogeatutaPremium != null) {
-
-						Date dat = SesioAldagaiak.erabiltzaileLogeatutaPremium.getPremiumMuga();
+					// if (SesioAldagaiak.erabiltzaileLogeatutaPremium != null) {
+					if (SesioAldagaiak.logErabiltzailea.getClass().getSimpleName().equals("ErabiltzailePremium")) {
+						ErabiltzailePremium p2 = (ErabiltzailePremium) SesioAldagaiak.logErabiltzailea;
+						//Date dat = SesioAldagaiak.erabiltzaileLogeatutaPremium.getPremiumMuga();
+						Date dat = p2.getPremiumMuga();
 						dat = (Date) spinner.getValue();
 
 						if (dat.after(calendar.getTime())) {

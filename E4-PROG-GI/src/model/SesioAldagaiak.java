@@ -10,9 +10,9 @@ import model.metodoak.ViewMetodoak;
 
 public class SesioAldagaiak {
 	public static Erabiltzailea logErabiltzailea = null;
-	public static ErabiltzaileFree erabiltzaileLogeatutaFree = null;
-	public static ErabiltzailePremium erabiltzaileLogeatutaPremium = null;
-	public static boolean erabiltzailePremium;
+	//public static ErabiltzaileFree erabiltzaileLogeatutaFree = null;
+	//public static ErabiltzailePremium erabiltzaileLogeatutaPremium = null;
+	//public static boolean erabiltzailePremium;
 	public static JButton jb = null;
 	public static boolean doSkip = true;
 	public static boolean iragarkiaAtera = true;

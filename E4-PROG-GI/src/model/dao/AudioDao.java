@@ -32,11 +32,14 @@ public class AudioDao {
 
 		Connection konexioa = Kone.konektatu();
 
+		/*
 		if (!SesioAldagaiak.erabiltzailePremium) {
 			id = SesioAldagaiak.erabiltzaileLogeatutaFree.getIdErabiltzailea();
 		} else {
 			id = SesioAldagaiak.erabiltzaileLogeatutaPremium.getIdErabiltzailea();
-		}
+		}*/
+		
+		id = SesioAldagaiak.logErabiltzailea.getIdErabiltzailea();
 
 		try {
 			stm = konexioa.createStatement();

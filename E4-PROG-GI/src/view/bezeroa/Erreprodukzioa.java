@@ -287,7 +287,8 @@ public class Erreprodukzioa extends JFrame {
 		btnAurrekoa.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (SesioAldagaiak.doSkip || SesioAldagaiak.erabiltzailePremium) {
+				//if (SesioAldagaiak.doSkip || SesioAldagaiak.erabiltzailePremium) {
+					if (SesioAldagaiak.doSkip || SesioAldagaiak.logErabiltzailea.getClass().getSimpleName().equals("ErabiltzailePremium")) {
 					try {
 						int abestiAukeraAux = abestiAukera;
 						abestiAukeraAux--;
@@ -300,14 +301,15 @@ public class Erreprodukzioa extends JFrame {
 						SesioAldagaiak.doSkip = false;
 						ViewMetodoak.skipBaimendu();
 
-						if (!SesioAldagaiak.erabiltzailePremium) {
+						//if (!SesioAldagaiak.erabiltzailePremium) {
+							if (SesioAldagaiak.logErabiltzailea.getClass().getSimpleName().equals("ErabiltzaileFree")) {
 							SesioAldagaiak.doSkip = false;
 							ViewMetodoak.skipBaimendu();
 						}
 
 						dispose();
-						if ((SesioAldagaiak.iragarkiaAtera && SesioAldagaiak.erreprodukzioKop >= 1)
-								&& !SesioAldagaiak.erabiltzailePremium) {
+						//if ((SesioAldagaiak.iragarkiaAtera && SesioAldagaiak.erreprodukzioKop >= 1) && !SesioAldagaiak.erabiltzailePremium) {
+						if ((SesioAldagaiak.iragarkiaAtera && SesioAldagaiak.erreprodukzioKop >= 1) && SesioAldagaiak.logErabiltzailea.getClass().getSimpleName().equals("ErabiltzaileFree")) {
 							SesioAldagaiak.erreprodukzioKop = 0;
 							JFrameSortu.iragarkiaErreproduzituSortu(aurrekoKlasea, artista, abestiak, abestiAukeraAux, erreproduzitzen);
 						} else {
@@ -351,7 +353,8 @@ public class Erreprodukzioa extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-				if (SesioAldagaiak.doSkip || SesioAldagaiak.erabiltzailePremium) {
+				//if (SesioAldagaiak.doSkip || SesioAldagaiak.erabiltzailePremium) {
+				if (SesioAldagaiak.doSkip || SesioAldagaiak.logErabiltzailea.getClass().getSimpleName().equals("ErabiltzailePremium")) {
 					try {
 						int abestiAukeraAux = abestiAukera;
 						abestiAukeraAux++;
@@ -360,13 +363,14 @@ public class Erreprodukzioa extends JFrame {
 							abestiAukeraAux = 0;
 						}
 						clip.stop();
-						if (!SesioAldagaiak.erabiltzailePremium) {
+						//if (!SesioAldagaiak.erabiltzailePremium) {
+						if (SesioAldagaiak.logErabiltzailea.getClass().getSimpleName().equals("ErabiltzaileFree")) {
 							SesioAldagaiak.doSkip = false;
 							ViewMetodoak.skipBaimendu();
 						}
 						dispose();
-						if ((SesioAldagaiak.iragarkiaAtera && SesioAldagaiak.erreprodukzioKop >= 1)
-								&& !SesioAldagaiak.erabiltzailePremium) {
+						//if ((SesioAldagaiak.iragarkiaAtera && SesioAldagaiak.erreprodukzioKop >= 1) && !SesioAldagaiak.erabiltzailePremium) {
+						if ((SesioAldagaiak.iragarkiaAtera && SesioAldagaiak.erreprodukzioKop >= 1) && SesioAldagaiak.logErabiltzailea.getClass().getSimpleName().equals("ErabiltzaileFree")) {
 							SesioAldagaiak.erreprodukzioKop = 0;
 							JFrameSortu.iragarkiaErreproduzituSortu(aurrekoKlasea, artista, abestiak, abestiAukeraAux, erreproduzitzen);
 						} else {

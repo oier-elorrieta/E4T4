@@ -29,6 +29,7 @@ import model.dao.PlayListakDao;
 import model.metodoak.ImportExportMetodoak;
 import model.metodoak.JFrameSortu;
 import model.metodoak.ViewMetodoak;
+import model.salbuespenak.PlaylistSortuLimitazioa;
 import model.sql.Kone;
 
 import javax.swing.JList;
@@ -104,8 +105,22 @@ public class NirePlaylista extends JFrame {
 
 		btnBerriaSortu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				JFrameSortu.playListaSortuSortu();
+				try {
+					if (SesioAldagaiak.logErabiltzailea.getClass().getSimpleName().equals("ErabiltzaileFree")
+							&& playlistLista.size() < 4) {
+						dispose();
+						JFrameSortu.playListaSortuSortu();
+					} else if (SesioAldagaiak.logErabiltzailea.getClass().getSimpleName()
+							.equals("ErabiltzailePremium")) {
+						dispose();
+						JFrameSortu.playListaSortuSortu();
+					} else {
+						throw new PlaylistSortuLimitazioa();
+					}
+				} catch (PlaylistSortuLimitazioa ex) {
+					JOptionPane.showMessageDialog(null, ex.getMessage(), "Error",
+							JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 
@@ -201,7 +216,7 @@ public class NirePlaylista extends JFrame {
 				JFrameSortu.menuNagusiaAukeraSortu();
 			}
 		});
-		
+
 		btnErabiltzaile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
