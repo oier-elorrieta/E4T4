@@ -10,7 +10,7 @@ import model.SesioAldagaiak;
 import model.sql.Kone;
 
 public class ErabiltzaileaDao {
-	public static boolean erregistratu(ErabiltzaileFree erab) {
+	public static boolean erregistratuErabiltzailea(ErabiltzaileFree erab) {
 		try {
 			Connection konexioa = Kone.konektatu();
 			String kontsulta = "INSERT into Bezeroa(Izena,Abizena,Erabiltzailea,Pasahitza,JaiotzeData,IdHizkuntza) VALUES(?,?,?,?,?,?)";

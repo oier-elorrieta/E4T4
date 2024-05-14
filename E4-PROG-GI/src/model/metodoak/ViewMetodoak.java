@@ -253,7 +253,7 @@ public class ViewMetodoak {
 
 		DefaultListModel<Album> lm = new DefaultListModel();
 		Musikaria musikari = MusikariaDao.getMusikaria(izena);
-		ArrayList<Album> albumak = AlbumDao.getAlbumak(musikari);
+		ArrayList<Album> albumak = AlbumDao.getAlbumakByMusikari(musikari);
 		AlbumDao.beteAlbumakKantaKop(albumak);
 
 		for (Album i : albumak) {
@@ -263,25 +263,7 @@ public class ViewMetodoak {
 		return lm;
 	}
 
-	/**
-	 * Metodo honek musikariaren abestiak lortzen ditu eta DefaultListModel bat
-	 * itzultzen du.
-	 *
-	 * @param idAlbum Albumaren identifikadorea.
-	 * @return Musikariaren abestiak dituen DefaultListModel bat.
-	 */
-	public static DefaultListModel<Audio> getMusikariAbestiak(int idAlbum) {
-
-		DefaultListModel<Audio> lm = new DefaultListModel();
-		ArrayList<Audio> abestiak = AbestiaDao.getAbestiakByAlbum(idAlbum);
-
-		for (Audio i : abestiak) {
-			lm.addElement(i);
-		}
-
-		return lm;
-	}
-
+	
 	/**
 	 * Metodo honek irudia jartzen du JLabel batean.
 	 *

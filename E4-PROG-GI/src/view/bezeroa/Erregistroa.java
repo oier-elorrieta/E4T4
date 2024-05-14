@@ -230,7 +230,7 @@ public class Erregistroa extends JFrame {
 							passwordField.getText(), txtIzena.getText(), txtAbizenak.getText(),
 							new java.sql.Date(jaioData.getTime()), (String) cboHizkuntza.getSelectedItem());
 
-					if (!ErabiltzaileaDao.erregistratu(erabiltzaileFree)) {
+					if (!ErabiltzaileaDao.erregistratuErabiltzailea(erabiltzaileFree)) {
 						JOptionPane.showMessageDialog(null, "Erabiltzaile hori badago ya sortuta", "heyyy!!",
 								JOptionPane.WARNING_MESSAGE);
 					} else {

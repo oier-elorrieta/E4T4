@@ -118,7 +118,7 @@ public class JFrameSortu{
 
 	public static void menuErreprodukzioaSortu(Audio audio) throws SQLException {
 		MenuErreprodukzioa menuErreprodukzioa = new MenuErreprodukzioa(audio);
-		menuErreprodukzioa.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		menuErreprodukzioa.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		menuErreprodukzioa.setVisible(true);
 	}
 

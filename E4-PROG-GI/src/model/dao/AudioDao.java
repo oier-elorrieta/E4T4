@@ -24,7 +24,7 @@ public class AudioDao {
 	 * @param aukeraPlaylist Aukeratutako PlayLista
 	 * @return Abestiak ArrayList moduan
 	 */
-	public static ArrayList<Audio> getPlayListAbestiak(PlayListak aukeraPlaylist) {
+	public static ArrayList<Audio> getAbestiakByPlayList(PlayListak aukeraPlaylist) {
 		ArrayList<Audio> abestiakList = new ArrayList<Audio>();
 		Abestia abestia;
 		int id = 0;

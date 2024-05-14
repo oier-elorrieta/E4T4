@@ -54,7 +54,7 @@ public class PlayListAbestiakView extends JFrame {
 		if (aukeraPlaylist.getIdPlayList() == 0) {
 			abestiakList = AbestiGuztokoaDao.getAbestiGustokoak();
 		} else {
-			abestiakList = AudioDao.getPlayListAbestiak(aukeraPlaylist);
+			abestiakList = AudioDao.getAbestiakByPlayList(aukeraPlaylist);
 		}
 
 	
@@ -136,7 +136,8 @@ public class PlayListAbestiakView extends JFrame {
 						PlayListakDao.abestiPlaylistEzabatu(aukeraPlaylist.getIdPlayList(),
 								abestiakList.get(aukeraAbestia).getIdAudio());
 					} else {
-						AbestiaDao.abestiGuztokoaEzabatu(abestiakList.get(aukeraAbestia).getIdAudio());
+						AbestiGuztokoa abestiGuztokoa = new AbestiGuztokoa(SesioAldagaiak.logErabiltzailea, abestiakList.get(aukeraAbestia));
+						AbestiGuztokoaDao.abestiGuztokoaEzabatu(abestiGuztokoa);
 					}
 
 					dispose();
