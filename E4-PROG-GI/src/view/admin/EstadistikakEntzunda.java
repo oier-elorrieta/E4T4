@@ -12,7 +12,7 @@ import model.dao.EstadistikaDao;
 public class EstadistikakEntzunda extends EstadistikakTop {
 	public EstadistikakEntzunda() {
 		super();
-		setTitle("Estadistikak Eguneakoa");
+		setTitle("Estadistikak Entzunda Eguneakoa");
 		SorreraGenerikoa();
 		AurkeztuEgunekoa();
 	}
@@ -20,10 +20,10 @@ public class EstadistikakEntzunda extends EstadistikakTop {
 		super();
 		SorreraGenerikoa();
 		if (Aukera == 2) {
-			setTitle("Estadistikak Hilabetekoa");
+			setTitle("Estadistikak Entzunda Hilabetekoa");
 			AurkeztuHilekoa();
 		} else if (Aukera == 3) {
-			setTitle("Estadistikak Urtekoa");
+			setTitle("Estadistikak Entzunda Urtekoa");
 			AurkeztuUrtekoa();
 		}
 	}

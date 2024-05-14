@@ -183,4 +183,61 @@ public class EstadistikaDao {
 			return null;
 		}
 	}
+	
+	public static ArrayList<Estadistika> getAlbumakTopEguna() {
+		ResultSet rs;
+		String kontsulta;
+		Connection konexioa = Kone.konektatu();
+		try {
+			ArrayList<Estadistika> estadistika = new ArrayList<Estadistika>();
+			Statement stm = konexioa.createStatement();
+			kontsulta = "SELECT * FROM EstadistikaAlbumakEgunean";
+			rs = stm.executeQuery(kontsulta);
+			while (rs.next()) {
+				estadistika.add(new Estadistika(rs.getString("Artista"), rs.getString("Albuma"), rs.getInt("Entzunaldiak")));
+			}
+			return estadistika;
+		} catch (SQLException e) {
+			e.getMessage();
+			return null;
+		}
+	}
+	
+	public static ArrayList<Estadistika> getAlbumakTopHilea() {
+		ResultSet rs;
+		String kontsulta;
+		Connection konexioa = Kone.konektatu();
+		try {
+			ArrayList<Estadistika> estadistika = new ArrayList<Estadistika>();
+			Statement stm = konexioa.createStatement();
+			kontsulta = "SELECT * FROM EstadistikaAlbumaklHilean";
+			rs = stm.executeQuery(kontsulta);
+			while (rs.next()) {
+				estadistika.add(new Estadistika(rs.getString("Artista"), rs.getString("Albuma"), rs.getInt("Entzunaldiak")));
+			}
+			return estadistika;
+		} catch (SQLException e) {
+			e.getMessage();
+			return null;
+		}
+	}
+	
+	public static ArrayList<Estadistika> getAlbumakTopUrtea() {
+		ResultSet rs;
+		String kontsulta;
+		Connection konexioa = Kone.konektatu();
+		try {
+			ArrayList<Estadistika> estadistika = new ArrayList<Estadistika>();
+			Statement stm = konexioa.createStatement();
+			kontsulta = "SELECT * FROM EstadistikaAlbumakUrtean";
+			rs = stm.executeQuery(kontsulta);
+			while (rs.next()) {
+				estadistika.add(new Estadistika(rs.getString("Artista"), rs.getString("Albuma"), rs.getInt("Entzunaldiak")));
+			}
+			return estadistika;
+		} catch (SQLException e) {
+			e.getMessage();
+			return null;
+		}
+	}
 }

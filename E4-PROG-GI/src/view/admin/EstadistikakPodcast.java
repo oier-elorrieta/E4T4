@@ -12,7 +12,7 @@ import model.dao.EstadistikaDao;
 public class EstadistikakPodcast extends EstadistikakTop {
 	public EstadistikakPodcast() {
 		super();
-		setTitle("Estadistikak Eguneakoa");
+		setTitle("Estadistikak Podcast Eguneakoa");
 		SorreraGenerikoa();
 		AurkeztuEgunekoa();
 	}
@@ -20,10 +20,10 @@ public class EstadistikakPodcast extends EstadistikakTop {
 		super();
 		SorreraGenerikoa();
 		if (Aukera == 2) {
-			setTitle("Estadistikak Hilabetekoa");
+			setTitle("Estadistikak Podcast Hilabetekoa");
 			AurkeztuHilekoa();
 		} else if (Aukera == 3) {
-			setTitle("Estadistikak Urtekoa");
+			setTitle("Estadistikak Podcast Urtekoa");
 			AurkeztuUrtekoa();
 		}
 	}
