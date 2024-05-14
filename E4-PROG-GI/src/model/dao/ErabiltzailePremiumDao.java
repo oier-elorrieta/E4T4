@@ -1,16 +1,20 @@
 package model.dao;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 import model.ErabiltzailePremium;
 import model.SesioAldagaiak;
 import model.sql.Kone;
 
 public class ErabiltzailePremiumDao {
+	/**
+	 * Erregistratu erabiltzailea premium bezala.
+	 * 
+	 * @param id    Erabiltzailearen identifikazio zenbakia
+	 * @param iranD Premium egunera arteko data
+	 */
 	public static void erregistratuPremium(int id, java.sql.Date iranD) {
 		Connection konexioa = Kone.konektatu();
 		String kontsulta;
@@ -47,6 +51,12 @@ public class ErabiltzailePremiumDao {
 		Kone.itxiConexioa();
 	}
 
+	/**
+	 * Kargatu erabiltzailea premium erabiltzaile moduan.
+	 * 
+	 * @param id Erabiltzailearen identifikazio zenbakia
+	 * @return True, baldin eta erabiltzailea kargatzea ondo joan bada. False, bestela.
+	 */
 	public static boolean kargatuErabiltzailePremium(int id) {
 		Connection konexioa = Kone.konektatu();
 		try {

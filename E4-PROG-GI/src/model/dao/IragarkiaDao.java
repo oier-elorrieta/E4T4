@@ -11,8 +11,16 @@ import model.Iragarkia;
 import model.Musikaria;
 import model.sql.Kone;
 
+/**
+ * IragarkiaDao klasea datu-basearekin komunikatzeko erabiltzen den DAO klasea da.
+ */
 public class IragarkiaDao {
 	
+	/**
+	 * Datu-basean dauden iragarkiak itzultzen ditu.
+	 * 
+	 * @return iragarkiak ArrayList bat, Iragarkia objektuak gordetzen dituena.
+	 */
 	public static ArrayList<Iragarkia> getIragarkiak() {
 		Connection konexioa = Kone.konektatu();
 		ArrayList<Iragarkia> iragarkiak = new ArrayList<Iragarkia>();

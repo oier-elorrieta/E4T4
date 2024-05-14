@@ -1,12 +1,10 @@
 package model.dao;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
 import model.AbestiGuztokoa;
 import model.Abestia;
 import model.Audio;
@@ -14,6 +12,11 @@ import model.SesioAldagaiak;
 import model.sql.Kone;
 
 public class AbestiGuztokoaDao {
+	/**
+	 * Abesti gustokoak jasotzeko metodoa.
+	 * 
+	 * @return abesti gustokoak ArrayList bat
+	 */
 	public static ArrayList<Audio> getAbestiGustokoak() {
 		ArrayList<Audio> abestiakList = new ArrayList<Audio>();
 		Audio abestia;
@@ -40,6 +43,13 @@ public class AbestiGuztokoaDao {
 		return abestiakList;
 	}
 
+	/**
+	 * Abesti gustokoa gehitzeko metodoa.
+	 * 
+	 * @param abestiGuztokoa Abesti gustokoa
+	 * @return gehitzea ondo egin den ala ez
+	 * @throws SQLException SQL errorea
+	 */
 	public static boolean abestiGustokoaGehitu(AbestiGuztokoa abestiGuztokoa) throws SQLException {
 		int id = 0;
 
@@ -61,6 +71,12 @@ public class AbestiGuztokoaDao {
 		return true;
 	}
 
+	/**
+	 * Abesti gustokoa ezabatzeko metodoa.
+	 * 
+	 * @param abestiGuztokoa Abesti gustokoa
+	 * @return ezabatzea ondo egin den ala ez
+	 */
 	public static boolean abestiGuztokoaEzabatu(AbestiGuztokoa abestiGuztokoa) {
 		int id = SesioAldagaiak.logErabiltzailea.getIdErabiltzailea();
 		try {
@@ -78,6 +94,13 @@ public class AbestiGuztokoaDao {
 		
 	}
 
+	/**
+	 * Abesti gustokoa konprobatzeko metodoa.
+	 * 
+	 * @param abestiGuztokoa Abesti gustokoa
+	 * @return abesti gustokoa duen ala ez
+	 * @throws SQLException SQL errorea
+	 */
 	public static boolean abestiGuztokoaKonprobatu(AbestiGuztokoa abestiGuztokoa) throws SQLException {
 		boolean gustokoaDu;
 		int id = SesioAldagaiak.logErabiltzailea.getIdErabiltzailea();

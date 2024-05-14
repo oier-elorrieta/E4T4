@@ -52,6 +52,12 @@ public class AudioDao {
 		return abestiakList;
 	}
 
+	/**
+	 * Erregistratu erreprodukzioa datu-basean.
+	 * 
+	 * @param audio Erreprodukzioa
+	 * @return True, erreprodukzioa ongi erregistratu da; False, errorea gertatu da
+	 */
 	public static boolean erregistratuErreprodukzioa(Audio audio) {
 
 		int idBezero;

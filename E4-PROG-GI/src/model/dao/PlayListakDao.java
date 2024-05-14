@@ -128,6 +128,12 @@ public class PlayListakDao {
 		return true;
 	}
 
+	/**
+	 * Erabiltzailearen aukeratutako playlist-aren abestiak itzultzen dituen metodoa.
+	 * 
+	 * @param aukeraPlaylist Aukeratutako playlist objektua.
+	 * @return Aukeratutako playlist-aren abestiak ArrayList<Audio> moduan itzultzen ditu.
+	 */
 	public static ArrayList<Audio> getPlayListAbestiak(PlayListak aukeraPlaylist) {
 		ArrayList<Audio> abestiakList = new ArrayList<Audio>();
 		Abestia abestia;
@@ -164,6 +170,13 @@ public class PlayListakDao {
 		return abestiakList;
 	}
 
+	/**
+	 * Abestia aukeratutako playlist-ean gehitzeko metodoa.
+	 * 
+	 * @param playlist Aukeratutako playlist objektua.
+	 * @param audio    Gehitu nahi den abestiaren objektua.
+	 * @return True, abestia ongi gehitu da. False, abestia ez da gehitu.
+	 */
 	public static boolean playlisteanAbestiaGehitu(PlayListak playlist, Audio audio) {
 
 		Connection konexioa = Kone.konektatu();
@@ -186,6 +199,13 @@ public class PlayListakDao {
 		return true;
 	}
 
+	/**
+	 * Abestia aukeratutako playlist-ean dagoen ala ez egiaztatzeko metodoa.
+	 * 
+	 * @param playlist Aukeratutako playlist objektua.
+	 * @param audio    Egiaztatu nahi den abestiaren objektua.
+	 * @return True, abestia aukeratutako playlist-ean dago. False, abestia ez dago aukeratutako playlist-ean.
+	 */
 	public static boolean komprobatuAbestiaBadago(PlayListak playlist, Audio audio) {
 		boolean badago = false;
 		Connection konexioa = Kone.konektatu();
@@ -205,6 +225,12 @@ public class PlayListakDao {
 		return badago;
 	}
 
+	/**
+	 * Izenarekin playlist bat lortzeko metodoa.
+	 * 
+	 * @param izena Playlist-aren izena.
+	 * @return Izenarekin lortutako playlist objektua.
+	 */
 	public static PlayListak getPlayListIzenarekin(String izena) {
 		PlayListak playlista = null;
 		Connection konexioa = Kone.konektatu();

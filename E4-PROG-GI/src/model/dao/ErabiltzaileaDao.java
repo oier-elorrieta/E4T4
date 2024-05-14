@@ -1,11 +1,9 @@
 package model.dao;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 import model.ErabiltzaileFree;
 import model.Erabiltzailea;
 import model.SesioAldagaiak;
@@ -13,7 +11,12 @@ import model.sql.Kone;
 
 public class ErabiltzaileaDao {
 	
-	
+	/**
+	 * Erabiltzailea eguneratzeko metodoa.
+	 * 
+	 * @param erab Erabiltzailea objektua
+	 * @return eguneraketa ondo egin den ala ez
+	 */
 	public static boolean eguneratuErabiltzailea(Erabiltzailea erab) {
 		try {
 			Connection konexioa = Kone.konektatu();
@@ -37,6 +40,12 @@ public class ErabiltzaileaDao {
 		return true;
 	}
 	
+	/**
+	 * Erabiltzailearen sartzea egiaztatzeko metodoa.
+	 * 
+	 * @param erabiltzailea Erabiltzailearen izena
+	 * @return Sartzea ondo egin bada, Erabiltzailea objektua itzultzen du; bestela, null itzultzen du
+	 */
 	public static Erabiltzailea isLoginaOk(String erabiltzailea) {
 		Erabiltzailea erabiltzaileaSortu;
 		try {
@@ -55,6 +64,12 @@ public class ErabiltzaileaDao {
 		}
 	}
 	
+	/**
+	 * Erabiltzailearen mota itzultzen duen metodoa.
+	 * 
+	 * @param erabiltzailea Erabiltzailea objektua
+	 * @return Erabiltzailearen mota
+	 */
 	public static String erabiltzaileMota(Erabiltzailea erabiltzailea) {
 		String mota;
 		Connection konexioa = Kone.konektatu();

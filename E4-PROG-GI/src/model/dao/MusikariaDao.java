@@ -15,13 +15,14 @@ import model.metodoak.ViewMetodoak;
 import model.sql.Kone;
 
 
+/**
+ * MusikariaDao klasea datu-basearekin komunikatzeko erabiltzen den DAO klasea da.
+ */
 public class MusikariaDao {
 	private static String kontsulta;
 	private static Statement stm = null;
 	private static PreparedStatement pstm;
 	private static ResultSet rs;
-	
-	
 	
 	/**
 	 * Entzunaldi guztiak itzultzen dituen metodoa.
@@ -73,6 +74,12 @@ public class MusikariaDao {
 		return musikari;
 	}
 	
+	/**
+	 * Audio baten arabera Musikaria itzultzen duen metodoa.
+	 * 
+	 * @param audio Audio objektua.
+	 * @return Audioaren arabera Musikaria objektua.
+	 */
 	public static Musikaria getMusikariaByAudio(Audio audio) {
 		Musikaria musikaria = null;
 		Connection konexioa = Kone.konektatu();
@@ -93,6 +100,12 @@ public class MusikariaDao {
 		return musikaria;
 	}
 	
+	/**
+	 * Musikaria gehitzeko metodoa.
+	 * 
+	 * @param musikari Gehitu nahi den Musikaria objektua.
+	 * @return Musikaria gehitzea ondo egin den ala ez adierazten duen boolean balioa.
+	 */
 	public static boolean gehituMusikaria(Musikaria musikari) {
 		boolean ondo = true;
 		
@@ -112,7 +125,4 @@ public class MusikariaDao {
 		
 		return ondo;
 	}
-	
-	
-	
 }

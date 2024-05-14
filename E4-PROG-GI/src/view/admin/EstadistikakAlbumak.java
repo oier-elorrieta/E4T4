@@ -9,50 +9,50 @@ import javax.swing.SwingUtilities;
 import model.Estadistika;
 import model.dao.EstadistikaDao;
 
-public class EstadistikakAbestiak extends EstadistikakTop {
+public class EstadistikakAlbumak extends EstadistikakTop {
 
-    public EstadistikakAbestiak() {
+    public EstadistikakAlbumak() {
         super();
-        setTitle("Estadistikak Abestiak Eguneakoa");
+        setTitle("Estadistikak Albumak Eguneakoa");
         SortuGenerikoa();
         AurkeztuEgunekoa();
     }
     
-    public EstadistikakAbestiak(int Aukera) {
+    public EstadistikakAlbumak(int Aukera) {
         super();
         SortuGenerikoa();
         if (Aukera == 2) {
-            setTitle("Estadistikak Abestiak Hilabetekoa");
+            setTitle("Estadistikak Albumak Hilabetekoa");
             AurkeztuHilekoa();
         } else if (Aukera == 3){
-            setTitle("Estadistikak Abestiak Urtekoa");
+            setTitle("Estadistikak Albumak Urtekoa");
             AurkeztuUrtekoa();
         }
     }
     
     private void AurkeztuEgunekoa() {
-    	ArrayList<Estadistika> estadistika = EstadistikaDao.getAbestiakTopEguna();
+    	ArrayList<Estadistika> estadistika = EstadistikaDao.getAlbumakTopEguna();
     	for (int i = 0; i < estadistika.size(); i++)
     	model.addRow(new String[]{Integer.toString(i + 1), estadistika.get(i).getS1(), estadistika.get(i).getS2(), Integer.toString(estadistika.get(i).getEntzunda())});
     }
     private void AurkeztuHilekoa() {
-    	ArrayList<Estadistika> estadistika = EstadistikaDao.getAbestiakTopHilea();
+    	ArrayList<Estadistika> estadistika = EstadistikaDao.getAlbumakTopHilea();
     	for (int i = 0; i < estadistika.size(); i++)
     	model.addRow(new String[]{Integer.toString(i + 1), estadistika.get(i).getS1(), estadistika.get(i).getS2(), Integer.toString(estadistika.get(i).getEntzunda())});
     }
     private void AurkeztuUrtekoa() {
-    	ArrayList<Estadistika> estadistika = EstadistikaDao.getAbestiakTopUrtea();
+    	ArrayList<Estadistika> estadistika = EstadistikaDao.getAlbumakTopUrtea();
     	for (int i = 0; i < estadistika.size(); i++)
     	model.addRow(new String[]{Integer.toString(i + 1), estadistika.get(i).getS1(), estadistika.get(i).getS2(), Integer.toString(estadistika.get(i).getEntzunda())});
     }
     
     private void SortuGenerikoa() {
-    	model.addColumn("Musikaria");
-    	model.addColumn("Abestia");
+    	model.addColumn("Artista");
+    	model.addColumn("Albuma");
     	model.addColumn("Entzunaldiak");
         super.btnAstea.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                EstadistikakAbestiak ea = new EstadistikakAbestiak();
+                EstadistikakAlbumak ea = new EstadistikakAlbumak();
                 dispose();
                 ea.setVisible(true);
             }
@@ -60,7 +60,7 @@ public class EstadistikakAbestiak extends EstadistikakTop {
         
         super.btnHilabetea.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                EstadistikakAbestiak ea = new EstadistikakAbestiak(2);
+                EstadistikakAlbumak ea = new EstadistikakAlbumak(2);
                 dispose();
                 ea.setVisible(true);
             }
@@ -68,21 +68,9 @@ public class EstadistikakAbestiak extends EstadistikakTop {
         
         super.btnUrtea.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                EstadistikakAbestiak ea = new EstadistikakAbestiak(3);
+                EstadistikakAlbumak ea = new EstadistikakAlbumak(3);
                 dispose();
                 ea.setVisible(true);
-            }
-        });
-    }
-    /*
-    private ArrayList<String> ezarriAbeztiakAstea() {
-    	
-    }*/
-    
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new EstadistikakAbestiak().setVisible(true);
             }
         });
     }
