@@ -57,6 +57,8 @@ import javax.swing.SpinnerDateModel;
 import java.util.Date;
 
 import model.*;
+import model.dao.ErabiltzailePremiumDao;
+import model.dao.ErabiltzaileaDao;
 
 public class ErregistroaPremium extends Erregistroa {
 
@@ -268,14 +270,14 @@ public class ErregistroaPremium extends Erregistroa {
 		ErabiltzaileFree erabiltzailefree = new ErabiltzaileFree(0, txtErabiltzailea.getText(), passwordField.getText(),
 				txtIzena.getText(), txtAbizenak.getText(), new java.sql.Date(jaioData.getTime()),
 				(String) cboHizkuntza.getSelectedItem());
-		Kone.eguneratuErabiltzailea(erabiltzailefree);
+		ErabiltzaileaDao.eguneratuErabiltzailea(erabiltzailefree);
 		ViewMetodoak.comprobatuLogin(txtErabiltzailea.getText(), passwordField.getText());
 		dispose();
 		JFrameSortu.menuNagusiaAukeraSortu();
 	}
 
 	private void gordePremium(Date eguna) {
-		Kone.erregistratuPremium(SesioAldagaiak.logErabiltzailea.getIdErabiltzailea(),
+		ErabiltzailePremiumDao.erregistratuPremium(SesioAldagaiak.logErabiltzailea.getIdErabiltzailea(),
 				new java.sql.Date(eguna.getTime()));
 	}
 

@@ -28,7 +28,7 @@ public class AlbumDao {
 	 * @param musikari Musikari objektua
 	 * @return Album objektuen ArrayList bat
 	 */
-	public static ArrayList<Album> getAlbumak(Musikaria musikari) {
+	public static ArrayList<Album> getAlbumakByMusikari(Musikaria musikari) {
 		Connection konexioa = Kone.konektatu();
 		ArrayList<Album> albumak = new ArrayList<Album>();
 		try {

@@ -38,6 +38,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import model.AbestiGuztokoa;
 import model.Abestia;
 import model.Album;
 import model.Artista;
@@ -46,8 +47,10 @@ import model.Musikaria;
 import model.Podcast;
 import model.Podcasterra;
 import model.SesioAldagaiak;
+import model.dao.AbestiGuztokoaDao;
 import model.dao.AbestiaDao;
 import model.dao.AlbumDao;
+import model.dao.AudioDao;
 import model.metodoak.JFrameSortu;
 import model.metodoak.ViewMetodoak;
 import model.sql.Kone;
@@ -121,7 +124,7 @@ public class Erreprodukzioa extends JFrame {
 		btnAurrekoa.setFont(new Font("SansSerif", Font.BOLD, 15));
 
 		if (clip.isRunning() && clip.getFramePosition() == 0) {
-			AbestiaDao.erregistratuErreprodukzioa(abestiak.get(abestiAukera));
+			AudioDao.erregistratuErreprodukzioa(abestiak.get(abestiAukera));
 		}
 
 		JButton btnPlay = new JButton();
@@ -202,7 +205,8 @@ public class Erreprodukzioa extends JFrame {
 
 		Abestia a = new Abestia();
 		if (abestiak.get(abestiAukera).getClass().toString().equals(a.getClass().toString())) {
-			boolean gustokoaDu = AbestiaDao.gustukoaKomprobatu(abestiak.get(abestiAukera));
+			AbestiGuztokoa abestiGuztokoa = new AbestiGuztokoa(SesioAldagaiak.logErabiltzailea, abestiak.get(abestiAukera));
+			boolean gustokoaDu = AbestiGuztokoaDao.abestiGuztokoaKonprobatu(abestiGuztokoa);
 			JButton btnGuztokoa = new JButton();
 			if (gustokoaDu) {
 				btnGuztokoa.setText("♥");
@@ -217,12 +221,13 @@ public class Erreprodukzioa extends JFrame {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					try {
+						AbestiGuztokoa abestiGuztokoa = new AbestiGuztokoa(SesioAldagaiak.logErabiltzailea, abestiak.get(abestiAukera));
 						if (gustokoaDu) {
-							AbestiaDao.abestiGuztokoaEzabatu(abestiak.get(abestiAukera).getIdAudio());
+							AbestiGuztokoaDao.abestiGuztokoaEzabatu(abestiGuztokoa);
 							JOptionPane.showMessageDialog(null, "Gustoko listatik ondo kendu da", "Eginda!",
 									JOptionPane.INFORMATION_MESSAGE);
 						} else {
-							AbestiaDao.abestiGustokoaGehitu(abestiak.get(abestiAukera));
+							AbestiGuztokoaDao.abestiGustokoaGehitu(abestiGuztokoa);
 							JOptionPane.showMessageDialog(null, "Gustoko listan ondo sartu da", "Eginda!",
 									JOptionPane.INFORMATION_MESSAGE);
 						}
@@ -340,7 +345,7 @@ public class Erreprodukzioa extends JFrame {
 					btnPlay.setText("Play");
 				} else {
 					if (clip.getFramePosition() == 0) {
-						AbestiaDao.erregistratuErreprodukzioa(abestiak.get(abestiAukera));
+						AudioDao.erregistratuErreprodukzioa(abestiak.get(abestiAukera));
 					}
 					erreproduzitzen = true;
 					clip.start();
@@ -396,7 +401,6 @@ public class Erreprodukzioa extends JFrame {
 				dispose();
 				// JFrameSortu.menuNagusiaAukeraSortu();
 				
-				System.out.println(aurrekoKlasea);
 				switch (aurrekoKlasea) {
 				case "AbestiakView":
 					JFrameSortu.abestiakViewSortu((Musikaria) artista, newAlbum);
@@ -405,7 +409,7 @@ public class Erreprodukzioa extends JFrame {
 					JFrameSortu.podcastakViewSortu((Podcasterra) artista);
 					break;
 					//COMO HAGO ETO
-				case "PlaylistAbestiak":
+				case "PlayListAbestiakView":
 					JFrameSortu.playListakViewSortu();
 					break;
 				}

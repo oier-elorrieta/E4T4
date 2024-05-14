@@ -28,6 +28,7 @@ import java.awt.SystemColor;
 import java.awt.Toolkit;
 
 import model.*;
+import model.dao.AbestiGuztokoaDao;
 import model.dao.AbestiaDao;
 import model.dao.AlbumDao;
 import model.dao.AudioDao;
@@ -144,11 +145,12 @@ public class MenuErreprodukzioa extends JFrame {
 					int index = jListPlayList.getSelectedIndex();
 					if (index == 0) {
 						try {
-							if (AbestiaDao.gustukoaKomprobatu(audio)) {
+							AbestiGuztokoa abeztiGuztokoa = new AbestiGuztokoa(SesioAldagaiak.logErabiltzailea, audio);
+							if (AbestiGuztokoaDao.abestiGuztokoaKonprobatu(abeztiGuztokoa)) {
 								JOptionPane.showMessageDialog(null, "Ezin da sartu abestia, zerrendan baitago.",
 										"Error", JOptionPane.ERROR_MESSAGE);
 							} else {
-								AbestiaDao.abestiGustokoaGehitu(audio);
+								AbestiGuztokoaDao.abestiGustokoaGehitu(abeztiGuztokoa);
 								JOptionPane.showMessageDialog(null, "Abestia ondo sartu da Playlistean.", "Eginda!",
 										JOptionPane.INFORMATION_MESSAGE);
 								dispose();

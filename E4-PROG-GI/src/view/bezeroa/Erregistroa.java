@@ -49,6 +49,8 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextPane;
 import model.*;
+import model.dao.ErabiltzaileaDao;
+import model.dao.HizkuntzaDao;
 
 public class Erregistroa extends JFrame {
 
@@ -166,8 +168,11 @@ public class Erregistroa extends JFrame {
 		JLabel lblHizkuntza = new JLabel("Hizkuntza:");
 		lblHizkuntza.setBounds(80, 340, 129, 23);
 		lblHizkuntza.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 15));
-
-		cboModelHizkuntza = ViewMetodoak.cboHizkuntzaModeloaSortu(cboModelHizkuntza);
+		
+		ArrayList<Hizkuntza> hizkuntzak = HizkuntzaDao.getHizkuntzak();
+		for (int i = 0; i<hizkuntzak.size();i++) {
+			cboModelHizkuntza.addElement(hizkuntzak.get(i).getIdHizkuntza());
+		}
 		cboHizkuntza.setModel(cboModelHizkuntza);
 		cboHizkuntza.setBounds(220, 340, 136, 29);
 		contentPane.add(cboHizkuntza);
@@ -225,7 +230,7 @@ public class Erregistroa extends JFrame {
 							passwordField.getText(), txtIzena.getText(), txtAbizenak.getText(),
 							new java.sql.Date(jaioData.getTime()), (String) cboHizkuntza.getSelectedItem());
 
-					if (!Kone.erregistratu(erabiltzaileFree)) {
+					if (!ErabiltzaileaDao.erregistratuErabiltzailea(erabiltzaileFree)) {
 						JOptionPane.showMessageDialog(null, "Erabiltzaile hori badago ya sortuta", "heyyy!!",
 								JOptionPane.WARNING_MESSAGE);
 					} else {

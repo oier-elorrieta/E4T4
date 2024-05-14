@@ -29,7 +29,7 @@ public class AbestiaDaoTest {
 
     @Test
     public void testGetAbestiak() {
-        ArrayList<Audio> result = AbestiaDao.getAbestiak(1);
+        ArrayList<Audio> result = AbestiaDao.getAbestiakByAlbum(1);
         assertEquals(result.size(), 3);
     }
 
@@ -41,7 +41,7 @@ public class AbestiaDaoTest {
     	SesioAldagaiak.erabiltzaileLogeatutaFree = erabiltzailea;
         Audio abestiaB = new Audio();
         abestiaB.setIdAudio(2);
-        boolean result = AbestiaDao.gustukoaKomprobatu(abestiaB);
+        boolean result = AbestiaDao.abestiGuztokoaKonprobatu(abestiaB);
         assertFalse(result);
     }
 

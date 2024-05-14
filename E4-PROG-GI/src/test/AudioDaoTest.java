@@ -25,7 +25,7 @@ public class AudioDaoTest {
         
         ErabiltzaileFree erabiltzailea = new ErabiltzaileFree(1, "eka", "bla", "Ekaitz", "Blanca", new java.sql.Date(1984-02-22), "es");
     	SesioAldagaiak.erabiltzaileLogeatutaFree = erabiltzailea;
-        ArrayList<Audio> result = AudioDao.getPlayListAbestiak(aukeraPlaylist);
+        ArrayList<Audio> result = AudioDao.getAbestiakByPlayList(aukeraPlaylist);
         
         assertEquals(0, result.size());
     }
