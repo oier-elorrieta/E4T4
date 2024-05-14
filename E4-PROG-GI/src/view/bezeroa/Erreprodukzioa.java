@@ -65,7 +65,11 @@ public class Erreprodukzioa extends JFrame {
 	private int iraupena = 0;
 	private JFrame frame = this;
 
-	public Erreprodukzioa(String aurrekoKlasea ,Artista artista, ArrayList<Audio> abestiak, int abestiAukera, boolean isrunning, float abiadura) throws SQLException {
+	private Timer timer;
+	private TimerTask task;
+
+	public Erreprodukzioa(String aurrekoKlasea, Artista artista, ArrayList<Audio> abestiak, int abestiAukera,
+			boolean isrunning, float abiadura) throws SQLException {
 		setBounds(400, 250, 906, 594);
 		setTitle("Menu Nagusia - Talde 4");
 		contentPane = new JPanel();
@@ -74,15 +78,54 @@ public class Erreprodukzioa extends JFrame {
 		contentPane.setLayout(null);
 
 		erreproduzitzen = isrunning;
-		String filepath = "\\\\10.5.6.111\\audioak\\" + abestiak.get(abestiAukera).getIzena() + ".wav";
-		//String filepath = "C:\\Users\\Ekapro\\Desktop\\audioak\\" + abestiak.get(abestiAukera).getIzena() + ".wav";
+		// String filepath = "\\\\10.5.6.111\\audioak\\" +
+		// abestiak.get(abestiAukera).getIzena() + ".wav";
+		String filepath = "C:\\Users\\Ekapro\\Desktop\\audioak\\" + abestiak.get(abestiAukera).getIzena() + ".wav";
 		errepoduzituAudioa(filepath, abiadura, posicion, erreproduzitzen);
 
 		if (erreproduzitzen) {
 			long tiempo = clip.getMicrosecondLength();
 			tiempo = tiempo / 1000;
+			System.out.println(tiempo);
+
+			timer = new Timer();
+
+			task = new TimerTask() {
+				public void run() {
+					try {
+						int abestiAukeraAux = abestiAukera;
+						abestiAukeraAux++;
+
+						if (abestiak.size() <= abestiAukeraAux) {
+							abestiAukeraAux = 0;
+						}
+						clip.stop();
+						if (SesioAldagaiak.logErabiltzailea.getClass().getSimpleName().equals("ErabiltzaileFree")) {
+							SesioAldagaiak.doSkip = false;
+							ViewMetodoak.skipBaimendu();
+						}
+						dispose();
+						if ((SesioAldagaiak.iragarkiaAtera && SesioAldagaiak.erreprodukzioKop >= 1)
+								&& SesioAldagaiak.logErabiltzailea.getClass().getSimpleName()
+										.equals("ErabiltzaileFree")) {
+							SesioAldagaiak.erreprodukzioKop = 0;
+							JFrameSortu.iragarkiaErreproduzituSortu(aurrekoKlasea, artista, abestiak, abestiAukeraAux,
+									erreproduzitzen);
+						} else {
+							SesioAldagaiak.erreprodukzioKop++;
+							JFrameSortu.erreprodukzioaSortu(aurrekoKlasea, artista, abestiak, abestiAukeraAux,
+									erreproduzitzen, 1);
+						}
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
+				}
+			};
+
+			timer.schedule(task, tiempo);
+
 		}
-		
+
 		Album album = null;
 		if (artista.getClass().getSimpleName().equals("Musikaria")) {
 			album = AlbumDao.getAlbumByAbesti(abestiak.get(abestiAukera));
@@ -181,15 +224,15 @@ public class Erreprodukzioa extends JFrame {
 			}
 		});
 
-		//JButton btnErabiltzaile = SesioAldagaiak.jb;
+		// JButton btnErabiltzaile = SesioAldagaiak.jb;
 
-		//ActionListener[] li = btnErabiltzaile.getActionListeners();
-		//for (ActionListener i : li) {
-		//	btnErabiltzaile.removeActionListener(i);
-		//}
+		// ActionListener[] li = btnErabiltzaile.getActionListeners();
+		// for (ActionListener i : li) {
+		// btnErabiltzaile.removeActionListener(i);
+		// }
 
 		// btnErabiltzaile.removeActionListener(btnErabiltzaile.getActionListeners()[0]);
-		
+
 		JButton btnErabiltzaile = ViewMetodoak.btnErabiltzaileaSortu();
 		btnErabiltzaile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -205,7 +248,8 @@ public class Erreprodukzioa extends JFrame {
 
 		Abestia a = new Abestia();
 		if (abestiak.get(abestiAukera).getClass().toString().equals(a.getClass().toString())) {
-			AbestiGuztokoa abestiGuztokoa = new AbestiGuztokoa(SesioAldagaiak.logErabiltzailea, abestiak.get(abestiAukera));
+			AbestiGuztokoa abestiGuztokoa = new AbestiGuztokoa(SesioAldagaiak.logErabiltzailea,
+					abestiak.get(abestiAukera));
 			boolean gustokoaDu = AbestiGuztokoaDao.abestiGuztokoaKonprobatu(abestiGuztokoa);
 			JButton btnGuztokoa = new JButton();
 			if (gustokoaDu) {
@@ -221,7 +265,8 @@ public class Erreprodukzioa extends JFrame {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					try {
-						AbestiGuztokoa abestiGuztokoa = new AbestiGuztokoa(SesioAldagaiak.logErabiltzailea, abestiak.get(abestiAukera));
+						AbestiGuztokoa abestiGuztokoa = new AbestiGuztokoa(SesioAldagaiak.logErabiltzailea,
+								abestiak.get(abestiAukera));
 						if (gustokoaDu) {
 							AbestiGuztokoaDao.abestiGuztokoaEzabatu(abestiGuztokoa);
 							JOptionPane.showMessageDialog(null, "Gustoko listatik ondo kendu da", "Eginda!",
@@ -292,8 +337,9 @@ public class Erreprodukzioa extends JFrame {
 		btnAurrekoa.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//if (SesioAldagaiak.doSkip || SesioAldagaiak.erabiltzailePremium) {
-					if (SesioAldagaiak.doSkip || SesioAldagaiak.logErabiltzailea.getClass().getSimpleName().equals("ErabiltzailePremium")) {
+				// if (SesioAldagaiak.doSkip || SesioAldagaiak.erabiltzailePremium) {
+				if (SesioAldagaiak.doSkip
+						|| SesioAldagaiak.logErabiltzailea.getClass().getSimpleName().equals("ErabiltzailePremium")) {
 					try {
 						int abestiAukeraAux = abestiAukera;
 						abestiAukeraAux--;
@@ -306,20 +352,25 @@ public class Erreprodukzioa extends JFrame {
 						SesioAldagaiak.doSkip = false;
 						ViewMetodoak.skipBaimendu();
 
-						//if (!SesioAldagaiak.erabiltzailePremium) {
-							if (SesioAldagaiak.logErabiltzailea.getClass().getSimpleName().equals("ErabiltzaileFree")) {
+						// if (!SesioAldagaiak.erabiltzailePremium) {
+						if (SesioAldagaiak.logErabiltzailea.getClass().getSimpleName().equals("ErabiltzaileFree")) {
 							SesioAldagaiak.doSkip = false;
 							ViewMetodoak.skipBaimendu();
 						}
 
 						dispose();
-						//if ((SesioAldagaiak.iragarkiaAtera && SesioAldagaiak.erreprodukzioKop >= 1) && !SesioAldagaiak.erabiltzailePremium) {
-						if ((SesioAldagaiak.iragarkiaAtera && SesioAldagaiak.erreprodukzioKop >= 1) && SesioAldagaiak.logErabiltzailea.getClass().getSimpleName().equals("ErabiltzaileFree")) {
+						// if ((SesioAldagaiak.iragarkiaAtera && SesioAldagaiak.erreprodukzioKop >= 1)
+						// && !SesioAldagaiak.erabiltzailePremium) {
+						if ((SesioAldagaiak.iragarkiaAtera && SesioAldagaiak.erreprodukzioKop >= 1)
+								&& SesioAldagaiak.logErabiltzailea.getClass().getSimpleName()
+										.equals("ErabiltzaileFree")) {
 							SesioAldagaiak.erreprodukzioKop = 0;
-							JFrameSortu.iragarkiaErreproduzituSortu(aurrekoKlasea, artista, abestiak, abestiAukeraAux, erreproduzitzen);
+							JFrameSortu.iragarkiaErreproduzituSortu(aurrekoKlasea, artista, abestiak, abestiAukeraAux,
+									erreproduzitzen);
 						} else {
 							SesioAldagaiak.erreprodukzioKop++;
-							JFrameSortu.erreprodukzioaSortu(aurrekoKlasea, artista, abestiak, abestiAukeraAux, erreproduzitzen, 1);
+							JFrameSortu.erreprodukzioaSortu(aurrekoKlasea, artista, abestiak, abestiAukeraAux,
+									erreproduzitzen, 1);
 						}
 					} catch (SQLException e1) {
 						e1.printStackTrace();
@@ -358,8 +409,8 @@ public class Erreprodukzioa extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-				//if (SesioAldagaiak.doSkip || SesioAldagaiak.erabiltzailePremium) {
-				if (SesioAldagaiak.doSkip || SesioAldagaiak.logErabiltzailea.getClass().getSimpleName().equals("ErabiltzailePremium")) {
+				if (SesioAldagaiak.doSkip
+						|| SesioAldagaiak.logErabiltzailea.getClass().getSimpleName().equals("ErabiltzailePremium")) {
 					try {
 						int abestiAukeraAux = abestiAukera;
 						abestiAukeraAux++;
@@ -368,22 +419,23 @@ public class Erreprodukzioa extends JFrame {
 							abestiAukeraAux = 0;
 						}
 						clip.stop();
-						//if (!SesioAldagaiak.erabiltzailePremium) {
 						if (SesioAldagaiak.logErabiltzailea.getClass().getSimpleName().equals("ErabiltzaileFree")) {
 							SesioAldagaiak.doSkip = false;
 							ViewMetodoak.skipBaimendu();
 						}
 						dispose();
-						//if ((SesioAldagaiak.iragarkiaAtera && SesioAldagaiak.erreprodukzioKop >= 1) && !SesioAldagaiak.erabiltzailePremium) {
-						if ((SesioAldagaiak.iragarkiaAtera && SesioAldagaiak.erreprodukzioKop >= 1) && SesioAldagaiak.logErabiltzailea.getClass().getSimpleName().equals("ErabiltzaileFree")) {
+						if ((SesioAldagaiak.iragarkiaAtera && SesioAldagaiak.erreprodukzioKop >= 1)
+								&& SesioAldagaiak.logErabiltzailea.getClass().getSimpleName()
+										.equals("ErabiltzaileFree")) {
 							SesioAldagaiak.erreprodukzioKop = 0;
-							JFrameSortu.iragarkiaErreproduzituSortu(aurrekoKlasea, artista, abestiak, abestiAukeraAux, erreproduzitzen);
+							JFrameSortu.iragarkiaErreproduzituSortu(aurrekoKlasea, artista, abestiak, abestiAukeraAux,
+									erreproduzitzen);
 						} else {
 							SesioAldagaiak.erreprodukzioKop++;
-							JFrameSortu.erreprodukzioaSortu(aurrekoKlasea, artista, abestiak, abestiAukeraAux, erreproduzitzen, 1);
+							JFrameSortu.erreprodukzioaSortu(aurrekoKlasea, artista, abestiak, abestiAukeraAux,
+									erreproduzitzen, 1);
 						}
 					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				} else {
@@ -400,7 +452,7 @@ public class Erreprodukzioa extends JFrame {
 				clip.close();
 				dispose();
 				// JFrameSortu.menuNagusiaAukeraSortu();
-				
+
 				switch (aurrekoKlasea) {
 				case "AbestiakView":
 					JFrameSortu.abestiakViewSortu((Musikaria) artista, newAlbum);
@@ -408,7 +460,7 @@ public class Erreprodukzioa extends JFrame {
 				case "PodcastakView":
 					JFrameSortu.podcastakViewSortu((Podcasterra) artista);
 					break;
-					//COMO HAGO ETO
+				// COMO HAGO ETO
 				case "PlayListAbestiakView":
 					JFrameSortu.playListakViewSortu();
 					break;
