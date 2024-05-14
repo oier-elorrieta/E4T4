@@ -66,9 +66,8 @@ public class Erreprodukzioa extends JFrame {
 		contentPane.setLayout(null);
 
 		erreproduzitzen = isrunning;
-		// String filepath = "\\\\10.5.6.111\\audioak\\" +
-		// abestiak.get(abestiAukera).getIzena() + ".wav";
-		String filepath = "C:\\Users\\Ekapro\\Desktop\\audioak\\" + abestiak.get(abestiAukera).getIzena() + ".wav";
+		String filepath = "\\\\10.5.6.111\\audioak\\" + abestiak.get(abestiAukera).getIzena() + ".wav";
+		//String filepath = "C:\\Users\\Ekapro\\Desktop\\audioak\\" + abestiak.get(abestiAukera).getIzena() + ".wav";
 		errepoduzituAudioa(filepath, abiadura, posicion, erreproduzitzen);
 
 		if (erreproduzitzen) {
@@ -172,15 +171,6 @@ public class Erreprodukzioa extends JFrame {
 				}
 			}
 		});
-
-		// JButton btnErabiltzaile = SesioAldagaiak.jb;
-
-		// ActionListener[] li = btnErabiltzaile.getActionListeners();
-		// for (ActionListener i : li) {
-		// btnErabiltzaile.removeActionListener(i);
-		// }
-
-		// btnErabiltzaile.removeActionListener(btnErabiltzaile.getActionListeners()[0]);
 
 		JButton btnErabiltzaile = ViewMetodoak.btnErabiltzaileaSortu();
 		btnErabiltzaile.addActionListener(new ActionListener() {
@@ -289,7 +279,6 @@ public class Erreprodukzioa extends JFrame {
 		btnAurrekoa.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// if (SesioAldagaiak.doSkip || SesioAldagaiak.erabiltzailePremium) {
 				if (SesioAldagaiak.doSkip
 						|| SesioAldagaiak.logErabiltzailea.getClass().getSimpleName().equals("ErabiltzailePremium")) {
 					try {
@@ -304,15 +293,13 @@ public class Erreprodukzioa extends JFrame {
 						SesioAldagaiak.doSkip = false;
 						ViewMetodoak.skipBaimendu();
 
-						// if (!SesioAldagaiak.erabiltzailePremium) {
+						
 						if (SesioAldagaiak.logErabiltzailea.getClass().getSimpleName().equals("ErabiltzaileFree")) {
 							SesioAldagaiak.doSkip = false;
 							ViewMetodoak.skipBaimendu();
 						}
 
 						dispose();
-						// if ((SesioAldagaiak.iragarkiaAtera && SesioAldagaiak.erreprodukzioKop >= 1)
-						// && !SesioAldagaiak.erabiltzailePremium) {
 						if ((SesioAldagaiak.iragarkiaAtera && SesioAldagaiak.erreprodukzioKop >= 1)
 								&& SesioAldagaiak.logErabiltzailea.getClass().getSimpleName()
 										.equals("ErabiltzaileFree")) {
