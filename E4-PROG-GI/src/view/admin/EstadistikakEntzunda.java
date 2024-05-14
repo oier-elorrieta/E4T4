@@ -16,6 +16,7 @@ public class EstadistikakEntzunda extends EstadistikakTop {
 		SorreraGenerikoa();
 		AurkeztuEgunekoa();
 	}
+
 	public EstadistikakEntzunda(int Aukera) {
 		super();
 		SorreraGenerikoa();
@@ -30,21 +31,29 @@ public class EstadistikakEntzunda extends EstadistikakTop {
 
 	private void AurkeztuEgunekoa() {
 		ArrayList<Estadistika> estadistika = EstadistikaDao.getTopEntzundaEgunean();
-		for (int i = 0; i < estadistika.size(); i++)
-			model.addRow(new String[] { Integer.toString(i + 1), estadistika.get(i).getS1(),
-					Integer.toString(estadistika.get(i).getEntzunda()) });
+		if (estadistika.size() != 0) {
+			for (int i = 0; i < estadistika.size(); i++)
+				model.addRow(new String[] { Integer.toString(i + 1), estadistika.get(i).getS1(),
+						estadistika.get(i).getS2(), Integer.toString(estadistika.get(i).getEntzunda()) });
+		}
 	}
+
 	private void AurkeztuHilekoa() {
 		ArrayList<Estadistika> estadistika = EstadistikaDao.getTopEntzundaHilean();
-		for (int i = 0; i < estadistika.size(); i++)
-			model.addRow(new String[] { Integer.toString(i + 1), estadistika.get(i).getS1(),
-					Integer.toString(estadistika.get(i).getEntzunda()) });
+		if (estadistika.size() != 0) {
+			for (int i = 0; i < estadistika.size(); i++)
+				model.addRow(new String[] { Integer.toString(i + 1), estadistika.get(i).getS1(),
+						estadistika.get(i).getS2(), Integer.toString(estadistika.get(i).getEntzunda()) });
+		}
 	}
+
 	private void AurkeztuUrtekoa() {
 		ArrayList<Estadistika> estadistika = EstadistikaDao.getTopEntzundaUrtean();
-		for (int i = 0; i < estadistika.size(); i++)
-			model.addRow(new String[] { Integer.toString(i + 1), estadistika.get(i).getS1(),
-					Integer.toString(estadistika.get(i).getEntzunda()) });
+		if (estadistika.size() != 0) {
+			for (int i = 0; i < estadistika.size(); i++)
+				model.addRow(new String[] { Integer.toString(i + 1), estadistika.get(i).getS1(),
+						estadistika.get(i).getS2(), Integer.toString(estadistika.get(i).getEntzunda()) });
+		}
 	}
 
 	private void SorreraGenerikoa() {
