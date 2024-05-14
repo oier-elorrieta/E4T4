@@ -61,9 +61,6 @@ public class AdminMenuNagusia extends JFrame {
         btnAtzera.setFont(new Font("SansSerif", Font.BOLD, 22));
         btnAtzera.setFocusPainted(false);
 
-        
-
-    
         contentPane.add(lblaukeratu);
         contentPane.add(btnMusikaKudeatu);
         contentPane.add(btnPodcastKudeatu);
