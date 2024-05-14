@@ -63,16 +63,30 @@ public class EstadistikaMenua extends JFrame {
                 ep.setVisible(true);
             }
         });
-
+        
         JButton btnEntzunda = new JButton("Top Entzundakoak");
         btnEntzunda.setBounds(150, 375, 550, 54);
         btnEntzunda.setFont(new Font("Segoe UI", Font.BOLD, 21));
         btnEntzunda.setFocusPainted(false);
+        btnEntzunda.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	EstadistikakEntzunda ee = new EstadistikakEntzunda();
+                dispose();
+                ee.setVisible(true);
+            }
+        });
         
-        JButton btnPlaylist = new JButton("Top Playlist");
-        btnPlaylist.setBounds(150, 475, 550, 54);
-        btnPlaylist.setFont(new Font("Segoe UI", Font.BOLD, 21));
-        btnPlaylist.setFocusPainted(false);
+        JButton btnAlbumak = new JButton("Top Albumak");
+        btnAlbumak.setBounds(150, 475, 550, 54);
+        btnAlbumak.setFont(new Font("Segoe UI", Font.BOLD, 21));
+        btnAlbumak.setFocusPainted(false);
+        btnAlbumak.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	EstadistikakAlbumak ea = new EstadistikakAlbumak();
+                dispose();
+                ea.setVisible(true);
+            }
+        });
 
         JButton btnAtzera = new JButton("Atzera");
         btnAtzera.setBackground(Color.BLACK);
@@ -88,7 +102,7 @@ public class EstadistikaMenua extends JFrame {
         contentPane.add(btnGustokoAbesti);
         contentPane.add(btnGustokoPodcast);
         contentPane.add(btnEntzunda);
-        contentPane.add(btnPlaylist);
+        contentPane.add(btnAlbumak);
         contentPane.add(btnAtzera);
         
 
@@ -99,37 +113,6 @@ public class EstadistikaMenua extends JFrame {
                 JFrameSortu.loginSortu();
             }
         });
-
-        
-        
-        btnGustokoAbesti.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                
-                
-                
-            }
-        });
-
-        btnGustokoPodcast.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                
-            }
-        });
-
-        btnEntzunda.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                
-            }
-        });
-        
-        btnPlaylist.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                
-            }
-        });
-        
-        
-        
         
     }
 

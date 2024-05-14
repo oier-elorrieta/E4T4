@@ -29,6 +29,9 @@ import com.mysql.cj.protocol.x.SyncFlushDeflaterOutputStream;
 
 import model.dao.AbestiaDao;
 import model.dao.AlbumDao;
+import model.dao.ErabiltzaileFreeDao;
+import model.dao.ErabiltzailePremiumDao;
+import model.dao.ErabiltzaileaDao;
 import model.dao.MusikariaDao;
 import model.dao.PodcastDao;
 import model.dao.PodcasterraDao;
@@ -44,26 +47,6 @@ import view.bezeroa.podcastDeskubritu.PodcastakView;
 public class ViewMetodoak {
 
 	/**
-	 * Metodo honek ComboBoxModel bat sortzen du, hizkuntza guztiak gehituz.
-	 *
-	 * @param modeloa ComboBoxModel bat, hizkuntzak gehitzeko.
-	 * @return Sortutako ComboBoxModela.
-	 */
-	public static DefaultComboBoxModel cboHizkuntzaModeloaSortu(DefaultComboBoxModel modeloa) {
-		try {
-			Kone.konektatu();
-			ResultSet hizkuntzaLista = Kone.hizkuntzakAtera();
-			while (hizkuntzaLista.next()) {
-				modeloa.addElement(hizkuntzaLista.getString("IdHizkuntza"));
-			}
-			Kone.itxiConexioa();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return modeloa;
-	}
-
-	/**
 	 * Metodo honek erabiltzailearen sartutako erabiltzaile-izena eta pasahitza
 	 * egiaztatzen du.
 	 *
@@ -74,19 +57,12 @@ public class ViewMetodoak {
 	 */
 	public static boolean comprobatuLogin(String erabiltzailea, String pasahitza) {
 		boolean loginOK = false;
-		try {
-			Kone.konektatu();
-			ResultSet erabiltzaileInfo = Kone.isLoginaOk(erabiltzailea);
-			while (erabiltzaileInfo.next()) {
-				if (erabiltzaileInfo.getString("Pasahitza").equals(pasahitza)) {
-					loginOK = true;
-					erabiltzaileaKargatu(erabiltzaileInfo.getInt("IdBezeroa"), erabiltzaileInfo.getString("Mota"));
-
-				}
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
+				
+		Erabiltzailea erabiltzaileInfo = ErabiltzaileaDao.isLoginaOk(erabiltzailea);
+		String mota = ErabiltzaileaDao.erabiltzaileMota(erabiltzaileInfo);
+			if (erabiltzaileInfo.getPasahitza().equals(pasahitza)) {
+				loginOK = true;
+				erabiltzaileaKargatu(erabiltzaileInfo.getIdErabiltzailea(), mota);
 		}
 		return loginOK;
 	}
@@ -100,12 +76,12 @@ public class ViewMetodoak {
 	public static void erabiltzaileaKargatu(int id, String mota) {
 		switch (mota) {
 		case "free":
-			Kone.kargatuErabiltzaileFree(id);
+			ErabiltzaileFreeDao.kargatuErabiltzaileFree(id);
 			//SesioAldagaiak.erabiltzailePremium = false;
 
 			break;
 		case "premium":
-			Kone.kargatuErabiltzailePremium(id);
+			ErabiltzailePremiumDao.kargatuErabiltzailePremium(id);
 			//SesioAldagaiak.erabiltzailePremium = true;
 			break;
 		}
@@ -117,23 +93,23 @@ public class ViewMetodoak {
 	 * @return Sortutako JButtona.
 	 */
 	public static JButton btnErabiltzaileaSortu() {
-		//JButton btnErabiltzaile = null;
 		JButton btnErabiltzaile = new JButton(SesioAldagaiak.logErabiltzailea.getIzena());
-		/*
-		if (!SesioAldagaiak.erabiltzailePremium) {
-			btnErabiltzaile = new JButton(SesioAldagaiak.erabiltzaileLogeatutaFree.getIzena());
-			SesioAldagaiak.logErabiltzailea = SesioAldagaiak.erabiltzaileLogeatutaFree;
-		} else {
-			btnErabiltzaile = new JButton(SesioAldagaiak.erabiltzaileLogeatutaPremium.getIzena());
-			SesioAldagaiak.logErabiltzailea = SesioAldagaiak.erabiltzaileLogeatutaPremium;
-		}
-		*/
 		btnErabiltzaile.setBackground(Color.LIGHT_GRAY);
 		btnErabiltzaile.setForeground(Color.BLACK);
 		btnErabiltzaile.setBounds(700, 60, 144, 50);
 		btnErabiltzaile.setFont(new Font("SansSerif", Font.BOLD, 22));
 		btnErabiltzaile.setFocusPainted(false);
 		return btnErabiltzaile;
+	}
+	
+	public static JButton btnAtzeraSortu() {
+		JButton btnAtzera = new JButton("Atzera");
+		btnAtzera.setBackground(Color.BLACK);
+		btnAtzera.setForeground(Color.RED);
+		btnAtzera.setBounds(50, 60, 144, 50);
+		btnAtzera.setFont(new Font("SansSerif", Font.BOLD, 22));
+		btnAtzera.setFocusPainted(false);
+		return btnAtzera;
 	}
 
 	/**
@@ -271,7 +247,7 @@ public class ViewMetodoak {
 
 		DefaultListModel<Album> lm = new DefaultListModel();
 		Musikaria musikari = MusikariaDao.getMusikaria(izena);
-		ArrayList<Album> albumak = AlbumDao.getAlbumak(musikari);
+		ArrayList<Album> albumak = AlbumDao.getAlbumakByMusikari(musikari);
 		AlbumDao.beteAlbumakKantaKop(albumak);
 
 		for (Album i : albumak) {
@@ -281,25 +257,7 @@ public class ViewMetodoak {
 		return lm;
 	}
 
-	/**
-	 * Metodo honek musikariaren abestiak lortzen ditu eta DefaultListModel bat
-	 * itzultzen du.
-	 *
-	 * @param idAlbum Albumaren identifikadorea.
-	 * @return Musikariaren abestiak dituen DefaultListModel bat.
-	 */
-	public static DefaultListModel<Audio> getMusikariAbestiak(int idAlbum) {
-
-		DefaultListModel<Audio> lm = new DefaultListModel();
-		ArrayList<Audio> abestiak = AbestiaDao.getAbestiak(idAlbum);
-
-		for (Audio i : abestiak) {
-			lm.addElement(i);
-		}
-
-		return lm;
-	}
-
+	
 	/**
 	 * Metodo honek irudia jartzen du JLabel batean.
 	 *

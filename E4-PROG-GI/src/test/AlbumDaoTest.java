@@ -18,21 +18,21 @@ public class AlbumDaoTest {
     @Test
     public void testGetAlbumakDaude() {
         Musikaria musikari = MusikariaDao.getMusikaria("LiSa");
-        ArrayList<Album> result = AlbumDao.getAlbumak(musikari);
+        ArrayList<Album> result = AlbumDao.getAlbumakByMusikari(musikari);
         assertNotNull(result);
     }
     
     @Test
     public void testGetAlbumakBete() {
         Musikaria musikari = MusikariaDao.getMusikaria("LiSa");
-        ArrayList<Album> result = AlbumDao.getAlbumak(musikari);
+        ArrayList<Album> result = AlbumDao.getAlbumakByMusikari(musikari);
         assertEquals(2, result.size());
     }
 
     @Test
     public void testBeteAlbumakKantaKop1() {
     	Musikaria musikari = MusikariaDao.getMusikaria("LiSa");
-        ArrayList<Album> albumak = AlbumDao.getAlbumak(musikari);
+        ArrayList<Album> albumak = AlbumDao.getAlbumakByMusikari(musikari);
         AlbumDao.beteAlbumakKantaKop(albumak);
         assertEquals(3, albumak.get(0).getKantaKop());
     }
@@ -40,7 +40,7 @@ public class AlbumDaoTest {
     @Test
     public void testBeteAlbumakKantaKop2() {
     	Musikaria musikari = MusikariaDao.getMusikaria("LiSa");
-        ArrayList<Album> albumak = AlbumDao.getAlbumak(musikari);
+        ArrayList<Album> albumak = AlbumDao.getAlbumakByMusikari(musikari);
         AlbumDao.beteAlbumakKantaKop(albumak);
         assertEquals(0, albumak.get(1).getKantaKop());
     }

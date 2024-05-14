@@ -36,6 +36,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.awt.FlowLayout;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
@@ -59,10 +60,10 @@ public class AbestiakView extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 
-		JButton btnErabiltzaile = model.SesioAldagaiak.jb;
-
-		btnErabiltzaile.removeActionListener(btnErabiltzaile.getActionListeners()[0]);
-
+		//JButton btnErabiltzaile = model.SesioAldagaiak.jb;
+		//btnErabiltzaile.removeActionListener(btnErabiltzaile.getActionListeners()[0]);
+		
+		JButton btnErabiltzaile = ViewMetodoak.btnErabiltzaileaSortu();
 		btnErabiltzaile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
@@ -70,13 +71,7 @@ public class AbestiakView extends JFrame {
 			}
 		});
 
-		JButton btnAtzera = new JButton("Atzera");
-		btnAtzera.setBounds(50, 60, 144, 50);
-
-		btnAtzera.setBackground(Color.BLACK);
-		btnAtzera.setForeground(Color.RED);
-		btnAtzera.setFont(new Font("SansSerif", Font.BOLD, 22));
-		btnAtzera.setFocusPainted(false);
+		JButton btnAtzera = ViewMetodoak.btnAtzeraSortu();
 
 		contentPane.add(btnErabiltzaile);
 		contentPane.setLayout(null);
@@ -86,9 +81,12 @@ public class AbestiakView extends JFrame {
 		JPanel panel = new JPanel();
 		panel.setBounds(10, 152, 359, 389);
 		contentPane.add(panel);
-
-		ArrayList<Audio> abestiak = AbestiaDao.getAbestiak(album.getId());
-		DefaultListModel<Audio> modeloList = ViewMetodoak.getMusikariAbestiak(album.getId());
+		
+		ArrayList<Audio> abestiak = AbestiaDao.getAbestiakByAlbum(album);
+		DefaultListModel<Audio> modeloList = new DefaultListModel();
+		for (int i = 0; i < abestiak.size(); i++) {
+			modeloList.addElement(abestiak.get(i));
+		}
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
 
 		JList list = new JList(modeloList);

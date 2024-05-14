@@ -1,5 +1,4 @@
 package model;
-
 import java.util.Objects;
 
 public class Estadistika {
@@ -8,19 +7,42 @@ public class Estadistika {
 	private int entzunda;
 	
 	
-	
+	/**
+	 * Estadistika klasearen konstruktorea.
+	 */
 	public Estadistika() {
 	}
+	
+	/**
+	 * Estadistika klasearen konstruktorea.
+	 * 
+	 * @param s1 Lehenengo string-a.
+	 * @param s2 Bigarren string-a.
+	 * @param entzunda Entzundako zenbakia.
+	 */
 	public Estadistika(String s1, String s2, int entzunda) {
 		super();
 		this.s1 = s1;
 		this.s2 = s2;
 		this.entzunda = entzunda;
 	}
+	
+	/**
+	 * Hash kodea itzultzen du.
+	 * 
+	 * @return Hash kodea.
+	 */
 	@Override
 	public int hashCode() {
 		return Objects.hash(entzunda, s1, s2);
 	}
+	
+	/**
+	 * Objektuak berdinak diren ala ez adierazten du.
+	 * 
+	 * @param obj Konparatzeko objektua.
+	 * @return Objektuak berdinak diren ala ez.
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -32,25 +54,67 @@ public class Estadistika {
 		Estadistika other = (Estadistika) obj;
 		return entzunda == other.entzunda && Objects.equals(s1, other.s1) && Objects.equals(s2, other.s2);
 	}
+	
+	/**
+	 * Objektuaren testu errepresentazioa itzultzen du.
+	 * 
+	 * @return Objektuaren testu errepresentazioa.
+	 */
 	@Override
 	public String toString() {
 		return "Estadistika [s1=" + s1 + ", s2=" + s2 + ", entzunda=" + entzunda + "]";
 	}
+	
+	/**
+	 * s1 aldagaia itzultzen du.
+	 * 
+	 * @return s1 aldagaia.
+	 */
 	public String getS1() {
 		return s1;
 	}
+	
+	/**
+	 * s1 aldagaia ezartzen du.
+	 * 
+	 * @param s1 Lehenengo string-a.
+	 */
 	public void setS1(String s1) {
 		this.s1 = s1;
 	}
+	
+	/**
+	 * s2 aldagaia itzultzen du.
+	 * 
+	 * @return s2 aldagaia.
+	 */
 	public String getS2() {
 		return s2;
 	}
+	
+	/**
+	 * s2 aldagaia ezartzen du.
+	 * 
+	 * @param s2 Bigarren string-a.
+	 */
 	public void setS2(String s2) {
 		this.s2 = s2;
 	}
+	
+	/**
+	 * entzunda aldagaia itzultzen du.
+	 * 
+	 * @return entzunda aldagaia.
+	 */
 	public int getEntzunda() {
 		return entzunda;
 	}
+	
+	/**
+	 * entzunda aldagaia ezartzen du.
+	 * 
+	 * @param entzunda Entzundako zenbakia.
+	 */
 	public void setEntzunda(int entzunda) {
 		this.entzunda = entzunda;
 	}

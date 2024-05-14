@@ -34,21 +34,18 @@ public class PodcasterrakView extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JButton btnErabiltzaile = SesioAldagaiak.jb;
-		btnErabiltzaile.removeActionListener(btnErabiltzaile.getActionListeners()[0]);
+		//JButton btnErabiltzaile = SesioAldagaiak.jb;
+		//btnErabiltzaile.removeActionListener(btnErabiltzaile.getActionListeners()[0]);
 
+		JButton btnErabiltzaile = ViewMetodoak.btnErabiltzaileaSortu();
 		btnErabiltzaile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				JFrameSortu.premiumErregistroAukeraSortu(frame);
 			}
 		});
-		JButton btnAtzera = new JButton("Atzera");
-		btnAtzera.setBackground(Color.BLACK);
-		btnAtzera.setForeground(Color.RED);
-		btnAtzera.setBounds(50, 60, 144, 50);
-		btnAtzera.setFont(new Font("SansSerif", Font.BOLD, 22));
-		btnAtzera.setFocusPainted(false);
+
+		JButton btnAtzera = ViewMetodoak.btnAtzeraSortu();
 
 		contentPane.add(btnErabiltzaile);
 		contentPane.add(btnAtzera);

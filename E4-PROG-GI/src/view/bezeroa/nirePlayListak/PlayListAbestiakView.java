@@ -19,11 +19,14 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+
+import model.AbestiGuztokoa;
 import model.Abestia;
 import model.Audio;
 import model.Musikaria;
 import model.PlayListak;
 import model.SesioAldagaiak;
+import model.dao.AbestiGuztokoaDao;
 import model.dao.AbestiaDao;
 import model.dao.AudioDao;
 import model.dao.MusikariaDao;
@@ -47,8 +50,14 @@ public class PlayListAbestiakView extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		if (aukeraPlaylist.getIdPlayList() == 0) {
+			abestiakList = AbestiGuztokoaDao.getAbestiGustokoak();
+		} else {
+			abestiakList = AudioDao.getAbestiakByPlayList(aukeraPlaylist);
+		}
 
-		abestiakList = AudioDao.getPlayListAbestiak(aukeraPlaylist);
+	
 
 		DefaultListModel<String> modeloLista = new DefaultListModel<>();
 		for (int i = 0; i < abestiakList.size(); i++) {
@@ -71,16 +80,12 @@ public class PlayListAbestiakView extends JFrame {
 		btnEzabatu.setBounds(650, 375, 208, 50);
 		btnEzabatu.setFont(new Font("SansSerif", Font.BOLD, 22));
 
-		JButton btnAtzera = new JButton("Atzera");
-		btnAtzera.setBackground(Color.BLACK);
-		btnAtzera.setForeground(Color.RED);
-		btnAtzera.setBounds(50, 60, 144, 50);
-		btnAtzera.setFont(new Font("SansSerif", Font.BOLD, 22));
-		btnAtzera.setFocusPainted(false);
+		JButton btnAtzera = ViewMetodoak.btnAtzeraSortu();
 
-		JButton btnErabiltzaile = SesioAldagaiak.jb;
-		btnErabiltzaile.removeActionListener(btnErabiltzaile.getActionListeners()[0]);
+		//JButton btnErabiltzaile = SesioAldagaiak.jb;
+		//btnErabiltzaile.removeActionListener(btnErabiltzaile.getActionListeners()[0]);
 
+		JButton btnErabiltzaile = ViewMetodoak.btnErabiltzaileaSortu();
 		btnErabiltzaile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -120,21 +125,18 @@ public class PlayListAbestiakView extends JFrame {
 		btnEzabatu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				try {
-					int aukeraAbestia = jListAbestiak.getSelectedIndex();
+				int aukeraAbestia = jListAbestiak.getSelectedIndex();
 
-					if (aukeraPlaylist.getIdPlayList() != 0) {
-						PlayListakDao.abestiPlaylistEzabatu(aukeraPlaylist.getIdPlayList(),
-								abestiakList.get(aukeraAbestia).getIdAudio());
-					} else {
-						AbestiaDao.abestiGuztokoaEzabatu(abestiakList.get(aukeraAbestia).getIdAudio());
-					}
-
-					dispose();
-					JFrameSortu.playListAbestiakViewSortu(aukeraPlaylist);
-				} catch (SQLException e1) {
-					e1.printStackTrace();
+				if (aukeraPlaylist.getIdPlayList() != 0) {
+					PlayListakDao.abestiPlaylistEzabatu(aukeraPlaylist.getIdPlayList(),
+							abestiakList.get(aukeraAbestia).getIdAudio());
+				} else {
+					AbestiGuztokoa abestiGuztokoa = new AbestiGuztokoa(SesioAldagaiak.logErabiltzailea, abestiakList.get(aukeraAbestia));
+					AbestiGuztokoaDao.abestiGuztokoaEzabatu(abestiGuztokoa);
 				}
+
+				dispose();
+				JFrameSortu.playListAbestiakViewSortu(aukeraPlaylist);
 			}
 		});
 

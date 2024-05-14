@@ -1,4 +1,5 @@
 package model.dao;
+
 import java.sql.Connection;
 
 import java.sql.PreparedStatement;
@@ -12,17 +13,17 @@ import model.PlayListak;
 import model.SesioAldagaiak;
 import model.sql.Kone;
 
-
 public class PlayListakDao {
 	private static String kontsulta;
 	private static Statement stm = null;
 	private static PreparedStatement pstm;
 	private static ResultSet rs;
-	
+
 	/**
 	 * Erabiltzailearen playlist-ak itzultzen dituen metodoa.
 	 * 
-	 * @return Erabiltzailearen playlist-ak ArrayList<PlayListak> moduan itzultzen ditu.
+	 * @return Erabiltzailearen playlist-ak ArrayList<PlayListak> moduan itzultzen
+	 *         ditu.
 	 */
 	public static ArrayList<PlayListak> getPlaylist() {
 		ArrayList<PlayListak> playlistList = new ArrayList<PlayListak>();
@@ -30,13 +31,11 @@ public class PlayListakDao {
 		int id = 0;
 
 		Connection konexioa = Kone.konektatu();
-/*
-		if (!SesioAldagaiak.erabiltzailePremium) {
-			id = SesioAldagaiak.erabiltzaileLogeatutaFree.getIdErabiltzailea();
-		} else {
-			id = SesioAldagaiak.erabiltzaileLogeatutaPremium.getIdErabiltzailea();
-		}
-*/
+		/*
+		 * if (!SesioAldagaiak.erabiltzailePremium) { id =
+		 * SesioAldagaiak.erabiltzaileLogeatutaFree.getIdErabiltzailea(); } else { id =
+		 * SesioAldagaiak.erabiltzaileLogeatutaPremium.getIdErabiltzailea(); }
+		 */
 		id = SesioAldagaiak.logErabiltzailea.getIdErabiltzailea();
 		try {
 			stm = konexioa.createStatement();
@@ -54,24 +53,22 @@ public class PlayListakDao {
 		}
 		return playlistList;
 	}
-	
+
 	/**
 	 * Playlist bati abesti bat gehitzeko metodoa.
 	 * 
 	 * @param izenburua Gehitu nahi den abestiaren izenburua.
 	 */
-	public static void playlistGehitu(String izenburua) {
+	public static boolean playlistGehitu(String izenburua) {
 
 		Connection konexioa = Kone.konektatu();
 
 		int id = 0;
 		/*
-		if (!SesioAldagaiak.erabiltzailePremium) {
-			id = SesioAldagaiak.erabiltzaileLogeatutaFree.getIdErabiltzailea();
-		} else {
-			id = SesioAldagaiak.erabiltzaileLogeatutaPremium.getIdErabiltzailea();
-		}
-*/
+		 * if (!SesioAldagaiak.erabiltzailePremium) { id =
+		 * SesioAldagaiak.erabiltzaileLogeatutaFree.getIdErabiltzailea(); } else { id =
+		 * SesioAldagaiak.erabiltzaileLogeatutaPremium.getIdErabiltzailea(); }
+		 */
 		id = SesioAldagaiak.logErabiltzailea.getIdErabiltzailea();
 		java.util.Date dataOrain = new java.util.Date();
 		java.sql.Date sqlDataOrain = new java.sql.Date(dataOrain.getTime());
@@ -84,56 +81,70 @@ public class PlayListakDao {
 			pstm.setDate(2, sqlDataOrain);
 			pstm.setInt(3, id);
 			pstm.execute();
+			Kone.itxiConexioa();
 		} catch (SQLException e) {
 			System.out.println("Kontsulta txarto" + e.getMessage());
+			return false;
 		}
-		Kone.itxiConexioa();
+		return true;
 	}
-	
+
 	/**
 	 * Playlist bat ezabatzeko metodoa.
 	 * 
 	 * @param idPlaylist Ezabatu nahi den playlist-aren identifikadorea.
 	 * @throws SQLException SQL errore bat gertatu bada.
 	 */
-	public static void playlistEzabatu(int idPlaylist) throws SQLException {
-		Connection konexioa = Kone.konektatu();
-		stm = konexioa.createStatement();
-		kontsulta = "DELETE FROM Playlist WHERE IdList = " + idPlaylist;
-		stm.executeUpdate(kontsulta);
-		Kone.itxiConexioa();
+	public static boolean playlistEzabatu(int idPlaylist) {
+		try {
+			Connection konexioa = Kone.konektatu();
+			stm = konexioa.createStatement();
+			kontsulta = "DELETE FROM Playlist WHERE IdList = " + idPlaylist;
+			stm.executeUpdate(kontsulta);
+			Kone.itxiConexioa();
+		} catch (SQLException e) {
+			return false;
+		}
+		return true;
 	}
-	
+
 	/**
 	 * Playlist bateko abesti bat ezabatzeko metodoa.
 	 * 
 	 * @param idPlaylist Playlist-aren identifikadorea.
-	 * @param idAbestia Ezabatu nahi den abestiaren identifikadorea.
+	 * @param idAbestia  Ezabatu nahi den abestiaren identifikadorea.
 	 * @throws SQLException SQL errore bat gertatu bada.
 	 */
-	public static void abestiPlaylistEzabatu(int idPlaylist, int idAbestia) throws SQLException {
-		Connection konexioa = Kone.konektatu();
-		stm = konexioa.createStatement();
-		kontsulta = "DELETE FROM PlaylistAbestiak WHERE IdList = " + idPlaylist + " AND IdAudio = " + idAbestia;
-		stm.executeUpdate(kontsulta);
-		Kone.itxiConexioa();
+	public static boolean abestiPlaylistEzabatu(int idPlaylist, int idAbestia) {
+		try {
+			Connection konexioa = Kone.konektatu();
+			stm = konexioa.createStatement();
+			kontsulta = "DELETE FROM PlaylistAbestiak WHERE IdList = " + idPlaylist + " AND IdAudio = " + idAbestia;
+			stm.executeUpdate(kontsulta);
+			Kone.itxiConexioa();
+		} catch (SQLException e) {
+			return false;
+		}
+		return true;
 	}
-	
 
-	
+	/**
+	 * Erabiltzailearen aukeratutako playlist-aren abestiak itzultzen dituen metodoa.
+	 * 
+	 * @param aukeraPlaylist Aukeratutako playlist objektua.
+	 * @return Aukeratutako playlist-aren abestiak ArrayList<Audio> moduan itzultzen ditu.
+	 */
 	public static ArrayList<Audio> getPlayListAbestiak(PlayListak aukeraPlaylist) {
 		ArrayList<Audio> abestiakList = new ArrayList<Audio>();
 		Abestia abestia;
 		int id = 0;
 
 		Connection konexioa = Kone.konektatu();
-/*
-		if (!SesioAldagaiak.erabiltzailePremium) {
-			id = SesioAldagaiak.erabiltzaileLogeatutaFree.getIdErabiltzailea();
-		} else {
-			id = SesioAldagaiak.erabiltzaileLogeatutaPremium.getIdErabiltzailea();
-		}
-*/
+		/*
+		 * if (!SesioAldagaiak.erabiltzailePremium) { id =
+		 * SesioAldagaiak.erabiltzaileLogeatutaFree.getIdErabiltzailea(); } else { id =
+		 * SesioAldagaiak.erabiltzaileLogeatutaPremium.getIdErabiltzailea(); }
+		 */
 		id = SesioAldagaiak.logErabiltzailea.getIdErabiltzailea();
 		try {
 			stm = konexioa.createStatement();
@@ -158,10 +169,15 @@ public class PlayListakDao {
 		Kone.itxiConexioa();
 		return abestiakList;
 	}
-	
-	
 
-	public static void playlisteanAbestiaGehitu(PlayListak playlist, Audio audio) {
+	/**
+	 * Abestia aukeratutako playlist-ean gehitzeko metodoa.
+	 * 
+	 * @param playlist Aukeratutako playlist objektua.
+	 * @param audio    Gehitu nahi den abestiaren objektua.
+	 * @return True, abestia ongi gehitu da. False, abestia ez da gehitu.
+	 */
+	public static boolean playlisteanAbestiaGehitu(PlayListak playlist, Audio audio) {
 
 		Connection konexioa = Kone.konektatu();
 
@@ -175,24 +191,33 @@ public class PlayListakDao {
 			pstm.setInt(2, audio.getIdAudio());
 			pstm.setDate(3, sqlDataOrain);
 			pstm.execute();
+			Kone.itxiConexioa();
 		} catch (SQLException e) {
 			System.out.println("Kontsulta txarto" + e.getMessage());
+			return false;
 		}
-		Kone.itxiConexioa();
+		return true;
 	}
-	
 
+	/**
+	 * Abestia aukeratutako playlist-ean dagoen ala ez egiaztatzeko metodoa.
+	 * 
+	 * @param playlist Aukeratutako playlist objektua.
+	 * @param audio    Egiaztatu nahi den abestiaren objektua.
+	 * @return True, abestia aukeratutako playlist-ean dago. False, abestia ez dago aukeratutako playlist-ean.
+	 */
 	public static boolean komprobatuAbestiaBadago(PlayListak playlist, Audio audio) {
 		boolean badago = false;
 		Connection konexioa = Kone.konektatu();
 		try {
 			stm = konexioa.createStatement();
-			kontsulta = "select count(*) as cont from PlaylistAbestiak where IdAudio = " + audio.getIdAudio() + " and IdList = " + playlist.getIdPlayList() + ";";
+			kontsulta = "select count(*) as cont from PlaylistAbestiak where IdAudio = " + audio.getIdAudio()
+					+ " and IdList = " + playlist.getIdPlayList() + ";";
 			rs = stm.executeQuery(kontsulta);
 			rs.next();
 			if (rs.getInt("cont") != 0) {
 				badago = true;
-			}			
+			}
 		} catch (SQLException e) {
 			e.getMessage();
 		}
@@ -200,15 +225,21 @@ public class PlayListakDao {
 		return badago;
 	}
 
+	/**
+	 * Izenarekin playlist bat lortzeko metodoa.
+	 * 
+	 * @param izena Playlist-aren izena.
+	 * @return Izenarekin lortutako playlist objektua.
+	 */
 	public static PlayListak getPlayListIzenarekin(String izena) {
 		PlayListak playlista = null;
 		Connection konexioa = Kone.konektatu();
-		kontsulta = "Select * from Playlist where Izenburua='"+izena+"' ORDER BY IdList desc LIMIT 1";
+		kontsulta = "Select * from Playlist where Izenburua='" + izena + "' ORDER BY IdList desc LIMIT 1";
 		try {
 			stm = konexioa.createStatement();
 			rs = stm.executeQuery(kontsulta);
-			while(rs.next()) {
-			playlista = new PlayListak(rs.getInt("IdList"), rs.getString("Izenburua"), rs.getDate("SorreraData"));
+			while (rs.next()) {
+				playlista = new PlayListak(rs.getInt("IdList"), rs.getString("Izenburua"), rs.getDate("SorreraData"));
 			}
 		} catch (SQLException e) {
 			System.out.println("Kontsulta txarto" + e.getMessage());

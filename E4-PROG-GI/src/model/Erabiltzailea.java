@@ -46,6 +46,12 @@ public class Erabiltzailea {
 		this.jaiotzeData = jaiotzeData2;
 		this.hizkuntza = hizkuntza;
 	}
+	
+	public Erabiltzailea(int idErabiltzailea, String erabiltzailea, String pasahitza) {
+		this.idErabiltzailea = idErabiltzailea;
+		this.erabiltzailea = erabiltzailea;
+		this.pasahitza = pasahitza;
+	}
 
 
 

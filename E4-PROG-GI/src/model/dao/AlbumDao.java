@@ -17,10 +17,6 @@ import model.sql.Kone;
 
 
 public class AlbumDao {
-	private static String kontsulta;
-	private static Statement stm = null;
-	private static PreparedStatement pstm;
-	private static ResultSet rs;
 	
 	/**
 	 * Musikariaren albumak itzultzen dituen metodoa.
@@ -28,13 +24,13 @@ public class AlbumDao {
 	 * @param musikari Musikari objektua
 	 * @return Album objektuen ArrayList bat
 	 */
-	public static ArrayList<Album> getAlbumak(Musikaria musikari) {
+	public static ArrayList<Album> getAlbumakByMusikari(Musikaria musikari) {
 		Connection konexioa = Kone.konektatu();
 		ArrayList<Album> albumak = new ArrayList<Album>();
 		try {
-			stm = konexioa.createStatement();
-			kontsulta = "SELECT * FROM Album where IdArtista =" + musikari.getIdArtista() + "";
-			rs = stm.executeQuery(kontsulta);
+			Statement stm = konexioa.createStatement();
+			String kontsulta = "SELECT * FROM Album where IdArtista =" + musikari.getIdArtista() + "";
+			ResultSet rs = stm.executeQuery(kontsulta);
 			while (rs.next()) {
 				albumak.add(new Album(rs.getInt("IdAlbum"), rs.getString("Izenburua"), rs.getString("Generoa"), rs.getBlob("Irudia")));
 			}
@@ -49,28 +45,35 @@ public class AlbumDao {
 	 * 
 	 * @param albumak Album objektuen ArrayList bat
 	 */
-	public static void beteAlbumakKantaKop(ArrayList<Album> albumak) {
+	public static boolean beteAlbumakKantaKop(ArrayList<Album> albumak) {
 		Connection konexioa = Kone.konektatu();
 		for (Album i : albumak) {
 			try {
-				stm = konexioa.createStatement();
-				kontsulta = "SELECT count(IdAudio) FROM Abestia where IdAlbum =" + i.getId() + "";
-				rs = stm.executeQuery(kontsulta);
+				Statement stm = konexioa.createStatement();
+				String kontsulta = "SELECT count(IdAudio) FROM Abestia where IdAlbum =" + i.getId() + "";
+				ResultSet rs = stm.executeQuery(kontsulta);
 				rs.next();
 				i.setKantaKop(rs.getInt("count(IdAudio)"));
+				Kone.itxiConexioa();
 			} catch (SQLException e) {
 				e.getMessage();
+				return false;
 			}
 		}
+		return true;
 	}
 	
+	/**
+	 * Album klasea abestien albuma errepresentatzeko erabiliko da.
+	 * Albumak izenburua, generoa eta irudia ditu.
+	 */
 	public static Album getAlbumByAbesti(Audio audio) {
 		Album albumAbestia = null;
 		Connection konexioa = Kone.konektatu();
 		try {
-			stm = konexioa.createStatement();
-			kontsulta = "SELECT al.IdAlbum, al.Izenburua, al.Generoa, al.Irudia  from Album al Inner join Abestia ab using (IdAlbum) inner join Audio au where au.IdAudio = " + audio.getIdAudio() + " and ab.IdAudio = " + audio.getIdAudio() + ";";
-			rs = stm.executeQuery(kontsulta);
+			Statement stm = konexioa.createStatement();
+			String kontsulta = "SELECT al.IdAlbum, al.Izenburua, al.Generoa, al.Irudia  from Album al Inner join Abestia ab using (IdAlbum) inner join Audio au where au.IdAudio = " + audio.getIdAudio() + " and ab.IdAudio = " + audio.getIdAudio() + ";";
+			ResultSet rs = stm.executeQuery(kontsulta);
 			rs.next();
 			albumAbestia = new Album(rs.getInt("al.IdAlbum"), rs.getString("al.Izenburua"), rs.getString("al.Generoa"), rs.getBlob("al.Irudia"));			
 		} catch (SQLException e) {

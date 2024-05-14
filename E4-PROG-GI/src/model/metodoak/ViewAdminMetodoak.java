@@ -11,8 +11,10 @@ public class ViewAdminMetodoak {
 
     
     
+
     
     public static DefaultListModel<Musikaria> getMusikariakList() {
+
         
         DefaultListModel<Musikaria> result = new DefaultListModel();
         ArrayList<Musikaria> musikariak = MusikariaDao.getMusikariak();

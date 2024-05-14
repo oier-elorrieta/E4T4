@@ -28,6 +28,7 @@ import java.awt.SystemColor;
 import java.awt.Toolkit;
 
 import model.*;
+import model.dao.AbestiGuztokoaDao;
 import model.dao.AbestiaDao;
 import model.dao.AlbumDao;
 import model.dao.AudioDao;
@@ -101,29 +102,18 @@ public class MenuErreprodukzioa extends JFrame {
 		btnSartu.setFont(new Font("SansSerif", Font.BOLD, 22));
 		btnSartu.setFocusPainted(false);
 
-		JButton btnAtzera = new JButton("Atzera");
-		btnAtzera.setBackground(Color.BLACK);
-		btnAtzera.setForeground(Color.RED);
-		btnAtzera.setBounds(50, 60, 144, 50);
-		btnAtzera.setFont(new Font("SansSerif", Font.BOLD, 22));
-		btnAtzera.setFocusPainted(false);
+		JButton btnAtzera = ViewMetodoak.btnAtzeraSortu();
 
-		JButton btnErabiltzaile = new JButton(SesioAldagaiak.logErabiltzailea.getIzena());
+		//JButton btnErabiltzaile = new JButton(SesioAldagaiak.logErabiltzailea.getIzena());
 				
-		/*JButton btnErabiltzaile = null;
-		if (!SesioAldagaiak.erabiltzailePremium) {
-			btnErabiltzaile = new JButton(SesioAldagaiak.erabiltzaileLogeatutaFree.getIzena());
-			SesioAldagaiak.logErabiltzailea = SesioAldagaiak.erabiltzaileLogeatutaFree;
-		} else {
-			btnErabiltzaile = new JButton(SesioAldagaiak.erabiltzaileLogeatutaPremium.getIzena());
-			SesioAldagaiak.logErabiltzailea = SesioAldagaiak.erabiltzaileLogeatutaPremium;
-		}*/
-		btnErabiltzaile.setBackground(Color.LIGHT_GRAY);
-		btnErabiltzaile.setForeground(Color.BLACK);
-		btnErabiltzaile.setBounds(400, 60, 144, 50);
-		btnErabiltzaile.setFont(new Font("SansSerif", Font.BOLD, 22));
-		btnErabiltzaile.setFocusPainted(false);
+		//btnErabiltzaile.setBackground(Color.LIGHT_GRAY);
+		//btnErabiltzaile.setForeground(Color.BLACK);
+		//btnErabiltzaile.setBounds(400, 60, 144, 50);
+		//btnErabiltzaile.setFont(new Font("SansSerif", Font.BOLD, 22));
+		//btnErabiltzaile.setFocusPainted(false);
 
+		JButton btnErabiltzaile = ViewMetodoak.btnErabiltzaileaSortu();
+		
 		contentPane.add(lblInfo);
 		contentPane.add(lblIzena);
 		contentPane.add(lblIraupena);
@@ -144,11 +134,12 @@ public class MenuErreprodukzioa extends JFrame {
 					int index = jListPlayList.getSelectedIndex();
 					if (index == 0) {
 						try {
-							if (AbestiaDao.gustukoaKomprobatu(audio)) {
+							AbestiGuztokoa abeztiGuztokoa = new AbestiGuztokoa(SesioAldagaiak.logErabiltzailea, audio);
+							if (AbestiGuztokoaDao.abestiGuztokoaKonprobatu(abeztiGuztokoa)) {
 								JOptionPane.showMessageDialog(null, "Ezin da sartu abestia, zerrendan baitago.",
 										"Error", JOptionPane.ERROR_MESSAGE);
 							} else {
-								AbestiaDao.abestiGustokoaGehitu(audio);
+								AbestiGuztokoaDao.abestiGustokoaGehitu(abeztiGuztokoa);
 								JOptionPane.showMessageDialog(null, "Abestia ondo sartu da Playlistean.", "Eginda!",
 										JOptionPane.INFORMATION_MESSAGE);
 								dispose();
