@@ -6,7 +6,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -44,45 +43,45 @@ public class Login extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		JLabel lblLogin_Header = new JLabel("LOGIN");
-		lblLogin_Header.setBounds(198, 11, 452, 58);
-		lblLogin_Header.setHorizontalAlignment(SwingConstants.CENTER);
-		lblLogin_Header.setFont(new Font("Source Sans Pro Black", Font.BOLD, 45));
-		
+
+		JLabel lblLogin = new JLabel("LOGIN");
+		lblLogin.setBounds(198, 60, 452, 58);
+		lblLogin.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLogin.setFont(new Font("Source Sans Pro Black", Font.BOLD, 45));
+
 		JLabel lblErabiltzailea = new JLabel("ERABILTZAILEA");
 		lblErabiltzailea.setBounds(210, 165, 204, 23);
 		lblErabiltzailea.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 15));
-		
+
 		txtErabiltzaile = new JTextField();
 		txtErabiltzaile.setBounds(210, 191, 433, 32);
 		txtErabiltzaile.setColumns(10);
-		
+
 		JLabel lblPasahitza = new JLabel("PASAHITZA");
 		lblPasahitza.setBounds(210, 254, 204, 23);
 		lblPasahitza.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 15));
-		
+
 		passwordField = new JPasswordField();
 		passwordField.setBounds(210, 281, 433, 33);
-		
+
 		JComboBox cboErabiltzaileMota = new JComboBox();
-		cboErabiltzaileMota.setModel(new DefaultComboBoxModel(new String[] {"Bezeroa", "Administratzailea"}));
+		cboErabiltzaileMota.setModel(new DefaultComboBoxModel(new String[] { "Bezeroa", "Administratzailea" }));
 		cboErabiltzaileMota.setBounds(210, 350, 433, 33);
 		cboErabiltzaileMota.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 15));
-		
+
 		JButton btnErregistratu = new JButton("Erregistratu");
 		btnErregistratu.setBounds(342, 420, 148, 29);
 		btnErregistratu.setForeground(SystemColor.text);
 		btnErregistratu.setFont(new Font("Segoe UI Black", Font.PLAIN, 15));
 		btnErregistratu.setBackground(SystemColor.desktop);
-		
+
 		JButton btnLogin = new JButton("Login");
 		btnLogin.setBounds(342, 460, 148, 29);
 		btnLogin.setForeground(SystemColor.text);
 		btnLogin.setFont(new Font("Segoe UI Black", Font.PLAIN, 15));
 		btnLogin.setBackground(SystemColor.desktop);
-		
-		contentPane.add(lblLogin_Header);
+
+		contentPane.add(lblLogin);
 		contentPane.add(lblErabiltzailea);
 		contentPane.add(txtErabiltzaile);
 		contentPane.add(lblPasahitza);
@@ -90,32 +89,34 @@ public class Login extends JFrame {
 		contentPane.add(cboErabiltzaileMota);
 		contentPane.add(btnErregistratu);
 		contentPane.add(btnLogin);
-		
+
 		btnErregistratu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				dispose();		
+				dispose();
 				JFrameSortu.erregistroAukeraSortu();
 			}
 		});
-		
+
 		btnLogin.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (cboErabiltzaileMota.getSelectedItem().equals("Bezeroa")) {
-					if(ViewMetodoak.comprobatuLogin(txtErabiltzaile.getText(), passwordField.getText())) {
-						dispose();		
+					if (ViewMetodoak.comprobatuLogin(txtErabiltzaile.getText(), passwordField.getText())) {
+						dispose();
 						JFrameSortu.menuNagusiaAukeraSortu();
-					}else {
-						JOptionPane.showMessageDialog(null, "Pasahitza edo erabiltzailea txarto!!", "Error", JOptionPane.ERROR_MESSAGE);
-					}			
+					} else {
+						JOptionPane.showMessageDialog(null, "Pasahitza edo erabiltzailea txarto!!", "Error",
+								JOptionPane.ERROR_MESSAGE);
+					}
 				} else if (Kone.konektatuAdmin(txtErabiltzaile.getText(), passwordField.getText())) {
+					JFrameSortu.menuAdminAukeraSortu();
 					dispose();
-				}else {
-					JOptionPane.showMessageDialog(null, "Pasahitza edo erabiltzailea txarto!!", "Error", JOptionPane.ERROR_MESSAGE);
-				}
+				} else {
+					JOptionPane.showMessageDialog(null, "Pasahitza edo erabiltzailea txarto!!", "Error",
+							JOptionPane.ERROR_MESSAGE);
 				}
 			}
-		);
+		});
 	}
 }

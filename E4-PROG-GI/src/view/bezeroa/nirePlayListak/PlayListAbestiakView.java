@@ -1,4 +1,4 @@
-package view.bezeroa;
+package view.bezeroa.nirePlayListak;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -33,14 +33,14 @@ import model.metodoak.JFrameSortu;
 import model.metodoak.ViewMetodoak;
 import model.sql.Kone;
 
-public class PlaylistAbestiak extends JFrame {
+public class PlayListAbestiakView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private static ArrayList<Audio> abestiakList;
 	private JFrame frame = this;
 	private String klasea = this.getClass().getSimpleName();
-	public PlaylistAbestiak(PlayListak aukeraPlaylist) {
+	public PlayListAbestiakView(PlayListak aukeraPlaylist) {
 		setBounds(400, 250, 906, 594);
 		setTitle("Menu Nagusia - Talde 4");
 		contentPane = new JPanel();
@@ -131,7 +131,7 @@ public class PlaylistAbestiak extends JFrame {
 					}
 
 					dispose();
-					JFrameSortu.playlistAbestiakSortu(aukeraPlaylist);
+					JFrameSortu.playListAbestiakViewSortu(aukeraPlaylist);
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
@@ -142,7 +142,7 @@ public class PlaylistAbestiak extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				dispose();
-				JFrameSortu.nirePlaylistaSortu();
+				JFrameSortu.playListakViewSortu();
 			}
 		});
 

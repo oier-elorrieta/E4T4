@@ -273,7 +273,7 @@ public class Erreprodukzioa extends JFrame {
 						JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, aukerakMenu, aukerakMenu[0]);
 				if (menuAukera == JOptionPane.YES_OPTION) {
 					try {
-						JFrameSortu.abestiaPlayListeanSartuSortu(abestiak.get(abestiAukera));
+						JFrameSortu.menuErreprodukzioaSortu(abestiak.get(abestiAukera));
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -395,16 +395,18 @@ public class Erreprodukzioa extends JFrame {
 				clip.close();
 				dispose();
 				// JFrameSortu.menuNagusiaAukeraSortu();
+				
+				System.out.println(aurrekoKlasea);
 				switch (aurrekoKlasea) {
-				case "AbestiakMusikaria":
-					JFrameSortu.abestiakMusikaria((Musikaria) artista, newAlbum);
+				case "AbestiakView":
+					JFrameSortu.abestiakViewSortu((Musikaria) artista, newAlbum);
 					break;
-				case "PodcastView":
-					JFrameSortu.podcastViewSortu((Podcasterra) artista);
+				case "PodcastakView":
+					JFrameSortu.podcastakViewSortu((Podcasterra) artista);
 					break;
 					//COMO HAGO ETO
 				case "PlaylistAbestiak":
-					JFrameSortu.nirePlaylistaSortu();
+					JFrameSortu.playListakViewSortu();
 					break;
 				}
 			}

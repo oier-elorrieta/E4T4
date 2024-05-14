@@ -69,10 +69,8 @@ public class KudeatuPlantilla extends JFrame {
         btnAtzera.setFocusPainted(false);
         contentPane.add(btnAtzera);
 
-        list = new JList(modeloList);
-        list.setForeground(new Color(0, 0, 0));
-        list.setFont(new Font("SansSerif", Font.PLAIN, 23));
-        scrollPane.setViewportView(list);
+        
+        
 
         lblArtistaKude.setFont(new Font("SansSerif", Font.PLAIN, 37));
         lblArtistaKude.setBounds(290, 60, 370, 53);

@@ -1,4 +1,4 @@
-package view.bezeroa;
+package view.bezeroa.podcastDeskubritu;
 
 import model.SesioAldagaiak;
 import model.metodoak.*;
@@ -20,13 +20,13 @@ import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 
-public class PodcastDeskubritu extends JFrame {
+public class PodcasterrakView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JFrame frame = this;
 
-	public PodcastDeskubritu() {
+	public PodcasterrakView() {
 		setBounds(400, 250, 906, 594);
 		setTitle("Menu Nagusia - Talde 4");
 		contentPane = new JPanel(new BorderLayout());

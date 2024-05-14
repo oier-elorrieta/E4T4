@@ -75,7 +75,7 @@ public class AdminMenuNagusia extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 dispose();
-                JFrameSortu.loginAukeraSortu();
+                JFrameSortu.loginSortu();
             }
         });
 
@@ -84,7 +84,8 @@ public class AdminMenuNagusia extends JFrame {
         btnMusikaKudeatu.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 
-                
+             JFrameSortu.musikaKudeatuAukeraSortu();
+             dispose();
                 
             }
         });

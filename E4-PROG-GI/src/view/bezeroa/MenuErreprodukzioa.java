@@ -44,14 +44,14 @@ import java.util.ArrayList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class AbestiaPlayListeanSartu extends JFrame {
+public class MenuErreprodukzioa extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	protected static final String String = null;
 	private JPanel contentPane;
 	private JFrame frame = this;
 
-	public AbestiaPlayListeanSartu(Audio audio) throws SQLException {
+	public MenuErreprodukzioa(Audio audio) throws SQLException {
 		setBounds(400, 250, 600, 425);
 		setTitle("Menu Nagusia - Talde 4");
 		contentPane = new JPanel();

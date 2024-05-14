@@ -20,8 +20,8 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import model.metodoak.JFrameSortu;
 import model.metodoak.ViewMetodoak;
-import model.salbuespenak.PremiumMugaEzAldatuta;
 import model.salbuespenak.PasahitzaEzKointziditu;
+import model.salbuespenak.PremiumMugaEzAldatuta;
 import model.sql.Kone;
 import javax.swing.ButtonGroup;
 import java.awt.Color;

@@ -1,4 +1,4 @@
-package view.bezeroa;
+package view.bezeroa.musikaDeskubritu;
 
 import model.SesioAldagaiak;
 import model.dao.MusikariaDao;
@@ -21,13 +21,13 @@ import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 
-public class MusikaDeskubritu extends JFrame {
+public class MusikariakView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JFrame frame = this;
 	
-	public MusikaDeskubritu() {
+	public MusikariakView() {
 		setBounds(400, 250, 906, 594);
 		setTitle("Menu Nagusia - Talde 4");
 		contentPane = new JPanel(new BorderLayout());
