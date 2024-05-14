@@ -1,21 +1,14 @@
 package view.bezeroa;
 
-import java.awt.Color;
-
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Timer;
@@ -25,9 +18,7 @@ import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.SourceDataLine;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -44,16 +35,13 @@ import model.Album;
 import model.Artista;
 import model.Audio;
 import model.Musikaria;
-import model.Podcast;
 import model.Podcasterra;
 import model.SesioAldagaiak;
 import model.dao.AbestiGuztokoaDao;
-import model.dao.AbestiaDao;
 import model.dao.AlbumDao;
 import model.dao.AudioDao;
 import model.metodoak.JFrameSortu;
 import model.metodoak.ViewMetodoak;
-import model.sql.Kone;
 
 public class Erreprodukzioa extends JFrame {
 
@@ -84,46 +72,7 @@ public class Erreprodukzioa extends JFrame {
 		errepoduzituAudioa(filepath, abiadura, posicion, erreproduzitzen);
 
 		if (erreproduzitzen) {
-			long tiempo = clip.getMicrosecondLength();
-			tiempo = tiempo / 1000;
-			System.out.println(tiempo);
-
-			timer = new Timer();
-
-			task = new TimerTask() {
-				public void run() {
-					try {
-						int abestiAukeraAux = abestiAukera;
-						abestiAukeraAux++;
-
-						if (abestiak.size() <= abestiAukeraAux) {
-							abestiAukeraAux = 0;
-						}
-						clip.stop();
-						if (SesioAldagaiak.logErabiltzailea.getClass().getSimpleName().equals("ErabiltzaileFree")) {
-							SesioAldagaiak.doSkip = false;
-							ViewMetodoak.skipBaimendu();
-						}
-						dispose();
-						if ((SesioAldagaiak.iragarkiaAtera && SesioAldagaiak.erreprodukzioKop >= 1)
-								&& SesioAldagaiak.logErabiltzailea.getClass().getSimpleName()
-										.equals("ErabiltzaileFree")) {
-							SesioAldagaiak.erreprodukzioKop = 0;
-							JFrameSortu.iragarkiaErreproduzituSortu(aurrekoKlasea, artista, abestiak, abestiAukeraAux,
-									erreproduzitzen);
-						} else {
-							SesioAldagaiak.erreprodukzioKop++;
-							JFrameSortu.erreprodukzioaSortu(aurrekoKlasea, artista, abestiak, abestiAukeraAux,
-									erreproduzitzen, 1);
-						}
-					} catch (SQLException e1) {
-						e1.printStackTrace();
-					}
-				}
-			};
-
-			timer.schedule(task, tiempo);
-
+			hurrengoAudioAutomatikoki(aurrekoKlasea, artista, abestiak, abestiAukera, posicion);
 		}
 
 		Album album = null;
@@ -238,6 +187,8 @@ public class Erreprodukzioa extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				btnPlay.setText("Play");
 				erreproduzitzen = false;
+				timer.cancel();
+				posicion = clip.getMicrosecondPosition();
 				clip.stop();
 				setVisible(false);
 				JFrameSortu.premiumErregistroAukeraSortu(frame);
@@ -276,6 +227,7 @@ public class Erreprodukzioa extends JFrame {
 							JOptionPane.showMessageDialog(null, "Gustoko listan ondo sartu da", "Eginda!",
 									JOptionPane.INFORMATION_MESSAGE);
 						}
+						timer.cancel();
 						clip.close();
 						dispose();
 						JFrameSortu.erreprodukzioaSortu(aurrekoKlasea, artista, abestiak, abestiAukera, erreproduzitzen,
@@ -348,7 +300,7 @@ public class Erreprodukzioa extends JFrame {
 							abestiAukeraAux = abestiak.size() - 1;
 						}
 						clip.stop();
-
+						timer.cancel();
 						SesioAldagaiak.doSkip = false;
 						ViewMetodoak.skipBaimendu();
 
@@ -387,7 +339,9 @@ public class Erreprodukzioa extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				if (clip.isRunning()) {
 
-					int segunduak = (int) clip.getMicrosecondPosition() / 1000000;
+					timer.cancel();
+					posicion = clip.getMicrosecondPosition();
+					int segunduak = (int) posicion / 1000000;
 					String iraupena = ViewMetodoak.kalkulatuIraupena(segunduak);
 					lblIraupena.setText(iraupena);
 
@@ -398,6 +352,7 @@ public class Erreprodukzioa extends JFrame {
 					if (clip.getFramePosition() == 0) {
 						AudioDao.erregistratuErreprodukzioa(abestiak.get(abestiAukera));
 					}
+					hurrengoAudioAutomatikoki(aurrekoKlasea, artista, abestiak, abestiAukera, posicion);
 					erreproduzitzen = true;
 					clip.start();
 					btnPlay.setText("Pause");
@@ -418,6 +373,7 @@ public class Erreprodukzioa extends JFrame {
 						if (abestiak.size() <= abestiAukeraAux) {
 							abestiAukeraAux = 0;
 						}
+						timer.cancel();
 						clip.stop();
 						if (SesioAldagaiak.logErabiltzailea.getClass().getSimpleName().equals("ErabiltzaileFree")) {
 							SesioAldagaiak.doSkip = false;
@@ -449,6 +405,7 @@ public class Erreprodukzioa extends JFrame {
 		btnAtzera.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				timer.cancel();
 				clip.close();
 				dispose();
 				// JFrameSortu.menuNagusiaAukeraSortu();
@@ -502,5 +459,43 @@ public class Erreprodukzioa extends JFrame {
 		} catch (LineUnavailableException e1) {
 			e1.printStackTrace();
 		}
+	}
+
+	private void hurrengoAudioAutomatikoki(String aurrekoKlasea, Artista artista, ArrayList<Audio> abestiak,
+			int abestiAukera, long posicion) {
+		long tiempo = clip.getMicrosecondLength() - posicion;
+		tiempo = tiempo / 1000;
+		timer = new Timer();
+		task = new TimerTask() {
+			public void run() {
+				try {
+					int abestiAukeraAux = abestiAukera;
+					abestiAukeraAux++;
+
+					if (abestiak.size() <= abestiAukeraAux) {
+						abestiAukeraAux = 0;
+					}
+					clip.stop();
+					if (SesioAldagaiak.logErabiltzailea.getClass().getSimpleName().equals("ErabiltzaileFree")) {
+						SesioAldagaiak.doSkip = false;
+						ViewMetodoak.skipBaimendu();
+					}
+					dispose();
+					if ((SesioAldagaiak.iragarkiaAtera && SesioAldagaiak.erreprodukzioKop >= 1)
+							&& SesioAldagaiak.logErabiltzailea.getClass().getSimpleName().equals("ErabiltzaileFree")) {
+						SesioAldagaiak.erreprodukzioKop = 0;
+						JFrameSortu.iragarkiaErreproduzituSortu(aurrekoKlasea, artista, abestiak, abestiAukeraAux,
+								erreproduzitzen);
+					} else {
+						SesioAldagaiak.erreprodukzioKop++;
+						JFrameSortu.erreprodukzioaSortu(aurrekoKlasea, artista, abestiak, abestiAukeraAux,
+								erreproduzitzen, 1);
+					}
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+		};
+		timer.schedule(task, tiempo);
 	}
 }
