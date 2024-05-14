@@ -52,12 +52,7 @@ public class PlayListakView extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JButton btnAtzera = new JButton("Atzera");
-		btnAtzera.setBackground(Color.BLACK);
-		btnAtzera.setForeground(Color.RED);
-		btnAtzera.setBounds(50, 60, 144, 50);
-		btnAtzera.setFont(new Font("SansSerif", Font.BOLD, 22));
-		btnAtzera.setFocusPainted(false);
+		JButton btnAtzera = ViewMetodoak.btnAtzeraSortu();
 
 		JButton btnErabiltzaile = SesioAldagaiak.jb;
 		btnErabiltzaile.removeActionListener(btnErabiltzaile.getActionListeners()[0]);
@@ -126,21 +121,17 @@ public class PlayListakView extends JFrame {
 
 		btnEzabatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					if (jListPlayList.getSelectedValue() == null) {
-						JOptionPane.showMessageDialog(null, "Ez duzu Playlist bat aukeratu ezabatzeko", "Error",
-								JOptionPane.ERROR_MESSAGE);
-					} else if (jListPlayList.getSelectedIndex() == 0) {
-						JOptionPane.showMessageDialog(null, "Ezin duzu Playlist hau ezabatu", "Error",
-								JOptionPane.ERROR_MESSAGE);
-					} else {
-						int aukeraPlaylist = jListPlayList.getSelectedIndex();
-						PlayListakDao.playlistEzabatu(playlistLista.get(aukeraPlaylist).getIdPlayList());
-						dispose();
-						JFrameSortu.playListakViewSortu();
-					}
-				} catch (SQLException e1) {
-					e1.printStackTrace();
+				if (jListPlayList.getSelectedValue() == null) {
+					JOptionPane.showMessageDialog(null, "Ez duzu Playlist bat aukeratu ezabatzeko", "Error",
+							JOptionPane.ERROR_MESSAGE);
+				} else if (jListPlayList.getSelectedIndex() == 0) {
+					JOptionPane.showMessageDialog(null, "Ezin duzu Playlist hau ezabatu", "Error",
+							JOptionPane.ERROR_MESSAGE);
+				} else {
+					int aukeraPlaylist = jListPlayList.getSelectedIndex();
+					PlayListakDao.playlistEzabatu(playlistLista.get(aukeraPlaylist).getIdPlayList());
+					dispose();
+					JFrameSortu.playListakViewSortu();
 				}
 			}
 		});

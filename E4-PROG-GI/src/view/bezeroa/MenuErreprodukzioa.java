@@ -102,12 +102,7 @@ public class MenuErreprodukzioa extends JFrame {
 		btnSartu.setFont(new Font("SansSerif", Font.BOLD, 22));
 		btnSartu.setFocusPainted(false);
 
-		JButton btnAtzera = new JButton("Atzera");
-		btnAtzera.setBackground(Color.BLACK);
-		btnAtzera.setForeground(Color.RED);
-		btnAtzera.setBounds(50, 60, 144, 50);
-		btnAtzera.setFont(new Font("SansSerif", Font.BOLD, 22));
-		btnAtzera.setFocusPainted(false);
+		JButton btnAtzera = ViewMetodoak.btnAtzeraSortu();
 
 		JButton btnErabiltzaile = new JButton(SesioAldagaiak.logErabiltzailea.getIzena());
 				

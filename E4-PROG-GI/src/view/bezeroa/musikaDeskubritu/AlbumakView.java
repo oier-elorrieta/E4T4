@@ -65,13 +65,7 @@ public class AlbumakView extends JFrame {
 			}
 		});
 
-		JButton btnAtzera = new JButton("Atzera");
-		btnAtzera.setBounds(50, 60, 144, 50);
-
-		btnAtzera.setBackground(Color.BLACK);
-		btnAtzera.setForeground(Color.RED);
-		btnAtzera.setFont(new Font("SansSerif", Font.BOLD, 22));
-		btnAtzera.setFocusPainted(false);
+		JButton btnAtzera = ViewMetodoak.btnAtzeraSortu();
 
 		contentPane.add(btnErabiltzaile);
 		contentPane.setLayout(null);

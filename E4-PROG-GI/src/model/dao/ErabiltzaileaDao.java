@@ -2,7 +2,9 @@ package model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import model.ErabiltzaileFree;
 import model.Erabiltzailea;
@@ -34,4 +36,40 @@ public class ErabiltzaileaDao {
 		}
 		return true;
 	}
+	
+	public static Erabiltzailea isLoginaOk(String erabiltzailea) {
+		Erabiltzailea erabiltzaileaSortu;
+		try {
+			Connection konexioa = Kone.konektatu();
+			Statement stm = konexioa.createStatement();
+			String kontsulta = "SELECT Erabiltzailea, Pasahitza, IdBezeroa, Mota FROM Bezeroa WHERE Erabiltzailea = '"
+					+ erabiltzailea + "'";
+			ResultSet rs = stm.executeQuery(kontsulta);
+			rs.next();
+			erabiltzaileaSortu = new Erabiltzailea(rs.getInt("IdBezeroa"), rs.getString("Erabiltzailea"), rs.getString("Pasahitza"));
+			Kone.itxiConexioa();
+			return erabiltzaileaSortu;
+		} catch (SQLException e) {
+			e.getMessage();
+			return null;
+		}
+	}
+	
+	public static String erabiltzaileMota(Erabiltzailea erabiltzailea) {
+		String mota;
+		Connection konexioa = Kone.konektatu();
+		try {
+			Statement stm = konexioa.createStatement();
+			String kontsulta = "SELECT Mota FROM Bezeroa WHERE IdBezeroa = " + erabiltzailea.getIdErabiltzailea();
+			ResultSet rs = stm.executeQuery(kontsulta);
+			rs.next();
+			mota = rs.getString("Mota");
+			return mota;
+		} catch (SQLException e) {
+			e.getMessage();
+		}
+		return null;
+	}
+	
+	
 }

@@ -31,6 +31,7 @@ import model.dao.AbestiaDao;
 import model.dao.AlbumDao;
 import model.dao.ErabiltzaileFreeDao;
 import model.dao.ErabiltzailePremiumDao;
+import model.dao.ErabiltzaileaDao;
 import model.dao.MusikariaDao;
 import model.dao.PodcastDao;
 import model.dao.PodcasterraDao;
@@ -56,19 +57,12 @@ public class ViewMetodoak {
 	 */
 	public static boolean comprobatuLogin(String erabiltzailea, String pasahitza) {
 		boolean loginOK = false;
-		try {
-			Kone.konektatu();
-			ResultSet erabiltzaileInfo = Kone.isLoginaOk(erabiltzailea);
-			while (erabiltzaileInfo.next()) {
-				if (erabiltzaileInfo.getString("Pasahitza").equals(pasahitza)) {
-					loginOK = true;
-					erabiltzaileaKargatu(erabiltzaileInfo.getInt("IdBezeroa"), erabiltzaileInfo.getString("Mota"));
-
-				}
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
+				
+		Erabiltzailea erabiltzaileInfo = ErabiltzaileaDao.isLoginaOk(erabiltzailea);
+		String mota = ErabiltzaileaDao.erabiltzaileMota(erabiltzaileInfo);
+			if (erabiltzaileInfo.getPasahitza().equals(pasahitza)) {
+				loginOK = true;
+				erabiltzaileaKargatu(erabiltzaileInfo.getIdErabiltzailea(), mota);
 		}
 		return loginOK;
 	}
@@ -99,23 +93,23 @@ public class ViewMetodoak {
 	 * @return Sortutako JButtona.
 	 */
 	public static JButton btnErabiltzaileaSortu() {
-		//JButton btnErabiltzaile = null;
 		JButton btnErabiltzaile = new JButton(SesioAldagaiak.logErabiltzailea.getIzena());
-		/*
-		if (!SesioAldagaiak.erabiltzailePremium) {
-			btnErabiltzaile = new JButton(SesioAldagaiak.erabiltzaileLogeatutaFree.getIzena());
-			SesioAldagaiak.logErabiltzailea = SesioAldagaiak.erabiltzaileLogeatutaFree;
-		} else {
-			btnErabiltzaile = new JButton(SesioAldagaiak.erabiltzaileLogeatutaPremium.getIzena());
-			SesioAldagaiak.logErabiltzailea = SesioAldagaiak.erabiltzaileLogeatutaPremium;
-		}
-		*/
 		btnErabiltzaile.setBackground(Color.LIGHT_GRAY);
 		btnErabiltzaile.setForeground(Color.BLACK);
 		btnErabiltzaile.setBounds(700, 60, 144, 50);
 		btnErabiltzaile.setFont(new Font("SansSerif", Font.BOLD, 22));
 		btnErabiltzaile.setFocusPainted(false);
 		return btnErabiltzaile;
+	}
+	
+	public static JButton btnAtzeraSortu() {
+		JButton btnAtzera = new JButton("Atzera");
+		btnAtzera.setBackground(Color.BLACK);
+		btnAtzera.setForeground(Color.RED);
+		btnAtzera.setBounds(50, 60, 144, 50);
+		btnAtzera.setFont(new Font("SansSerif", Font.BOLD, 22));
+		btnAtzera.setFocusPainted(false);
+		return btnAtzera;
 	}
 
 	/**

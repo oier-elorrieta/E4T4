@@ -80,12 +80,7 @@ public class PlayListAbestiakView extends JFrame {
 		btnEzabatu.setBounds(650, 375, 208, 50);
 		btnEzabatu.setFont(new Font("SansSerif", Font.BOLD, 22));
 
-		JButton btnAtzera = new JButton("Atzera");
-		btnAtzera.setBackground(Color.BLACK);
-		btnAtzera.setForeground(Color.RED);
-		btnAtzera.setBounds(50, 60, 144, 50);
-		btnAtzera.setFont(new Font("SansSerif", Font.BOLD, 22));
-		btnAtzera.setFocusPainted(false);
+		JButton btnAtzera = ViewMetodoak.btnAtzeraSortu();
 
 		JButton btnErabiltzaile = SesioAldagaiak.jb;
 		btnErabiltzaile.removeActionListener(btnErabiltzaile.getActionListeners()[0]);
@@ -129,22 +124,18 @@ public class PlayListAbestiakView extends JFrame {
 		btnEzabatu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				try {
-					int aukeraAbestia = jListAbestiak.getSelectedIndex();
+				int aukeraAbestia = jListAbestiak.getSelectedIndex();
 
-					if (aukeraPlaylist.getIdPlayList() != 0) {
-						PlayListakDao.abestiPlaylistEzabatu(aukeraPlaylist.getIdPlayList(),
-								abestiakList.get(aukeraAbestia).getIdAudio());
-					} else {
-						AbestiGuztokoa abestiGuztokoa = new AbestiGuztokoa(SesioAldagaiak.logErabiltzailea, abestiakList.get(aukeraAbestia));
-						AbestiGuztokoaDao.abestiGuztokoaEzabatu(abestiGuztokoa);
-					}
-
-					dispose();
-					JFrameSortu.playListAbestiakViewSortu(aukeraPlaylist);
-				} catch (SQLException e1) {
-					e1.printStackTrace();
+				if (aukeraPlaylist.getIdPlayList() != 0) {
+					PlayListakDao.abestiPlaylistEzabatu(aukeraPlaylist.getIdPlayList(),
+							abestiakList.get(aukeraAbestia).getIdAudio());
+				} else {
+					AbestiGuztokoa abestiGuztokoa = new AbestiGuztokoa(SesioAldagaiak.logErabiltzailea, abestiakList.get(aukeraAbestia));
+					AbestiGuztokoaDao.abestiGuztokoaEzabatu(abestiGuztokoa);
 				}
+
+				dispose();
+				JFrameSortu.playListAbestiakViewSortu(aukeraPlaylist);
 			}
 		});
 

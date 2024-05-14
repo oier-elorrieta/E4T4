@@ -43,12 +43,8 @@ public class PodcasterrakView extends JFrame {
 				JFrameSortu.premiumErregistroAukeraSortu(frame);
 			}
 		});
-		JButton btnAtzera = new JButton("Atzera");
-		btnAtzera.setBackground(Color.BLACK);
-		btnAtzera.setForeground(Color.RED);
-		btnAtzera.setBounds(50, 60, 144, 50);
-		btnAtzera.setFont(new Font("SansSerif", Font.BOLD, 22));
-		btnAtzera.setFocusPainted(false);
+
+		JButton btnAtzera = ViewMetodoak.btnAtzeraSortu();
 
 		contentPane.add(btnErabiltzaile);
 		contentPane.add(btnAtzera);
