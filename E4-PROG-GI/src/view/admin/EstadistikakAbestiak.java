@@ -14,7 +14,20 @@ public class EstadistikakAbestiak extends EstadistikakTop {
     public EstadistikakAbestiak() {
         super();
         setTitle("Estadistikak Eguneakoa");
+        SortuGenerikoa();
         AurkeztuEgunekoa();
+    }
+    
+    public EstadistikakAbestiak(int Aukera) {
+        super();
+        SortuGenerikoa();
+        if (Aukera == 2) {
+            setTitle("Estadistikak Hilabetekoa");
+            AurkeztuHilekoa();
+        } else if (Aukera == 3){
+            setTitle("Estadistikak Urtekoa");
+            AurkeztuUrtekoa();
+        }
     }
     
     private void AurkeztuEgunekoa() {
@@ -33,17 +46,6 @@ public class EstadistikakAbestiak extends EstadistikakTop {
     	model.addRow(new String[]{Integer.toString(i + 1), estadistika.get(i).getS1(), estadistika.get(i).getS2(), Integer.toString(estadistika.get(i).getEntzunda())});
     }
     
-    
-    public EstadistikakAbestiak(int Aukera) {
-        super();
-        if (Aukera == 2) {
-            setTitle("Estadistikak Hilabetekoa");
-            AurkeztuHilekoa();
-        } else if (Aukera == 3){
-            setTitle("Estadistikak Urtekoa");
-            AurkeztuUrtekoa();
-        }
-    }
     private void SortuGenerikoa() {
     	model.addColumn("Musikaria");
     	model.addColumn("Abestia");
