@@ -9,14 +9,14 @@ import javax.swing.SwingUtilities;
 import model.Estadistika;
 import model.dao.EstadistikaDao;
 
-public class EstadistikakPodcast extends EstadistikakTop {
-	public EstadistikakPodcast() {
+public class EstadistikakEntzunda extends EstadistikakTop {
+	public EstadistikakEntzunda() {
 		super();
 		setTitle("Estadistikak Eguneakoa");
 		SorreraGenerikoa();
 		AurkeztuEgunekoa();
 	}
-	public EstadistikakPodcast(int Aukera) {
+	public EstadistikakEntzunda(int Aukera) {
 		super();
 		SorreraGenerikoa();
 		if (Aukera == 2) {
@@ -29,50 +29,49 @@ public class EstadistikakPodcast extends EstadistikakTop {
 	}
 
 	private void AurkeztuEgunekoa() {
-		ArrayList<Estadistika> estadistika = EstadistikaDao.getPodcastTopEguna();
+		ArrayList<Estadistika> estadistika = EstadistikaDao.getTopEntzundaEgunean();
 		for (int i = 0; i < estadistika.size(); i++)
-			model.addRow(new String[] { Integer.toString(i + 1), estadistika.get(i).getS1(), estadistika.get(i).getS2(),
+			model.addRow(new String[] { Integer.toString(i + 1), estadistika.get(i).getS1(),
 					Integer.toString(estadistika.get(i).getEntzunda()) });
 	}
 	private void AurkeztuHilekoa() {
-		ArrayList<Estadistika> estadistika = EstadistikaDao.getPodcastTopHilea();
+		ArrayList<Estadistika> estadistika = EstadistikaDao.getTopEntzundaHilean();
 		for (int i = 0; i < estadistika.size(); i++)
-			model.addRow(new String[] { Integer.toString(i + 1), estadistika.get(i).getS1(), estadistika.get(i).getS2(),
+			model.addRow(new String[] { Integer.toString(i + 1), estadistika.get(i).getS1(),
 					Integer.toString(estadistika.get(i).getEntzunda()) });
 	}
 	private void AurkeztuUrtekoa() {
-		ArrayList<Estadistika> estadistika = EstadistikaDao.getPodcastTopUrtea();
+		ArrayList<Estadistika> estadistika = EstadistikaDao.getTopEntzundaUrtean();
 		for (int i = 0; i < estadistika.size(); i++)
-			model.addRow(new String[] { Integer.toString(i + 1), estadistika.get(i).getS1(), estadistika.get(i).getS2(),
+			model.addRow(new String[] { Integer.toString(i + 1), estadistika.get(i).getS1(),
 					Integer.toString(estadistika.get(i).getEntzunda()) });
 	}
 
 	private void SorreraGenerikoa() {
-		model.addColumn("Musikaria");
-		model.addColumn("Abestia");
+		model.addColumn("Izena");
 		model.addColumn("Entzunaldiak");
 
 		super.btnAstea.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				EstadistikakPodcast ea = new EstadistikakPodcast();
+				EstadistikakEntzunda ee = new EstadistikakEntzunda();
 				dispose();
-				ea.setVisible(true);
+				ee.setVisible(true);
 			}
 		});
 
 		super.btnHilabetea.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				EstadistikakPodcast ea = new EstadistikakPodcast(2);
+				EstadistikakEntzunda ee = new EstadistikakEntzunda(2);
 				dispose();
-				ea.setVisible(true);
+				ee.setVisible(true);
 			}
 		});
 
 		super.btnUrtea.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				EstadistikakPodcast ea = new EstadistikakPodcast(3);
+				EstadistikakEntzunda ee = new EstadistikakEntzunda(3);
 				dispose();
-				ea.setVisible(true);
+				ee.setVisible(true);
 			}
 		});
 

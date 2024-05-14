@@ -63,11 +63,18 @@ public class EstadistikaMenua extends JFrame {
                 ep.setVisible(true);
             }
         });
-
+        
         JButton btnEntzunda = new JButton("Top Entzundakoak");
         btnEntzunda.setBounds(150, 375, 550, 54);
         btnEntzunda.setFont(new Font("Segoe UI", Font.BOLD, 21));
         btnEntzunda.setFocusPainted(false);
+        btnEntzunda.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	EstadistikakEntzunda ee = new EstadistikakEntzunda();
+                dispose();
+                ee.setVisible(true);
+            }
+        });
         
         JButton btnPlaylist = new JButton("Top Playlist");
         btnPlaylist.setBounds(150, 475, 550, 54);

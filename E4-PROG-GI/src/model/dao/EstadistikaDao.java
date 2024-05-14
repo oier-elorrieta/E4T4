@@ -126,4 +126,61 @@ public class EstadistikaDao {
 			return null;
 		}
 	}
+	
+	public static ArrayList<Estadistika> getTopEntzundaEgunean() {
+		ResultSet rs;
+		String kontsulta;
+		Connection konexioa = Kone.konektatu();
+		try {
+			ArrayList<Estadistika> estadistika = new ArrayList<Estadistika>();
+			Statement stm = konexioa.createStatement();
+			kontsulta = "SELECT * FROM EntzundaEgunean";
+			rs = stm.executeQuery(kontsulta);
+			while (rs.next()) {
+				estadistika.add(new Estadistika(rs.getString("Izena"), "", rs.getInt("Entzunaldiak")));
+			}
+			return estadistika;
+		} catch (SQLException e) {
+			e.getMessage();
+			return null;
+		}
+	}
+	
+	public static ArrayList<Estadistika> getTopEntzundaHilean() {
+		ResultSet rs;
+		String kontsulta;
+		Connection konexioa = Kone.konektatu();
+		try {
+			ArrayList<Estadistika> estadistika = new ArrayList<Estadistika>();
+			Statement stm = konexioa.createStatement();
+			kontsulta = "SELECT * FROM EntzundaHilean";
+			rs = stm.executeQuery(kontsulta);
+			while (rs.next()) {
+				estadistika.add(new Estadistika(rs.getString("Izena"), "", rs.getInt("Entzunaldiak")));
+			}
+			return estadistika;
+		} catch (SQLException e) {
+			e.getMessage();
+			return null;
+		}
+	}
+	
+	public static ArrayList<Estadistika> getTopEntzundaUrtean() {
+		ResultSet rs;
+		String kontsulta;
+		Connection konexioa = Kone.konektatu();
+		try {
+			ArrayList<Estadistika> estadistika = new ArrayList<Estadistika>();
+			Statement stm = konexioa.createStatement();
+			kontsulta = "SELECT * FROM EntzundaUrtean";
+			rs = stm.executeQuery(kontsulta);
+			while (rs.next()) {
+				estadistika.add(new Estadistika(rs.getString("Izena"), "", rs.getInt("Entzunaldiak")));
+			}
+			return estadistika;
+		} catch (SQLException e) {
+			e.getMessage();
+			return null;
+		}
+	}
 }
