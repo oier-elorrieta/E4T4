@@ -72,8 +72,9 @@ public class MenuNagusia extends JFrame {
 
 		JButton btnAtzera = ViewMetodoak.btnAtzeraSortu();
 
-		model.SesioAldagaiak.jb = ViewMetodoak.btnErabiltzaileaSortu();
-		JButton btnErabiltzaile = model.SesioAldagaiak.jb;
+		//model.SesioAldagaiak.jb = ViewMetodoak.btnErabiltzaileaSortu();
+		//JButton btnErabiltzaile = model.SesioAldagaiak.jb;
+		JButton btnErabiltzaile = ViewMetodoak.btnErabiltzaileaSortu();
 		
 		contentPane.add(lblaukeratu);
 		contentPane.add(btnMusikaDeskubritu);

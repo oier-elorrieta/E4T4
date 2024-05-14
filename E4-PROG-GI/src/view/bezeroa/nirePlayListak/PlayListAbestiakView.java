@@ -82,9 +82,10 @@ public class PlayListAbestiakView extends JFrame {
 
 		JButton btnAtzera = ViewMetodoak.btnAtzeraSortu();
 
-		JButton btnErabiltzaile = SesioAldagaiak.jb;
-		btnErabiltzaile.removeActionListener(btnErabiltzaile.getActionListeners()[0]);
+		//JButton btnErabiltzaile = SesioAldagaiak.jb;
+		//btnErabiltzaile.removeActionListener(btnErabiltzaile.getActionListeners()[0]);
 
+		JButton btnErabiltzaile = ViewMetodoak.btnErabiltzaileaSortu();
 		btnErabiltzaile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();

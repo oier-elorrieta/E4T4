@@ -53,9 +53,10 @@ public class PodcastakView extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 
-		JButton btnErabiltzaile = model.SesioAldagaiak.jb;
-		btnErabiltzaile.removeActionListener(btnErabiltzaile.getActionListeners()[0]);
+		//JButton btnErabiltzaile = model.SesioAldagaiak.jb;
+		//btnErabiltzaile.removeActionListener(btnErabiltzaile.getActionListeners()[0]);
 
+		JButton btnErabiltzaile = ViewMetodoak.btnErabiltzaileaSortu();
 		btnErabiltzaile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);

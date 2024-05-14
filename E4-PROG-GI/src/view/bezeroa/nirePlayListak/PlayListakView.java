@@ -54,9 +54,10 @@ public class PlayListakView extends JFrame {
 
 		JButton btnAtzera = ViewMetodoak.btnAtzeraSortu();
 
-		JButton btnErabiltzaile = SesioAldagaiak.jb;
-		btnErabiltzaile.removeActionListener(btnErabiltzaile.getActionListeners()[0]);
+		//JButton btnErabiltzaile = SesioAldagaiak.jb;
+		//btnErabiltzaile.removeActionListener(btnErabiltzaile.getActionListeners()[0]);
 
+		JButton btnErabiltzaile = ViewMetodoak.btnErabiltzaileaSortu();
 		ArrayList<PlayListak> playlistLista = PlayListakDao.getPlaylist();
 		// ArrayList<PlayListak> playlistLista = Kone.getPlaylist();
 		DefaultListModel<String> modeloLista = new DefaultListModel<>();

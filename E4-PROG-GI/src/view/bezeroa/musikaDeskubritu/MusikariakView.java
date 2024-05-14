@@ -35,11 +35,11 @@ public class MusikariakView extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JButton btnErabiltzaile = SesioAldagaiak.jb;
+		//JButton btnErabiltzaile = SesioAldagaiak.jb;
 		
 		
-		btnErabiltzaile.removeActionListener(btnErabiltzaile.getActionListeners()[0]);
-		
+		//btnErabiltzaile.removeActionListener(btnErabiltzaile.getActionListeners()[0]);
+		JButton btnErabiltzaile = ViewMetodoak.btnErabiltzaileaSortu();
 		btnErabiltzaile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);

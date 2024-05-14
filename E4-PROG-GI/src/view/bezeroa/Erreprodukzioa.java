@@ -177,15 +177,15 @@ public class Erreprodukzioa extends JFrame {
 			}
 		});
 
-		JButton btnErabiltzaile = SesioAldagaiak.jb;
+		//JButton btnErabiltzaile = SesioAldagaiak.jb;
 
-		ActionListener[] li = btnErabiltzaile.getActionListeners();
-		for (ActionListener i : li) {
-			btnErabiltzaile.removeActionListener(i);
-		}
+		//ActionListener[] li = btnErabiltzaile.getActionListeners();
+		//for (ActionListener i : li) {
+		//	btnErabiltzaile.removeActionListener(i);
+		//}
 
 		// btnErabiltzaile.removeActionListener(btnErabiltzaile.getActionListeners()[0]);
-
+		JButton btnErabiltzaile = ViewMetodoak.btnErabiltzaileaSortu();
 		btnErabiltzaile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				btnPlay.setText("Play");
