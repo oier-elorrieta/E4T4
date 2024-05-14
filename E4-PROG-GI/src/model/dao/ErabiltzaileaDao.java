@@ -79,6 +79,7 @@ public class ErabiltzaileaDao {
 			ResultSet rs = stm.executeQuery(kontsulta);
 			rs.next();
 			mota = rs.getString("Mota");
+			Kone.itxiConexioa();
 			return mota;
 		} catch (SQLException e) {
 			e.getMessage();

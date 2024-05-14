@@ -11,16 +11,15 @@ public class ViewAdminMetodoak {
 
     
     
-    /**
-     * Entzunaldi guztiak itzultzen dituen metodoa.
-     * @return
-     */
-    public static DefaultListModel<String> getMusikariakList() {
+
+    
+    public static DefaultListModel<Musikaria> getMusikariakList() {
+
         
-        DefaultListModel<String> result = new DefaultListModel();
-        ArrayList<Musikaria> musikariak = MusikariaDao.getMusikariakEntzunaldiak();
+        DefaultListModel<Musikaria> result = new DefaultListModel();
+        ArrayList<Musikaria> musikariak = MusikariaDao.getMusikariak();
         for(Musikaria i : musikariak ) {
-            result.addElement(i.getIzena());
+            result.addElement(i);
         }
         
         return result;

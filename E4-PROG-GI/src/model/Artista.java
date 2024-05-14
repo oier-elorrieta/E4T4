@@ -38,6 +38,11 @@ public abstract class Artista {
 		this.idArtista = idArtista;
 	}
 	
+	public Artista(int idArtista,String izena) {
+		this.idArtista = idArtista;
+		this.izena = izena;
+	}
+	
 	public Artista(String izena, String deskription, Blob irudia) {
 
 		this.izena = izena;
@@ -46,11 +51,11 @@ public abstract class Artista {
 		this.idArtista = idArtista;
 	}
 	
-	public Artista(String izena, String deskription, String irudia) {
+	public Artista(String izena, String deskription, String irudiaString) {
 
 		this.izena = izena;
 		this.deskription = deskription;
-		this.irudiaString = irudia;
+		this.irudiaString = irudiaString;
 		this.idArtista = idArtista;
 	}
 
