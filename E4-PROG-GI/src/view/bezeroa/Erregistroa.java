@@ -49,6 +49,7 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextPane;
 import model.*;
+import model.dao.ErabiltzaileFreeDao;
 import model.dao.ErabiltzaileaDao;
 import model.dao.HizkuntzaDao;
 
@@ -230,7 +231,7 @@ public class Erregistroa extends JFrame {
 							passwordField.getText(), txtIzena.getText(), txtAbizenak.getText(),
 							new java.sql.Date(jaioData.getTime()), (String) cboHizkuntza.getSelectedItem());
 
-					if (!ErabiltzaileaDao.erregistratuErabiltzailea(erabiltzaileFree)) {
+					if (!ErabiltzaileFreeDao.erregistratuErabiltzailea(erabiltzaileFree)) {
 						JOptionPane.showMessageDialog(null, "Erabiltzaile hori badago ya sortuta", "heyyy!!",
 								JOptionPane.WARNING_MESSAGE);
 					} else {
