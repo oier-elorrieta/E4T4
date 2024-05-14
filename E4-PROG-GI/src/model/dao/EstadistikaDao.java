@@ -1,4 +1,5 @@
 package model.dao;
+
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -10,7 +11,7 @@ import model.Estadistika;
 import model.sql.Kone;
 
 public class EstadistikaDao {
-	
+
 	/**
 	 * Eguneko abestiak lortzeko funtzioa.
 	 * 
@@ -26,7 +27,8 @@ public class EstadistikaDao {
 			kontsulta = "SELECT * FROM EstadistikaAbestiaEgunean";
 			rs = stm.executeQuery(kontsulta);
 			while (rs.next()) {
-				estadistika.add(new Estadistika(rs.getString("Musikaria"), rs.getString("Abestia"), rs.getInt("Entzunaldiak")));
+				estadistika.add(
+						new Estadistika(rs.getString("Musikaria"), rs.getString("Abestia"), rs.getInt("Entzunaldiak")));
 			}
 			return estadistika;
 		} catch (SQLException e) {
@@ -34,7 +36,7 @@ public class EstadistikaDao {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Hilabete bakoitzean abestiak lortzeko funtzioa.
 	 * 
@@ -50,7 +52,8 @@ public class EstadistikaDao {
 			kontsulta = "SELECT * FROM EstadistikaAbestiaHilean";
 			rs = stm.executeQuery(kontsulta);
 			while (rs.next()) {
-				estadistika.add(new Estadistika(rs.getString("Musikaria"), rs.getString("Abestia"), rs.getInt("Entzunaldiak")));
+				estadistika.add(
+						new Estadistika(rs.getString("Musikaria"), rs.getString("Abestia"), rs.getInt("Entzunaldiak")));
 			}
 			return estadistika;
 		} catch (SQLException e) {
@@ -58,7 +61,7 @@ public class EstadistikaDao {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Urte bakoitzean abestiak lortzeko funtzioa.
 	 * 
@@ -74,7 +77,8 @@ public class EstadistikaDao {
 			kontsulta = "SELECT * FROM EstadistikaAbestiaUrtean";
 			rs = stm.executeQuery(kontsulta);
 			while (rs.next()) {
-				estadistika.add(new Estadistika(rs.getString("Musikaria"), rs.getString("Abestia"), rs.getInt("Entzunaldiak")));
+				estadistika.add(
+						new Estadistika(rs.getString("Musikaria"), rs.getString("Abestia"), rs.getInt("Entzunaldiak")));
 			}
 			return estadistika;
 		} catch (SQLException e) {
@@ -82,7 +86,7 @@ public class EstadistikaDao {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Eguneko podcast-ak lortzeko funtzioa.
 	 * 
@@ -98,7 +102,8 @@ public class EstadistikaDao {
 			kontsulta = "SELECT * FROM EstadistikaPodcastEgunean";
 			rs = stm.executeQuery(kontsulta);
 			while (rs.next()) {
-				estadistika.add(new Estadistika(rs.getString("Podcasterra"), rs.getString("Izena"), rs.getInt("Entzunaldiak")));
+				estadistika.add(
+						new Estadistika(rs.getString("Podcasterra"), rs.getString("Izena"), rs.getInt("Entzunaldiak")));
 			}
 			return estadistika;
 		} catch (SQLException e) {
@@ -106,7 +111,7 @@ public class EstadistikaDao {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Hilabete bakoitzean podcast-ak lortzeko funtzioa.
 	 * 
@@ -122,7 +127,8 @@ public class EstadistikaDao {
 			kontsulta = "SELECT * FROM EstadistikaPodcastHilean";
 			rs = stm.executeQuery(kontsulta);
 			while (rs.next()) {
-				estadistika.add(new Estadistika(rs.getString("Podcasterra"), rs.getString("Izena"), rs.getInt("Entzunaldiak")));
+				estadistika.add(
+						new Estadistika(rs.getString("Podcasterra"), rs.getString("Izena"), rs.getInt("Entzunaldiak")));
 			}
 			return estadistika;
 		} catch (SQLException e) {
@@ -130,7 +136,7 @@ public class EstadistikaDao {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Urte bakoitzean podcast-ak lortzeko funtzioa.
 	 * 
@@ -146,7 +152,8 @@ public class EstadistikaDao {
 			kontsulta = "SELECT * FROM EstadistikaPodcastUrtean";
 			rs = stm.executeQuery(kontsulta);
 			while (rs.next()) {
-				estadistika.add(new Estadistika(rs.getString("Podcasterra"), rs.getString("Izena"), rs.getInt("Entzunaldiak")));
+				estadistika.add(
+						new Estadistika(rs.getString("Podcasterra"), rs.getString("Izena"), rs.getInt("Entzunaldiak")));
 			}
 			return estadistika;
 		} catch (SQLException e) {
@@ -154,7 +161,7 @@ public class EstadistikaDao {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Eguneko entzundakoak lortzeko funtzioa.
 	 * 
@@ -178,7 +185,7 @@ public class EstadistikaDao {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Hilabete bakoitzean entzundakoak lortzeko funtzioa.
 	 * 
@@ -202,7 +209,7 @@ public class EstadistikaDao {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Urte bakoitzean entzundakoak lortzeko funtzioa.
 	 * 
@@ -226,7 +233,7 @@ public class EstadistikaDao {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Eguneko albumak lortzeko funtzioa.
 	 * 
@@ -242,7 +249,8 @@ public class EstadistikaDao {
 			kontsulta = "SELECT * FROM EstadistikaAlbumakEgunean";
 			rs = stm.executeQuery(kontsulta);
 			while (rs.next()) {
-				estadistika.add(new Estadistika(rs.getString("Artista"), rs.getString("Albuma"), rs.getInt("Entzunaldiak")));
+				estadistika.add(
+						new Estadistika(rs.getString("Artista"), rs.getString("Albuma"), rs.getInt("Entzunaldiak")));
 			}
 			return estadistika;
 		} catch (SQLException e) {
@@ -250,7 +258,7 @@ public class EstadistikaDao {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Hilabete bakoitzean albumak lortzeko funtzioa.
 	 * 
@@ -266,7 +274,8 @@ public class EstadistikaDao {
 			kontsulta = "SELECT * FROM EstadistikaAlbumaklHilean";
 			rs = stm.executeQuery(kontsulta);
 			while (rs.next()) {
-				estadistika.add(new Estadistika(rs.getString("Artista"), rs.getString("Albuma"), rs.getInt("Entzunaldiak")));
+				estadistika.add(
+						new Estadistika(rs.getString("Artista"), rs.getString("Albuma"), rs.getInt("Entzunaldiak")));
 			}
 			return estadistika;
 		} catch (SQLException e) {
@@ -274,7 +283,7 @@ public class EstadistikaDao {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Urte bakoitzean albumak lortzeko funtzioa.
 	 * 
@@ -290,7 +299,8 @@ public class EstadistikaDao {
 			kontsulta = "SELECT * FROM EstadistikaAlbumakUrtean";
 			rs = stm.executeQuery(kontsulta);
 			while (rs.next()) {
-				estadistika.add(new Estadistika(rs.getString("Artista"), rs.getString("Albuma"), rs.getInt("Entzunaldiak")));
+				estadistika.add(
+						new Estadistika(rs.getString("Artista"), rs.getString("Albuma"), rs.getInt("Entzunaldiak")));
 			}
 			return estadistika;
 		} catch (SQLException e) {

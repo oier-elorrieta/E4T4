@@ -53,6 +53,13 @@ public class AdminMenuNagusia extends JFrame {
         btnEstadistikak.setBounds(150, 375, 550, 54);
         btnEstadistikak.setFont(new Font("Segoe UI", Font.BOLD, 21));
         btnEstadistikak.setFocusPainted(false);
+        btnEstadistikak.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				EstadistikaMenua estadistikamenua = new EstadistikaMenua();
+				dispose();
+				estadistikamenua.setVisible(true);
+			}
+		});
 
         JButton btnAtzera = new JButton("Atzera");
         btnAtzera.setBackground(Color.BLACK);

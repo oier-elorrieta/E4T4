@@ -16,6 +16,7 @@ public class EstadistikakPodcast extends EstadistikakTop {
 		SorreraGenerikoa();
 		AurkeztuEgunekoa();
 	}
+
 	public EstadistikakPodcast(int Aukera) {
 		super();
 		SorreraGenerikoa();
@@ -30,21 +31,29 @@ public class EstadistikakPodcast extends EstadistikakTop {
 
 	private void AurkeztuEgunekoa() {
 		ArrayList<Estadistika> estadistika = EstadistikaDao.getPodcastTopEguna();
-		for (int i = 0; i < estadistika.size(); i++)
-			model.addRow(new String[] { Integer.toString(i + 1), estadistika.get(i).getS1(), estadistika.get(i).getS2(),
-					Integer.toString(estadistika.get(i).getEntzunda()) });
+		if (estadistika.size() != 0) {
+			for (int i = 0; i < estadistika.size(); i++)
+				model.addRow(new String[] { Integer.toString(i + 1), estadistika.get(i).getS1(),
+						estadistika.get(i).getS2(), Integer.toString(estadistika.get(i).getEntzunda()) });
+		}
 	}
+
 	private void AurkeztuHilekoa() {
 		ArrayList<Estadistika> estadistika = EstadistikaDao.getPodcastTopHilea();
-		for (int i = 0; i < estadistika.size(); i++)
-			model.addRow(new String[] { Integer.toString(i + 1), estadistika.get(i).getS1(), estadistika.get(i).getS2(),
-					Integer.toString(estadistika.get(i).getEntzunda()) });
+		if (estadistika.size() != 0) {
+			for (int i = 0; i < estadistika.size(); i++)
+				model.addRow(new String[] { Integer.toString(i + 1), estadistika.get(i).getS1(),
+						estadistika.get(i).getS2(), Integer.toString(estadistika.get(i).getEntzunda()) });
+		}
 	}
+
 	private void AurkeztuUrtekoa() {
 		ArrayList<Estadistika> estadistika = EstadistikaDao.getPodcastTopUrtea();
-		for (int i = 0; i < estadistika.size(); i++)
-			model.addRow(new String[] { Integer.toString(i + 1), estadistika.get(i).getS1(), estadistika.get(i).getS2(),
-					Integer.toString(estadistika.get(i).getEntzunda()) });
+		if (estadistika.size() != 0) {
+			for (int i = 0; i < estadistika.size(); i++)
+				model.addRow(new String[] { Integer.toString(i + 1), estadistika.get(i).getS1(),
+						estadistika.get(i).getS2(), Integer.toString(estadistika.get(i).getEntzunda()) });
+		}
 	}
 
 	private void SorreraGenerikoa() {
