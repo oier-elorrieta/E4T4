@@ -1,4 +1,5 @@
 package model.dao;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -93,6 +94,8 @@ public class MusikariaDao {
 		return musikaria;
 	}
 	
+	
+	
 	public static boolean gehituMusikaria(Musikaria musikari) {
 		boolean ondo = true;
 		
@@ -112,6 +115,64 @@ public class MusikariaDao {
 		
 		return ondo;
 	}
+	
+	public static ArrayList<Musikaria> getMusikariak() {
+		ArrayList<Musikaria> musikariak = new ArrayList<Musikaria>();
+		Musikaria musikari;
+		Connection konexioa = Kone.konektatu();
+		try {
+			stm = konexioa.createStatement();
+			kontsulta = "SELECT * FROM Artista JOIN Musikaria using (IdArtista)";
+			rs = stm.executeQuery(kontsulta);
+			while(rs.next()) {
+			musikari = new Musikaria(rs.getInt("IdArtista"),rs.getString("IzenArtistikoa"),rs.getString("Deskripzioa"),rs.getBlob("Irudia"),rs.getString("ezaugarria"));
+			musikariak.add(musikari);
+
+			
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		return musikariak;
+	}
+	
+	public static boolean ezabatuMusikaria(String izena) {
+		Connection konexioa = Kone.konektatu();
+		try {
+			kontsulta = "DELETE FROM Artista WHERE IzenArtistikoa = '" + izena + "'";
+			pstm = konexioa.prepareStatement(kontsulta);
+			pstm.execute();
+			return true;
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			return false;
+		}
+		
+	}
+	
+	public static boolean aldatuMusikaria(Musikaria musikari) {
+		boolean ondo = true;
+		
+		Connection konexioa = Kone.konektatu();
+		kontsulta = "Call AldatuMusikaria(?,?,?,?,?)";
+		try {
+			pstm = konexioa.prepareStatement(kontsulta);
+			pstm.setInt(1,musikari.getIdArtista());
+			pstm.setString(2,musikari.getIzena());
+			pstm.setString(3,musikari.getIrudiaString());
+			pstm.setString(4,musikari.getDeskription());
+			pstm.setString(5,musikari.getEzaugarria());
+			pstm.execute();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			ondo =  false;
+		}
+		
+		return ondo;
+	}
+	
+	
 	
 	
 	

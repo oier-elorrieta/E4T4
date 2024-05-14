@@ -111,6 +111,25 @@ public class ImportExportMetodoak {
 	}
 	
 	
+	public static String inportatuIrudia(String ruta) {
+		
+		String nombreArchivo = ruta; 
+		String irudiaBase64 = "";
+		try {
+			
+			BufferedReader br = new BufferedReader(new FileReader(nombreArchivo));
+			String linea;
+			while ((linea = br.readLine()) != null) {
+				irudiaBase64 =  irudiaBase64 + linea;
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			
+		}
+		return irudiaBase64.trim();
+	}
+	
+	
 
 	
 	

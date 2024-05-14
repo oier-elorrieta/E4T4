@@ -37,7 +37,6 @@ public class KudeatuPlantilla extends JFrame {
 
     protected JButton btnAtzera;
     protected JScrollPane scrollPane;
-    protected DefaultListModel<String> modeloList;
     protected JList list;
     protected JLabel lblArtistaKude = new JLabel();
     protected JButton btnJarraitu;
