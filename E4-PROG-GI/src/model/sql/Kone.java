@@ -84,18 +84,4 @@ public class Kone {
 			e.printStackTrace();
 		}
 	}
-
-	
-	public static ResultSet isLoginaOk(String erabiltzailea) {
-		konektatu();
-		try {
-			stm = konexioa.createStatement();
-			kontsulta = "SELECT Erabiltzailea, Pasahitza, IdBezeroa, Mota FROM Bezeroa WHERE Erabiltzailea = '"
-					+ erabiltzailea + "'";
-			rs = stm.executeQuery(kontsulta);
-		} catch (SQLException e) {
-			e.getMessage();
-		}
-		return rs;
-	}
 }

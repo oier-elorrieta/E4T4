@@ -177,15 +177,15 @@ public class Erreprodukzioa extends JFrame {
 			}
 		});
 
-		JButton btnErabiltzaile = SesioAldagaiak.jb;
+		//JButton btnErabiltzaile = SesioAldagaiak.jb;
 
-		ActionListener[] li = btnErabiltzaile.getActionListeners();
-		for (ActionListener i : li) {
-			btnErabiltzaile.removeActionListener(i);
-		}
+		//ActionListener[] li = btnErabiltzaile.getActionListeners();
+		//for (ActionListener i : li) {
+		//	btnErabiltzaile.removeActionListener(i);
+		//}
 
 		// btnErabiltzaile.removeActionListener(btnErabiltzaile.getActionListeners()[0]);
-
+		JButton btnErabiltzaile = ViewMetodoak.btnErabiltzaileaSortu();
 		btnErabiltzaile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				btnPlay.setText("Play");
@@ -196,12 +196,7 @@ public class Erreprodukzioa extends JFrame {
 			}
 		});
 
-		JButton btnAtzera = new JButton("Atzera");
-		btnAtzera.setBackground(Color.BLACK);
-		btnAtzera.setForeground(Color.RED);
-		btnAtzera.setBounds(50, 60, 144, 50);
-		btnAtzera.setFont(new Font("SansSerif", Font.BOLD, 22));
-		btnAtzera.setFocusPainted(false);
+		JButton btnAtzera = ViewMetodoak.btnAtzeraSortu();
 
 		Abestia a = new Abestia();
 		if (abestiak.get(abestiAukera).getClass().toString().equals(a.getClass().toString())) {

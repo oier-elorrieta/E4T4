@@ -47,7 +47,7 @@ public class ErabiltzailePremiumDao {
 		Kone.itxiConexioa();
 	}
 
-	public static void kargatuErabiltzailePremium(int id) {
+	public static boolean kargatuErabiltzailePremium(int id) {
 		Connection konexioa = Kone.konektatu();
 		try {
 			Statement stm = konexioa.createStatement();
@@ -60,9 +60,12 @@ public class ErabiltzailePremiumDao {
 						rs.getString("b.Abizena"), rs.getDate("JaiotzeData"), rs.getString("b.IdHizkuntza"),
 						rs.getDate("p.IraungitzeData"));
 			}
+			Kone.itxiConexioa();
 		} catch (SQLException e) {
 			e.getMessage();
+			return false;
 		}
+		return true;
 
 	}
 }

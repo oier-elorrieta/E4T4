@@ -52,7 +52,7 @@ public class AudioDao {
 		return abestiakList;
 	}
 
-	public static void erregistratuErreprodukzioa(Audio audio) {
+	public static boolean erregistratuErreprodukzioa(Audio audio) {
 
 		int idBezero;
 
@@ -65,10 +65,12 @@ public class AudioDao {
 			pstm.setInt(2, audio.getIdAudio());
 			pstm.setDate(3, new java.sql.Date(new java.util.Date().getTime()));
 			pstm.execute();
-
+			Kone.itxiConexioa();
 		} catch (SQLException e) {
 			System.out.println("Kontsulta txarto" + e.getMessage());
+			return false;
 		}
+		return true;
 	}
 
 }

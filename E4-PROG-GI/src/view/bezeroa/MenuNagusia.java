@@ -70,15 +70,11 @@ public class MenuNagusia extends JFrame {
 		btnNirePlayList.setFont(new Font("Segoe UI", Font.BOLD, 21));
 		btnNirePlayList.setFocusPainted(false);
 
-		JButton btnAtzera = new JButton("Atzera");
-		btnAtzera.setBackground(Color.BLACK);
-		btnAtzera.setForeground(Color.RED);
-		btnAtzera.setBounds(50, 60, 144, 50);
-		btnAtzera.setFont(new Font("SansSerif", Font.BOLD, 22));
-		btnAtzera.setFocusPainted(false);
+		JButton btnAtzera = ViewMetodoak.btnAtzeraSortu();
 
-		model.SesioAldagaiak.jb = ViewMetodoak.btnErabiltzaileaSortu();
-		JButton btnErabiltzaile = model.SesioAldagaiak.jb;
+		//model.SesioAldagaiak.jb = ViewMetodoak.btnErabiltzaileaSortu();
+		//JButton btnErabiltzaile = model.SesioAldagaiak.jb;
+		JButton btnErabiltzaile = ViewMetodoak.btnErabiltzaileaSortu();
 		
 		contentPane.add(lblaukeratu);
 		contentPane.add(btnMusikaDeskubritu);
