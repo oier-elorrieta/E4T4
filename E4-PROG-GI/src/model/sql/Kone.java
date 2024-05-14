@@ -1,5 +1,4 @@
 package model.sql;
-
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -10,9 +9,7 @@ import java.sql.Statement;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Iterator;
-
 import javax.swing.JOptionPane;
-
 import com.mysql.cj.jdbc.Blob;
 import model.Abestia;
 import model.Album;
@@ -36,7 +33,7 @@ public class Kone {
 	//private static String url = "jdbc:mysql://localhost/Sphea";
 	//private static String user = "root";
 	//private static String pass = "";
-	
+
 	private static String userErabiltzailea;
 	private static String passErabiltzailea;
 
@@ -46,7 +43,10 @@ public class Kone {
 	private static PreparedStatement pstm;
 	private static ResultSet rs;
 
-	// Datu-basearekin konexioa egiteko metodoa
+	/**
+	 * Datu-basearekin konexioa egiteko metodoa.
+	 * @return konexioa - datu-basearekin konexioa
+	 */
 	public static Connection konektatu() {
 		try {
 			// Konexioa sortu, oraindik ez badago
@@ -61,6 +61,12 @@ public class Kone {
 		return konexioa;
 	}
 
+	/**
+	 * Erabiltzailearen erabiltzailea eta pasahitza erabiliz konektatu.
+	 * @param user - erabiltzailea
+	 * @param pass - pasahitza
+	 * @return LoginOk - konexioa ondo egin den ala ez adierazten duen boolearra
+	 */
 	public static boolean konektatuAdmin(String user, String pass) {
 		boolean LoginOk = true;
 		try {
@@ -72,6 +78,9 @@ public class Kone {
 		return LoginOk;
 	}
 
+	/**
+	 * Konexioa itxi.
+	 */
 	public static void itxiConexioa() {
 		try {
 			if (stm != null || !stm.isClosed()) {

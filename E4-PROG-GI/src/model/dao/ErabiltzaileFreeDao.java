@@ -1,17 +1,21 @@
 package model.dao;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 import model.ErabiltzaileFree;
 import model.SesioAldagaiak;
 import model.sql.Kone;
 
 public class ErabiltzaileFreeDao {
 	
+	/**
+	 * Erabiltzailea erregistratzeko metodoa.
+	 * 
+	 * @param erab ErabiltzaileFree objektua
+	 * @return erregistratu den erabiltzailea
+	 */
 	public static boolean erregistratuErabiltzailea(ErabiltzaileFree erab) {
 		try {
 			Connection konexioa = Kone.konektatu();
@@ -32,6 +36,12 @@ public class ErabiltzaileFreeDao {
 
 	}
 	
+	/**
+	 * ErabiltzaileFree objektua kargatzeko metodoa.
+	 * 
+	 * @param id Bezeroaren identifikazio zenbakia
+	 * @return erabiltzailea kargatu den ala ez
+	 */
 	public static boolean kargatuErabiltzaileFree(int id) {
 		Connection konexioa = Kone.konektatu();
 		try {

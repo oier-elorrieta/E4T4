@@ -13,8 +13,11 @@ import model.Podcasterra;
 import model.sql.Kone;
 
 /**
- * Klase honek podcast-ak kudeatzeko funtzionalitateak eskaintzen ditu.
- */
+	 * Podcast-ak lortzeko metodoa.
+	 * 
+	 * @param podcaster Podcast-ak lortzeko erabiltzen den podcaster objektua.
+	 * @return podcast-ak ArrayList moduan itzultzen ditu.
+	 */
 public class PodcastDao {
 	private static String kontsulta;
 	private static Statement stm = null;
@@ -43,7 +46,6 @@ public class PodcastDao {
 				podcastList.add(podcast);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return podcastList;

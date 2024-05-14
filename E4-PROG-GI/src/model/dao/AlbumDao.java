@@ -63,6 +63,10 @@ public class AlbumDao {
 		return true;
 	}
 	
+	/**
+	 * Album klasea abestien albuma errepresentatzeko erabiliko da.
+	 * Albumak izenburua, generoa eta irudia ditu.
+	 */
 	public static Album getAlbumByAbesti(Audio audio) {
 		Album albumAbestia = null;
 		Connection konexioa = Kone.konektatu();

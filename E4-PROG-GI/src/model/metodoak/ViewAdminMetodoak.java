@@ -11,7 +11,10 @@ public class ViewAdminMetodoak {
 
     
     
-    
+    /**
+     * Entzunaldi guztiak itzultzen dituen metodoa.
+     * @return
+     */
     public static DefaultListModel<String> getMusikariakList() {
         
         DefaultListModel<String> result = new DefaultListModel();

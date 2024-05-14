@@ -13,8 +13,16 @@ import model.Audio;
 import model.SesioAldagaiak;
 import model.sql.Kone;
 
-
+/**
+ * AbestiaDao klasea, Abestia entitatearekin erlazionatutako datu-basearen eragiketak egiteko erabiltzen den DAO klasea da.
+ */
 public class AbestiaDao {	
+	/**
+	 * Album baten arabera Abestiak lortzeko metodoa.
+	 * 
+	 * @param album Album objektua, Abestiak lortzeko erabiliko den albuma.
+	 * @return Abestiak ArrayList-a, albumaren arabera lortutako Abestiak.
+	 */
 	public static ArrayList<Audio> getAbestiakByAlbum(Album album) {
 		Connection konexioa = Kone.konektatu();
 		try {
@@ -32,7 +40,4 @@ public class AbestiaDao {
 			return null;
 		}
 	}
-	
-	
-		
 }

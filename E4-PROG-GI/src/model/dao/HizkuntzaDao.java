@@ -1,16 +1,19 @@
 package model.dao;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
 import model.Hizkuntza;
 import model.sql.Kone;
 
 public class HizkuntzaDao {
 
+	/**
+	 * Hizkuntzak jaso eta itzultzen dituen ArrayList bat itzultzen du.
+	 * 
+	 * @return Hizkuntzak ArrayList moduan
+	 */
 	public static ArrayList<Hizkuntza> getHizkuntzak() {
 		ArrayList<Hizkuntza> hizkuntzak = new ArrayList<Hizkuntza>();
 		Hizkuntza hizkuntzaSartu;
