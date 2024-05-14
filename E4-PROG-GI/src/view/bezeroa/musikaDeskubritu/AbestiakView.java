@@ -87,7 +87,7 @@ public class AbestiakView extends JFrame {
 		panel.setBounds(10, 152, 359, 389);
 		contentPane.add(panel);
 
-		ArrayList<Audio> abestiak = AbestiaDao.getAbestiak(album.getId());
+		ArrayList<Audio> abestiak = AbestiaDao.getAbestiakByAlbum(album.getId());
 		DefaultListModel<Audio> modeloList = ViewMetodoak.getMusikariAbestiak(album.getId());
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
 

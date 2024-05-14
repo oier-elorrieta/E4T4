@@ -19,11 +19,14 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+
+import model.AbestiGuztokoa;
 import model.Abestia;
 import model.Audio;
 import model.Musikaria;
 import model.PlayListak;
 import model.SesioAldagaiak;
+import model.dao.AbestiGuztokoaDao;
 import model.dao.AbestiaDao;
 import model.dao.AudioDao;
 import model.dao.MusikariaDao;
@@ -47,8 +50,14 @@ public class PlayListAbestiakView extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		if (aukeraPlaylist.getIdPlayList() == 0) {
+			abestiakList = AbestiGuztokoaDao.getAbestiGustokoak();
+		} else {
+			abestiakList = AudioDao.getPlayListAbestiak(aukeraPlaylist);
+		}
 
-		abestiakList = AudioDao.getPlayListAbestiak(aukeraPlaylist);
+	
 
 		DefaultListModel<String> modeloLista = new DefaultListModel<>();
 		for (int i = 0; i < abestiakList.size(); i++) {

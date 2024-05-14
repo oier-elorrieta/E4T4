@@ -144,7 +144,7 @@ public class MenuErreprodukzioa extends JFrame {
 					int index = jListPlayList.getSelectedIndex();
 					if (index == 0) {
 						try {
-							if (AbestiaDao.gustukoaKomprobatu(audio)) {
+							if (AbestiaDao.abestiGuztokoaKonprobatu(audio)) {
 								JOptionPane.showMessageDialog(null, "Ezin da sartu abestia, zerrendan baitago.",
 										"Error", JOptionPane.ERROR_MESSAGE);
 							} else {

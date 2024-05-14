@@ -29,6 +29,8 @@ import com.mysql.cj.protocol.x.SyncFlushDeflaterOutputStream;
 
 import model.dao.AbestiaDao;
 import model.dao.AlbumDao;
+import model.dao.ErabiltzaileFreeDao;
+import model.dao.ErabiltzailePremiumDao;
 import model.dao.MusikariaDao;
 import model.dao.PodcastDao;
 import model.dao.PodcasterraDao;
@@ -42,26 +44,6 @@ import view.bezeroa.podcastDeskubritu.PodcastakView;
  * da.
  */
 public class ViewMetodoak {
-
-	/**
-	 * Metodo honek ComboBoxModel bat sortzen du, hizkuntza guztiak gehituz.
-	 *
-	 * @param modeloa ComboBoxModel bat, hizkuntzak gehitzeko.
-	 * @return Sortutako ComboBoxModela.
-	 */
-	public static DefaultComboBoxModel cboHizkuntzaModeloaSortu(DefaultComboBoxModel modeloa) {
-		try {
-			Kone.konektatu();
-			ResultSet hizkuntzaLista = Kone.hizkuntzakAtera();
-			while (hizkuntzaLista.next()) {
-				modeloa.addElement(hizkuntzaLista.getString("IdHizkuntza"));
-			}
-			Kone.itxiConexioa();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return modeloa;
-	}
 
 	/**
 	 * Metodo honek erabiltzailearen sartutako erabiltzaile-izena eta pasahitza
@@ -100,12 +82,12 @@ public class ViewMetodoak {
 	public static void erabiltzaileaKargatu(int id, String mota) {
 		switch (mota) {
 		case "free":
-			Kone.kargatuErabiltzaileFree(id);
+			ErabiltzaileFreeDao.kargatuErabiltzaileFree(id);
 			//SesioAldagaiak.erabiltzailePremium = false;
 
 			break;
 		case "premium":
-			Kone.kargatuErabiltzailePremium(id);
+			ErabiltzailePremiumDao.kargatuErabiltzailePremium(id);
 			//SesioAldagaiak.erabiltzailePremium = true;
 			break;
 		}
@@ -291,7 +273,7 @@ public class ViewMetodoak {
 	public static DefaultListModel<Audio> getMusikariAbestiak(int idAlbum) {
 
 		DefaultListModel<Audio> lm = new DefaultListModel();
-		ArrayList<Audio> abestiak = AbestiaDao.getAbestiak(idAlbum);
+		ArrayList<Audio> abestiak = AbestiaDao.getAbestiakByAlbum(idAlbum);
 
 		for (Audio i : abestiak) {
 			lm.addElement(i);
