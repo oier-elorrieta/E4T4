@@ -210,7 +210,7 @@ public class Erreprodukzioa extends JFrame {
 						if (gustokoaDu) {
 							AbestiGuztokoaDao.abestiGuztokoaEzabatu(abestiGuztokoa);
 							JOptionPane.showMessageDialog(null, "Gustoko listatik ondo kendu da", "Eginda!",
-									JOptionPane.INFORMATION_MESSAGE);
+									JOptionPane.INFORMATION_MESSAGE);						
 						} else {
 							AbestiGuztokoaDao.abestiGustokoaGehitu(abestiGuztokoa);
 							JOptionPane.showMessageDialog(null, "Gustoko listan ondo sartu da", "Eginda!",
