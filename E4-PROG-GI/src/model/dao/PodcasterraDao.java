@@ -12,10 +12,6 @@ import model.sql.Kone;
 
 
 public class PodcasterraDao {
-	private static String kontsulta;
-	private static Statement stm = null;
-	private static PreparedStatement pstm;
-	private static ResultSet rs;
 	
 	/**
 	 * Emandako kontsulta erabiliz, podcasterraren entzunaldi guztiak itzultzen ditu.
@@ -28,9 +24,9 @@ public class PodcasterraDao {
 			
 		try {
 			Connection konexioa = Kone.konektatu();
-			stm = konexioa.createStatement();
-			kontsulta = "SELECT * FROM EstatistikakAurkestuPodcasterraTotala";
-			rs = stm.executeQuery(kontsulta);
+			Statement stm = konexioa.createStatement();
+			String kontsulta = "SELECT * FROM EstatistikakAurkestuPodcasterraTotala";
+			ResultSet rs = stm.executeQuery(kontsulta);
 			while (rs.next()) {
 				podcasterraSartu = new Podcasterra(rs.getString("Izena"), rs.getBlob("Irudia"), rs.getInt("Totala"));
 				podcasterrak.add(podcasterraSartu);
@@ -56,10 +52,10 @@ public class PodcasterraDao {
 		Podcasterra podcaster = null;
 		try {
 			Connection konexioa = Kone.konektatu();
-			stm = konexioa.createStatement();
-			kontsulta = "SELECT * FROM Podcaster p INNER JOIN Artista a on p.IdArtista = a.IdArtista WHERE IzenArtistikoa='"
+			Statement stm = konexioa.createStatement();
+			String kontsulta = "SELECT * FROM Podcaster p INNER JOIN Artista a on p.IdArtista = a.IdArtista WHERE IzenArtistikoa='"
 					+ izena + "'";
-			rs = stm.executeQuery(kontsulta);
+			ResultSet rs = stm.executeQuery(kontsulta);
 			rs.next();
 			podcaster = new Podcasterra(rs.getInt("a.IdArtista"), rs.getString("a.IzenArtistikoa"),
 					rs.getString("a.Deskripzioa"), rs.getBlob("a.Irudia"));

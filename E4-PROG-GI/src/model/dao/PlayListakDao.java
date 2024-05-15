@@ -14,11 +14,6 @@ import model.SesioAldagaiak;
 import model.sql.Kone;
 
 public class PlayListakDao {
-	private static String kontsulta;
-	private static Statement stm = null;
-	private static PreparedStatement pstm;
-	private static ResultSet rs;
-
 	/**
 	 * Erabiltzailearen playlist-ak itzultzen dituen metodoa.
 	 * 
@@ -31,9 +26,9 @@ public class PlayListakDao {
 		int id = SesioAldagaiak.logErabiltzailea.getIdErabiltzailea();
 		try {
 			Connection konexioa = Kone.konektatu();
-			stm = konexioa.createStatement();
-			kontsulta = "SELECT * FROM Playlist where IdBezeroa = " + id;
-			rs = stm.executeQuery(kontsulta);
+			Statement stm = konexioa.createStatement();
+			String kontsulta = "SELECT * FROM Playlist where IdBezeroa = " + id;
+			ResultSet rs = stm.executeQuery(kontsulta);
 			java.util.Date d = new java.util.Date();
 			PlayListak playlistGustokoena = new PlayListak(0, "Gustokoena", d);
 			playlistList.add(playlistGustokoena);
@@ -63,9 +58,8 @@ public class PlayListakDao {
 
 		try {
 			Connection konexioa = Kone.konektatu();
-			kontsulta = "INSERT into Playlist(Izenburua, SorreraData, IdBezeroa) VALUES(?,?,?)";
-			stm = konexioa.createStatement();
-			pstm = konexioa.prepareStatement(kontsulta);
+			String kontsulta = "INSERT into Playlist(Izenburua, SorreraData, IdBezeroa) VALUES(?,?,?)";
+			PreparedStatement pstm = konexioa.prepareStatement(kontsulta);
 			pstm.setString(1, izenburua);
 			pstm.setDate(2, sqlDataOrain);
 			pstm.setInt(3, id);
@@ -88,15 +82,15 @@ public class PlayListakDao {
 	public static boolean playlistEzabatu(int idPlaylist) {
 		try {
 			Connection konexioa = Kone.konektatu();
-			stm = konexioa.createStatement();
-			kontsulta = "DELETE FROM Playlist WHERE IdList = " + idPlaylist;
+			Statement stm = konexioa.createStatement();
+			String kontsulta = "DELETE FROM Playlist WHERE IdList = " + idPlaylist;
 			stm.executeUpdate(kontsulta);
 			konexioa.close();
 			return true;
 		} catch (SQLException e) {
 			return false;
 		}
-		
+
 	}
 
 	/**
@@ -109,8 +103,9 @@ public class PlayListakDao {
 	public static boolean abestiPlaylistEzabatu(int idPlaylist, int idAbestia) {
 		try {
 			Connection konexioa = Kone.konektatu();
-			stm = konexioa.createStatement();
-			kontsulta = "DELETE FROM PlaylistAbestiak WHERE IdList = " + idPlaylist + " AND IdAudio = " + idAbestia;
+			Statement stm = konexioa.createStatement();
+			String kontsulta = "DELETE FROM PlaylistAbestiak WHERE IdList = " + idPlaylist + " AND IdAudio = "
+					+ idAbestia;
 			stm.executeUpdate(kontsulta);
 			konexioa.close();
 			return true;
@@ -133,20 +128,21 @@ public class PlayListakDao {
 		int id = SesioAldagaiak.logErabiltzailea.getIdErabiltzailea();
 		try {
 			Connection konexioa = Kone.konektatu();
-			stm = konexioa.createStatement();
-			
+			Statement stm = konexioa.createStatement();
+
+			String kontsulta;
 			if (aukeraPlaylist.getIdPlayList() == 0) {
 				kontsulta = "SELECT au.IdAudio, au.Izena, au.Iraupena, au.Irudia FROM Gustokoak g join Audio au using (IdAudio) where IdBezeroa = "
 						+ id;
-			} else 
+			} else
 				kontsulta = "SELECT au.IdAudio, au.Izena, au.Iraupena, au.Irudia FROM PlaylistAbestiak pla INNER JOIN Audio au on pla.IdAudio = au.IdAudio where IdList = "
 						+ aukeraPlaylist.getIdPlayList();
-			
-			rs = stm.executeQuery(kontsulta);
+
+			ResultSet rs = stm.executeQuery(kontsulta);
 
 			while (rs.next()) {
-				abestia = new Abestia(rs.getInt("au.IdAudio"), rs.getString("au.Izena"),
-						rs.getTime("au.Iraupena"), rs.getBlob("au.Irudia"), false);
+				abestia = new Abestia(rs.getInt("au.IdAudio"), rs.getString("au.Izena"), rs.getTime("au.Iraupena"),
+						rs.getBlob("au.Irudia"), false);
 				abestiakList.add(abestia);
 			}
 			konexioa.close();
@@ -155,7 +151,7 @@ public class PlayListakDao {
 			e.getMessage();
 			return null;
 		}
-		
+
 	}
 
 	/**
@@ -167,14 +163,13 @@ public class PlayListakDao {
 	 */
 	public static boolean playlisteanAbestiaGehitu(PlayListak playlist, Audio audio) {
 
-		Connection konexioa = Kone.konektatu();
-
 		java.util.Date dataOrain = new java.util.Date();
 		java.sql.Date sqlDataOrain = new java.sql.Date(dataOrain.getTime());
 
-		kontsulta = "INSERT into PlaylistAbestiak(IdList, IdAudio, PData) VALUES(?,?,?)";
 		try {
-			pstm = konexioa.prepareStatement(kontsulta);
+			Connection konexioa = Kone.konektatu();
+			String kontsulta = "INSERT into PlaylistAbestiak(IdList, IdAudio, PData) VALUES(?,?,?)";
+			PreparedStatement pstm = konexioa.prepareStatement(kontsulta);
 			pstm.setInt(1, playlist.getIdPlayList());
 			pstm.setInt(2, audio.getIdAudio());
 			pstm.setDate(3, sqlDataOrain);
@@ -185,7 +180,7 @@ public class PlayListakDao {
 			System.out.println("Kontsulta txarto" + e.getMessage());
 			return false;
 		}
-		
+
 	}
 
 	/**
@@ -196,13 +191,13 @@ public class PlayListakDao {
 	 * @return True, abestia aukeratutako playlist-ean dago. False, abestia ez dago
 	 *         aukeratutako playlist-ean.
 	 */
-	public static boolean komprobatuAbestiaBadago(PlayListak playlist, Audio audio) {		
+	public static boolean komprobatuAbestiaBadago(PlayListak playlist, Audio audio) {
 		try {
 			Connection konexioa = Kone.konektatu();
-			stm = konexioa.createStatement();
-			kontsulta = "select count(*) as cont from PlaylistAbestiak where IdAudio = " + audio.getIdAudio()
+			Statement stm = konexioa.createStatement();
+			String kontsulta = "select count(*) as cont from PlaylistAbestiak where IdAudio = " + audio.getIdAudio()
 					+ " and IdList = " + playlist.getIdPlayList() + ";";
-			rs = stm.executeQuery(kontsulta);
+			ResultSet rs = stm.executeQuery(kontsulta);
 			rs.next();
 			if (rs.getInt("cont") != 0) {
 				return true;
@@ -226,8 +221,8 @@ public class PlayListakDao {
 		try {
 			Connection konexioa = Kone.konektatu();
 			String kontsulta = "Select * from Playlist where Izenburua='" + izena + "' ORDER BY IdList desc LIMIT 1";
-			stm = konexioa.createStatement();
-			rs = stm.executeQuery(kontsulta);
+			Statement stm = konexioa.createStatement();
+			ResultSet rs = stm.executeQuery(kontsulta);
 			while (rs.next()) {
 				playlista = new PlayListak(rs.getInt("IdList"), rs.getString("Izenburua"), rs.getDate("SorreraData"));
 			}

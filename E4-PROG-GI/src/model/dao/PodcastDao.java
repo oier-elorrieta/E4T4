@@ -19,11 +19,6 @@ import model.sql.Kone;
  * @return podcast-ak ArrayList moduan itzultzen ditu.
  */
 public class PodcastDao {
-	private static String kontsulta;
-	private static Statement stm = null;
-	private static PreparedStatement pstm;
-	private static ResultSet rs;
-
 	/**
 	 * Podcast-ak lortzeko metodoa.
 	 * 
@@ -34,10 +29,10 @@ public class PodcastDao {
 		ArrayList<Audio> podcastList = new ArrayList<Audio>();
 		try {
 			Connection konexioa = Kone.konektatu();
-			stm = konexioa.createStatement();
-			kontsulta = "select * from Audio a inner join Podcast p using (IdAudio) where IdArtista = "
+			Statement stm = konexioa.createStatement();
+			String kontsulta = "select * from Audio a inner join Podcast p using (IdAudio) where IdArtista = "
 					+ podcaster.getIdArtista();
-			rs = stm.executeQuery(kontsulta);
+			ResultSet rs = stm.executeQuery(kontsulta);
 
 			while (rs.next()) {
 				Podcast podcast = new Podcast(rs.getInt("a.IdAudio"), rs.getString("a.Izena"), rs.getTime("a.Iraupena"),
