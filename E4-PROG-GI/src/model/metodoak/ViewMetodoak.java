@@ -125,7 +125,7 @@ public class ViewMetodoak {
 	 *         itzultzen du. Bestela, false.
 	 */
 	public static boolean komprobatuAdmin(String user, String pass) {
-		return Kone.konektatuAdmin(user, pass);
+		return Kone.konektatuAdminKomprobatu(user, pass);
 	}
 
 	/**

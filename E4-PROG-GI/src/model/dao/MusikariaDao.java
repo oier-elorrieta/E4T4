@@ -114,7 +114,7 @@ public class MusikariaDao {
 	public static boolean gehituMusikaria(Musikaria musikari) {
 		boolean ondo = true;
 		
-		Connection konexioa = Kone.konektatu();
+		Connection konexioa = Kone.konektatuAdmin();
 		String kontsulta = "CALL InsertatuMusikaria(?,?,?,?)";
 		try {
 			PreparedStatement pstm = konexioa.prepareStatement(kontsulta);

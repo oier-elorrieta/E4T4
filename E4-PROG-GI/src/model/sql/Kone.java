@@ -42,6 +42,9 @@ public class Kone {
 	private static Statement stm = null;
 	private static PreparedStatement pstm;
 	private static ResultSet rs;
+	
+	private static String userAdmin;
+	private static String passAdmin;
 
 	/**
 	 * Datu-basearekin konexioa egiteko metodoa.
@@ -67,15 +70,27 @@ public class Kone {
 	 * @param pass - pasahitza
 	 * @return LoginOk - konexioa ondo egin den ala ez adierazten duen boolearra
 	 */
-	public static boolean konektatuAdmin(String user, String pass) {
+	public static boolean konektatuAdminKomprobatu(String user, String pass) {
 		boolean LoginOk = true;
 		try {
 			konexioa = DriverManager.getConnection(url, user, pass);
+			userAdmin = user;
+			passAdmin = pass;
 		} catch (SQLException e) {
 			LoginOk = false;
 		}
 		
 		return LoginOk;
+	}
+	
+	public static Connection konektatuAdmin() {
+		try {
+			konexioa = DriverManager.getConnection(url, userAdmin, passAdmin);
+		} catch (SQLException e) {
+			
+		}
+		
+		return konexioa;
 	}
 
 	/**
