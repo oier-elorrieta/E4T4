@@ -1,19 +1,16 @@
 package view.bezeroa.podcastDeskubritu;
 
-import model.SesioAldagaiak;
 import model.metodoak.*;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.Font;
+
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.ImageIcon;
+
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -34,32 +31,32 @@ public class PodcasterrakView extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		//JButton btnErabiltzaile = SesioAldagaiak.jb;
-		//btnErabiltzaile.removeActionListener(btnErabiltzaile.getActionListeners()[0]);
+		JScrollPane jsp = new JScrollPane();
+		jsp.setBounds(96, 121, 686, 372);
 
+		JPanel artistaPane = new JPanel(new GridLayout(0, 1));
+		artistaPane.setBounds(96, 121, 686, 372);
+		jsp.setViewportView(artistaPane);
+
+		// Podcasterren botoiak atera
+		ViewMetodoak.podcasterrakEntzunaldiakBotoiarentzako(artistaPane, this);
+
+		// Erabiltzailearen datuak aldatzeko botoia
 		JButton btnErabiltzaile = ViewMetodoak.btnErabiltzaileaSortu();
+
+		// Aurreko pantallara joan
+		JButton btnAtzera = ViewMetodoak.btnAtzeraSortu();
+
+		contentPane.add(jsp, BorderLayout.CENTER);
+		contentPane.add(btnErabiltzaile);
+		contentPane.add(btnAtzera);
+
 		btnErabiltzaile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				JFrameSortu.premiumErregistroAukeraSortu(frame);
 			}
 		});
-
-		JButton btnAtzera = ViewMetodoak.btnAtzeraSortu();
-
-		contentPane.add(btnErabiltzaile);
-		contentPane.add(btnAtzera);
-
-		JScrollPane jsp = new JScrollPane();
-		jsp.setBounds(96, 121, 686, 372);
-
-		contentPane.add(jsp, BorderLayout.CENTER);
-
-		JPanel artistaPane = new JPanel(new GridLayout(0, 1));
-		artistaPane.setBounds(96, 121, 686, 372);
-		jsp.setViewportView(artistaPane);
-
-		ViewMetodoak.podcasterrakEntzunaldiakBotoiarentzako(artistaPane, this);
 
 		btnAtzera.addMouseListener(new MouseAdapter() {
 			@Override
@@ -69,6 +66,5 @@ public class PodcasterrakView extends JFrame {
 			}
 		});
 
-		
 	}
 }

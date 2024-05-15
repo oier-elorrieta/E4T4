@@ -1,7 +1,6 @@
 package view.bezeroa.nirePlayListak;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,22 +18,18 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-
 import model.AbestiGuztokoa;
-import model.Abestia;
 import model.Audio;
 import model.Musikaria;
 import model.PlayListak;
 import model.SesioAldagaiak;
 import model.dao.AbestiGuztokoaDao;
-import model.dao.AbestiaDao;
 import model.dao.AudioDao;
 import model.dao.MusikariaDao;
 import model.dao.PlayListakDao;
 import model.metodoak.ImportExportMetodoak;
 import model.metodoak.JFrameSortu;
 import model.metodoak.ViewMetodoak;
-import model.sql.Kone;
 
 public class PlayListAbestiakView extends JFrame {
 
@@ -43,6 +38,7 @@ public class PlayListAbestiakView extends JFrame {
 	private static ArrayList<Audio> abestiakList;
 	private JFrame frame = this;
 	private String klasea = this.getClass().getSimpleName();
+	
 	public PlayListAbestiakView(PlayListak aukeraPlaylist) {
 		setBounds(400, 250, 906, 594);
 		setTitle("Menu Nagusia - Talde 4");
