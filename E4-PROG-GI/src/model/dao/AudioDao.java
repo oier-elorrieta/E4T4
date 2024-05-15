@@ -37,7 +37,7 @@ public class AudioDao {
 			return abestiakList;
 		} catch (SQLException e) {
 			e.getMessage();
-			return null;
+			return abestiakList;
 		}
 	}
 

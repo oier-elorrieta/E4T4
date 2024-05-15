@@ -42,6 +42,5 @@ public class AbestiaDao {
 			e.getMessage();
 			return null;
 		}
-
 	}
 }
