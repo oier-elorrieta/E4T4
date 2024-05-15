@@ -42,7 +42,7 @@ public class KoneTest {
 
     @Test
     public void testKonektatuAdmin() {
-        boolean result = Kone.konektatuAdmin("admin", "headmin");
+        boolean result = Kone.konektatuAdminKomprobatu("admin", "headmin");
         assertTrue(result);
     }
 
