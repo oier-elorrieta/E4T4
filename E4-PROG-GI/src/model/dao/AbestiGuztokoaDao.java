@@ -84,7 +84,7 @@ public class AbestiGuztokoaDao {
 					+ abestiGuztokoa.getErabiltzailea().getIdErabiltzailea() + " AND IdAudio = "
 					+ abestiGuztokoa.getAudio().getIdAudio();
 			stm.executeUpdate(kontsulta);
-			Kone.itxiConexioa();
+			konexioa.close();
 		} catch (SQLException e) {
 			return false;
 		}
@@ -115,7 +115,7 @@ public class AbestiGuztokoaDao {
 		} else {
 			gustokoaDu = true;
 		}
-		Kone.itxiConexioa();
+		konexioa.close();
 
 		return gustokoaDu;
 	}

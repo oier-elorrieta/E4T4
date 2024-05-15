@@ -92,20 +92,4 @@ public class Kone {
 		
 		return konexioa;
 	}
-
-	/**
-	 * Konexioa itxi.
-	 */
-	public static void itxiConexioa() {
-		try {
-			if (stm != null || !stm.isClosed()) {
-				stm.close();
-			}
-
-			konexioa.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 }

@@ -74,7 +74,7 @@ public class ErabiltzailePremiumDao {
 						rs.getString("b.Abizena"), rs.getDate("JaiotzeData"), rs.getString("b.IdHizkuntza"),
 						rs.getDate("p.IraungitzeData"));
 			}
-			Kone.itxiConexioa();
+			konexioa.close();
 		} catch (SQLException e) {
 			e.getMessage();
 			return false;
