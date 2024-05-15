@@ -59,27 +59,28 @@ public class AbestiakView extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 
-		// JButton btnErabiltzaile = model.SesioAldagaiak.jb;
-		// btnErabiltzaile.removeActionListener(btnErabiltzaile.getActionListeners()[0]);
-
+		// Albumaren izena
 		JLabel lblIzenaAlbum = new JLabel(album.getIzenburua());
 		lblIzenaAlbum.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		lblIzenaAlbum.setBounds(373, 63, 295, 38);
-	
-		JLabel lblAlbumAukeratu = new JLabel("Aukeratu Albuma: ");
-		lblAlbumAukeratu.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblAlbumAukeratu.setBounds(111, 127, 162, 14);
-		
+
+		// Albuma aukeratzeko testua
+		JLabel lblAbestiaAukeratu = new JLabel("Aukeratu abestia: ");
+		lblAbestiaAukeratu.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblAbestiaAukeratu.setBounds(111, 127, 162, 14);
+
 		JPanel panel = new JPanel();
 		panel.setBounds(10, 152, 359, 389);
+		panel.setLayout(new GridLayout(0, 1, 0, 0));
 
+		// Listaren modeloa bete albumaren abestiekin
 		ArrayList<Audio> abestiak = AbestiaDao.getAbestiakByAlbum(album);
 		DefaultListModel<Audio> modeloList = new DefaultListModel();
 		for (int i = 0; i < abestiak.size(); i++) {
 			modeloList.addElement(abestiak.get(i));
 		}
-		panel.setLayout(new GridLayout(0, 1, 0, 0));
 
+		// Lista sortu eta modeloa implementatu
 		JList abestiLista = new JList(modeloList);
 		abestiLista.setBounds(100, 5, 0, 0);
 		JScrollPane scrollPane = new JScrollPane(abestiLista);
@@ -87,31 +88,34 @@ public class AbestiakView extends JFrame {
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(373, 121, 469, 223);
-		
 		JLabel lblIrudia = new JLabel("");
 		panel_1.add(lblIrudia);
 
-		// irudia seteatu lbl-ari
+		// Irudia lbl-ari sartu
 		ViewMetodoak.setIrudia(lblIrudia, album.getIrudia());
 
-		// Deskripzioa
-		JTextPane textPane = new JTextPane();
-		JScrollPane scrollPane_1 = new JScrollPane(textPane);
-		textPane.setText(album.toString());
+		// Albumaren deskripzioa atera
+		JTextPane albumDeskripzioa = new JTextPane();
+		JScrollPane scrollPane_1 = new JScrollPane(albumDeskripzioa);
+		albumDeskripzioa.setText(album.toString());
 		scrollPane_1.setBounds(373, 378, 469, 166);
-		
+
+		// Erabiltzailearen datuak aldatzeko botoia
 		JButton btnErabiltzaile = ViewMetodoak.btnErabiltzaileaSortu();
+
+		// Aurreko pantallara joan
 		JButton btnAtzera = ViewMetodoak.btnAtzeraSortu();
 
 		contentPane.add(lblIzenaAlbum);
-		contentPane.add(lblAlbumAukeratu);
+		contentPane.add(lblAbestiaAukeratu);
 		contentPane.add(panel);
-		contentPane.add(panel_1);	
+		contentPane.add(panel_1);
 		contentPane.add(scrollPane_1);
 		contentPane.setLayout(null);
 		contentPane.add(btnErabiltzaile);
 		contentPane.add(btnAtzera);
 
+		// Listean abesti bat aukeratzean, erreprodukziora joan
 		abestiLista.addListSelectionListener(new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
@@ -126,18 +130,18 @@ public class AbestiakView extends JFrame {
 			}
 		});
 
+		btnErabiltzaile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				JFrameSortu.premiumErregistroAukeraSortu(frame);
+			}
+		});
+
 		btnAtzera.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				dispose();
 				JFrameSortu.albumakViewSortu(musikaria);
-			}
-		});
-
-		btnErabiltzaile.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				JFrameSortu.premiumErregistroAukeraSortu(frame);
 			}
 		});
 	}
