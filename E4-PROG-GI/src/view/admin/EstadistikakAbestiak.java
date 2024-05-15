@@ -86,18 +86,4 @@ public class EstadistikakAbestiak extends EstadistikakTop {
 			}
 		});
 	}
-	/*
-	 * private ArrayList<String> ezarriAbeztiakAstea() {
-	 * 
-	 * }
-	 */
-
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				new EstadistikakAbestiak().setVisible(true);
-			}
-		});
-	}
-
 }
