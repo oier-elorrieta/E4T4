@@ -26,7 +26,7 @@ public class MusikariakView extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JFrame frame = this;
-	
+
 	public MusikariakView() {
 		setBounds(400, 250, 906, 594);
 		setTitle("Menu Nagusia - Talde 4");
@@ -35,36 +35,33 @@ public class MusikariakView extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		//JButton btnErabiltzaile = SesioAldagaiak.jb;
+		JScrollPane jsp = new JScrollPane();
+		jsp.setBounds(96, 121, 686, 372);
 		
-		
-		//btnErabiltzaile.removeActionListener(btnErabiltzaile.getActionListeners()[0]);
+		JPanel artistaPane = new JPanel(new GridLayout(0, 1));
+		artistaPane.setBounds(96, 121, 686, 372);
+		jsp.setViewportView(artistaPane);
+
+		// Musikarien botoiak atera
+		ViewMetodoak.musikariakEntzunaldiakBotoiarentzako(artistaPane, this);
+
+		// Erabiltzailearen datuak aldatzeko botoia
 		JButton btnErabiltzaile = ViewMetodoak.btnErabiltzaileaSortu();
+
+		// Aurreko pantallara joan
+		JButton btnAtzera = ViewMetodoak.btnAtzeraSortu();
+		
+		contentPane.add(jsp, BorderLayout.CENTER);
+		contentPane.add(btnErabiltzaile);
+		contentPane.add(btnAtzera);
+
 		btnErabiltzaile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				JFrameSortu.premiumErregistroAukeraSortu(frame);
 			}
 		});
-		
-		
-		
-		JButton btnAtzera = ViewMetodoak.btnAtzeraSortu();
 
-		contentPane.add(btnErabiltzaile);
-		contentPane.add(btnAtzera);
-
-		JScrollPane jsp = new JScrollPane();
-		jsp.setBounds(96, 121, 686, 372);
-
-		contentPane.add(jsp, BorderLayout.CENTER);
-
-		JPanel artistaPane = new JPanel(new GridLayout(0, 1));
-		artistaPane.setBounds(96, 121, 686, 372);
-		jsp.setViewportView(artistaPane);
-
-		ViewMetodoak.musikariakEntzunaldiakBotoiarentzako(artistaPane,this);
-		
 		btnAtzera.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -72,6 +69,6 @@ public class MusikariakView extends JFrame {
 				JFrameSortu.menuNagusiaAukeraSortu();
 			}
 		});
-		
+
 	}
 }
