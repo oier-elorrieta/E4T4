@@ -1,12 +1,9 @@
 package view.bezeroa.musikaDeskubritu;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 
 import javax.swing.DefaultListModel;
-import javax.swing.ImageIcon;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -14,33 +11,25 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import com.mysql.cj.jdbc.Blob;
-
-import model.Abestia;
 import model.Album;
 import model.Audio;
 import model.Musikaria;
 import model.dao.AbestiaDao;
 import model.metodoak.JFrameSortu;
 import model.metodoak.ViewMetodoak;
-import model.sql.Kone;
 
 import javax.swing.JScrollPane;
-import javax.swing.JSplitPane;
+
 import javax.swing.JList;
 import java.awt.GridLayout;
-import java.awt.Image;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.awt.FlowLayout;
-import javax.swing.JTextField;
-import javax.swing.SpringLayout;
-import javax.swing.BoxLayout;
+
 import javax.swing.JLabel;
 import javax.swing.JTextPane;
 
@@ -48,7 +37,6 @@ public class AbestiakView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private Musikaria musikari;
 	private JFrame frame = this;
 	private String klasea = this.getClass().getSimpleName();
 

@@ -41,7 +41,6 @@ public class PlayListaSortuView extends JFrame {
 		txtIzena.setBounds(297, 64, 300, 47);
 		txtIzena.setColumns(10);
 		
-
 		JButton btnSortuPlayList = new JButton("Sortu");
 		btnSortuPlayList.setBackground(Color.BLACK);
 		btnSortuPlayList.setForeground(Color.RED);
@@ -49,6 +48,7 @@ public class PlayListaSortuView extends JFrame {
 		btnSortuPlayList.setFont(new Font("SansSerif", Font.BOLD, 22));
 		btnSortuPlayList.setFocusPainted(false);
 		
+		// Aurreko pantallara joan
 		JButton btnAtzera = ViewMetodoak.btnAtzeraSortu();
 		
 		contentPane.add(lblIzena);

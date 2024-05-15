@@ -2,24 +2,18 @@ package view.bezeroa.nirePlayListak;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import model.Audio;
@@ -30,11 +24,9 @@ import model.metodoak.ImportExportMetodoak;
 import model.metodoak.JFrameSortu;
 import model.metodoak.ViewMetodoak;
 import model.salbuespenak.PlaylistSortuLimitazioa;
-import model.sql.Kone;
 
 import javax.swing.JList;
 import javax.swing.JOptionPane;
-import javax.swing.AbstractListModel;
 import javax.swing.DefaultListModel;
 import javax.swing.border.LineBorder;
 
@@ -52,43 +44,49 @@ public class PlayListakView extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JButton btnAtzera = ViewMetodoak.btnAtzeraSortu();
-
-		//JButton btnErabiltzaile = SesioAldagaiak.jb;
-		//btnErabiltzaile.removeActionListener(btnErabiltzaile.getActionListeners()[0]);
-
-		JButton btnErabiltzaile = ViewMetodoak.btnErabiltzaileaSortu();
+		// Listaren modeloa bete playlistekin
 		ArrayList<PlayListak> playlistLista = PlayListakDao.getPlaylist();
-		// ArrayList<PlayListak> playlistLista = Kone.getPlaylist();
 		DefaultListModel<String> modeloLista = new DefaultListModel<>();
 		for (int i = 0; i < playlistLista.size(); i++) {
 			modeloLista.addElement(playlistLista.get(i).getIzena());
 		}
 
+		// Lista sortu eta modeloa implementatu
 		JList<String> jListPlayList = new JList(modeloLista);
 		jListPlayList.setBorder(new LineBorder(new Color(0, 0, 0)));
 		JScrollPane scrollPane = new JScrollPane(jListPlayList);
 		jListPlayList.setBounds(50, 150, 550, 350);
 
+		// Berria botoia sortu
 		JButton btnBerriaSortu = new JButton("Berria Sortu");
 		btnBerriaSortu.setBounds(650, 150, 208, 50);
 		btnBerriaSortu.setFont(new Font("SansSerif", Font.BOLD, 22));
 
+		// Ezabatu botoia sortu
 		JButton btnEzabatu = new JButton("Ezabatu");
 		btnEzabatu.setBounds(650, 225, 208, 50);
 		btnEzabatu.setFont(new Font("SansSerif", Font.BOLD, 22));
 
+		// Importatu botoia sortu
 		JButton btnImportatu = new JButton("Importatu");
 		btnImportatu.setBounds(650, 300, 208, 50);
 		btnImportatu.setFont(new Font("SansSerif", Font.BOLD, 22));
 
+		// Exportatu botoia sortu
 		JButton btnExportatu = new JButton("Exportatu");
 		btnExportatu.setBounds(650, 375, 208, 50);
 		btnExportatu.setFont(new Font("SansSerif", Font.BOLD, 22));
 
+		// Aukeratu botoia sortu
 		JButton btnAukeratu = new JButton("Aukeratu");
 		btnAukeratu.setBounds(650, 450, 208, 50);
 		btnAukeratu.setFont(new Font("SansSerif", Font.BOLD, 22));
+
+		// Erabiltzailearen datuak aldatzeko botoia
+		JButton btnErabiltzaile = ViewMetodoak.btnErabiltzaileaSortu();
+
+		// Aurreko pantallara joan
+		JButton btnAtzera = ViewMetodoak.btnAtzeraSortu();
 
 		contentPane.add(jListPlayList);
 		contentPane.add(btnBerriaSortu);
@@ -99,6 +97,8 @@ public class PlayListakView extends JFrame {
 		contentPane.add(btnAtzera);
 		contentPane.add(btnErabiltzaile);
 
+		// JFrame berria sortu, komprobatzen free bazara ezin duzu 3 baino gehiago
+		// sortu, playlist berri bat sortzeko
 		btnBerriaSortu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -114,12 +114,12 @@ public class PlayListakView extends JFrame {
 						throw new PlaylistSortuLimitazioa();
 					}
 				} catch (PlaylistSortuLimitazioa ex) {
-					JOptionPane.showMessageDialog(null, ex.getMessage(), "Error",
-							JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
 
+		// Playlist bat ezabatzeko botoia funtzionaltasuna
 		btnEzabatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (jListPlayList.getSelectedValue() == null) {
@@ -137,6 +137,7 @@ public class PlayListakView extends JFrame {
 			}
 		});
 
+		// Playlist bat importatzeko botoia funtzionaltasuna
 		btnImportatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -174,6 +175,7 @@ public class PlayListakView extends JFrame {
 			}
 		});
 
+		// Playlist bat exportatzeko botoia funtzionaltasuna
 		btnExportatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -187,6 +189,8 @@ public class PlayListakView extends JFrame {
 
 		});
 
+		// Aukeratutako playlistean sartzeko funtzionaltasuna, playlistaren abestiak
+		// ateratzeko
 		btnAukeratu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (jListPlayList.getSelectedValue() == null) {
