@@ -59,11 +59,14 @@ public class ViewMetodoak {
 		boolean loginOK = false;
 				
 		Erabiltzailea erabiltzaileInfo = ErabiltzaileaDao.isLoginaOk(erabiltzailea);
-		String mota = ErabiltzaileaDao.erabiltzaileMota(erabiltzaileInfo);
+		if (erabiltzaileInfo != null) {
+			String mota = ErabiltzaileaDao.erabiltzaileMota(erabiltzaileInfo);
 			if (erabiltzaileInfo.getPasahitza().equals(pasahitza)) {
 				loginOK = true;
 				erabiltzaileaKargatu(erabiltzaileInfo.getIdErabiltzailea(), mota);
 		}
+		}
+		
 		return loginOK;
 	}
 

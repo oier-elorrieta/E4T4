@@ -83,7 +83,7 @@ public class MusikaKudeatu extends KudeatuPlantilla {
 		        gbc.gridy++;
 		        pan.add(new JLabel("Deskribapena:"), gbc);
 		        gbc.gridy++;
-		        pan.add(new JLabel("Irudia:"), gbc);
+		        pan.add(new JLabel("Irudia (Path):"), gbc);
 		        gbc.gridy++;
 		        pan.add(new JLabel("Ezaugarria:"), gbc);
 		        gbc.gridx = 1;
@@ -131,6 +131,8 @@ public class MusikaKudeatu extends KudeatuPlantilla {
 		
 		
 		///////////////////////////////////////////////////////////////////////////
+		
+		
 		super.btnDatuakAldatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
 				
@@ -147,6 +149,7 @@ public class MusikaKudeatu extends KudeatuPlantilla {
 				JTextField desk = new JTextField(40);
 				desk.setText(select.getDeskription());
 				JTextField irudia = new JTextField(60);
+				irudia.setText("src\\Importazioak\\Abestia.txt");
 	
 				JComboBox<String> cboEzaugarria = new JComboBox();
 				cboEzaugarria.addItem("bakarlaria");
@@ -176,7 +179,7 @@ public class MusikaKudeatu extends KudeatuPlantilla {
 		        gbc.gridy++;
 		        pan.add(new JLabel("Deskribapena:"), gbc);
 		        gbc.gridy++;
-		        pan.add(new JLabel("Irudia:"), gbc);
+		        pan.add(new JLabel("Irudia (Path):"), gbc);
 		        gbc.gridy++;
 		        gbc.gridy++;
 		        pan.add(new JLabel("Ezaugarria:"), gbc);
