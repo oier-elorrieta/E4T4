@@ -167,11 +167,7 @@ public class PlayListakView extends JFrame {
 					dispose();
 					JFrameSortu.playListakViewSortu();
 
-				} else {
-
-					System.out.println("Importazioa kanzelatua bezeroarengatik");
 				}
-
 			}
 		});
 
