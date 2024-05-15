@@ -69,7 +69,9 @@ public class Erreprodukzioa extends JFrame {
 		String filepath = "\\\\10.5.6.111\\audioak\\" + abestiak.get(abestiAukera).getIzena() + ".wav";
 		//String filepath = "C:\\Users\\Ekapro\\Desktop\\audioak\\" + abestiak.get(abestiAukera).getIzena() + ".wav";
 		errepoduzituAudioa(filepath, abiadura, posicion, erreproduzitzen);
-
+		if (erreproduzitzen) {
+			hurrengoAudioAutomatikoki(aurrekoKlasea, artista, abestiak, abestiAukera, posicion);
+		}
 	
 		Album album = null;
 		if (artista.getClass().getSimpleName().equals("Musikaria")) {

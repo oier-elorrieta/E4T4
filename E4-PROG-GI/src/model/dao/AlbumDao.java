@@ -47,19 +47,19 @@ public class AlbumDao {
 	 */
 	public static boolean beteAlbumakKantaKop(ArrayList<Album> albumak) {
 		Connection konexioa = Kone.konektatu();
-		for (Album i : albumak) {
+		for (int i = 0; i < albumak.size(); i++) {
 			try {
 				Statement stm = konexioa.createStatement();
-				String kontsulta = "SELECT count(IdAudio) FROM Abestia where IdAlbum =" + i.getId() + "";
+				String kontsulta = "SELECT count(IdAudio) FROM Abestia where IdAlbum =" + albumak.get(i).getId() + "";
 				ResultSet rs = stm.executeQuery(kontsulta);
 				rs.next();
-				i.setKantaKop(rs.getInt("count(IdAudio)"));
-				Kone.itxiConexioa();
+				albumak.get(i).setKantaKop(rs.getInt("count(IdAudio)"));
 			} catch (SQLException e) {
 				e.getMessage();
 				return false;
 			}
 		}
+		Kone.itxiConexioa();
 		return true;
 	}
 	
