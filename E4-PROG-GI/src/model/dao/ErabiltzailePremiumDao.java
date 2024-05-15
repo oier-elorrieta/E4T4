@@ -47,8 +47,12 @@ public class ErabiltzailePremiumDao {
 		} catch (SQLException e) {
 			System.out.println("Ezin izan da Premium ezarri " + e.getMessage());
 		}
-
-		Kone.itxiConexioa();
+		try {
+			konexioa.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**

@@ -32,12 +32,12 @@ public class ErabiltzaileaDao {
 			pstm.setString(6, erab.getHizkuntza());
 			pstm.setInt(7, SesioAldagaiak.logErabiltzailea.getIdErabiltzailea());
 			pstm.execute();
-			Kone.itxiConexioa();
+			konexioa.close();
+			return true;
 		} catch (SQLException e) {
 			System.out.println("Kontsulta txarto" + e.getMessage());
 			return false;
-		}
-		return true;
+		}	
 	}
 	
 	/**
@@ -56,7 +56,7 @@ public class ErabiltzaileaDao {
 			ResultSet rs = stm.executeQuery(kontsulta);
 			rs.next();
 			erabiltzaileaSortu = new Erabiltzailea(rs.getInt("IdBezeroa"), rs.getString("Erabiltzailea"), rs.getString("Pasahitza"));
-			Kone.itxiConexioa();
+			konexioa.close();
 			return erabiltzaileaSortu;
 		} catch (SQLException e) {
 			e.getMessage();
@@ -72,14 +72,14 @@ public class ErabiltzaileaDao {
 	 */
 	public static String erabiltzaileMota(Erabiltzailea erabiltzailea) {
 		String mota;
-		Connection konexioa = Kone.konektatu();
 		try {
+			Connection konexioa = Kone.konektatu();
 			Statement stm = konexioa.createStatement();
 			String kontsulta = "SELECT Mota FROM Bezeroa WHERE IdBezeroa = " + erabiltzailea.getIdErabiltzailea();
 			ResultSet rs = stm.executeQuery(kontsulta);
 			rs.next();
 			mota = rs.getString("Mota");
-			Kone.itxiConexioa();
+			konexioa.close();
 			return mota;
 		} catch (SQLException e) {
 			e.getMessage();

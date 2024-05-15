@@ -28,6 +28,7 @@ public class ErabiltzaileFreeDao {
 			pstm.setDate(5, (java.sql.Date) erab.getJaiotzeData());
 			pstm.setString(6, erab.getHizkuntza());
 			pstm.execute();
+			konexioa.close();
 			return true;
 		} catch (SQLException e) {
 			System.out.println("Kontsulta txarto" + e.getMessage());
@@ -53,11 +54,11 @@ public class ErabiltzaileFreeDao {
 						rs.getString("Erabiltzailea"), rs.getString("Pasahitza"), rs.getString("Izena"),
 						rs.getString("Abizena"), rs.getDate("JaiotzeData"), rs.getString("IdHizkuntza"));
 			}
-			Kone.itxiConexioa();
+			konexioa.close();
+			return true;
 		} catch (SQLException e) {
 			e.getMessage();
 			return false;
 		}
-		return true;
 	}
 }

@@ -13,17 +13,17 @@ import model.Podcasterra;
 import model.sql.Kone;
 
 /**
-	 * Podcast-ak lortzeko metodoa.
-	 * 
-	 * @param podcaster Podcast-ak lortzeko erabiltzen den podcaster objektua.
-	 * @return podcast-ak ArrayList moduan itzultzen ditu.
-	 */
+ * Podcast-ak lortzeko metodoa.
+ * 
+ * @param podcaster Podcast-ak lortzeko erabiltzen den podcaster objektua.
+ * @return podcast-ak ArrayList moduan itzultzen ditu.
+ */
 public class PodcastDao {
 	private static String kontsulta;
 	private static Statement stm = null;
 	private static PreparedStatement pstm;
 	private static ResultSet rs;
-	
+
 	/**
 	 * Podcast-ak lortzeko metodoa.
 	 * 
@@ -32,9 +32,8 @@ public class PodcastDao {
 	 */
 	public static ArrayList<Audio> getPodcastak(Podcasterra podcaster) {
 		ArrayList<Audio> podcastList = new ArrayList<Audio>();
-
-		Connection konexioa = Kone.konektatu();
 		try {
+			Connection konexioa = Kone.konektatu();
 			stm = konexioa.createStatement();
 			kontsulta = "select * from Audio a inner join Podcast p using (IdAudio) where IdArtista = "
 					+ podcaster.getIdArtista();
@@ -45,9 +44,12 @@ public class PodcastDao {
 						rs.getBlob("a.Irudia"));
 				podcastList.add(podcast);
 			}
+			konexioa.close();
+			return podcastList;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return null;
 		}
-		return podcastList;
+
 	}
 }

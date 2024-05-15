@@ -25,31 +25,27 @@ public class AudioDao {
 	 * @return Abestiak ArrayList moduan
 	 */
 	public static ArrayList<Audio> getAbestiakByPlayList(PlayListak aukeraPlaylist) {
+		int id = SesioAldagaiak.logErabiltzailea.getIdErabiltzailea();
 		ArrayList<Audio> abestiakList = new ArrayList<Audio>();
 		Abestia abestia;
-		int id = 0;
-
-		Connection konexioa = Kone.konektatu();
-
-		id = SesioAldagaiak.logErabiltzailea.getIdErabiltzailea();
 
 		try {
+			Connection konexioa = Kone.konektatu();
 			stm = konexioa.createStatement();
 			kontsulta = "SELECT au.IdAudio, au.Izena, au.Iraupena, au.Irudia FROM PlaylistAbestiak pla INNER JOIN Audio au on pla.IdAudio = au.IdAudio where IdList = "
 					+ aukeraPlaylist.getIdPlayList();
-
 			rs = stm.executeQuery(kontsulta);
-
 			while (rs.next()) {
 				Abestia abestiaSartu = new Abestia(rs.getInt("au.IdAudio"), rs.getString("au.Izena"),
 						rs.getTime("au.Iraupena"), rs.getBlob("au.Irudia"), false);
 				abestiakList.add(abestiaSartu);
 			}
+			konexioa.close();
+			return abestiakList;
 		} catch (SQLException e) {
 			e.getMessage();
+			return null;
 		}
-		Kone.itxiConexioa();
-		return abestiakList;
 	}
 
 	/**
@@ -59,10 +55,7 @@ public class AudioDao {
 	 * @return True, erreprodukzioa ongi erregistratu da; False, errorea gertatu da
 	 */
 	public static boolean erregistratuErreprodukzioa(Audio audio) {
-
-		int idBezero;
-
-		idBezero = SesioAldagaiak.logErabiltzailea.getIdErabiltzailea();
+		int idBezero = SesioAldagaiak.logErabiltzailea.getIdErabiltzailea();
 		try {
 			Connection konexioa = Kone.konektatu();
 			kontsulta = "INSERT into Erreprodukzioak (IdBezeroa, IdAudio, ErreData) VALUES(?,?,?)";
@@ -71,12 +64,11 @@ public class AudioDao {
 			pstm.setInt(2, audio.getIdAudio());
 			pstm.setDate(3, new java.sql.Date(new java.util.Date().getTime()));
 			pstm.execute();
-			Kone.itxiConexioa();
+			konexioa.close();
+			return true;
 		} catch (SQLException e) {
 			System.out.println("Kontsulta txarto" + e.getMessage());
 			return false;
 		}
-		return true;
 	}
-
 }

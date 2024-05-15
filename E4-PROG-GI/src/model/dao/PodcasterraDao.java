@@ -25,9 +25,9 @@ public class PodcasterraDao {
 	public static ArrayList<Podcasterra> getPodcasterEntzunaldiak() {
 		ArrayList<Podcasterra> podcasterrak = new ArrayList<Podcasterra>();
 		Podcasterra podcasterraSartu;
-		
-		Connection konexioa = Kone.konektatu();
+			
 		try {
+			Connection konexioa = Kone.konektatu();
 			stm = konexioa.createStatement();
 			kontsulta = "SELECT * FROM EstatistikakAurkestuPodcasterraTotala";
 			rs = stm.executeQuery(kontsulta);
@@ -35,10 +35,13 @@ public class PodcasterraDao {
 				podcasterraSartu = new Podcasterra(rs.getString("Izena"), rs.getBlob("Irudia"), rs.getInt("Totala"));
 				podcasterrak.add(podcasterraSartu);
 			}
+			konexioa.close();
+			return podcasterrak;
 		} catch (SQLException e) {
 			e.getMessage();
+			return null;
 		}
-		return podcasterrak;
+		
 
 	}
 	
@@ -49,9 +52,10 @@ public class PodcasterraDao {
 	 * @return Podcasterra objektua
 	 */
 	public static Podcasterra getPodcasterra(String izena) {
-		Connection konexioa = Kone.konektatu();
+		
 		Podcasterra podcaster = null;
 		try {
+			Connection konexioa = Kone.konektatu();
 			stm = konexioa.createStatement();
 			kontsulta = "SELECT * FROM Podcaster p INNER JOIN Artista a on p.IdArtista = a.IdArtista WHERE IzenArtistikoa='"
 					+ izena + "'";
@@ -59,10 +63,13 @@ public class PodcasterraDao {
 			rs.next();
 			podcaster = new Podcasterra(rs.getInt("a.IdArtista"), rs.getString("a.IzenArtistikoa"),
 					rs.getString("a.Deskripzioa"), rs.getBlob("a.Irudia"));
+			konexioa.close();
+			return podcaster;
 		} catch (SQLException e) {
 			e.getMessage();
+			return null;
 
 		}
-		return podcaster;
+		
 	}
 }
