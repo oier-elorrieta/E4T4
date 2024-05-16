@@ -87,8 +87,8 @@ public class EstadistikaMenua extends JFrame {
 		});
 
 		JButton btnAtzera = new JButton("Atzera");
-		btnAtzera.setBackground(Color.BLACK);
-		btnAtzera.setForeground(Color.RED);
+		btnAtzera.setBackground(Color.LIGHT_GRAY);
+		btnAtzera.setForeground(Color.BLACK);
 		btnAtzera.setBounds(50, 60, 144, 50);
 		btnAtzera.setFont(new Font("SansSerif", Font.BOLD, 22));
 		btnAtzera.setFocusPainted(false);
