@@ -7,7 +7,12 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
@@ -60,7 +65,7 @@ public class AbestiakKudeatu extends KudeatuPlantilla {
 
 				JTextField izena = new JTextField(60);
 				JTextField irudia = new JTextField(60);
-
+				JTextField iraupena = new JTextField(60);
 	
 
 				gbc.gridx = 0;
@@ -74,19 +79,33 @@ public class AbestiakKudeatu extends KudeatuPlantilla {
 				gbc.gridy = 0;
 				pan.add(izena, gbc);
 				gbc.gridy++;
+				pan.add(iraupena,gbc);
+				gbc.gridy++;
 				pan.add(irudia, gbc);
-			
+				
 
 				int opcion = JOptionPane.showConfirmDialog(null, pan, "Bete Datuak: ", JOptionPane.OK_CANCEL_OPTION,
 						JOptionPane.PLAIN_MESSAGE);
+				
+				
+				SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+                Date parsedDate = null;
+				try {
+					parsedDate = dateFormat.parse(iraupena.getText());
+				} catch (ParseException e1) {
+					System.out.println(e1.getMessage());
+				}
+                Time time = new Time(parsedDate.getTime());
 
 				if (opcion == JOptionPane.OK_OPTION) {
 
+					
 					String insertatzekoIrudia = ImportExportMetodoak.inportatuIrudia(irudia.getText());
 					
 					Abestia a = new Abestia();
 					a.setIzena(izena.getText());
 					a.setIrudiaString(insertatzekoIrudia);
+					a.setIraupena(time);
 					AbestiaDao.gehituAbestia(a, album.getId());
 					dispose();
 					JFrameSortu.abestiakKudeatuAukeraSortu(album);

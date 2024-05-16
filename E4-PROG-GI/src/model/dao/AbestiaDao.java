@@ -49,19 +49,20 @@ public class AbestiaDao {
 	public static boolean gehituAbestia(Abestia a,int idAlbum){
 		
 		boolean ondo = true;
-		Time time = new Time(0, 1, 30);
+		System.out.println(a);
+		System.out.println(idAlbum);
 		Connection konexioa = Kone.konektatuAdmin();
 		String kontsulta = "CALL InsertatuAbestia(?,?,?,?)";
 		try {
 			PreparedStatement pstm = konexioa.prepareStatement(kontsulta);
 			pstm.setString(1, a.getIzena());
-			pstm.setTime(2, time);
+			pstm.setTime(2, a.getIraupena());
 			pstm.setString(3, a.getIrudiaString());
-			pstm.setInt(5, idAlbum);
+			pstm.setInt(4, idAlbum);
 			pstm.execute();
 			konexioa.close();
 		} catch (SQLException e) {
-			e.getMessage();
+			System.out.println(e.getMessage());
 			ondo = false;
 		}
 
