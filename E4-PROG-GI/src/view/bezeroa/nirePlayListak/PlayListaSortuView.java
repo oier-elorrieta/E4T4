@@ -42,8 +42,8 @@ public class PlayListaSortuView extends JFrame {
 		txtIzena.setColumns(10);
 		
 		JButton btnSortuPlayList = new JButton("Sortu");
-		btnSortuPlayList.setBackground(Color.BLACK);
-		btnSortuPlayList.setForeground(Color.RED);
+		btnSortuPlayList.setBackground(Color.LIGHT_GRAY);
+		btnSortuPlayList.setForeground(Color.BLACK);
 		btnSortuPlayList.setBounds(650, 57, 144, 50);
 		btnSortuPlayList.setFont(new Font("SansSerif", Font.BOLD, 22));
 		btnSortuPlayList.setFocusPainted(false);

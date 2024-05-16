@@ -7,11 +7,14 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -67,8 +70,8 @@ public class AlbumakKudeatu extends KudeatuPlantilla {
 				JTextField generoa = new JTextField(60);
 			
 				
-		
 
+		
 				gbc.gridx = 0;
 				gbc.gridy = 0;
 				pan.add(new JLabel("Izena:"), gbc);
@@ -87,6 +90,7 @@ public class AlbumakKudeatu extends KudeatuPlantilla {
 				pan.add(irudia, gbc);
 				gbc.gridy++;
 				pan.add(generoa, gbc);
+				
 
 				int opcion = JOptionPane.showConfirmDialog(null, pan, "Bete Datuak: ", JOptionPane.OK_CANCEL_OPTION,
 						JOptionPane.PLAIN_MESSAGE);
@@ -137,6 +141,19 @@ public class AlbumakKudeatu extends KudeatuPlantilla {
 				JTextField generoa = new JTextField(60);
 				generoa.setText(select.getGeneroa());
 				
+				
+				JButton img = new JButton();
+				ImageIcon icono = null;
+				try {
+
+					icono = new ImageIcon(((Album)list.getSelectedValue()).getIrudia().getBytes(1, (int) ((Album)list.getSelectedValue()).getIrudia().length()));
+
+				} catch (SQLException e1) {
+					System.out.println(e1.getMessage());
+				}
+
+				img.setIcon(icono);
+				
 				gbc.gridx = 0;
 				gbc.gridy = 0;
 				pan.add(new JLabel("Izena:"), gbc);
@@ -155,7 +172,8 @@ public class AlbumakKudeatu extends KudeatuPlantilla {
 				pan.add(irudia, gbc);
 				gbc.gridy++;
 				pan.add(generoa, gbc);
-
+				gbc.gridy++;
+				pan.add(img,gbc);
 				int opcion = JOptionPane.showConfirmDialog(null, pan, "Bete Datuak: ", JOptionPane.OK_CANCEL_OPTION,
 						JOptionPane.PLAIN_MESSAGE);
 
@@ -174,11 +192,22 @@ public class AlbumakKudeatu extends KudeatuPlantilla {
 					}
 					
 					Album a = new Album(izena.getText(),generoa.getText(),insertatzekoIrudia, d);
+					a.setId(select.getId());
 					AlbumDao.aldatuAlbum(a);
 					dispose();
 					JFrameSortu.albumakKudeatuAukeraSortu(izenaM);
 				}
 
+			}
+		});
+		
+		
+		super.btnEzabatu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				AlbumDao.ezabatuAlbum((Album)list.getSelectedValue());
+				dispose();
+				JFrameSortu.albumakKudeatuAukeraSortu(izenaM);
 			}
 		});
 		
