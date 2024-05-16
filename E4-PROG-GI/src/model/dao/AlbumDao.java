@@ -1,6 +1,5 @@
 package model.dao;
 
-import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,7 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import model.Abestia;
 import model.Album;
 import model.Audio;
 import model.Musikaria;
@@ -51,10 +49,12 @@ public class AlbumDao {
 	public static boolean beteAlbumakKantaKop(ArrayList<Album> albumak) {
 		try {
 			Connection konexioa = Kone.konektatu();
+			Statement stm = konexioa.createStatement();
+			String kontsulta;
+			ResultSet rs;
 			for (int i = 0; i < albumak.size(); i++) {
-				Statement stm = konexioa.createStatement();
-				String kontsulta = "SELECT count(IdAudio) FROM Abestia where IdAlbum =" + albumak.get(i).getId() + "";
-				ResultSet rs = stm.executeQuery(kontsulta);
+				kontsulta = "SELECT count(IdAudio) FROM Abestia where IdAlbum =" + albumak.get(i).getId() + "";
+				rs = stm.executeQuery(kontsulta);
 				rs.next();
 				albumak.get(i).setKantaKop(rs.getInt("count(IdAudio)"));
 			}
@@ -88,7 +88,7 @@ public class AlbumDao {
 			e.getMessage();
 			return null;
 		}
-
+		
 	}
 
 	/**
@@ -101,9 +101,9 @@ public class AlbumDao {
 
 		boolean ondo = true;
 
-		Connection konexioa = Kone.konektatuAdmin();
-		String kontsulta = "CALL InsertatuAlbum(?,?,?,?,?)";
 		try {
+			Connection konexioa = Kone.konektatuAdmin();
+			String kontsulta = "CALL InsertatuAlbum(?,?,?,?,?)";
 			PreparedStatement pstm = konexioa.prepareStatement(kontsulta);
 			pstm.setString(1, a.getIzenburua());
 			pstm.setString(2, a.getIrudiaString());
@@ -124,9 +124,10 @@ public class AlbumDao {
 
 		boolean ondo = true;
 
-		Connection konexioa = Kone.konektatuAdmin();
-		String kontsulta = "UPDATE Album set Izenburua = ?, Urtea = ?,Generoa = ?, Irudia = from_base64(?) WHERE IdAlbum = ?";
+		
 		try {
+			Connection konexioa = Kone.konektatuAdmin();
+			String kontsulta = "UPDATE Album set Izenburua = ?, Urtea = ?,Generoa = ?, Irudia = from_base64(?) WHERE IdAlbum = ?";
 			PreparedStatement pstm = konexioa.prepareStatement(kontsulta);
 			pstm.setString(1, a.getIzenburua());
 			pstm.setDate(2, new java.sql.Date(a.getUrtea().getTime()));

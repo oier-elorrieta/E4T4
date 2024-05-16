@@ -3,10 +3,7 @@ package model;
 
 import java.sql.Time;
 
-import java.time.LocalTime;
-
 import java.sql.Blob;
-import java.util.Objects;
 
 /**
  * Abestiak klasea Audio klasetik heredatzen duena.

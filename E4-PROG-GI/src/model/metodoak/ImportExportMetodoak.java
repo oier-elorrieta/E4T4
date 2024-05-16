@@ -4,21 +4,13 @@ package model.metodoak;
 import java.io.BufferedReader;
 
 import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.sql.Blob;
-import java.sql.Time;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.UUID;
-
-import model.Abestia;
 import model.Audio;
 import model.PlayListak;
 import model.dao.PlayListakDao;
-import model.sql.Kone;
 
 /**
  * ImportExportMetodoak klasea, fitxategiak inportatzeko eta esportatzeko
@@ -41,7 +33,6 @@ public class ImportExportMetodoak {
 		try {
 			// Crear un objeto BufferedWriter
 			BufferedWriter writer = new BufferedWriter(new FileWriter(nombreArchivo));
-			Date d = new Date();
 			// limpio archivoSS
 			writer.write("");
 			// Escribir en el archivo

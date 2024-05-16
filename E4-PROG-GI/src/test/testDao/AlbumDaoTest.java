@@ -2,25 +2,15 @@ package test.testDao;
 
 import static org.junit.Assert.*;
 
-import java.sql.Blob;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 
 import org.junit.Test;
 
-import com.mysql.cj.xdevapi.DatabaseObjectDescription;
-
 import model.Album;
 import model.Audio;
 import model.Musikaria;
 import model.dao.AlbumDao;
-import model.dao.MusikariaDao;
-import model.sql.Kone;
-import test.objetuakTest.AlbumTest;
 
 public class AlbumDaoTest {
 

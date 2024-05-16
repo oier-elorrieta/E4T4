@@ -433,7 +433,7 @@ public class Erreprodukzioa extends JFrame implements IAtzeraIzan, IProfilaIzan{
 			
 	
 			if (!f.exists()) {
-				f = new File("hardcodea un wav que si exista"); 
+				f = new File("\\\\10.5.6.111\\audioak\\Fly High.wav"); 
 	        } 
 			
 			AudioInputStream aui;

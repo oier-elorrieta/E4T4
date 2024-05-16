@@ -21,8 +21,7 @@ public class AbestiGuztokoaDao {
 	public static ArrayList<Audio> getAbestiGustokoak() {
 		int id = SesioAldagaiak.logErabiltzailea.getIdErabiltzailea();
 		ArrayList<Audio> abestiakList = new ArrayList<Audio>();
-		Audio abestia;
-
+		Abestia abestiaSartu;
 		try {
 			Connection konexioa = Kone.konektatu();
 			Statement stm = konexioa.createStatement();
@@ -30,7 +29,7 @@ public class AbestiGuztokoaDao {
 					+ id;
 			ResultSet rs = stm.executeQuery(kontsulta);
 			while (rs.next()) {
-				Abestia abestiaSartu = new Abestia(rs.getInt("a.IdAudio"), rs.getString("a.izena"),
+				abestiaSartu = new Abestia(rs.getInt("a.IdAudio"), rs.getString("a.izena"),
 						rs.getTime("a.Iraupena"), rs.getBlob("a.Irudia"), true);
 				abestiakList.add(abestiaSartu);
 			}
@@ -54,7 +53,6 @@ public class AbestiGuztokoaDao {
 		int id = SesioAldagaiak.logErabiltzailea.getIdErabiltzailea();
 		try {
 			Connection konexioa = Kone.konektatu();
-			Statement stm = konexioa.createStatement();
 			String kontsulta = "INSERT into Gustokoak(IdBezeroa, IdAudio) VALUES(?,?)";
 			PreparedStatement pstm = konexioa.prepareStatement(kontsulta);
 			pstm.setInt(1, id);
@@ -75,7 +73,6 @@ public class AbestiGuztokoaDao {
 	 * @return ezabatzea ondo egin den ala ez
 	 */
 	public static boolean abestiGuztokoaEzabatu(AbestiGuztokoa abestiGuztokoa) {
-		int id = SesioAldagaiak.logErabiltzailea.getIdErabiltzailea();
 		try {
 			Connection konexioa = Kone.konektatu();
 			Statement stm = konexioa.createStatement();
@@ -101,7 +98,6 @@ public class AbestiGuztokoaDao {
 	 */
 	public static boolean abestiGuztokoaKonprobatu(AbestiGuztokoa abestiGuztokoa) throws SQLException {
 		boolean gustokoaDu;
-		int id = SesioAldagaiak.logErabiltzailea.getIdErabiltzailea();
 		Connection konexioa = Kone.konektatu();
 		Statement stm = konexioa.createStatement();
 		String kontsulta = "SELECT count(IdAudio) as cont from Gustokoak where IdBezeroa = "

@@ -1,8 +1,6 @@
 package model;
 
 import java.sql.Blob;
-import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.Objects;
 
 
@@ -47,15 +45,12 @@ public abstract class Artista {
 		this.izena = izena;
 		this.deskription = deskription;
 		this.irudia = irudia;
-		this.idArtista = idArtista;
 	}
 	
 	public Artista(String izena, String deskription, String irudiaString) {
-
 		this.izena = izena;
 		this.deskription = deskription;
 		this.irudiaString = irudiaString;
-		this.idArtista = idArtista;
 	}
 
 	public Artista(String izena, Blob irudia, int entzunaldiak) {

@@ -15,6 +15,7 @@ import model.Audio;
 import model.Podcasterra;
 import model.Interfazeak.IAtzeraIzan;
 import model.Interfazeak.IProfilaIzan;
+import model.dao.PodcastDao;
 import model.metodoak.JFrameSortu;
 import model.metodoak.ViewMetodoak;
 
@@ -56,7 +57,7 @@ public class PodcastakView extends JFrame implements IAtzeraIzan, IProfilaIzan{
 		panel.setBounds(10, 152, 359, 389);
 		
 		// Listaren modeloa bete podcasterraren podcastekin
-		ArrayList<Audio> podcastak = ViewMetodoak.getPodcastList(podcasterra.getIzena());
+		ArrayList<Audio> podcastak = PodcastDao.getPodcastList(podcasterra.getIzena());
 		DefaultListModel<String> modeloList = new DefaultListModel<>();
 		for (int i = 0; i < podcastak.size(); i++) {
 			modeloList.addElement(podcastak.get(i).getIzena());

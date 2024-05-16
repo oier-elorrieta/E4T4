@@ -1,14 +1,8 @@
 package test.objetuakTest;
 import static org.junit.Assert.*;
 
-import java.util.Date;
-
-import javax.swing.JButton;
-
 import org.junit.Test;
 
-import model.ErabiltzaileFree;
-import model.ErabiltzailePremium;
 import model.Erabiltzailea;
 import model.SesioAldagaiak;
 

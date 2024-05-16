@@ -15,12 +15,11 @@ public class ErabiltzailePremiumDao {
 	 * @param id    Erabiltzailearen identifikazio zenbakia
 	 * @param iranD Premium egunera arteko data
 	 */
-	public static void erregistratuPremium(int id, java.sql.Date iranD) {
+	public static boolean erregistratuPremium(int id, java.sql.Date iranD) {
 		Connection konexioa = Kone.konektatu();
 		String kontsulta;
 		PreparedStatement pstm;
 		try {
-			Statement stm = konexioa.createStatement();
 			// Zaiatu Premium bezala ezartzen berria bada
 			kontsulta = "INSERT into Premium values(?, ?);";
 			pstm = konexioa.prepareStatement(kontsulta);
@@ -50,9 +49,9 @@ public class ErabiltzailePremiumDao {
 		try {
 			konexioa.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return true;
 	}
 
 	/**

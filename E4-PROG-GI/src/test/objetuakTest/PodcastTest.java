@@ -4,7 +4,6 @@ import org.junit.Test;
 
 import model.Podcast;
 
-import java.sql.Blob;
 import java.sql.Time;
 
 public class PodcastTest {

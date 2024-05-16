@@ -1,7 +1,6 @@
 package model.dao;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -46,5 +45,20 @@ public class PodcastDao {
 			return null;
 		}
 
+	}
+	
+	/**
+	 * Metodo honek podcasterraren abestiak lortzen ditu eta ArrayList bat itzultzen
+	 * du.
+	 *
+	 * @param izena Podcasterraren izena.
+	 * @return Podcasterraren abestiak dituen ArrayList bat.
+	 */
+	
+	public static ArrayList<Audio> getPodcastList(String izena) {
+		ArrayList<Audio> podcastList = new ArrayList<Audio>();
+		Podcasterra podcaster = PodcasterraDao.getPodcasterra(izena);
+		podcastList = getPodcastak(podcaster);
+		return podcastList;
 	}
 }

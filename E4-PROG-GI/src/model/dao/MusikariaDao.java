@@ -1,6 +1,5 @@
 package model.dao;
 
-import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,12 +7,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 import model.Audio;
 import model.Musikaria;
-import model.metodoak.ViewMetodoak;
 import model.sql.Kone;
 
 /**

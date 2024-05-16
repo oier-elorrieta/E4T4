@@ -5,7 +5,6 @@ import org.junit.Test;
 
 import model.Album;
 
-import java.sql.Blob;
 import java.util.Date;
 
 public class AlbumTest {
@@ -13,7 +12,6 @@ public class AlbumTest {
 	@Test
 	public void testAlbumEquals() {
 		Date date = new Date();
-
 		Album album1 = new Album(1, "Izenburua", "Generoa", null, date);
 		Album album2 = new Album(1, "Izenburua", "Generoa", null, date);
 		assertTrue(album1.equals(album2));
@@ -22,15 +20,12 @@ public class AlbumTest {
 	@Test
 	public void testAlbumPunteroEquals() {
 		Date date = new Date();
-
 		Album album1 = new Album("Izenburua", "Generoa", null, date);
 		assertTrue(album1.equals(album1));
 	}
 
 	@Test
 	public void testAlbumNullEquals() {
-		Date date = new Date();
-
 		Album album1 = new Album(1, "Izenburua", "Generoa", null);
 		Album album2 = null;
 		assertFalse(album1.equals(album2));
@@ -38,8 +33,6 @@ public class AlbumTest {
 
 	@Test
 	public void testAlbumDiffClassEquals() {
-		Date date = new Date();
-
 		Album album1 = new Album(1, "Izenburua");
 		String album2 = "album2";
 		assertFalse(album1.equals(album2));

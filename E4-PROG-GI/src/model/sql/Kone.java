@@ -1,28 +1,8 @@
 package model.sql;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Iterator;
-import javax.swing.JOptionPane;
-import com.mysql.cj.jdbc.Blob;
-import model.Abestia;
-import model.Album;
-import model.Audio;
-import model.ErabiltzaileFree;
-import model.ErabiltzailePremium;
-import model.Erabiltzailea;
-import model.Hizkuntza;
-import model.Musikaria;
-import model.PlayListak;
-import model.Podcast;
-import model.Podcasterra;
-import model.SesioAldagaiak;
 
 public class Kone {
 
@@ -34,14 +14,8 @@ public class Kone {
 	private static String user = "root";
 	private static String pass = "";
 
-	private static String userErabiltzailea;
-	private static String passErabiltzailea;
-
 	private static Connection konexioa = null;
-	private static String kontsulta;
 	private static Statement stm = null;
-	private static PreparedStatement pstm;
-	private static ResultSet rs;
 	
 	private static String userAdmin;
 	private static String passAdmin;

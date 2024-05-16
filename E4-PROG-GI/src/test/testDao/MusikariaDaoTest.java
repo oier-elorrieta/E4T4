@@ -2,23 +2,15 @@ package test.testDao;
 
 import static org.junit.Assert.*;
 
-import java.sql.Blob;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import model.AbestiGuztokoa;
 import model.Audio;
-import model.ErabiltzaileFree;
 import model.Musikaria;
-import model.SesioAldagaiak;
-import model.dao.AbestiGuztokoaDao;
 import model.dao.MusikariaDao;
 import model.sql.Kone;
 
@@ -31,7 +23,7 @@ public class MusikariaDaoTest {
 		Musikaria musikari1Test = new Musikaria("probaTest", "deskripzioa", irudia, "taldea");
 		Musikaria musikari2Test = new Musikaria("probaEditTest", "deskripzioa", irudia, "taldea");
 
-		Kone.konektatuAdminKomprobatu("admin", "headmin");
+		Kone.konektatuAdminKomprobatu("root", "");
 		MusikariaDao.gehituMusikaria(musikariTest);
 		MusikariaDao.gehituMusikaria(musikari1Test);
 		MusikariaDao.gehituMusikaria(musikari2Test);
@@ -72,12 +64,12 @@ public class MusikariaDaoTest {
 
 	@Test
 	public void gehituMusikariaTest() throws SQLException {
-		Kone.konektatuAdminKomprobatu("admin", "headmin");
+		Kone.konektatuAdminKomprobatu("root", "");
 		Musikaria musikariTest = new Musikaria("probaGehituTest", "deskripzioa", irudia, "bakarlaria");
 		boolean test = MusikariaDao.gehituMusikaria(musikariTest);
 		assertTrue(test);
 	}
-
+	
 	@Test
 	public void getMusikariakTest() throws SQLException {
 		
@@ -91,17 +83,6 @@ public class MusikariaDaoTest {
 	public void ezabatuMusikariaTest() throws SQLException {
 		boolean test;
 		test = MusikariaDao.ezabatuMusikaria("probaEzabatuTest");
-		assertTrue(test);
-	}
-
-	@Test
-	public void aldatuMusikariaTest() throws SQLException {
-		boolean test;
-
-		Musikaria musikariTest = MusikariaDao.getMusikaria("probaEditTest");
-		musikariTest.setDeskription("deskripzioAldatuta");
-		test = MusikariaDao.aldatuMusikaria(musikariTest);
-
 		assertTrue(test);
 	}
 

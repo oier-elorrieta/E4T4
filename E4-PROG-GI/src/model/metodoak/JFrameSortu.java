@@ -4,13 +4,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
-import model.Abestia;
 import model.Album;
 import model.Artista;
 import model.Audio;
 import model.Musikaria;
 import model.PlayListak;
-import model.Podcast;
 import model.Podcasterra;
 import view.admin.AbestiakKudeatu;
 import view.admin.AdminMenuNagusia;
@@ -32,10 +30,10 @@ import view.bezeroa.nirePlayListak.PlayListakView;
 import view.bezeroa.podcastDeskubritu.PodcastakView;
 import view.bezeroa.podcastDeskubritu.PodcasterrakView;
 
-public class JFrameSortu{
-	
+public class JFrameSortu {
+
 	/*-----------------------LOGIN-----------------------*/
-	
+
 	public static void erregistroAukeraSortu() {
 		Erregistroa erregistroAukera = new Erregistroa();
 		erregistroAukera.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -139,26 +137,23 @@ public class JFrameSortu{
 		adminMenu.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		adminMenu.setVisible(true);
 	}
-	
-public static void musikaKudeatuAukeraSortu() {
-        MusikaKudeatu musikaKude = new MusikaKudeatu();
-        musikaKude.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        musikaKude.setVisible(true);
-    
-    }
 
-public static void albumakKudeatuAukeraSortu(String izena) {
-	
-	AlbumakKudeatu ak = new AlbumakKudeatu(izena);
-	ak.setVisible(true);
+	public static void musikaKudeatuAukeraSortu() {
+		MusikaKudeatu musikaKude = new MusikaKudeatu();
+		musikaKude.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		musikaKude.setVisible(true);
+
+	}
+
+	public static void albumakKudeatuAukeraSortu(String izena) {
+
+		AlbumakKudeatu ak = new AlbumakKudeatu(izena);
+		ak.setVisible(true);
+	}
+
+	public static void abestiakKudeatuAukeraSortu(Album albuma) {
+
+		AbestiakKudeatu abk = new AbestiakKudeatu(albuma);
+		abk.setVisible(true);
+	}
 }
-
-
-public static void abestiakKudeatuAukeraSortu(Album albuma) {
-	
-	AbestiakKudeatu abk = new AbestiakKudeatu(albuma);
-	abk.setVisible(true);
-}
-}
-
-

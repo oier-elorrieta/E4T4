@@ -9,7 +9,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 
-import model.AbestiGuztokoa;
 import model.Abestia;
 import model.Audio;
 import model.PlayListak;

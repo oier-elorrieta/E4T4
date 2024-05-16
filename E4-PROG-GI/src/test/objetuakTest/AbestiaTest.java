@@ -3,8 +3,6 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import model.Abestia;
-
-import java.sql.Blob;
 import java.sql.Time;
 
 public class AbestiaTest {
