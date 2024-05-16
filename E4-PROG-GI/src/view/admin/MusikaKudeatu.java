@@ -133,7 +133,7 @@ public class MusikaKudeatu extends KudeatuPlantilla {
 				JTextField desk = new JTextField(40);
 				desk.setText(select.getDeskription());
 				JTextField irudia = new JTextField(60);
-				irudia.setText("src\\DefaultImg\\defImg.txt");
+				irudia.setText("");
 
 				JComboBox<String> cboEzaugarria = new JComboBox();
 				cboEzaugarria.addItem("bakarlaria");

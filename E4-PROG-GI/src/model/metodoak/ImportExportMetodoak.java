@@ -110,7 +110,6 @@ public class ImportExportMetodoak {
 			br = new BufferedReader(new FileReader(nombreArchivo));
 
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
 			try {
 				br = new BufferedReader(new FileReader("src\\DefaultImg\\defImg.txt"));
 			} catch (Exception e1) {
