@@ -21,26 +21,18 @@ import model.dao.PodcasterraDao;
 import model.sql.Kone;
 
 public class PodcastDaoTest {
-	
-    @Test
-    public void getPodcastakTest() throws SQLException {
-    	Podcasterra podcasterraTest = new Podcasterra(7, "IbaiLlanos");
-    	int zenbatPodcast = 0;
-    	
-    	Connection konexioa = Kone.konektatu();
-		Statement stm = konexioa.createStatement();
-		String kontsulta = "select count(*) as zbk from Audio a inner join Podcast p using (IdAudio) where IdArtista = "
-				+ podcasterraTest.getIdArtista();
-		ResultSet rs = stm.executeQuery(kontsulta);
 
-		rs.next();
-		zenbatPodcast = rs.getInt("zbk");
-		konexioa.close();
+	@Test
+	public void getPodcastakTest() throws SQLException {
+		Podcasterra podcasterraTest = new Podcasterra(7, "IbaiLlanos");
+		int zenbatPodcast = 0;
+
+		ArrayList<Audio> podcastakTest = PodcastDao.getPodcastak(podcasterraTest);
+
+		Time time = new Time(0, 14, 12);
+		Podcast audio = new Podcast(33, "Podcast Aitana", time, null);
 		
-    	ArrayList<Audio> podcastakTest  = PodcastDao.getPodcastak(podcasterraTest);
-    	
-    	assertEquals(zenbatPodcast, podcastakTest.size());
-    }
-    
-    
+		assertEquals(podcastakTest.get(0), audio);
+	}
+
 }

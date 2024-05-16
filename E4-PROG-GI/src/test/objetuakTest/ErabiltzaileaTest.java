@@ -1,4 +1,4 @@
-package test;
+package test.objetuakTest;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -13,14 +13,11 @@ public class ErabiltzaileaTest {
     public void testEquals() {
         Erabiltzailea erabiltzailea1 = new Erabiltzailea(1, "user1", "password1", "John", "Doe", new java.sql.Date(new Date().getTime()), "eu");
         Erabiltzailea erabiltzailea2 = new Erabiltzailea(1, "user1", "password1", "John", "Doe", new java.sql.Date(new Date().getTime()), "eu");
-        Erabiltzailea erabiltzailea3 = new Erabiltzailea(2, "user2", "password2", "Jane", "Smith", new java.sql.Date(new Date().getTime()), "en");
-
         assertTrue(erabiltzailea1.equals(erabiltzailea2));
     }
     @Test
     public void testEquals2() {
         Erabiltzailea erabiltzailea1 = new Erabiltzailea(1, "user1", "password1", "John", "Doe", new java.sql.Date(new Date().getTime()), "eu");
-        Erabiltzailea erabiltzailea2 = new Erabiltzailea(1, "user1", "password1", "John", "Doe", new java.sql.Date(new Date().getTime()), "eu");
         Erabiltzailea erabiltzailea3 = new Erabiltzailea(2, "user2", "password2", "Jane", "Smith", new java.sql.Date(new Date().getTime()), "en");
 
         assertFalse(erabiltzailea1.equals(erabiltzailea3));

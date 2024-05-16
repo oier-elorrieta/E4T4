@@ -3,11 +3,14 @@ package model;
 import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * Album klasea errepresentatzen duen klasea.
  */
 public class Album {
+
+	
 
 	private int id;
 	private String izenburua;
@@ -17,6 +20,19 @@ public class Album {
 	private int kantaKop;
 	private Date urtea;
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Album other = (Album) obj;
+		return Objects.equals(generoa, other.generoa) && id == other.id
+				&& Objects.equals(irudiaString, other.irudiaString) && Objects.equals(izenburua, other.izenburua)
+				&& kantaKop == other.kantaKop;
+	}
 	/**
 	 * Album klasearen eraikitzailea.
 	 * 

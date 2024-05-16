@@ -1,4 +1,4 @@
-package test;
+package test.objetuakTest;
 import static org.junit.Assert.*;
 import org.junit.Test;
 

@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Time;
 import java.util.ArrayList;
 
 import org.junit.After;
@@ -28,10 +29,16 @@ public class AbestiGuztokoaDaoTest {
 	public static void setUpBeforeClass() throws Exception {
 		ErabiltzaileFree erabitzaileFreeTest = new ErabiltzaileFree(1, null, null, null, null, null, null);
 		SesioAldagaiak.logErabiltzailea = erabitzaileFreeTest;
-		Audio audioTest = new Audio();
-    	audioTest.setIdAudio(2);
-    	AbestiGuztokoa abestiGuztokoa = new AbestiGuztokoa(erabitzaileFreeTest, audioTest);
-    	AbestiGuztokoaDao.abestiGustokoaGehitu(abestiGuztokoa);
+		
+		Audio audioTest1 = new Audio();
+    	audioTest1.setIdAudio(1);
+    	AbestiGuztokoa abestiGuztokoa1 = new AbestiGuztokoa(erabitzaileFreeTest, audioTest1);
+    	AbestiGuztokoaDao.abestiGustokoaGehitu(abestiGuztokoa1);
+    	
+    	Audio audioTest2 = new Audio();
+    	audioTest2.setIdAudio(2);
+    	AbestiGuztokoa abestiGuztokoa2 = new AbestiGuztokoa(erabitzaileFreeTest, audioTest2);
+    	AbestiGuztokoaDao.abestiGustokoaGehitu(abestiGuztokoa2);
 	}
 	
 	@Test
@@ -39,27 +46,22 @@ public class AbestiGuztokoaDaoTest {
 		
 		ErabiltzaileFree erabitzaileFreeTest = new ErabiltzaileFree(1, null, null, null, null, null, null);
 		SesioAldagaiak.logErabiltzailea = erabitzaileFreeTest;
-		int zenbatAudioTest = 0;
 		
-		Connection konexioa = Kone.konektatu();
-		Statement stm = konexioa.createStatement();
-		String kontsulta = "SELECT count(*) as zbk FROM Gustokoak g join Audio a using (IdAudio) where IdBezeroa = 1";
-		ResultSet rs = stm.executeQuery(kontsulta);
-		rs.next();
-		zenbatAudioTest = rs.getInt("zbk"); 
-		konexioa.close();
+		Time time = new Time(0, 4, 8);
+    	Abestia abestiaTest = new Abestia(1, "Phoenix", time, null, false);
 		
 		ArrayList<Audio> audioakTest = AbestiGuztokoaDao.getAbestiGustokoak();
-		
-		assertEquals(zenbatAudioTest, audioakTest.size());
+		assertEquals(abestiaTest, audioakTest.get(0));
 	}
 	
 	@Test
 	public void abestiGustokoaGehituTest() throws SQLException {
 		ErabiltzaileFree erabitzaileFreeTest = new ErabiltzaileFree(1, null, null, null, null, null, null);
 		SesioAldagaiak.logErabiltzailea = erabitzaileFreeTest;
+		
 		Audio audioTest = new Audio();
     	audioTest.setIdAudio(3);
+    	
 		AbestiGuztokoa abestiGuztokoa = new AbestiGuztokoa(erabitzaileFreeTest, audioTest);
 				
 		assertTrue(AbestiGuztokoaDao.abestiGustokoaGehitu(abestiGuztokoa));		
@@ -102,10 +104,16 @@ public class AbestiGuztokoaDaoTest {
 	public static void setUpAfterClass() throws Exception {
 		ErabiltzaileFree erabitzaileFreeTest = new ErabiltzaileFree(1, null, null, null, null, null, null);
 		SesioAldagaiak.logErabiltzailea = erabitzaileFreeTest;
+		
 		Audio audioTest = new Audio();
-    	audioTest.setIdAudio(3);
+    	audioTest.setIdAudio(1);
     	AbestiGuztokoa abestiGuztokoa = new AbestiGuztokoa(erabitzaileFreeTest, audioTest);
     	AbestiGuztokoaDao.abestiGuztokoaEzabatu(abestiGuztokoa);
+    	
+    	Audio audioTest1 = new Audio();
+    	audioTest1.setIdAudio(3);
+    	AbestiGuztokoa abestiGuztokoa1 = new AbestiGuztokoa(erabitzaileFreeTest, audioTest1);
+    	AbestiGuztokoaDao.abestiGuztokoaEzabatu(abestiGuztokoa1);
 	}
 
 }

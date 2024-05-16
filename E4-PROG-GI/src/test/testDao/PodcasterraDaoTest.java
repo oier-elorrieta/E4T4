@@ -20,25 +20,21 @@ public class PodcasterraDaoTest {
 	@Test
 	public void getPodcasterEntzunaldiakTest() throws SQLException {
 		int zenbatPodcaster = 0;
-		
-		Connection konexioa = Kone.konektatu();
-		Statement stm = konexioa.createStatement();
-		String kontsulta = "SELECT count(*) as zbk FROM EstatistikakAurkestuPodcasterraTotala";
-		ResultSet rs = stm.executeQuery(kontsulta);
-		rs.next();
-		zenbatPodcaster = rs.getInt("zbk");
-		konexioa.close();
-		
+				
 		ArrayList<Podcasterra> podcasterrakTest = PodcasterraDao.getPodcasterEntzunaldiak();
+		System.out.println(podcasterrakTest.get(0));
 		
-		assertEquals(zenbatPodcaster, podcasterrakTest.size());
+		Podcasterra podcasterTest = new Podcasterra("Jordi Wild", null,0);
+		
+		assertEquals(podcasterrakTest.get(0), podcasterTest);
 	}
 	
 	@Test
 	public void getPodcasterraTest() throws SQLException {
-		Podcasterra podcasterraTestarako = new Podcasterra(7, "Ibai Llanos", null, null);
-		Podcasterra podcasterraTest = PodcasterraDao.getPodcasterra("Ibai Llanos");
+		Podcasterra podcasterraTestarako = new Podcasterra(6, "Jordi Wild",
+				"Bere YouTube kanala, El Rincón de Giorgio, 2013ko martxoan sortu zen eta gaur egun 11 milioi harpidedun baino gehiago ditu. Beste kanal bat ere badu, The Wild Project, bere podcastarena, eta 2022 eta 2023ko Esland sariak irabazi zituen. tertuliarik onena.​", null);
+		Podcasterra podcasterraTest = PodcasterraDao.getPodcasterra("Jordi Wild");
 		
-		assertEquals(podcasterraTestarako.getIdArtista(), podcasterraTest.getIdArtista());
+		assertEquals(podcasterraTestarako, podcasterraTest);
 	}
 }

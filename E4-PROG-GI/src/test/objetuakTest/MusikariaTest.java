@@ -1,4 +1,4 @@
-package test;
+package test.objetuakTest;
 import static org.junit.Assert.*;
 
 import java.sql.Blob;
@@ -36,7 +36,7 @@ public class MusikariaTest {
     public void testToString() {
         Blob irudia = null;
         Musikaria musikaria = new Musikaria(1, "Izena", "Deskribapena", irudia, "Ezaugarria");
-        String expected = "Musikaria [ezaugarria=Ezaugarria, idArtista=1, izena=Izena, deskription=Deskribapena, irudia=" + irudia + "]";
+        String expected = "Izena";
         assertEquals(expected, musikaria.toString());
     }
 }

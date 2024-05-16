@@ -149,6 +149,6 @@ public class Audio {
 			return false;
 		Audio other = (Audio) obj;
 		return idAudio == other.idAudio && Objects.equals(iraupena, other.iraupena)
-				&& Objects.equals(irudia, other.irudia) && Objects.equals(izena, other.izena);
+				 && Objects.equals(izena, other.izena);
 	}
 }

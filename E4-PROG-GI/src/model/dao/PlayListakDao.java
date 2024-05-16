@@ -29,9 +29,6 @@ public class PlayListakDao {
 			Statement stm = konexioa.createStatement();
 			String kontsulta = "SELECT * FROM Playlist where IdBezeroa = " + id;
 			ResultSet rs = stm.executeQuery(kontsulta);
-			java.util.Date d = new java.util.Date();
-			PlayListak playlistGustokoena = new PlayListak(0, "Gustokoena", d);
-			playlistList.add(playlistGustokoena);
 			while (rs.next()) {
 				playLista = new PlayListak(rs.getInt("IdList"), rs.getString("Izenburua"), rs.getDate("SorreraData"));
 				playlistList.add(playLista);
