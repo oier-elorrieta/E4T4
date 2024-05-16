@@ -1,4 +1,5 @@
 package model.dao;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,15 +19,12 @@ public class AbestiGuztokoaDao {
 	 * @return abesti gustokoak ArrayList bat
 	 */
 	public static ArrayList<Audio> getAbestiGustokoak() {
+		int id = SesioAldagaiak.logErabiltzailea.getIdErabiltzailea();
 		ArrayList<Audio> abestiakList = new ArrayList<Audio>();
 		Audio abestia;
 
-		int id = 0;
-
-		Connection konexioa = Kone.konektatu();
-
-		id = SesioAldagaiak.logErabiltzailea.getIdErabiltzailea();
 		try {
+			Connection konexioa = Kone.konektatu();
 			Statement stm = konexioa.createStatement();
 			String kontsulta = "SELECT a.IdAudio, a.Izena, a.Iraupena, a.Irudia FROM Gustokoak g join Audio a using (IdAudio) where IdBezeroa = "
 					+ id;
@@ -36,11 +34,13 @@ public class AbestiGuztokoaDao {
 						rs.getTime("a.Iraupena"), rs.getBlob("a.Irudia"), true);
 				abestiakList.add(abestiaSartu);
 			}
+			konexioa.close();
+			return abestiakList;
 		} catch (SQLException e) {
 			e.getMessage();
+			return null;
 		}
-		Kone.itxiConexioa();
-		return abestiakList;
+
 	}
 
 	/**
@@ -51,24 +51,21 @@ public class AbestiGuztokoaDao {
 	 * @throws SQLException SQL errorea
 	 */
 	public static boolean abestiGustokoaGehitu(AbestiGuztokoa abestiGuztokoa) throws SQLException {
-		int id = 0;
-
-		id = SesioAldagaiak.logErabiltzailea.getIdErabiltzailea();
-
-		Connection konexioa = Kone.konektatu();
-		Statement stm = konexioa.createStatement();
-		String kontsulta = "INSERT into Gustokoak(IdBezeroa, IdAudio) VALUES(?,?)";
+		int id = SesioAldagaiak.logErabiltzailea.getIdErabiltzailea();
 		try {
+			Connection konexioa = Kone.konektatu();
+			Statement stm = konexioa.createStatement();
+			String kontsulta = "INSERT into Gustokoak(IdBezeroa, IdAudio) VALUES(?,?)";
 			PreparedStatement pstm = konexioa.prepareStatement(kontsulta);
 			pstm.setInt(1, id);
 			pstm.setInt(2, abestiGuztokoa.getAudio().getIdAudio());
 			pstm.execute();
-			Kone.itxiConexioa();
+			konexioa.close();
+			return true;
 		} catch (SQLException e) {
 			System.out.println("Kontsulta txarto" + e.getMessage());
 			return false;
 		}
-		return true;
 	}
 
 	/**
@@ -86,12 +83,13 @@ public class AbestiGuztokoaDao {
 					+ abestiGuztokoa.getErabiltzailea().getIdErabiltzailea() + " AND IdAudio = "
 					+ abestiGuztokoa.getAudio().getIdAudio();
 			stm.executeUpdate(kontsulta);
-			Kone.itxiConexioa();
+			konexioa.close();
+			return true;
 		} catch (SQLException e) {
 			return false;
 		}
-		return true;
 		
+
 	}
 
 	/**
@@ -117,8 +115,7 @@ public class AbestiGuztokoaDao {
 		} else {
 			gustokoaDu = true;
 		}
-		Kone.itxiConexioa();
-
+		konexioa.close();
 		return gustokoaDu;
 	}
 

@@ -60,41 +60,50 @@ public class MenuErreprodukzioa extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
+		// Abesti informazioa lbl sortu
 		JLabel lblInfo = new JLabel("Abesti Informazioa:");
 		lblInfo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblInfo.setFont(new Font("Arial Black", Font.BOLD | Font.ITALIC, 15));
 		lblInfo.setBounds(50, 125, 200, 75);
 
+		// Abestiaren izena lbl sortu
 		JLabel lblIzena = new JLabel(audio.getIzena());
 		lblIzena.setHorizontalAlignment(SwingConstants.CENTER);
 		lblIzena.setFont(new Font("Arial Black", Font.BOLD | Font.ITALIC, 12));
 		lblIzena.setBounds(50, 150, 200, 75);
 
+		// Abestiaren iraupena ateratzeko lbl sortu
 		JLabel lblIraupena = new JLabel(audio.getIraupena() + "");
 		lblIraupena.setHorizontalAlignment(SwingConstants.CENTER);
 		lblIraupena.setFont(new Font("Arial Black", Font.BOLD | Font.ITALIC, 12));
 		lblIraupena.setBounds(50, 175, 200, 75);
 
+		// Albumaren izena lbl sortu
 		JLabel lblAlbumIzena = new JLabel(AlbumDao.getAlbumByAbesti(audio).getIzenburua());
 		lblAlbumIzena.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAlbumIzena.setFont(new Font("Arial Black", Font.BOLD | Font.ITALIC, 12));
 		lblAlbumIzena.setBounds(50, 200, 200, 75);
 
+		// Musikariaren izena lbl sortu
 		JLabel lblMusikariIzena = new JLabel(MusikariaDao.getMusikariaByAudio(audio).getIzena());
 		lblMusikariIzena.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMusikariIzena.setFont(new Font("Arial Black", Font.BOLD | Font.ITALIC, 12));
 		lblMusikariIzena.setBounds(50, 225, 200, 75);
 
+		// Listaren modeloa bete playlistekin
 		ArrayList<PlayListak> playlistLista = PlayListakDao.getPlaylist();
 		DefaultListModel<String> modeloLista = new DefaultListModel<>();
 		for (int i = 0; i < playlistLista.size(); i++) {
 			modeloLista.addElement(playlistLista.get(i).getIzena());
 		}
+
+		// Lista sortu eta modeloa implementatu
 		JList<String> jListPlayList = new JList(modeloLista);
 		jListPlayList.setBorder(new LineBorder(new Color(0, 0, 0)));
 		JScrollPane scrollPane = new JScrollPane(jListPlayList);
 		jListPlayList.setBounds(300, 150, 250, 200);
 
+		// Audioa playlistean sartzeko botoia sortu
 		JButton btnSartu = new JButton("Sartu");
 		btnSartu.setBackground(Color.BLACK);
 		btnSartu.setForeground(Color.RED);
@@ -102,17 +111,11 @@ public class MenuErreprodukzioa extends JFrame {
 		btnSartu.setFont(new Font("SansSerif", Font.BOLD, 22));
 		btnSartu.setFocusPainted(false);
 
-		JButton btnAtzera = ViewMetodoak.btnAtzeraSortu();
-
-		//JButton btnErabiltzaile = new JButton(SesioAldagaiak.logErabiltzailea.getIzena());
-				
-		//btnErabiltzaile.setBackground(Color.LIGHT_GRAY);
-		//btnErabiltzaile.setForeground(Color.BLACK);
-		//btnErabiltzaile.setBounds(400, 60, 144, 50);
-		//btnErabiltzaile.setFont(new Font("SansSerif", Font.BOLD, 22));
-		//btnErabiltzaile.setFocusPainted(false);
-
+		// Erabiltzailearen datuak aldatzeko botoia
 		JButton btnErabiltzaile = ViewMetodoak.btnErabiltzaileaSortu();
+
+		// Aurreko pantallara joan
+		JButton btnAtzera = ViewMetodoak.btnAtzeraSortu();
 		
 		contentPane.add(lblInfo);
 		contentPane.add(lblIzena);
@@ -121,9 +124,10 @@ public class MenuErreprodukzioa extends JFrame {
 		contentPane.add(lblMusikariIzena);
 		contentPane.add(jListPlayList);
 		contentPane.add(btnSartu);
-		contentPane.add(btnAtzera);
 		contentPane.add(btnErabiltzaile);
-
+		contentPane.add(btnAtzera);
+		
+		// Aukeratutako abestia playlist batean sartzeko funtzionaltasuna
 		btnSartu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -163,18 +167,18 @@ public class MenuErreprodukzioa extends JFrame {
 			}
 		});
 
-		btnAtzera.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				dispose();
-			}
-		});
-
 		btnErabiltzaile.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				setVisible(false);
 				JFrameSortu.premiumErregistroAukeraSortu(frame);
+			}
+		});
+		
+		btnAtzera.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dispose();
 			}
 		});
 	}

@@ -14,9 +14,10 @@ import model.SesioAldagaiak;
 import model.sql.Kone;
 
 /**
- * AbestiaDao klasea, Abestia entitatearekin erlazionatutako datu-basearen eragiketak egiteko erabiltzen den DAO klasea da.
+ * AbestiaDao klasea, Abestia entitatearekin erlazionatutako datu-basearen
+ * eragiketak egiteko erabiltzen den DAO klasea da.
  */
-public class AbestiaDao {	
+public class AbestiaDao {
 	/**
 	 * Album baten arabera Abestiak lortzeko metodoa.
 	 * 
@@ -24,16 +25,18 @@ public class AbestiaDao {
 	 * @return Abestiak ArrayList-a, albumaren arabera lortutako Abestiak.
 	 */
 	public static ArrayList<Audio> getAbestiakByAlbum(Album album) {
-		Connection konexioa = Kone.konektatu();
 		try {
+			Connection konexioa = Kone.konektatu();
 			ArrayList<Audio> abestiak = new ArrayList<Audio>();
 			Statement stm = konexioa.createStatement();
-			String kontsulta = "SELECT * FROM Abestia join Audio using(IdAudio) where IdAlbum = '" + album.getId() + "'";
+			String kontsulta = "SELECT * FROM Abestia join Audio using(IdAudio) where IdAlbum = '" + album.getId()
+					+ "'";
 			ResultSet rs = stm.executeQuery(kontsulta);
 			while (rs.next()) {
 				abestiak.add(new Abestia(rs.getInt("IdAudio"), rs.getString("Izena"), rs.getTime("Iraupena"),
 						rs.getBlob("Irudia"), false));
 			}
+			konexioa.close();
 			return abestiak;
 		} catch (SQLException e) {
 			e.getMessage();
