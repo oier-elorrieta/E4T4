@@ -3,13 +3,16 @@ package view.admin;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
+
+import model.Interfazeak.IAtzeraIzan;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class EstadistikakTop extends JFrame {
+public abstract class EstadistikakTop extends JFrame implements IAtzeraIzan {
     protected DefaultTableModel model = new DefaultTableModel();
     protected JScrollPane scrollPane;
     JButton btnAstea;

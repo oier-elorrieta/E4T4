@@ -107,8 +107,8 @@ public class ViewMetodoak {
 	
 	public static JButton btnAtzeraSortu() {
 		JButton btnAtzera = new JButton("Atzera");
-		btnAtzera.setBackground(Color.BLACK);
-		btnAtzera.setForeground(Color.RED);
+		btnAtzera.setBackground(Color.LIGHT_GRAY);
+		btnAtzera.setForeground(Color.BLACK);
 		btnAtzera.setBounds(50, 60, 144, 50);
 		btnAtzera.setFont(new Font("SansSerif", Font.BOLD, 22));
 		btnAtzera.setFocusPainted(false);
@@ -139,6 +139,9 @@ public class ViewMetodoak {
 	 * @param jf           JFrame bat, berriz kargatzeko.
 	 */
 	public static void btnGeneratu(JPanel pane,Musikaria musikaria, JFrame jf) {
+		
+		Musikaria musikariaPasatu = MusikariaDao.getMusikaria(musikaria.getIzena());
+		
 		JButton newButton = new JButton();
 		newButton.setText(musikaria.getIzena() + " Entzunaldiak: " + musikaria.getEntzunaldiak());
 		ImageIcon iconoEscalado;
@@ -153,9 +156,8 @@ public class ViewMetodoak {
 		});
 		
 		try {
-			icono = new ImageIcon(musikaria.getIrudia().getBytes(1, (int) musikaria.getIrudia().length()));
-			
 
+			icono = new ImageIcon(musikaria.getIrudia().getBytes(1, (int) musikaria.getIrudia().length()));
 			imagen = icono.getImage().getScaledInstance(150, 100, Image.SCALE_SMOOTH);
 			iconoEscalado = new ImageIcon(imagen);
 			newButton.setIcon(iconoEscalado);

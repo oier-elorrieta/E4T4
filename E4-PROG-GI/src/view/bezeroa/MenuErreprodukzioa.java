@@ -28,6 +28,8 @@ import java.awt.SystemColor;
 import java.awt.Toolkit;
 
 import model.*;
+import model.Interfazeak.IAtzeraIzan;
+import model.Interfazeak.IProfilaIzan;
 import model.dao.AbestiGuztokoaDao;
 import model.dao.AbestiaDao;
 import model.dao.AlbumDao;
@@ -45,7 +47,7 @@ import java.util.ArrayList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class MenuErreprodukzioa extends JFrame {
+public class MenuErreprodukzioa extends JFrame implements IAtzeraIzan, IProfilaIzan{
 
 	private static final long serialVersionUID = 1L;
 	protected static final String String = null;

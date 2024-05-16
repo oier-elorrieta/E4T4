@@ -20,6 +20,7 @@ import javax.swing.event.ListSelectionListener;
 import model.Album;
 import model.Audio;
 import model.PlayListak;
+import model.Interfazeak.IAtzeraIzan;
 import model.dao.PlayListakDao;
 import model.metodoak.JFrameSortu;
 import model.metodoak.ViewAdminMetodoak;
@@ -30,7 +31,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 
-public class KudeatuPlantilla extends JFrame {
+public class KudeatuPlantilla extends JFrame implements IAtzeraIzan{
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
@@ -61,8 +62,8 @@ public class KudeatuPlantilla extends JFrame {
         contentPane.add(scrollPane);
 
         btnAtzera = new JButton("Atzera");
-        btnAtzera.setBackground(Color.BLACK);
-        btnAtzera.setForeground(Color.RED);
+		btnAtzera.setBackground(Color.LIGHT_GRAY);
+		btnAtzera.setForeground(Color.BLACK);
         btnAtzera.setBounds(50, 60, 144, 50);
         btnAtzera.setFont(new Font("SansSerif", Font.BOLD, 22));
         btnAtzera.setFocusPainted(false);
@@ -76,36 +77,36 @@ public class KudeatuPlantilla extends JFrame {
         contentPane.add(lblArtistaKude);
 
         btnJarraitu = new JButton("Albumak Ikusi");
-
-        btnJarraitu.setForeground(Color.RED);
+		btnJarraitu.setBackground(Color.LIGHT_GRAY);
+        btnJarraitu.setForeground(Color.black);
         btnJarraitu.setFont(new Font("SansSerif", Font.BOLD, 22));
         btnJarraitu.setFocusPainted(false);
-        btnJarraitu.setBackground(Color.BLACK);
         btnJarraitu.setBounds(50, 490, 187, 50);
         contentPane.add(btnJarraitu);
+        
 btnEzabatu = new JButton("Ezabatu");
-        btnEzabatu.setForeground(Color.RED);
+        btnEzabatu.setForeground(Color.black);
         btnEzabatu.setFont(new Font("SansSerif", Font.BOLD, 22));
         btnEzabatu.setFocusPainted(false);
-        btnEzabatu.setBackground(Color.BLACK);
+        btnEzabatu.setBackground(Color.LIGHT_GRAY);
         btnEzabatu.setBounds(247, 490, 187, 50);
         contentPane.add(btnEzabatu);
 
         btnGehitu = new JButton("Gehitu Artista");
 
-        btnGehitu.setForeground(Color.RED);
+        btnGehitu.setForeground(Color.black);
         btnGehitu.setFont(new Font("SansSerif", Font.BOLD, 22));
         btnGehitu.setFocusPainted(false);
-        btnGehitu.setBackground(Color.BLACK);
+        btnGehitu.setBackground(Color.LIGHT_GRAY);
         btnGehitu.setBounds(444, 490, 206, 50);
         contentPane.add(btnGehitu);
 
         btnDatuakAldatu = new JButton("Datuak aldatu");
 
-        btnDatuakAldatu.setForeground(Color.RED);
+        btnDatuakAldatu.setForeground(Color.black);
         btnDatuakAldatu.setFont(new Font("SansSerif", Font.BOLD, 22));
         btnDatuakAldatu.setFocusPainted(false);
-        btnDatuakAldatu.setBackground(Color.BLACK);
+        btnDatuakAldatu.setBackground(Color.LIGHT_GRAY);
         btnDatuakAldatu.setBounds(657, 490, 206, 50);
         contentPane.add(btnDatuakAldatu);
 
