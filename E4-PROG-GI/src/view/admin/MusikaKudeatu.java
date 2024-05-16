@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -91,23 +92,18 @@ public class MusikaKudeatu extends KudeatuPlantilla {
 						JOptionPane.PLAIN_MESSAGE);
 
 				if (opcion == JOptionPane.OK_OPTION) {
-					
-					if (irudia.getText().equals("")|| izena.getText().equals("") || desk.getText().equals("")) {
-						JOptionPane.showMessageDialog(null, "Bete datu guztiak", 
-                                "Error", 
-                                JOptionPane.ERROR_MESSAGE);
+
+					if (irudia.getText().equals("") || izena.getText().equals("") || desk.getText().equals("")) {
+						JOptionPane.showMessageDialog(null, "Bete datu guztiak", "Error", JOptionPane.ERROR_MESSAGE);
+					} else {
+						String insertatzekoIrudia = ImportExportMetodoak.inportatuIrudia(irudia.getText());
+						Musikaria m = new Musikaria(izena.getText(), desk.getText(), insertatzekoIrudia,
+								(String) cboEzaugarria.getSelectedItem());
+						MusikariaDao.gehituMusikaria(m);
+						dispose();
+						JFrameSortu.musikaKudeatuAukeraSortu();
 					}
-					String insertatzekoIrudia = ImportExportMetodoak.inportatuIrudia(irudia.getText());
-					Musikaria m = new Musikaria(izena.getText(), desk.getText(), insertatzekoIrudia,
-							(String) cboEzaugarria.getSelectedItem());
-					MusikariaDao.gehituMusikaria(m);
-					dispose();
-					JFrameSortu.musikaKudeatuAukeraSortu();
-
-				} else {
-
 				}
-
 			}
 		});
 
@@ -145,19 +141,18 @@ public class MusikaKudeatu extends KudeatuPlantilla {
 
 				JButton img = new JButton();
 				ImageIcon icono = null;
-				try {
-System.out.println("antes");
-					icono = new ImageIcon(select.getIrudia().getBytes(1, (int) select.getIrudia().length()));
-					System.out.println("despues");
 
+				try {
+					icono = new ImageIcon(select.getIrudia().getBytes(1, (int) select.getIrudia().length()));
 				} catch (Exception e1) {
-					
-					System.out.println(e1.getMessage());
 					icono = new ImageIcon("src\\DefaultImg\\default.jpg");
-					
+
 				}
 
-				img.setIcon(icono);
+				Image imagen = icono.getImage().getScaledInstance(450, 400, Image.SCALE_SMOOTH);
+				ImageIcon iconoEscalado = new ImageIcon(imagen);
+
+				img.setIcon(iconoEscalado);
 
 				gbc.gridx = 0;
 				gbc.gridy = 0;
@@ -185,15 +180,19 @@ System.out.println("antes");
 						JOptionPane.PLAIN_MESSAGE);
 
 				if (opcion == JOptionPane.OK_OPTION) {
-					String insertatzekoIrudia = ImportExportMetodoak.inportatuIrudia(irudia.getText());
-					select.setIzena(izena.getText());
-					select.setDeskription(desk.getText());
-					select.setIrudiaString(insertatzekoIrudia);
-					select.setEzaugarria((String) cboEzaugarria.getSelectedItem());
-					MusikariaDao.aldatuMusikaria(select);
-					dispose();
-					JFrameSortu.musikaKudeatuAukeraSortu();
-					
+					if (irudia.getText().equals("") || izena.getText().equals("") || desk.getText().equals("")) {
+						JOptionPane.showMessageDialog(null, "Bete datu guztiak", "Error", JOptionPane.ERROR_MESSAGE);
+					} else {
+						String insertatzekoIrudia = ImportExportMetodoak.inportatuIrudia(irudia.getText());
+						select.setIzena(izena.getText());
+						select.setDeskription(desk.getText());
+						select.setIrudiaString(insertatzekoIrudia);
+						select.setEzaugarria((String) cboEzaugarria.getSelectedItem());
+						MusikariaDao.aldatuMusikaria(select);
+						dispose();
+						JFrameSortu.musikaKudeatuAukeraSortu();
+					}
+
 				}
 
 			}
@@ -201,10 +200,10 @@ System.out.println("antes");
 
 		super.btnJarraitu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				JFrameSortu.albumakKudeatuAukeraSortu(((Musikaria) list.getSelectedValue()).getIzena());
 				dispose();
-				
+
 			}
 		});
 
