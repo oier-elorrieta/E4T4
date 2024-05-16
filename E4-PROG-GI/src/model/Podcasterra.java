@@ -9,6 +9,11 @@ import java.sql.Blob;
  */
 public class Podcasterra extends Artista {
 
+	
+	public Podcasterra(int idArtista,String izena) {
+		super(idArtista, izena);
+	}
+	
 	public Podcasterra(int idArtista, String izena, String deskription, Blob irudia) {
 		super(idArtista, izena, deskription, irudia);
 		// TODO Auto-generated constructor stub
@@ -26,7 +31,4 @@ public class Podcasterra extends Artista {
 	 * @param deskription  Podcaterra artistaren deskribapena
 	 * @param irudia       Podcaterra artistaren irudia
 	 */
-
-
-	
 }
