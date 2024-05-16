@@ -141,11 +141,15 @@ public class MusikaKudeatu extends KudeatuPlantilla {
 				JButton img = new JButton();
 				ImageIcon icono = null;
 				try {
-
+System.out.println("antes");
 					icono = new ImageIcon(select.getIrudia().getBytes(1, (int) select.getIrudia().length()));
+					System.out.println("despues");
 
-				} catch (SQLException e1) {
+				} catch (Exception e1) {
+					
 					System.out.println(e1.getMessage());
+					icono = new ImageIcon("src\\DefaultImg\\default.jpg");
+					
 				}
 
 				img.setIcon(icono);
@@ -182,8 +186,9 @@ public class MusikaKudeatu extends KudeatuPlantilla {
 					select.setIrudiaString(insertatzekoIrudia);
 					select.setEzaugarria((String) cboEzaugarria.getSelectedItem());
 					MusikariaDao.aldatuMusikaria(select);
-				} else {
-
+					dispose();
+					JFrameSortu.musikaKudeatuAukeraSortu();
+					
 				}
 
 			}
