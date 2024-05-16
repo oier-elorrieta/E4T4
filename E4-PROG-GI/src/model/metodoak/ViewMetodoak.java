@@ -139,6 +139,9 @@ public class ViewMetodoak {
 	 * @param jf           JFrame bat, berriz kargatzeko.
 	 */
 	public static void btnGeneratu(JPanel pane,Musikaria musikaria, JFrame jf) {
+		
+		Musikaria musikariaPasatu = MusikariaDao.getMusikaria(musikaria.getIzena());
+		
 		JButton newButton = new JButton();
 		newButton.setText(musikaria.getIzena() + " Entzunaldiak: " + musikaria.getEntzunaldiak());
 		
@@ -147,7 +150,7 @@ public class ViewMetodoak {
 			ImageIcon icono = new ImageIcon(musikaria.getIrudia().getBytes(1, (int) musikaria.getIrudia().length()));
 			newButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					JFrameSortu.albumakViewSortu(musikaria);
+					JFrameSortu.albumakViewSortu(musikariaPasatu);
 					jf.dispose();
 				}
 			});
