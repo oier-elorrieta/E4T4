@@ -7,38 +7,26 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Blob;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import javax.swing.BorderFactory;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 
-import com.mysql.cj.protocol.x.SyncFlushDeflaterOutputStream;
 
-import model.dao.AbestiaDao;
 import model.dao.AlbumDao;
 import model.dao.ErabiltzaileFreeDao;
 import model.dao.ErabiltzailePremiumDao;
 import model.dao.ErabiltzaileaDao;
 import model.dao.MusikariaDao;
-import model.dao.PodcastDao;
 import model.dao.PodcasterraDao;
 import model.sql.Kone;
-import view.bezeroa.IragarkiaErreproduzitu;
-import view.bezeroa.musikaDeskubritu.AlbumakView;
-import view.bezeroa.podcastDeskubritu.PodcastakView;
 
 /**
  * ViewMetodoak klasea aplikazioaren ikuspegia kudeatzeko metodoak dituen klasea
@@ -57,16 +45,16 @@ public class ViewMetodoak {
 	 */
 	public static boolean comprobatuLogin(String erabiltzailea, String pasahitza) {
 		boolean loginOK = false;
-				
+
 		Erabiltzailea erabiltzaileInfo = ErabiltzaileaDao.isLoginaOk(erabiltzailea);
 		if (erabiltzaileInfo != null) {
 			String mota = ErabiltzaileaDao.erabiltzaileMota(erabiltzaileInfo);
 			if (erabiltzaileInfo.getPasahitza().equals(pasahitza)) {
 				loginOK = true;
 				erabiltzaileaKargatu(erabiltzaileInfo.getIdErabiltzailea(), mota);
+			}
 		}
-		}
-		
+
 		return loginOK;
 	}
 
@@ -80,12 +68,12 @@ public class ViewMetodoak {
 		switch (mota) {
 		case "free":
 			ErabiltzaileFreeDao.kargatuErabiltzaileFree(id);
-			//SesioAldagaiak.erabiltzailePremium = false;
+			// SesioAldagaiak.erabiltzailePremium = false;
 
 			break;
 		case "premium":
 			ErabiltzailePremiumDao.kargatuErabiltzailePremium(id);
-			//SesioAldagaiak.erabiltzailePremium = true;
+			// SesioAldagaiak.erabiltzailePremium = true;
 			break;
 		}
 	}
@@ -104,7 +92,7 @@ public class ViewMetodoak {
 		btnErabiltzaile.setFocusPainted(false);
 		return btnErabiltzaile;
 	}
-	
+
 	public static JButton btnAtzeraSortu() {
 		JButton btnAtzera = new JButton("Atzera");
 		btnAtzera.setBackground(Color.LIGHT_GRAY);
@@ -138,23 +126,23 @@ public class ViewMetodoak {
 	 * @param entzunaldiak Musikariaren entzunaldi kopurua.
 	 * @param jf           JFrame bat, berriz kargatzeko.
 	 */
-	public static void btnGeneratu(JPanel pane,Musikaria musikaria, JFrame jf) {
-		
+	public static void btnGeneratu(JPanel pane, Musikaria musikaria, JFrame jf) {
+
 		Musikaria musikariaPasatu = MusikariaDao.getMusikaria(musikaria.getIzena());
-		
+
 		JButton newButton = new JButton();
 		newButton.setText(musikaria.getIzena() + " Entzunaldiak: " + musikaria.getEntzunaldiak());
 		ImageIcon iconoEscalado;
 		ImageIcon icono;
 		Image imagen;
-		
+
 		newButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFrameSortu.albumakViewSortu(musikariaPasatu);
 				jf.dispose();
 			}
 		});
-		
+
 		try {
 
 			icono = new ImageIcon(musikaria.getIrudia().getBytes(1, (int) musikaria.getIrudia().length()));
@@ -162,16 +150,14 @@ public class ViewMetodoak {
 			iconoEscalado = new ImageIcon(imagen);
 			newButton.setIcon(iconoEscalado);
 
-			
-
 		} catch (Exception e) {
-			
+
 			icono = new ImageIcon("src\\DefaultImg\\default.jpg");
 			imagen = icono.getImage().getScaledInstance(150, 100, Image.SCALE_SMOOTH);
 			iconoEscalado = new ImageIcon(imagen);
 			newButton.setIcon(iconoEscalado);
 		}
-		
+
 		pane.add(newButton);
 		pane.revalidate();
 		pane.repaint();
@@ -186,11 +172,12 @@ public class ViewMetodoak {
 	 * @param jf   JFrame bat, berriz kargatzeko.
 	 */
 	public static void musikariakEntzunaldiakBotoiarentzako(JPanel pane, JFrame jf) {
-		ArrayList<Musikaria> musikariak = MusikariaDao.getMusikariakEntzunaldiak();		
-			for (int i = 0; i < musikariak.size(); i++) {
-				btnGeneratu(pane,musikariak.get(i), jf);
-			}				
+		ArrayList<Musikaria> musikariak = MusikariaDao.getMusikariakEntzunaldiak();
+		for (int i = 0; i < musikariak.size(); i++) {
+			btnGeneratu(pane, musikariak.get(i), jf);
+		}
 	}
+
 	/**
 	 * Metodo honek JPanel batean podcasterrak entzunaldiak erakusteko botoiak
 	 * sortzen ditu.
@@ -201,7 +188,7 @@ public class ViewMetodoak {
 	public static void podcasterrakEntzunaldiakBotoiarentzako(JPanel pane, JFrame jf) {
 		ArrayList<Podcasterra> podcasterrak = PodcasterraDao.getPodcasterEntzunaldiak();
 		for (int i = 0; i < podcasterrak.size(); i++) {
-			btnGeneratuPodcaster(pane,podcasterrak.get(i), jf);
+			btnGeneratuPodcaster(pane, podcasterrak.get(i), jf);
 		}
 	}
 
@@ -220,24 +207,22 @@ public class ViewMetodoak {
 		JButton newButton = new JButton();
 		newButton.setText(podcasterra.getIzena() + " Entzunaldiak: " + podcasterra.getEntzunaldiak());
 		try {
-			ImageIcon icono = new ImageIcon(podcasterra.getIrudia().getBytes(1, (int) podcasterra.getIrudia().length()));
+			ImageIcon icono = new ImageIcon(
+					podcasterra.getIrudia().getBytes(1, (int) podcasterra.getIrudia().length()));
 			newButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-				JFrameSortu.podcastakViewSortu(podcasterraSartu);
+					JFrameSortu.podcastakViewSortu(podcasterraSartu);
 					jf.dispose();
 				}
 			});
 
-		
 			Image imagen = icono.getImage().getScaledInstance(150, 100, Image.SCALE_SMOOTH);
 
-			
 			ImageIcon iconoEscalado = new ImageIcon(imagen);
 			newButton.setIcon(iconoEscalado);
 
 			pane.add(newButton);
 
-			
 			pane.revalidate();
 			pane.repaint();
 
@@ -268,7 +253,6 @@ public class ViewMetodoak {
 		return lm;
 	}
 
-	
 	/**
 	 * Metodo honek irudia jartzen du JLabel batean.
 	 *
@@ -285,20 +269,6 @@ public class ViewMetodoak {
 		}
 	}
 
-	/**
-	 * Metodo honek podcasterraren abestiak lortzen ditu eta ArrayList bat itzultzen
-	 * du.
-	 *
-	 * @param izena Podcasterraren izena.
-	 * @return Podcasterraren abestiak dituen ArrayList bat.
-	 */
-	public static ArrayList<Audio> getPodcastList(String izena) {
-		ArrayList<Audio> podcastList = new ArrayList<Audio>();
-		Podcasterra podcaster = PodcasterraDao.getPodcasterra(izena);
-		podcastList = PodcastDao.getPodcastak(podcaster);
-		return podcastList;
-	}
-
 	public static void skipBaimendu() {
 
 		Timer timer = new Timer();
@@ -309,7 +279,7 @@ public class ViewMetodoak {
 		};
 		timer.schedule(task, 10000);
 	}
-	
+
 	public static String kalkulatuIraupena(int seg) {
 		boolean b = false;
 		int h = 0;
@@ -318,29 +288,29 @@ public class ViewMetodoak {
 		String minString;
 		String segString;
 		String iraupena;
-		
+
 		do {
 			b = false;
 			if (seg >= 60) {
 				min++;
 				seg = seg - 60;
 				b = true;
-				}
-			if (min>=60) {
+			}
+			if (min >= 60) {
 				h++;
 				min = min - 60;
-				b=true;
+				b = true;
 			}
 		} while (b);
-		
+
 		hString = iraupenaToString(h);
 		minString = iraupenaToString(min);
 		segString = iraupenaToString(seg);
-		
+
 		iraupena = hString + ":" + minString + ":" + segString;
 		return iraupena;
 	}
-	
+
 	public static String iraupenaToString(int zbk) {
 		String zbkString;
 		if (zbk < 10) {
@@ -350,13 +320,4 @@ public class ViewMetodoak {
 		}
 		return zbkString;
 	}
-	
-	
-	private boolean Balidatu(Erabiltzailea e) {
-		
-		boolean ondo = true;
-		 
-		return ondo;
-			
-		}
 }

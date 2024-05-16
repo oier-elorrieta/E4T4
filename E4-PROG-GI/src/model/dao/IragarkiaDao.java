@@ -6,9 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import model.Album;
 import model.Iragarkia;
-import model.Musikaria;
 import model.sql.Kone;
 
 /**

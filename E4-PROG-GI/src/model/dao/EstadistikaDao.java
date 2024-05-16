@@ -1,12 +1,10 @@
 package model.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import model.Abestia;
 import model.Estadistika;
 import model.sql.Kone;
 

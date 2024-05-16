@@ -35,4 +35,14 @@ public class PodcastDaoTest {
 		assertEquals(podcastakTest.get(0), audio);
 	}
 
+	@Test
+	public void getPodcastListTest() throws SQLException {
+		Time time = new Time(1,21,2);
+		Podcast audio = new Podcast(31, "Podcast Ibai Llanos", time , null);
+		ArrayList<Audio> audioakTest = PodcastDao.getPodcastList("Jordi Wild");
+	
+		
+		assertEquals(audio, audioakTest.get(0));
+	}
+	
 }

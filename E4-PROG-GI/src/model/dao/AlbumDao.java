@@ -1,6 +1,5 @@
 package model.dao;
 
-import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,7 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import model.Abestia;
 import model.Album;
 import model.Audio;
 import model.Musikaria;
