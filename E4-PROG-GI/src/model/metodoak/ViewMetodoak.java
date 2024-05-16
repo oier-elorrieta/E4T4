@@ -141,33 +141,38 @@ public class ViewMetodoak {
 	public static void btnGeneratu(JPanel pane,Musikaria musikaria, JFrame jf) {
 		JButton newButton = new JButton();
 		newButton.setText(musikaria.getIzena() + " Entzunaldiak: " + musikaria.getEntzunaldiak());
+		ImageIcon iconoEscalado;
+		ImageIcon icono;
+		Image imagen;
 		
+		newButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFrameSortu.albumakViewSortu(musikaria);
+				jf.dispose();
+			}
+		});
 		
 		try {
-			ImageIcon icono = new ImageIcon(musikaria.getIrudia().getBytes(1, (int) musikaria.getIrudia().length()));
-			newButton.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					JFrameSortu.albumakViewSortu(musikaria);
-					jf.dispose();
-				}
-			});
-
+			icono = new ImageIcon(musikaria.getIrudia().getBytes(1, (int) musikaria.getIrudia().length()));
 			
-			Image imagen = icono.getImage().getScaledInstance(150, 100, Image.SCALE_SMOOTH);
 
-		
-			ImageIcon iconoEscalado = new ImageIcon(imagen);
+			imagen = icono.getImage().getScaledInstance(150, 100, Image.SCALE_SMOOTH);
+			iconoEscalado = new ImageIcon(imagen);
 			newButton.setIcon(iconoEscalado);
 
-			pane.add(newButton);
+			
 
-		
-			pane.revalidate();
-			pane.repaint();
-
-		} catch (SQLException e) {
-			e.getMessage();
+		} catch (Exception e) {
+			
+			icono = new ImageIcon("src\\DefaultImg\\default.jpg");
+			imagen = icono.getImage().getScaledInstance(150, 100, Image.SCALE_SMOOTH);
+			iconoEscalado = new ImageIcon(imagen);
+			newButton.setIcon(iconoEscalado);
 		}
+		
+		pane.add(newButton);
+		pane.revalidate();
+		pane.repaint();
 
 	}
 

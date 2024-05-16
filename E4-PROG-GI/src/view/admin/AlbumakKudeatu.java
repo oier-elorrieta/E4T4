@@ -137,7 +137,7 @@ public class AlbumakKudeatu extends KudeatuPlantilla {
 				String urteaString = sdf.format(select.getUrtea());
 				urtea.setText(urteaString);
 				JTextField irudia = new JTextField(60);
-				irudia.setText("src\\Importazioak\\irudia.txt");
+				irudia.setText("src\\\\DefaultImg\\\\defImg.txt");
 				JTextField generoa = new JTextField(60);
 				generoa.setText(select.getGeneroa());
 				
