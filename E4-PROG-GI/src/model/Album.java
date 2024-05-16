@@ -2,6 +2,7 @@ package model;
 
 import java.sql.Blob;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Album klasea errepresentatzen duen klasea.
@@ -12,7 +13,9 @@ public class Album {
 	private String izenburua;
 	private String generoa;
 	private Blob irudia;
+	private String irudiaString;
 	private int kantaKop;
+	private Date urtea;
 
 	/**
 	 * Album klasearen eraikitzailea.
@@ -22,14 +25,27 @@ public class Album {
 	 * @param generoa    albumaren generoa
 	 * @param irudia     albumaren irudia
 	 */
-	public Album(int id, String izenburua, String generoa, Blob irudia) {
+	public Album(int id, String izenburua, String generoa, Blob irudia,Date urtea) {
 
 		this.izenburua = izenburua;
 		this.generoa = generoa;
 		this.irudia = irudia;
 		this.id = id;
+		this.urtea = urtea;
 
 	}
+	
+	public Album(String izenburua, String generoa, String irudia,Date urtea) {
+
+		this.izenburua = izenburua;
+		this.generoa = generoa;
+		this.irudiaString = irudia;
+		this.urtea = urtea;
+	
+	}
+	
+	
+	
 
 	/**
 	 * Album klasearen eraikitzailea.
@@ -141,5 +157,25 @@ public class Album {
 	public String toString() {
 		return "Izenburua: " + izenburua + "  || Generoa: " + generoa + "  || Kantak: " + kantaKop;
 	}
+
+	public String getIrudiaString() {
+		return irudiaString;
+	}
+
+	public void setIrudiaString(String irudiaString) {
+		this.irudiaString = irudiaString;
+	}
+
+	public Date getUrtea() {
+		return urtea;
+	}
+
+	public void setUrtea(Date urtea) {
+		this.urtea = urtea;
+	}
+	
+	
+	
+	
 
 }

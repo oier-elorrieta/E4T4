@@ -32,7 +32,7 @@ public class AlbumDao {
 			String kontsulta = "SELECT * FROM Album where IdArtista =" + musikari.getIdArtista() + "";
 			ResultSet rs = stm.executeQuery(kontsulta);
 			while (rs.next()) {
-				albumak.add(new Album(rs.getInt("IdAlbum"), rs.getString("Izenburua"), rs.getString("Generoa"), rs.getBlob("Irudia")));
+				albumak.add(new Album(rs.getInt("IdAlbum"), rs.getString("Izenburua"), rs.getString("Generoa"), rs.getBlob("Irudia"),rs.getDate("Urtea")));
 			}
 		} catch (SQLException e) {
 			e.getMessage();
@@ -82,4 +82,57 @@ public class AlbumDao {
 		Kone.itxiConexioa();
 		return albumAbestia;
 	}
+	
+	/**
+	 * 
+	 * @param a
+	 * @param idMusikari
+	 * @return
+	 */
+	public static boolean gehituAlbum(Album a,int idMusikari) {
+		
+			boolean ondo = true;
+			
+			Connection konexioa = Kone.konektatuAdmin();
+			String kontsulta = "CALL InsertatuAlbum(?,?,?,?,?)";
+			try {
+				PreparedStatement pstm = konexioa.prepareStatement(kontsulta);
+				pstm.setString(1,a.getIzenburua());
+				pstm.setString(2,a.getIrudiaString());
+				pstm.setString(3,a.getGeneroa());
+				pstm.setDate(4, new java.sql.Date(a.getUrtea().getTime()));
+				pstm.setInt(5,idMusikari);
+				pstm.execute();
+				konexioa.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+				ondo =  false;
+			}
+			
+			return ondo;
+		}
+	
+	public static boolean aldatuAlbum(Album a) {
+	
+	boolean ondo = true;
+	
+	Connection konexioa = Kone.konektatuAdmin();
+	String kontsulta = "UPDATE Album set Izenburua = ?,Urtea = ?,Generoa = ?, Irudia = fromBase64(?) WHERE AlbumId = ?";
+	try {
+		PreparedStatement pstm = konexioa.prepareStatement(kontsulta);
+		pstm.setString(1,a.getIzenburua());
+		pstm.setDate(2,new java.sql.Date(a.getUrtea().getTime()));
+		pstm.setString(3,a.getGeneroa());
+		pstm.setString(4,a.getIrudiaString());
+		pstm.setInt(5,a.getId());
+		pstm.execute();
+		konexioa.close();
+	} catch (SQLException e) {
+		System.out.println(e.getMessage());
+		ondo =  false;
+	}
+	
+	return ondo;
+	}
 }
+

@@ -192,9 +192,7 @@ public class MusikaKudeatu extends KudeatuPlantilla {
 		super.btnJarraitu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				
-				AlbumakKudeatu ak = new AlbumakKudeatu(((Musikaria) list.getSelectedValue()).getIzena());
-				ak.setVisible(true);
+				JFrameSortu.albumakKudeatuAukeraSortu(((Musikaria) list.getSelectedValue()).getIzena());
 				dispose();
 				
 			}
