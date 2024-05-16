@@ -67,8 +67,8 @@ public class Erreprodukzioa extends JFrame {
 		erreproduzitzen = isrunning;
 		
 		// Audioa kargatuko da eta erreproduzitzen hasiko da lehen erreprodukzioa bada edo aurreko erreprodukzioan, erreproduzitzen hari baizen.
-		//String filepath = "\\\\10.5.6.111\\audioak\\" + abestiak.get(abestiAukera).getIzena() + ".wav";
-		String filepath = "C:\\Users\\Ekapro\\Desktop\\audioak\\" + audioak.get(audioAukera).getIzena() + ".wav";
+		String filepath = "\\\\10.5.6.111\\audioak\\" + audioak.get(audioAukera).getIzena() + ".wav";
+		//String filepath = "C:\\Users\\Ekapro\\Desktop\\audioak\\" + audioak.get(audioAukera).getIzena() + ".wav";
 		errepoduzituAudioa(filepath, abiadura, posicion, erreproduzitzen);
 		
 		// Hasiko da timer bat audioa amaitzen, automatikoki hurrengo audiora joango da
