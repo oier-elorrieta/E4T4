@@ -18,10 +18,12 @@ public class Musikaria extends Artista {
 	 * @param deskription Musikariaren deskribapena
 	 * @param blob Musikariaren irudia
 	 */
-
-	public Musikaria(int idArtista ,String izena, String deskription, Blob irudia,String ezaugarria) {
-		super(idArtista,izena, deskription, irudia);
-		this.ezaugarria = ezaugarria;
+	public Musikaria() {
+		super();
+	}
+	
+	public Musikaria(int idArtista,String izena) {
+		super(idArtista,izena);
 	}
 	
 	public Musikaria(String izena, String deskription, Blob irudia) {
@@ -32,10 +34,32 @@ public class Musikaria extends Artista {
 		super(izena, irudia, entzunaldiak);
 	}
 	
+	public Musikaria(String izena, String deskription, String irudiaString,String ezaugarria) {
+		super(izena, deskription, irudiaString);
+		
+		this.ezaugarria = ezaugarria;
+	}
+
+	public Musikaria(int idArtista ,String izena, String deskription, Blob irudia,String ezaugarria) {
+		super(idArtista,izena, deskription, irudia);
+		this.ezaugarria = ezaugarria;
+	}
+
+	public String getEzaugarria() {
+		return ezaugarria;
+	}
+
+	public void setEzaugarria(String ezaugarria) {
+		this.ezaugarria = ezaugarria;
+	}
+	
 	@Override
 	public String toString() {
-		return "Musikaria [ezaugarria=" + ezaugarria + ", idArtista=" + idArtista + ", izena=" + izena
-				+ ", deskription=" + deskription + ", irudia=" + irudia + "]";
+		return izena;
 	}
+
+	
+	
+	
 
 }
