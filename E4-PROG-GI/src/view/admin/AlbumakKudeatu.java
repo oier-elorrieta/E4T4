@@ -96,24 +96,24 @@ public class AlbumakKudeatu extends KudeatuPlantilla {
 						JOptionPane.PLAIN_MESSAGE);
 
 				if (opcion == JOptionPane.OK_OPTION) {
-
-					String insertatzekoIrudia = ImportExportMetodoak.inportatuIrudia(irudia.getText());
-					
-
 					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 					
-					Date d = new Date();
-					try {
-						d = dateFormat.parse(urtea.getText());
-					} catch (ParseException e1) {
-						e1.printStackTrace();
+					if (irudia.getText().equals("") || generoa.getText().equals("") || urtea.getText().equals("")) {
+						JOptionPane.showMessageDialog(null, "Bete datu guztiak", "Error", JOptionPane.ERROR_MESSAGE);
+					} else {
+						Date d = new Date();
+						try {
+							d = dateFormat.parse(urtea.getText());
+						} catch (ParseException e1) {
+							e1.printStackTrace();
+						}
+						String insertatzekoIrudia = ImportExportMetodoak.inportatuIrudia(irudia.getText());
+						Album a = new Album(izena.getText(),generoa.getText(),insertatzekoIrudia, d);
+						Musikaria m = MusikariaDao.getMusikaria(izenaM);
+						AlbumDao.gehituAlbum(a, m.getIdArtista());
+						dispose();
+						JFrameSortu.albumakKudeatuAukeraSortu(izenaM);
 					}
-					
-					Album a = new Album(izena.getText(),generoa.getText(),insertatzekoIrudia, d);
-					Musikaria m = MusikariaDao.getMusikaria(izenaM);
-					AlbumDao.gehituAlbum(a, m.getIdArtista());
-					dispose();
-					JFrameSortu.albumakKudeatuAukeraSortu(izenaM);
 				}
 
 			}
@@ -137,7 +137,7 @@ public class AlbumakKudeatu extends KudeatuPlantilla {
 				String urteaString = sdf.format(select.getUrtea());
 				urtea.setText(urteaString);
 				JTextField irudia = new JTextField(60);
-				irudia.setText("src\\\\DefaultImg\\\\defImg.txt");
+				irudia.setText("");
 				JTextField generoa = new JTextField(60);
 				generoa.setText(select.getGeneroa());
 				
@@ -178,12 +178,12 @@ public class AlbumakKudeatu extends KudeatuPlantilla {
 						JOptionPane.PLAIN_MESSAGE);
 
 				if (opcion == JOptionPane.OK_OPTION) {
-
-					String insertatzekoIrudia = ImportExportMetodoak.inportatuIrudia(irudia.getText());
-					
-
 					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 					
+					if (irudia.getText().equals("") || generoa.getText().equals("") || urtea.getText().equals("")) {
+						JOptionPane.showMessageDialog(null, "Bete datu guztiak", "Error", JOptionPane.ERROR_MESSAGE);
+					} else {
+						String insertatzekoIrudia = ImportExportMetodoak.inportatuIrudia(irudia.getText());
 					Date d = new Date();
 					try {
 						d = dateFormat.parse(urtea.getText());
@@ -196,6 +196,7 @@ public class AlbumakKudeatu extends KudeatuPlantilla {
 					AlbumDao.aldatuAlbum(a);
 					dispose();
 					JFrameSortu.albumakKudeatuAukeraSortu(izenaM);
+					}
 				}
 
 			}
