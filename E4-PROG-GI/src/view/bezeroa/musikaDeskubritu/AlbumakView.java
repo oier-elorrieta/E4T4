@@ -13,6 +13,8 @@ import javax.swing.event.ListSelectionListener;
 
 import model.Album;
 import model.Musikaria;
+import model.Interfazeak.IAtzeraIzan;
+import model.Interfazeak.IProfilaIzan;
 import model.metodoak.JFrameSortu;
 import model.metodoak.ViewMetodoak;
 
@@ -29,7 +31,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 import javax.swing.JTextPane;
 
-public class AlbumakView extends JFrame {
+public class AlbumakView extends JFrame implements IAtzeraIzan, IProfilaIzan{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
