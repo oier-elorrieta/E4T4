@@ -14,6 +14,8 @@ import javax.swing.event.ListSelectionListener;
 import model.Album;
 import model.Audio;
 import model.Musikaria;
+import model.Interfazeak.IAtzeraIzan;
+import model.Interfazeak.IProfilaIzan;
 import model.dao.AbestiaDao;
 import model.metodoak.JFrameSortu;
 import model.metodoak.ViewMetodoak;
@@ -33,7 +35,7 @@ import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JTextPane;
 
-public class AbestiakView extends JFrame {
+public class AbestiakView extends JFrame implements IAtzeraIzan, IProfilaIzan{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -88,6 +90,7 @@ public class AbestiakView extends JFrame {
 		JScrollPane scrollPane_1 = new JScrollPane(albumDeskripzioa);
 		albumDeskripzioa.setText(album.toString());
 		scrollPane_1.setBounds(373, 378, 469, 166);
+		albumDeskripzioa.setEditable(false);
 
 		// Erabiltzailearen datuak aldatzeko botoia
 		JButton btnErabiltzaile = ViewMetodoak.btnErabiltzaileaSortu();

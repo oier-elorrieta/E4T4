@@ -19,6 +19,8 @@ import javax.swing.border.EmptyBorder;
 import model.Audio;
 import model.PlayListak;
 import model.SesioAldagaiak;
+import model.Interfazeak.IAtzeraIzan;
+import model.Interfazeak.IProfilaIzan;
 import model.dao.PlayListakDao;
 import model.metodoak.ImportExportMetodoak;
 import model.metodoak.JFrameSortu;
@@ -30,7 +32,7 @@ import javax.swing.JOptionPane;
 import javax.swing.DefaultListModel;
 import javax.swing.border.LineBorder;
 
-public class PlayListakView extends JFrame {
+public class PlayListakView extends JFrame implements IAtzeraIzan, IProfilaIzan {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
