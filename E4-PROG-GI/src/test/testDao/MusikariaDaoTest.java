@@ -34,7 +34,6 @@ public class MusikariaDaoTest {
 
 		ArrayList<Musikaria> musikariakTest = MusikariaDao.getMusikariakEntzunaldiak();
 		Musikaria musikariaTest = new Musikaria("Burnout Syndromes", null, 0);
-
 		assertEquals(musikariakTest.get(0), musikariaTest);
 	}
 

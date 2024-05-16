@@ -277,7 +277,7 @@ public class ViewMetodoak {
 				SesioAldagaiak.doSkip = true;
 			}
 		};
-		timer.schedule(task, 10000);
+		timer.schedule(task, 100000);
 	}
 
 	public static String kalkulatuIraupena(int seg) {
