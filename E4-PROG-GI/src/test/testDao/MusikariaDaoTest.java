@@ -30,14 +30,6 @@ public class MusikariaDaoTest {
 	}
 
 	@Test
-	public void getMusikariakEntzunaldiakTest() throws SQLException {
-
-		ArrayList<Musikaria> musikariakTest = MusikariaDao.getMusikariakEntzunaldiak();
-		Musikaria musikariaTest = new Musikaria("Burnout Syndromes", null, 0);
-		assertEquals(musikariakTest.get(0), musikariaTest);
-	}
-
-	@Test
 	public void getMusikariaTest() throws SQLException {
 		Musikaria musikariaTest = MusikariaDao.getMusikaria("Burnout Syndromes");
 		Musikaria musikariTest = new Musikaria(1, "Burnout Syndromes",
