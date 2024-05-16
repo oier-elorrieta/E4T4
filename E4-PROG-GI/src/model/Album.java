@@ -9,9 +9,6 @@ import java.util.Objects;
  * Album klasea errepresentatzen duen klasea.
  */
 public class Album {
-
-	
-
 	private int id;
 	private String izenburua;
 	private String generoa;
@@ -20,19 +17,37 @@ public class Album {
 	private int kantaKop;
 	private Date urtea;
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Album other = (Album) obj;
-		return Objects.equals(generoa, other.generoa) && id == other.id
-				&& Objects.equals(irudiaString, other.irudiaString) && Objects.equals(izenburua, other.izenburua)
-				&& kantaKop == other.kantaKop;
+	public Album() {
+		
 	}
+	
+	/**
+	 * Album klasearen eraikitzailea.
+	 * 
+	 * @param id         albumaren identifikadorea
+	 * @param izenburua  albumaren izenburua
+	 */
+	public Album(int id, String izenburua) {
+		this.id = id;
+		this.izenburua = izenburua;
+	}
+
+	public Album(int id, String izenburua, String generoa, Blob irudia) {
+
+		this.izenburua = izenburua;
+		this.generoa = generoa;
+		this.irudia = irudia;
+		this.id = id;
+	}
+	
+	public Album(String izenburua, String generoa, String irudia,Date urtea) {
+
+		this.izenburua = izenburua;
+		this.generoa = generoa;
+		this.irudiaString = irudia;
+		this.urtea = urtea;
+	}
+	
 	/**
 	 * Album klasearen eraikitzailea.
 	 * 
@@ -51,39 +66,11 @@ public class Album {
 
 	}
 	
-	public Album(int id, String izenburua, String generoa, Blob irudia) {
-
-		this.izenburua = izenburua;
-		this.generoa = generoa;
-		this.irudia = irudia;
-		this.id = id;
-	
-
-	}
-	
-	public Album(String izenburua, String generoa, String irudia,Date urtea) {
-
-		this.izenburua = izenburua;
-		this.generoa = generoa;
-		this.irudiaString = irudia;
-		this.urtea = urtea;
-	
-	}
 	
 	
 	
-
-	/**
-	 * Album klasearen eraikitzailea.
-	 * 
-	 * @param id         albumaren identifikadorea
-	 * @param izenburua  albumaren izenburua
-	 */
-	public Album(int id, String izenburua) {
-		this.id = id;
-		this.izenburua = izenburua;
-	}
-
+	
+	
 	/**
 	 * Albumaren izenburua itzultzen du.
 	 * 
@@ -173,16 +160,7 @@ public class Album {
 	public void setKantaKop(int kantaKop) {
 		this.kantaKop = kantaKop;
 	}
-
-	/**
-	 * Albumaren testu errepresentazioa itzultzen du.
-	 * 
-	 * @return albumaren testu errepresentazioa
-	 */
-	@Override
-	public String toString() {
-		return "Izenburua: " + izenburua + "  || Generoa: " + generoa + "  || Kantak: " + kantaKop;
-	}
+	
 
 	public String getIrudiaString() {
 		return irudiaString;
@@ -199,7 +177,31 @@ public class Album {
 	public void setUrtea(Date urtea) {
 		this.urtea = urtea;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Album other = (Album) obj;
+		return Objects.equals(generoa, other.generoa) && id == other.id
+				&& Objects.equals(irudiaString, other.irudiaString) && Objects.equals(izenburua, other.izenburua)
+				&& kantaKop == other.kantaKop;
+	}
 	
+	/**
+	 * Albumaren testu errepresentazioa itzultzen du.
+	 * 
+	 * @return albumaren testu errepresentazioa
+	 */
+	
+	@Override
+	public String toString() {
+		return "Izenburua: " + izenburua + "  || Generoa: " + generoa + "  || Kantak: " + kantaKop;
+	}
 	
 	
 	
