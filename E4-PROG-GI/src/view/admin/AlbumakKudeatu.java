@@ -213,7 +213,13 @@ public class AlbumakKudeatu extends KudeatuPlantilla {
 		});
 		
 		
-		
+		super.btnEzabatu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				dispose();
+				JFrameSortu.abestiakKudeatuAukeraSortu((Album)list.getSelectedValue());
+			}
+		});
 		
 		
 			

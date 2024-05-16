@@ -12,7 +12,7 @@ public class Audio {
 	protected String izena;
 	protected Time iraupena;
 	protected Blob irudia;
-
+	protected String irudiaString;
 	/**
 	 * Audio objektuaren eraikitzailea.
 	 * 
@@ -122,6 +122,22 @@ public class Audio {
 	public void setIrudia(Blob irudia) {
 		this.irudia = irudia;
 	}
+	
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public String getIrudiaString() {
+		return irudiaString;
+	}
+	/**
+	 * 
+	 * @param irudiaString
+	 */
+	public void setIrudiaString(String irudiaString) {
+		this.irudiaString = irudiaString;
+	}
 
 	/**
 	 * Audio objektua testu moduan itzultzen du.
@@ -132,6 +148,8 @@ public class Audio {
 	public String toString() {
 		return "Audio [idAudio=" + idAudio + ", izena=" + izena + ", iraupena=" + iraupena + ", irudia=" + irudia + "]";
 	}
+	
+
 
 	/**
 	 * Audio objektuak alderatzen ditu.

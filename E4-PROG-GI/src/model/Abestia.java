@@ -16,7 +16,7 @@ import java.util.Objects;
  */
 public class Abestia extends Audio {
 	private boolean gustokoena;
-
+	
 	/**
 	 * Abestiak klasearen eraikitzailea.
 	 * 

@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import model.Abestia;
 import model.Album;
 import model.Audio;
 import model.Musikaria;
@@ -58,7 +59,6 @@ public class AbestiakKudeatu extends KudeatuPlantilla {
 				gbc.insets = new Insets(5, 5, 5, 5);
 
 				JTextField izena = new JTextField(60);
-				JTextField desk = new JTextField(60);
 				JTextField irudia = new JTextField(60);
 
 	
@@ -74,8 +74,6 @@ public class AbestiakKudeatu extends KudeatuPlantilla {
 				gbc.gridy = 0;
 				pan.add(izena, gbc);
 				gbc.gridy++;
-				pan.add(desk, gbc);
-				gbc.gridy++;
 				pan.add(irudia, gbc);
 			
 
@@ -86,7 +84,12 @@ public class AbestiakKudeatu extends KudeatuPlantilla {
 
 					String insertatzekoIrudia = ImportExportMetodoak.inportatuIrudia(irudia.getText());
 					
-					
+					Abestia a = new Abestia();
+					a.setIzena(izena.getText());
+					a.setIrudiaString(insertatzekoIrudia);
+					AbestiaDao.gehituAbestia(a, album.getId());
+					dispose();
+					JFrameSortu.abestiakKudeatuAukeraSortu(album);
 
 				} 
 			}
