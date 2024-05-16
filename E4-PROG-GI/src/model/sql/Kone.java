@@ -76,6 +76,7 @@ public class Kone {
 			konexioa = DriverManager.getConnection(url, user, pass);
 			userAdmin = user;
 			passAdmin = pass;
+			konexioa.close();
 		} catch (SQLException e) {
 			LoginOk = false;
 		}

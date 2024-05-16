@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Time;
 import java.util.ArrayList;
 import model.Abestia;
 import model.Album;
@@ -48,18 +49,19 @@ public class AbestiaDao {
 	public static boolean gehituAbestia(Abestia a,int idAlbum){
 		
 		boolean ondo = true;
-
+		Time time = new Time(0, 1, 30);
 		Connection konexioa = Kone.konektatuAdmin();
 		String kontsulta = "CALL InsertatuAbestia(?,?,?,?)";
 		try {
 			PreparedStatement pstm = konexioa.prepareStatement(kontsulta);
 			pstm.setString(1, a.getIzena());
-			pstm.setTime(2, a.getIraupena());
+			pstm.setTime(2, time);
 			pstm.setString(3, a.getIrudiaString());
 			pstm.setInt(5, idAlbum);
 			pstm.execute();
 			konexioa.close();
 		} catch (SQLException e) {
+			e.getMessage();
 			ondo = false;
 		}
 

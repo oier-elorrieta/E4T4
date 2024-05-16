@@ -213,7 +213,7 @@ public class AlbumakKudeatu extends KudeatuPlantilla {
 		});
 		
 		
-		super.btnEzabatu.addActionListener(new ActionListener() {
+		super.btnJarraitu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				dispose();
