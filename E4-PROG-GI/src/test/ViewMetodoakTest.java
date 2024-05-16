@@ -22,7 +22,7 @@ public class ViewMetodoakTest {
 
 	@Test
 	public void komprobatuAdminTest() {
-		boolean ondo = ViewMetodoak.komprobatuAdmin("root", "");
+		boolean ondo = ViewMetodoak.komprobatuAdmin("admin", "headmin");
 		assertTrue(ondo);
 	}
 	

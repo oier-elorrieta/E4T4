@@ -23,7 +23,7 @@ public class MusikariaDaoTest {
 		Musikaria musikari1Test = new Musikaria("probaTest", "deskripzioa", irudia, "taldea");
 		Musikaria musikari2Test = new Musikaria("probaEditTest", "deskripzioa", irudia, "taldea");
 
-		Kone.konektatuAdminKomprobatu("root", "");
+		Kone.konektatuAdminKomprobatu("admin", "headmin");
 		MusikariaDao.gehituMusikaria(musikariTest);
 		MusikariaDao.gehituMusikaria(musikari1Test);
 		MusikariaDao.gehituMusikaria(musikari2Test);
@@ -55,7 +55,7 @@ public class MusikariaDaoTest {
 
 	@Test
 	public void gehituMusikariaTest() throws SQLException {
-		Kone.konektatuAdminKomprobatu("root", "");
+		Kone.konektatuAdminKomprobatu("admin", "headmin");
 		Musikaria musikariTest = new Musikaria("probaGehituTest", "deskripzioa", irudia, "bakarlaria");
 		boolean test = MusikariaDao.gehituMusikaria(musikariTest);
 		assertTrue(test);

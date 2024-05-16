@@ -69,8 +69,7 @@ public class Erreprodukzioa extends JFrame implements IAtzeraIzan, IProfilaIzan{
 		erreproduzitzen = isrunning;
 		
 		// Audioa kargatuko da eta erreproduzitzen hasiko da lehen erreprodukzioa bada edo aurreko erreprodukzioan, erreproduzitzen hari baizen.
-		//String filepath = "\\\\10.5.6.111\\audioak\\" + audioak.get(audioAukera).getIzena() + ".wav";
-		String filepath = "C:\\Users\\Ekapro\\Desktop\\audioak\\" + audioak.get(audioAukera).getIzena() + ".wav";
+		String filepath = "\\\\10.5.6.111\\audioak\\" + audioak.get(audioAukera).getIzena() + ".wav";
 		
 		
 		
