@@ -14,12 +14,14 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import model.Interfazeak.IAtzeraIzan;
+import model.Interfazeak.IProfilaIzan;
 import model.dao.PlayListakDao;
 import model.metodoak.JFrameSortu;
 import model.metodoak.ViewMetodoak;
 import model.sql.Kone;
 
-public class PlayListaSortuView extends JFrame {
+public class PlayListaSortuView extends JFrame implements IAtzeraIzan{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -42,8 +44,8 @@ public class PlayListaSortuView extends JFrame {
 		txtIzena.setColumns(10);
 		
 		JButton btnSortuPlayList = new JButton("Sortu");
-		btnSortuPlayList.setBackground(Color.BLACK);
-		btnSortuPlayList.setForeground(Color.RED);
+		btnSortuPlayList.setBackground(Color.LIGHT_GRAY);
+		btnSortuPlayList.setForeground(Color.BLACK);
 		btnSortuPlayList.setBounds(650, 57, 144, 50);
 		btnSortuPlayList.setFont(new Font("SansSerif", Font.BOLD, 22));
 		btnSortuPlayList.setFocusPainted(false);

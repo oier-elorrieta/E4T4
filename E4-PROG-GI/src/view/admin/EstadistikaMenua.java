@@ -13,9 +13,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+
+import model.Interfazeak.IAtzeraIzan;
 import model.metodoak.JFrameSortu;
 
-public class EstadistikaMenua extends JFrame {
+public class EstadistikaMenua extends JFrame implements IAtzeraIzan{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -87,8 +89,8 @@ public class EstadistikaMenua extends JFrame {
 		});
 
 		JButton btnAtzera = new JButton("Atzera");
-		btnAtzera.setBackground(Color.BLACK);
-		btnAtzera.setForeground(Color.RED);
+		btnAtzera.setBackground(Color.LIGHT_GRAY);
+		btnAtzera.setForeground(Color.BLACK);
 		btnAtzera.setBounds(50, 60, 144, 50);
 		btnAtzera.setFont(new Font("SansSerif", Font.BOLD, 22));
 		btnAtzera.setFocusPainted(false);

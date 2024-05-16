@@ -66,7 +66,6 @@ public class AbestiGuztokoaDao {
 			System.out.println("Kontsulta txarto" + e.getMessage());
 			return false;
 		}
-
 	}
 
 	/**
@@ -85,10 +84,11 @@ public class AbestiGuztokoaDao {
 					+ abestiGuztokoa.getAudio().getIdAudio();
 			stm.executeUpdate(kontsulta);
 			konexioa.close();
+			return true;
 		} catch (SQLException e) {
 			return false;
 		}
-		return true;
+		
 
 	}
 
@@ -116,7 +116,6 @@ public class AbestiGuztokoaDao {
 			gustokoaDu = true;
 		}
 		konexioa.close();
-
 		return gustokoaDu;
 	}
 

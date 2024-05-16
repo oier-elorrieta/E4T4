@@ -23,6 +23,8 @@ import java.awt.SystemColor;
 import java.awt.Toolkit;
 
 import model.*;
+import model.Interfazeak.IAtzeraIzan;
+import model.Interfazeak.IProfilaIzan;
 import model.metodoak.JFrameSortu;
 import model.metodoak.ViewMetodoak;
 import model.sql.Kone;
@@ -34,7 +36,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class MenuNagusia extends JFrame {
+public class MenuNagusia extends JFrame implements IAtzeraIzan, IProfilaIzan {
 
 	private static final long serialVersionUID = 1L;
 	protected static final String String = null;

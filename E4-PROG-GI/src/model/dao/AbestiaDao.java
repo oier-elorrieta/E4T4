@@ -42,6 +42,27 @@ public class AbestiaDao {
 			e.getMessage();
 			return null;
 		}
+	}
+	
+	
+	public static boolean gehituAbestia(Abestia a,int idAlbum){
+		
+		boolean ondo = true;
 
+		Connection konexioa = Kone.konektatuAdmin();
+		String kontsulta = "CALL InsertatuAbestia(?,?,?,?)";
+		try {
+			PreparedStatement pstm = konexioa.prepareStatement(kontsulta);
+			pstm.setString(1, a.getIzena());
+			pstm.setTime(2, a.getIraupena());
+			pstm.setString(3, a.getIrudiaString());
+			pstm.setInt(5, idAlbum);
+			pstm.execute();
+			konexioa.close();
+		} catch (SQLException e) {
+			ondo = false;
+		}
+
+		return ondo;
 	}
 }

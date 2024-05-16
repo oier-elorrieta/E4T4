@@ -107,8 +107,8 @@ public class ViewMetodoak {
 	
 	public static JButton btnAtzeraSortu() {
 		JButton btnAtzera = new JButton("Atzera");
-		btnAtzera.setBackground(Color.BLACK);
-		btnAtzera.setForeground(Color.RED);
+		btnAtzera.setBackground(Color.LIGHT_GRAY);
+		btnAtzera.setForeground(Color.BLACK);
 		btnAtzera.setBounds(50, 60, 144, 50);
 		btnAtzera.setFont(new Font("SansSerif", Font.BOLD, 22));
 		btnAtzera.setFocusPainted(false);
@@ -139,35 +139,42 @@ public class ViewMetodoak {
 	 * @param jf           JFrame bat, berriz kargatzeko.
 	 */
 	public static void btnGeneratu(JPanel pane,Musikaria musikaria, JFrame jf) {
+		
+		Musikaria musikariaPasatu = MusikariaDao.getMusikaria(musikaria.getIzena());
+		
 		JButton newButton = new JButton();
 		newButton.setText(musikaria.getIzena() + " Entzunaldiak: " + musikaria.getEntzunaldiak());
+		ImageIcon iconoEscalado;
+		ImageIcon icono;
+		Image imagen;
 		
+		newButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFrameSortu.albumakViewSortu(musikariaPasatu);
+				jf.dispose();
+			}
+		});
 		
 		try {
-			ImageIcon icono = new ImageIcon(musikaria.getIrudia().getBytes(1, (int) musikaria.getIrudia().length()));
-			newButton.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					JFrameSortu.albumakViewSortu(musikaria);
-					jf.dispose();
-				}
-			});
 
-			
-			Image imagen = icono.getImage().getScaledInstance(150, 100, Image.SCALE_SMOOTH);
-
-		
-			ImageIcon iconoEscalado = new ImageIcon(imagen);
+			icono = new ImageIcon(musikaria.getIrudia().getBytes(1, (int) musikaria.getIrudia().length()));
+			imagen = icono.getImage().getScaledInstance(150, 100, Image.SCALE_SMOOTH);
+			iconoEscalado = new ImageIcon(imagen);
 			newButton.setIcon(iconoEscalado);
 
-			pane.add(newButton);
+			
 
-		
-			pane.revalidate();
-			pane.repaint();
-
-		} catch (SQLException e) {
-			e.getMessage();
+		} catch (Exception e) {
+			
+			icono = new ImageIcon("src\\DefaultImg\\default.jpg");
+			imagen = icono.getImage().getScaledInstance(150, 100, Image.SCALE_SMOOTH);
+			iconoEscalado = new ImageIcon(imagen);
+			newButton.setIcon(iconoEscalado);
 		}
+		
+		pane.add(newButton);
+		pane.revalidate();
+		pane.repaint();
 
 	}
 
@@ -209,13 +216,14 @@ public class ViewMetodoak {
 	 * @param jf           JFrame bat, berriz kargatzeko.
 	 */
 	public static void btnGeneratuPodcaster(JPanel pane, Podcasterra podcasterra, JFrame jf) {
+		Podcasterra podcasterraSartu = PodcasterraDao.getPodcasterra(podcasterra.getIzena());
 		JButton newButton = new JButton();
 		newButton.setText(podcasterra.getIzena() + " Entzunaldiak: " + podcasterra.getEntzunaldiak());
 		try {
 			ImageIcon icono = new ImageIcon(podcasterra.getIrudia().getBytes(1, (int) podcasterra.getIrudia().length()));
 			newButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-				JFrameSortu.podcastakViewSortu(podcasterra);
+				JFrameSortu.podcastakViewSortu(podcasterraSartu);
 					jf.dispose();
 				}
 			});

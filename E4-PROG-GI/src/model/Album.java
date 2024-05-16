@@ -2,18 +2,37 @@ package model;
 
 import java.sql.Blob;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Objects;
 
 /**
  * Album klasea errepresentatzen duen klasea.
  */
 public class Album {
 
+	
+
 	private int id;
 	private String izenburua;
 	private String generoa;
 	private Blob irudia;
+	private String irudiaString;
 	private int kantaKop;
+	private Date urtea;
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Album other = (Album) obj;
+		return Objects.equals(generoa, other.generoa) && id == other.id
+				&& Objects.equals(irudiaString, other.irudiaString) && Objects.equals(izenburua, other.izenburua)
+				&& kantaKop == other.kantaKop;
+	}
 	/**
 	 * Album klasearen eraikitzailea.
 	 * 
@@ -22,14 +41,37 @@ public class Album {
 	 * @param generoa    albumaren generoa
 	 * @param irudia     albumaren irudia
 	 */
+	public Album(int id, String izenburua, String generoa, Blob irudia,Date urtea) {
+
+		this.izenburua = izenburua;
+		this.generoa = generoa;
+		this.irudia = irudia;
+		this.id = id;
+		this.urtea = urtea;
+
+	}
+	
 	public Album(int id, String izenburua, String generoa, Blob irudia) {
 
 		this.izenburua = izenburua;
 		this.generoa = generoa;
 		this.irudia = irudia;
 		this.id = id;
+	
 
 	}
+	
+	public Album(String izenburua, String generoa, String irudia,Date urtea) {
+
+		this.izenburua = izenburua;
+		this.generoa = generoa;
+		this.irudiaString = irudia;
+		this.urtea = urtea;
+	
+	}
+	
+	
+	
 
 	/**
 	 * Album klasearen eraikitzailea.
@@ -141,5 +183,25 @@ public class Album {
 	public String toString() {
 		return "Izenburua: " + izenburua + "  || Generoa: " + generoa + "  || Kantak: " + kantaKop;
 	}
+
+	public String getIrudiaString() {
+		return irudiaString;
+	}
+
+	public void setIrudiaString(String irudiaString) {
+		this.irudiaString = irudiaString;
+	}
+
+	public Date getUrtea() {
+		return urtea;
+	}
+
+	public void setUrtea(Date urtea) {
+		this.urtea = urtea;
+	}
+	
+	
+	
+	
 
 }

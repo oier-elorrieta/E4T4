@@ -18,18 +18,17 @@ public abstract class Artista {
 	protected int entzunaldiak;
 	protected String irudiaString;
 	
-	public int getEntzunaldiak() {
-		return entzunaldiak;
-	}
-	public void setEntzunaldiak(int entzunaldiak) {
-		this.entzunaldiak = entzunaldiak;
-	}
+	
 	/**
 	 * Artistak klasearen eraikitzailea.
 	 * @param izena artistaren izena
 	 * @param deskription artistaren deskribapena
 	 * @param irudia artistaren irudia
 */
+	public Artista() {
+		
+	}
+	
 	public Artista(int idArtista,String izena, String deskription, Blob irudia) {
 		this.idArtista=idArtista;
 		this.izena = izena;
@@ -78,16 +77,9 @@ public abstract class Artista {
 		if (getClass() != obj.getClass())
 			return false;
 		Artista other = (Artista) obj;
-		try {
-		  byte[] thisBytes = this.irudia.getBytes(1, (int) this.irudia.length());
-          byte[] otherBytes = other.irudia.getBytes(1, (int) other.irudia.length());
-          
-		return Objects.equals(deskription, other.deskription) && Arrays.equals(thisBytes, otherBytes)
-				&& Objects.equals(izena, other.izena);
-		} catch (SQLException e) {
-			// TODO: handle exception
-		}
-		return false;
+		return Objects.equals(deskription, other.deskription) && entzunaldiak == other.entzunaldiak
+				&& idArtista == other.idArtista
+				&& Objects.equals(irudiaString, other.irudiaString) && Objects.equals(izena, other.izena);
 	}
 
 	/**
@@ -99,6 +91,7 @@ public abstract class Artista {
 		return "Artistak [izena=" + izena + ", deskription=" + deskription + ", irudia=" + irudia + "]";
 	}
 
+	
 	/**
 	 * Artistaren izena itzultzen duen metodoa.
 	 * @return artistaren izena
@@ -159,6 +152,13 @@ public abstract class Artista {
 	}
 	public void setIrudiaString(String irudiaString) {
 		this.irudiaString = irudiaString;
+	}
+	
+	public int getEntzunaldiak() {
+		return entzunaldiak;
+	}
+	public void setEntzunaldiak(int entzunaldiak) {
+		this.entzunaldiak = entzunaldiak;
 	}
 	
 	

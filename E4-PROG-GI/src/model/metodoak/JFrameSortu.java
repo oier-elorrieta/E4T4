@@ -12,7 +12,9 @@ import model.Musikaria;
 import model.PlayListak;
 import model.Podcast;
 import model.Podcasterra;
+import view.admin.AbestiakKudeatu;
 import view.admin.AdminMenuNagusia;
+import view.admin.AlbumakKudeatu;
 import view.admin.MusikaKudeatu;
 import view.bezeroa.MenuErreprodukzioa;
 import view.bezeroa.Erregistroa;
@@ -144,4 +146,19 @@ public static void musikaKudeatuAukeraSortu() {
         musikaKude.setVisible(true);
     
     }
+
+public static void albumakKudeatuAukeraSortu(String izena) {
+	
+	AlbumakKudeatu ak = new AlbumakKudeatu(izena);
+	ak.setVisible(true);
 }
+
+
+public static void abestiakKudeatuAukeraSortu(Album albuma) {
+	
+	AbestiakKudeatu abk = new AbestiakKudeatu(albuma);
+	abk.setVisible(true);
+}
+}
+
+

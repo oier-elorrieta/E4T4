@@ -31,12 +31,10 @@ public class Erabiltzailea {
 	 * @param jaiotzeData Erabiltzailearen jaiotze data
 	 * @param hizkuntza Erabiltzailearen hizkuntza
 	 */
+	
 	public Erabiltzailea() {
-		
 	}
 	
-
-
 	public Erabiltzailea(int idErabiltzailea, String erabiltzailea, String pasahitza, String izena, String abizena,Date jaiotzeData2, String hizkuntza) {
 		this.idErabiltzailea = idErabiltzailea;
 		this.erabiltzailea = erabiltzailea;
@@ -76,9 +74,14 @@ public class Erabiltzailea {
 	 * 
 	 * @return Erabiltzailearen testu errepresentazioa
 	 */
+	
+	@Override
+	public String toString() {
+		return "Erabiltzailea [idErabiltzailea=" + idErabiltzailea + ", erabiltzailea=" + erabiltzailea + ", pasahitza="
+				+ pasahitza + ", izena=" + izena + ", abizena=" + abizena + ", jaiotzeData=" + jaiotzeData
+				+ ", hizkuntza=" + hizkuntza + "]";
+	}
 
-	
-	
 	/**
 	 * idErabiltzailearen erabiltzaile idea itzultzen duen metodoa.
 	 * 
@@ -89,13 +92,6 @@ public class Erabiltzailea {
 		return idErabiltzailea;
 	}
 	
-	@Override
-	public String toString() {
-		return "Erabiltzailea [idErabiltzailea=" + idErabiltzailea + ", erabiltzailea=" + erabiltzailea + ", pasahitza="
-				+ pasahitza + ", izena=" + izena + ", abizena=" + abizena + ", jaiotzeData=" + jaiotzeData
-				+ ", hizkuntza=" + hizkuntza + "]";
-	}
-
 	/**
 	 * Erabiltzailearen idea ezartzen duen metodoa.
 	 * 

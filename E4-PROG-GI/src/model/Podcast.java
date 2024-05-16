@@ -15,8 +15,9 @@ public class Podcast extends Audio {
 	 * @param izena     the name of the podcast
 	 * @param iraupena  the duration of the podcast in seconds
 	 */
+
+	
 	public Podcast(int IdAudio, String izena, Time iraupena, Blob irudia) {
 		super(IdAudio, izena, iraupena, irudia);
 	}
-
 }

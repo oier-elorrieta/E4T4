@@ -151,7 +151,7 @@ public class ErregistroaPremium extends Erregistroa {
 						if (dat.after(calendar.getTime())) {
 							// Premium data eguneratu (Urteak)
 							gordePremium((java.util.Date) dat);
-							JOptionPane.showMessageDialog(null, "Premium muga handitua,Eskerrik askoo!!", "Succesfull",
+							JOptionPane.showMessageDialog(null, "Premium muga handitua, Eskerrik askoo!!", "Succesfull",
 									JOptionPane.INFORMATION_MESSAGE);
 							dispose();
 							JFrameSortu.loginSortu();

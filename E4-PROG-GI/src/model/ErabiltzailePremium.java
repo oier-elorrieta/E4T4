@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.Date;
+import java.util.Objects;
 
 /**
  * Klase honek Erabiltzailea klasea heredatzen du eta ErabiltzailePremium motako erabiltzaileak
@@ -50,4 +51,18 @@ public class ErabiltzailePremium extends Erabiltzailea {
 	public void setPremiumMuga(Date premiumMuga) {
 		this.premiumMuga = premiumMuga;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ErabiltzailePremium other = (ErabiltzailePremium) obj;
+		return Objects.equals(premiumMuga, other.premiumMuga);
+	}
+	
+	
 }
