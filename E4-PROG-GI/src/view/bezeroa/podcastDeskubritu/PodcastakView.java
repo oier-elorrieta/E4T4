@@ -13,6 +13,8 @@ import javax.swing.event.ListSelectionListener;
 
 import model.Audio;
 import model.Podcasterra;
+import model.Interfazeak.IAtzeraIzan;
+import model.Interfazeak.IProfilaIzan;
 import model.metodoak.JFrameSortu;
 import model.metodoak.ViewMetodoak;
 
@@ -27,7 +29,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JTextPane;
 
-public class PodcastakView extends JFrame {
+public class PodcastakView extends JFrame implements IAtzeraIzan, IProfilaIzan{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;

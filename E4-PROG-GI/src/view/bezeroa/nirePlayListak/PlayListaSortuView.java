@@ -14,12 +14,14 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import model.Interfazeak.IAtzeraIzan;
+import model.Interfazeak.IProfilaIzan;
 import model.dao.PlayListakDao;
 import model.metodoak.JFrameSortu;
 import model.metodoak.ViewMetodoak;
 import model.sql.Kone;
 
-public class PlayListaSortuView extends JFrame {
+public class PlayListaSortuView extends JFrame implements IAtzeraIzan{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;

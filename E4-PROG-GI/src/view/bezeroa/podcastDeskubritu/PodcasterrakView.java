@@ -1,5 +1,7 @@
 package view.bezeroa.podcastDeskubritu;
 
+import model.Interfazeak.IAtzeraIzan;
+import model.Interfazeak.IProfilaIzan;
 import model.metodoak.*;
 
 import java.awt.BorderLayout;
@@ -17,7 +19,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 
-public class PodcasterrakView extends JFrame {
+public class PodcasterrakView extends JFrame implements IAtzeraIzan, IProfilaIzan{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;

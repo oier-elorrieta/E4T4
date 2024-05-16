@@ -23,6 +23,8 @@ import model.Audio;
 import model.Musikaria;
 import model.PlayListak;
 import model.SesioAldagaiak;
+import model.Interfazeak.IAtzeraIzan;
+import model.Interfazeak.IProfilaIzan;
 import model.dao.AbestiGuztokoaDao;
 import model.dao.AudioDao;
 import model.dao.MusikariaDao;
@@ -31,7 +33,7 @@ import model.metodoak.ImportExportMetodoak;
 import model.metodoak.JFrameSortu;
 import model.metodoak.ViewMetodoak;
 
-public class PlayListAbestiakView extends JFrame {
+public class PlayListAbestiakView extends JFrame implements IAtzeraIzan, IProfilaIzan {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;

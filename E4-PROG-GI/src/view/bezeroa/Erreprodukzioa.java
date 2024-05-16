@@ -37,13 +37,15 @@ import model.Audio;
 import model.Musikaria;
 import model.Podcasterra;
 import model.SesioAldagaiak;
+import model.Interfazeak.IAtzeraIzan;
+import model.Interfazeak.IProfilaIzan;
 import model.dao.AbestiGuztokoaDao;
 import model.dao.AlbumDao;
 import model.dao.AudioDao;
 import model.metodoak.JFrameSortu;
 import model.metodoak.ViewMetodoak;
 
-public class Erreprodukzioa extends JFrame {
+public class Erreprodukzioa extends JFrame implements IAtzeraIzan, IProfilaIzan{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;

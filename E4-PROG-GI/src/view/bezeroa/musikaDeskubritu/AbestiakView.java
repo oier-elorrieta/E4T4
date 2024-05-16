@@ -14,6 +14,8 @@ import javax.swing.event.ListSelectionListener;
 import model.Album;
 import model.Audio;
 import model.Musikaria;
+import model.Interfazeak.IAtzeraIzan;
+import model.Interfazeak.IProfilaIzan;
 import model.dao.AbestiaDao;
 import model.metodoak.JFrameSortu;
 import model.metodoak.ViewMetodoak;
@@ -33,7 +35,7 @@ import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JTextPane;
 
-public class AbestiakView extends JFrame {
+public class AbestiakView extends JFrame implements IAtzeraIzan, IProfilaIzan{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;

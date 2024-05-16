@@ -20,6 +20,7 @@ import javax.swing.event.ListSelectionListener;
 import model.Album;
 import model.Audio;
 import model.PlayListak;
+import model.Interfazeak.IAtzeraIzan;
 import model.dao.PlayListakDao;
 import model.metodoak.JFrameSortu;
 import model.metodoak.ViewAdminMetodoak;
@@ -30,7 +31,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 
-public class KudeatuPlantilla extends JFrame {
+public class KudeatuPlantilla extends JFrame implements IAtzeraIzan{
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
