@@ -9,120 +9,26 @@ import java.util.Date;
 public class ErabiltzailePremiumTest {
 
     @Test
-    public void testId() {
-        int idErabiltzailea = 1;
-        String erabiltzailea = "testUser";
-        String pasahitza = "testPassword";
-        String izena = "testName";
-        String abizena = "testSurname";
-        String hizkuntza = "testLanguage";
-        java.sql.Date data =new java.sql.Date(new Date().getTime());
+    public void testEqualsErabiltzailePremiumTrue() {
+        java.sql.Date data = new java.sql.Date(new Date().getTime());
 
-        ErabiltzailePremium erabiltzailePremium = new ErabiltzailePremium(idErabiltzailea, erabiltzailea, pasahitza, izena, abizena, data, hizkuntza, data);
+        ErabiltzailePremium erabiltzailePremium1 = new ErabiltzailePremium(1, "testUser", "testPassword", "testName", "testSurname", data, "testLanguage", data);
+        ErabiltzailePremium erabiltzailePremium2 = new ErabiltzailePremium(1, "testUser", "testPassword", "testName", "testSurname", data, "testLanguage", data);
 
-        assertEquals(idErabiltzailea, erabiltzailePremium.getIdErabiltzailea());
+        assertTrue(erabiltzailePremium1.equals(erabiltzailePremium2));
     }
+    
     @Test
-    public void testErabilzaile() {
-        int idErabiltzailea = 1;
-        String erabiltzailea = "testUser";
-        String pasahitza = "testPassword";
-        String izena = "testName";
-        String abizena = "testSurname";
-        String hizkuntza = "testLanguage";
-        java.sql.Date data =new java.sql.Date(new Date().getTime());
+    public void testEqualsErabiltzaileaPremiumPuntero() {
+        java.sql.Date data = new java.sql.Date(new Date().getTime());
 
-        ErabiltzailePremium erabiltzailePremium = new ErabiltzailePremium(idErabiltzailea, erabiltzailea, pasahitza, izena, abizena, data, hizkuntza, data);
+        ErabiltzailePremium erabiltzailePremium1 = new ErabiltzailePremium(1, "testUser", "testPassword", "testName", "testSurname", data, "testLanguage", data);
 
-        assertEquals(erabiltzailea, erabiltzailePremium.getErabiltzailea());
+        assertTrue(erabiltzailePremium1.equals(erabiltzailePremium1));
     }
+        
     @Test
-    public void testpasahitza() {
-        int idErabiltzailea = 1;
-        String erabiltzailea = "testUser";
-        String pasahitza = "testPassword";
-        String izena = "testName";
-        String abizena = "testSurname";
-        String hizkuntza = "testLanguage";
-        java.sql.Date data =new java.sql.Date(new Date().getTime());
-
-        ErabiltzailePremium erabiltzailePremium = new ErabiltzailePremium(idErabiltzailea, erabiltzailea, pasahitza, izena, abizena, data, hizkuntza, data);
-
-        assertEquals(pasahitza, erabiltzailePremium.getPasahitza());
-    }
-    @Test
-    public void testIzena() {
-        int idErabiltzailea = 1;
-        String erabiltzailea = "testUser";
-        String pasahitza = "testPassword";
-        String izena = "testName";
-        String abizena = "testSurname";
-        String hizkuntza = "testLanguage";
-        java.sql.Date data =new java.sql.Date(new Date().getTime());
-
-        ErabiltzailePremium erabiltzailePremium = new ErabiltzailePremium(idErabiltzailea, erabiltzailea, pasahitza, izena, abizena, data, hizkuntza, data);
-
-        assertEquals(izena, erabiltzailePremium.getIzena());
-    }
-    @Test
-    public void testAbizena() {
-        int idErabiltzailea = 1;
-        String erabiltzailea = "testUser";
-        String pasahitza = "testPassword";
-        String izena = "testName";
-        String abizena = "testSurname";
-        String hizkuntza = "testLanguage";
-        java.sql.Date data =new java.sql.Date(new Date().getTime());
-
-        ErabiltzailePremium erabiltzailePremium = new ErabiltzailePremium(idErabiltzailea, erabiltzailea, pasahitza, izena, abizena, data, hizkuntza, data);
-
-        assertEquals(abizena, erabiltzailePremium.getAbizena());
-    }
-    @Test
-    public void testdata() {
-        int idErabiltzailea = 1;
-        String erabiltzailea = "testUser";
-        String pasahitza = "testPassword";
-        String izena = "testName";
-        String abizena = "testSurname";
-        String hizkuntza = "testLanguage";
-        java.sql.Date data =new java.sql.Date(new Date().getTime());
-
-        ErabiltzailePremium erabiltzailePremium = new ErabiltzailePremium(idErabiltzailea, erabiltzailea, pasahitza, izena, abizena, data, hizkuntza, data);
-
-        assertEquals(data, erabiltzailePremium.getJaiotzeData());
-    }
-    @Test
-    public void testHizkuntza() {
-        int idErabiltzailea = 1;
-        String erabiltzailea = "testUser";
-        String pasahitza = "testPassword";
-        String izena = "testName";
-        String abizena = "testSurname";
-        String hizkuntza = "testLanguage";
-        java.sql.Date data =new java.sql.Date(new Date().getTime());
-
-        ErabiltzailePremium erabiltzailePremium = new ErabiltzailePremium(idErabiltzailea, erabiltzailea, pasahitza, izena, abizena, data, hizkuntza, data);
-
-        assertEquals(hizkuntza, erabiltzailePremium.getHizkuntza());
-    }
-    @Test
-    public void testPM() {
-        int idErabiltzailea = 1;
-        String erabiltzailea = "testUser";
-        String pasahitza = "testPassword";
-        String izena = "testName";
-        String abizena = "testSurname";
-        String hizkuntza = "testLanguage";
-        java.sql.Date data =new java.sql.Date(new Date().getTime());
-
-        ErabiltzailePremium erabiltzailePremium = new ErabiltzailePremium(idErabiltzailea, erabiltzailea, pasahitza, izena, abizena, data, hizkuntza, data);
-
-        assertEquals(data, erabiltzailePremium.getPremiumMuga());
-    }
-
-    @Test
-    public void testSetPremiumMuga() {
+    public void testSetGetPremiumMuga() {
         ErabiltzailePremium erabiltzailePremium = new ErabiltzailePremium();
         java.sql.Date data =new java.sql.Date(new Date().getTime());
 

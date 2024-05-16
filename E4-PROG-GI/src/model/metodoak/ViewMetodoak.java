@@ -150,7 +150,7 @@ public class ViewMetodoak {
 		
 		newButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JFrameSortu.albumakViewSortu(musikaria);
+				JFrameSortu.albumakViewSortu(musikariaPasatu);
 				jf.dispose();
 			}
 		});
@@ -216,13 +216,14 @@ public class ViewMetodoak {
 	 * @param jf           JFrame bat, berriz kargatzeko.
 	 */
 	public static void btnGeneratuPodcaster(JPanel pane, Podcasterra podcasterra, JFrame jf) {
+		Podcasterra podcasterraSartu = PodcasterraDao.getPodcasterra(podcasterra.getIzena());
 		JButton newButton = new JButton();
 		newButton.setText(podcasterra.getIzena() + " Entzunaldiak: " + podcasterra.getEntzunaldiak());
 		try {
 			ImageIcon icono = new ImageIcon(podcasterra.getIrudia().getBytes(1, (int) podcasterra.getIrudia().length()));
 			newButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-				JFrameSortu.podcastakViewSortu(podcasterra);
+				JFrameSortu.podcastakViewSortu(podcasterraSartu);
 					jf.dispose();
 				}
 			});

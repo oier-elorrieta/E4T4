@@ -77,10 +77,10 @@ public class AlbumakView extends JFrame implements IAtzeraIzan, IProfilaIzan{
 
 		// Musikariaren deskripzioa
 		JTextPane txtMusikariDeskripzioa = new JTextPane();
+		txtMusikariDeskripzioa.setEditable(false);
 		JScrollPane scrollPane_1 = new JScrollPane(txtMusikariDeskripzioa);
 		txtMusikariDeskripzioa.setText(musikaria.getDeskription());
 		scrollPane_1.setBounds(373, 378, 469, 166);
-		txtMusikariDeskripzioa.setEditable(false);
 
 		// Erabiltzailearen datuak aldatzeko botoia
 		JButton btnErabiltzaile = ViewMetodoak.btnErabiltzaileaSortu();

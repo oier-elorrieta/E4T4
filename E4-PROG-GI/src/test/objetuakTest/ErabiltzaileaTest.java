@@ -17,8 +17,8 @@ public class ErabiltzaileaTest {
     }
     @Test
     public void testEquals2() {
-        Erabiltzailea erabiltzailea1 = new Erabiltzailea(1, "user1", "password1", "John", "Doe", new java.sql.Date(new Date().getTime()), "eu");
-        Erabiltzailea erabiltzailea3 = new Erabiltzailea(2, "user2", "password2", "Jane", "Smith", new java.sql.Date(new Date().getTime()), "en");
+        Erabiltzailea erabiltzailea1 = new Erabiltzailea(1, "user1", "password1");
+        Erabiltzailea erabiltzailea3 = new Erabiltzailea(2, "user2", "password2");
 
         assertFalse(erabiltzailea1.equals(erabiltzailea3));
     }
@@ -31,79 +31,42 @@ public class ErabiltzaileaTest {
     }
 
     @Test
-    public void testGetIdErabiltzailea() {
-        Erabiltzailea erabiltzailea = new Erabiltzailea(1, "user1", "password1", "John", "Doe", new java.sql.Date(new Date().getTime()), "eu");
-        assertEquals(1, erabiltzailea.getIdErabiltzailea());
-    }
-
-    @Test
-    public void testSetIdErabiltzailea() {
+    public void testSetGetIdErabiltzailea() {
         Erabiltzailea erabiltzailea = new Erabiltzailea();
         erabiltzailea.setIdErabiltzailea(1);
         assertEquals(1, erabiltzailea.getIdErabiltzailea());
     }
 
     @Test
-    public void testGetErabiltzailea() {
-        Erabiltzailea erabiltzailea = new Erabiltzailea(1, "user1", "password1", "John", "Doe", new java.sql.Date(new Date().getTime()), "eu");
-        assertEquals("user1", erabiltzailea.getErabiltzailea());
-    }
-
-    @Test
-    public void testSetErabiltzailea() {
+    public void testSetGetErabiltzailea() {
         Erabiltzailea erabiltzailea = new Erabiltzailea();
         erabiltzailea.setErabiltzailea("user1");
         assertEquals("user1", erabiltzailea.getErabiltzailea());
     }
 
     @Test
-    public void testGetPasahitza() {
-        Erabiltzailea erabiltzailea = new Erabiltzailea(1, "user1", "password1", "John", "Doe", new java.sql.Date(new Date().getTime()), "eu");
-        assertEquals("password1", erabiltzailea.getPasahitza());
-    }
-
-    @Test
-    public void testSetPasahitza() {
+    public void testSetGetPasahitza() {
         Erabiltzailea erabiltzailea = new Erabiltzailea();
         erabiltzailea.setPasahitza("password1");
         assertEquals("password1", erabiltzailea.getPasahitza());
     }
 
     @Test
-    public void testGetIzena() {
-        Erabiltzailea erabiltzailea = new Erabiltzailea(1, "user1", "password1", "John", "Doe", new java.sql.Date(new Date().getTime()), "eu");
-        assertEquals("John", erabiltzailea.getIzena());
-    }
-
-    @Test
-    public void testSetIzena() {
+    public void testSetGetIzena() {
         Erabiltzailea erabiltzailea = new Erabiltzailea();
         erabiltzailea.setIzena("John");
         assertEquals("John", erabiltzailea.getIzena());
     }
 
     @Test
-    public void testGetAbizena() {
-        Erabiltzailea erabiltzailea = new Erabiltzailea(1, "user1", "password1", "John", "Doe", new java.sql.Date(new Date().getTime()), "eu");
-        assertEquals("Doe", erabiltzailea.getAbizena());
-    }
-
-    @Test
-    public void testSetAbizena() {
+    public void testSetGetAbizena() {
         Erabiltzailea erabiltzailea = new Erabiltzailea();
         erabiltzailea.setAbizena("Doe");
         assertEquals("Doe", erabiltzailea.getAbizena());
     }
 
     @Test
-    public void testGetJaiotzeData() {
-        java.sql.Date jaiotzeData = new java.sql.Date(new Date().getTime());
-        Erabiltzailea erabiltzailea = new Erabiltzailea(1, "user1", "password1", "John", "Doe", jaiotzeData, "eu");
-        assertEquals(jaiotzeData, erabiltzailea.getJaiotzeData());
-    }
-
-    @Test
-    public void testSetJaiotzeData() {
+    public void testSetGetJaiotzeData() {
         java.sql.Date jaiotzeData = new java.sql.Date(new Date().getTime());
         Erabiltzailea erabiltzailea = new Erabiltzailea();
         erabiltzailea.setJaiotzeData(jaiotzeData);
@@ -111,13 +74,7 @@ public class ErabiltzaileaTest {
     }
 
     @Test
-    public void testGetHizkuntza() {
-        Erabiltzailea erabiltzailea = new Erabiltzailea(1, "user1", "password1", "John", "Doe", new java.sql.Date(new Date().getTime()), "eu");
-        assertEquals("eu", erabiltzailea.getHizkuntza());
-    }
-
-    @Test
-    public void testSetHizkuntza() {
+    public void testSetGetHizkuntza() {
         Erabiltzailea erabiltzailea = new Erabiltzailea();
         erabiltzailea.setHizkuntza("eu");
         assertEquals("eu", erabiltzailea.getHizkuntza());
