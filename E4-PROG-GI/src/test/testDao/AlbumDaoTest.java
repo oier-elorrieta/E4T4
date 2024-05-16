@@ -20,7 +20,7 @@ import model.Musikaria;
 import model.dao.AlbumDao;
 import model.dao.MusikariaDao;
 import model.sql.Kone;
-import test.AlbumTest;
+import test.objetuakTest.AlbumTest;
 
 public class AlbumDaoTest {
 
