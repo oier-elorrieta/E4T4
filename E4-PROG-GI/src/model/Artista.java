@@ -18,18 +18,17 @@ public abstract class Artista {
 	protected int entzunaldiak;
 	protected String irudiaString;
 	
-	public int getEntzunaldiak() {
-		return entzunaldiak;
-	}
-	public void setEntzunaldiak(int entzunaldiak) {
-		this.entzunaldiak = entzunaldiak;
-	}
+	
 	/**
 	 * Artistak klasearen eraikitzailea.
 	 * @param izena artistaren izena
 	 * @param deskription artistaren deskribapena
 	 * @param irudia artistaren irudia
 */
+	public Artista() {
+		
+	}
+	
 	public Artista(int idArtista,String izena, String deskription, Blob irudia) {
 		this.idArtista=idArtista;
 		this.izena = izena;
@@ -153,6 +152,13 @@ public abstract class Artista {
 	}
 	public void setIrudiaString(String irudiaString) {
 		this.irudiaString = irudiaString;
+	}
+	
+	public int getEntzunaldiak() {
+		return entzunaldiak;
+	}
+	public void setEntzunaldiak(int entzunaldiak) {
+		this.entzunaldiak = entzunaldiak;
 	}
 	
 	

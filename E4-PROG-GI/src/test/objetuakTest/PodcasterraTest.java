@@ -10,39 +10,23 @@ import model.Podcasterra;
 public class PodcasterraTest {
 
 	@Test 
-	public void testsetEntzunaldiak() {
-		Blob irudia = null;
-		Podcasterra podcasterra = new Podcasterra(1, "Podcasterra", "Description", irudia);
-		podcasterra.setEntzunaldiak(podcasterra.getEntzunaldiak());
-		assertEquals(0, podcasterra.getEntzunaldiak());
+	public void testPodcasterraEquals() {
+		Podcasterra podcasterra1 = new Podcasterra("Podcasterra", null, 1);
+		Podcasterra podcasterra2 = new Podcasterra("Podcasterra", null, 1);
+		assertTrue(podcasterra1.equals(podcasterra2));
 	}
-
-    @Test
-    public void testDescripzioa() {
-        Podcasterra podcasterra = new Podcasterra(1, "Podcasterra", "Description", null);
-        podcasterra.setDeskription("New Description");
-        assertEquals("New Description", podcasterra.getDeskription());
-    }
-    
-    @Test
-    public void testIrudia() {
-    	Podcasterra podcasterra = new Podcasterra(1, "Podcasterra", "Description", null);
-        Blob newIrudia = null;
-        podcasterra.setIrudia(newIrudia);
-        assertEquals(newIrudia, podcasterra.getIrudia());
-    }
-    
-    @Test
-    public void testIzena() {
-    	Podcasterra podcasterra = new Podcasterra(1, "Podcasterra", "Description", null);
-    	podcasterra.setIzena("New Podcasterra");
-    	assertEquals("New Podcasterra", podcasterra.getIzena());
-    }
-    
-    @Test
-    public void testIdArtista() {
-    	Podcasterra podcasterra = new Podcasterra(1, "Podcasterra", "Description", null);
-        podcasterra.setIdArtista(2);
-        assertEquals(2, podcasterra.getIdArtista());
-    }
+	
+	@Test 
+	public void testPodcasterraEquals2() {
+		Podcasterra podcasterra1 = new Podcasterra(1, "Podcasterra", "desc", null);
+		Podcasterra podcasterra2 = new Podcasterra(1, "Podcasterra", "desc", null);
+		assertTrue(podcasterra1.equals(podcasterra2));
+	}
+	
+	@Test 
+	public void testPodcasterraEquals3() {
+		Podcasterra podcasterra1 = new Podcasterra(1, "Podcasterra");
+		Podcasterra podcasterra2 = new Podcasterra(1, "Podcasterra");
+		assertTrue(podcasterra1.equals(podcasterra2));
+	}
 }

@@ -54,7 +54,7 @@ public class Abestia extends Audio {
 
 	@Override
 	public String toString() {
-		return "Izena:" + izena + "|| Iraupena: " + iraupena;
+		return "Izena:" + izena + " || Iraupena: " + iraupena;
 	}
 	
 	

@@ -10,95 +10,29 @@ import java.sql.Time;
 public class AbestiaTest {
 
     @Test
-    public void testGustokoena() {
-        int idAudio = 1;
-        String izena = "Abestia";
+    public void testAbestiaEquals() {
         Time iraupena = new Time(0, 3, 30);
-        Blob irudia = null;
-        boolean gustokoena = true;
+        Abestia abestia1 = new Abestia(1, "Abestia", iraupena, null, false);
+        Abestia abestia2 = new Abestia(1, "Abestia", iraupena);
 
-        Abestia abestia = new Abestia(idAudio, izena, iraupena, irudia, gustokoena);
-
-        assertEquals(gustokoena, abestia.isGustokoena());
+        assertTrue(abestia1.equals(abestia2));
     }
     
     @Test
-    public void testIrudia() {
-        int idAudio = 1;
-        String izena = "Abestia";
-        Time iraupena = new Time(0, 3, 30);
-        Blob irudia = null;
-        boolean gustokoena = true;
+    public void testAbestiaGustokoaGetSet() {
+        Abestia abestia1 = new Abestia();
+        abestia1.setGustokoena(true);
 
-        Abestia abestia = new Abestia(idAudio, izena, iraupena, irudia, gustokoena);
-
-        assertEquals(irudia, abestia.getIrudia());
+        assertTrue(abestia1.getGustokoena());
     }
     
     @Test
-    public void testIraupean() {
-        int idAudio = 1;
-        String izena = "Abestia";
-        Time iraupena = new Time(0, 3, 30);
-        Blob irudia = null;
-        boolean gustokoena = true;
+    public void testAbestiaToString() {
+    	Time iraupena = new Time(0, 3, 30);
+        Abestia abestia1 = new Abestia(1, "Abestia", iraupena, null, false);
 
-        Abestia abestia = new Abestia(idAudio, izena, iraupena, irudia, gustokoena);
-
-        assertEquals(iraupena, abestia.getIraupena());
-    }
-    
-    @Test
-    public void testIzena() {
-        int idAudio = 1;
-        String izena = "Abestia";
-        Time iraupena = new Time(0, 3, 30);
-        Blob irudia = null;
-        boolean gustokoena = true;
-
-        Abestia abestia = new Abestia(idAudio, izena, iraupena, irudia, gustokoena);
-
-        assertEquals(izena, abestia.getIzena());
-    }
-    
-    @Test
-    public void testaudioa() {
-        int idAudio = 1;
-        String izena = "Abestia";
-        Time iraupena = new Time(0, 3, 30);
-        Blob irudia = null;
-        boolean gustokoena = true;
-
-        Abestia abestia = new Abestia(idAudio, izena, iraupena, irudia, gustokoena);
-
-        assertEquals(idAudio, abestia.getIdAudio());
-    }
-
-    @Test
-    public void testAbestiaConstructorWithIdIzenaIraupena() {
-        int idAudio = 1;
-        String izena = "Abestia";
-        Time iraupena = new Time(0, 3, 30);
-
-        Abestia abestia = new Abestia(idAudio, izena, iraupena);
-
-        assertEquals(idAudio, abestia.getIdAudio());
-    }
-
-    @Test
-    public void testIsGustokoena() {
-        Abestia abestia = new Abestia();
-        abestia.setGustokoena(true);
-
-        assertTrue(abestia.isGustokoena());
-    }
-
-    @Test
-    public void testSetGustokoena() {
-        Abestia abestia = new Abestia();
-        abestia.setGustokoena(true);
-
-        assertTrue(abestia.isGustokoena());
+        String txt = "Izena:Abestia || Iraupena: " + iraupena;
+        assertEquals(txt, abestia1.toString());
     }
 
 }

@@ -9,9 +9,10 @@ import model.Iragarkia;
 public class IragarkiaTest {
 
 	@Test
-	public void iragarkiaTest() {
-		Iragarkia iragarkiaTest = new Iragarkia(20, "Nocilla", null);
-		assertEquals(20, iragarkiaTest.getIdAudio());
+	public void testIragarkiaEquals() {
+		Iragarkia iragarkiaTest1 = new Iragarkia(1, "Iragarkia", null);
+		Iragarkia iragarkiaTest2 = new Iragarkia(1, "Iragarkia", null);
+		assertTrue(iragarkiaTest1.equals(iragarkiaTest2));
 	}
 
 }
