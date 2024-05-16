@@ -1,7 +1,5 @@
 package test;
 
-import static org.junit.Assert.*;
-
 import java.sql.Time;
 
 import org.junit.Test;
@@ -10,7 +8,6 @@ import model.Audio;
 import model.PlayListak;
 import model.dao.ErabiltzaileFreeDao;
 import model.metodoak.ImportExportMetodoak;
-import model.sql.Kone;
 
 public class ImportExportMetodoakTest {
 

@@ -2,8 +2,6 @@ package test.testDao;
 
 import static org.junit.Assert.*;
 
-import java.util.Date;
-
 import org.junit.Test;
 
 import model.dao.ErabiltzailePremiumDao;

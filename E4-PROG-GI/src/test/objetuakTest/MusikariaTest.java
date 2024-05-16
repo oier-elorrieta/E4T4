@@ -1,8 +1,6 @@
 package test.objetuakTest;
 import static org.junit.Assert.*;
 
-import java.sql.Blob;
-
 import org.junit.Test;
 
 

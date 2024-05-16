@@ -69,6 +69,6 @@ public class PlayListakTest {
         PlayListak playlist1 = new PlayListak();
         playlist1.setIzena("playlist1");
         String txt = "playlist1";
-        assertEquals("playlist1", playlist1.toString());
+        assertEquals(txt, playlist1.toString());
     }
 }

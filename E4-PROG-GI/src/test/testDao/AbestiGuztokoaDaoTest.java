@@ -2,15 +2,10 @@ package test.testDao;
 
 import static org.junit.Assert.*;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.sql.Time;
 import java.util.ArrayList;
 
-import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -21,7 +16,6 @@ import model.Audio;
 import model.ErabiltzaileFree;
 import model.SesioAldagaiak;
 import model.dao.AbestiGuztokoaDao;
-import model.sql.Kone;
 
 public class AbestiGuztokoaDaoTest {
 

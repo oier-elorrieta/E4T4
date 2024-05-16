@@ -2,25 +2,18 @@ package test.testDao;
 
 import static org.junit.Assert.*;
 
-import java.sql.Blob;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 import org.junit.Test;
 
 import model.Podcasterra;
 import model.dao.PodcasterraDao;
-import model.sql.Kone;
 
 public class PodcasterraDaoTest {
 
 	@Test
 	public void getPodcasterEntzunaldiakTest() throws SQLException {
-		int zenbatPodcaster = 0;
-				
 		ArrayList<Podcasterra> podcasterrakTest = PodcasterraDao.getPodcasterEntzunaldiak();
 		
 		Podcasterra podcasterTest = new Podcasterra("Jordi Wild", null,0);

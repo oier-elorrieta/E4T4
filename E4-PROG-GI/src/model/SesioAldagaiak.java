@@ -1,9 +1,5 @@
 package model;
 
-import javax.swing.JButton;
-
-import model.metodoak.ViewMetodoak;
-
 /**
  * Klase honek SesioAldagaiak klasearen erabiltzaile logeatuak gordetzeko aldagaiei buruzko informazioa gordetzen du.
  */

@@ -2,13 +2,8 @@ package test.testDao;
 
 import static org.junit.Assert.*;
 
-import java.sql.Blob;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.sql.Time;
-import java.time.chrono.Era;
 import java.util.ArrayList;
 
 import org.junit.Test;
@@ -19,7 +14,6 @@ import model.ErabiltzaileFree;
 import model.PlayListak;
 import model.SesioAldagaiak;
 import model.dao.AudioDao;
-import model.sql.Kone;
 
 public class AudioDaoTest {
 
