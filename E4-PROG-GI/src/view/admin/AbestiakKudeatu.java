@@ -115,5 +115,15 @@ public class AbestiakKudeatu extends KudeatuPlantilla {
 		});
 		
 
+		super.btnEzabatu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AbestiaDao.ezabatuAbestia((Abestia)list.getSelectedValue());
+				dispose();
+				JFrameSortu.abestiakKudeatuAukeraSortu(album);
+			}
+		});
+		
+		
+
 	}
 }

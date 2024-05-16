@@ -44,21 +44,43 @@ public class AbestiaDao {
 			return null;
 		}
 	}
-	
-	
-	public static boolean gehituAbestia(Abestia a,int idAlbum){
-		
+
+	public static boolean gehituAudioa(Abestia a) {
+
 		boolean ondo = true;
-		System.out.println(a);
-		System.out.println(idAlbum);
+
 		Connection konexioa = Kone.konektatuAdmin();
-		String kontsulta = "CALL InsertatuAbestia(?,?,?,?)";
+		String kontsulta = "Insert into Audio (Izena,Iraupena,Irudia) VALUES(?,?,from_base64(?))";
 		try {
 			PreparedStatement pstm = konexioa.prepareStatement(kontsulta);
 			pstm.setString(1, a.getIzena());
 			pstm.setTime(2, a.getIraupena());
 			pstm.setString(3, a.getIrudiaString());
-			pstm.setInt(4, idAlbum);
+			pstm.execute();
+			konexioa.close();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			ondo = false;
+		}
+		
+		return ondo;
+	}
+	
+	
+
+	public static boolean gehituAbestia(Abestia a, int idAlbum) {
+
+		gehituAudioa(a);
+		int ida = bilatuIdAudioa(a.getIzena());
+		
+		boolean ondo = true;
+
+		Connection konexioa = Kone.konektatuAdmin();
+		String kontsulta = "CALL InsertatuAbestia(?,?)";
+		try {
+			PreparedStatement pstm = konexioa.prepareStatement(kontsulta);
+			pstm.setInt(1, ida);
+			pstm.setInt(2, idAlbum);
 			pstm.execute();
 			konexioa.close();
 		} catch (SQLException e) {
@@ -68,4 +90,44 @@ public class AbestiaDao {
 
 		return ondo;
 	}
+
+	public static int bilatuIdAudioa(String izena) {
+
+		int i = 0;
+		Connection konexioa = Kone.konektatuAdmin();
+		String kontsulta = "SELECT IdAudio FROM Audio WHERE Izena = '"+izena+"'";
+		try {
+			Statement stm = konexioa.createStatement();
+			ResultSet rs = stm.executeQuery(kontsulta);
+
+			rs.next();
+
+			i = rs.getInt("IdAudio");
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+
+		}
+		return i;
+	}
+
+	public static boolean ezabatuAbestia(Abestia a) {
+
+		boolean ondo = true;
+
+		Connection konexioa = Kone.konektatuAdmin();
+		String kontsulta = "Delete from Audio where IdAudio = ?";
+		try {
+			PreparedStatement pstm = konexioa.prepareStatement(kontsulta);
+			pstm.setInt(1, a.getIdAudio());
+			pstm.execute();
+			konexioa.close();
+		} catch (SQLException e) {
+
+			ondo = false;
+		}
+
+		return ondo;
+	}
+
 }
