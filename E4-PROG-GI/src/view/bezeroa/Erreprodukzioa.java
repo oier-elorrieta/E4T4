@@ -71,6 +71,9 @@ public class Erreprodukzioa extends JFrame implements IAtzeraIzan, IProfilaIzan{
 		// Audioa kargatuko da eta erreproduzitzen hasiko da lehen erreprodukzioa bada edo aurreko erreprodukzioan, erreproduzitzen hari baizen.
 		//String filepath = "\\\\10.5.6.111\\audioak\\" + audioak.get(audioAukera).getIzena() + ".wav";
 		String filepath = "C:\\Users\\Ekapro\\Desktop\\audioak\\" + audioak.get(audioAukera).getIzena() + ".wav";
+		
+		
+		
 		errepoduzituAudioa(filepath, abiadura, posicion, erreproduzitzen);
 		
 		// Hasiko da timer bat audioa amaitzen, automatikoki hurrengo audiora joango da
@@ -387,6 +390,9 @@ public class Erreprodukzioa extends JFrame implements IAtzeraIzan, IProfilaIzan{
 			}
 		});
 
+		
+		
+		
 		Album newAlbum = album;
 		btnErabiltzaile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -424,6 +430,12 @@ public class Erreprodukzioa extends JFrame implements IAtzeraIzan, IProfilaIzan{
 	private void errepoduzituAudioa(String filepath, float abiadura, long posizioa, boolean erreproduzitzen) {
 		try {
 			File f = new File(filepath);
+			
+	
+			if (!f.exists()) {
+				f = new File("hardcodea un wav que si exista"); 
+	        } 
+			
 			AudioInputStream aui;
 			aui = AudioSystem.getAudioInputStream(f.getAbsoluteFile());
 			AudioFormat format = aui.getFormat();
