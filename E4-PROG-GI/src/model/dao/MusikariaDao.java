@@ -81,7 +81,6 @@ public class MusikariaDao {
 	 */
 	public static Musikaria getMusikariaByAudio(Audio audio) {
 		Musikaria musikaria = null;
-
 		try {
 			Connection konexioa = Kone.konektatu();
 			Statement stm = konexioa.createStatement();
@@ -123,8 +122,6 @@ public class MusikariaDao {
 			System.out.println(e.getMessage());
 			return false;
 		}
-
-		
 	}
 
 	public static ArrayList<Musikaria> getMusikariak() {
@@ -165,7 +162,7 @@ public class MusikariaDao {
 
 	public static boolean aldatuMusikaria(Musikaria musikari) {
 		try {
-			Connection konexioa = Kone.konektatu();
+			Connection konexioa = Kone.konektatuAdmin();
 			String kontsulta = "Call AldatuMusikaria(?,?,?,?,?)";
 			PreparedStatement pstm = konexioa.prepareStatement(kontsulta);
 			pstm.setInt(1, musikari.getIdArtista());
