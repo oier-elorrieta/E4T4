@@ -35,6 +35,16 @@ public class Album {
 
 	}
 	
+	public Album(int id, String izenburua, String generoa, Blob irudia) {
+
+		this.izenburua = izenburua;
+		this.generoa = generoa;
+		this.irudia = irudia;
+		this.id = id;
+	
+
+	}
+	
 	public Album(String izenburua, String generoa, String irudia,Date urtea) {
 
 		this.izenburua = izenburua;

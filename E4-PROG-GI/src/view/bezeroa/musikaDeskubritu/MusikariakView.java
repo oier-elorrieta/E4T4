@@ -1,20 +1,16 @@
 package view.bezeroa.musikaDeskubritu;
 
-import model.SesioAldagaiak;
-import model.dao.MusikariaDao;
 import model.metodoak.*;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.Font;
+
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.ImageIcon;
+
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -37,7 +33,7 @@ public class MusikariakView extends JFrame {
 
 		JScrollPane jsp = new JScrollPane();
 		jsp.setBounds(96, 121, 686, 372);
-		
+
 		JPanel artistaPane = new JPanel(new GridLayout(0, 1));
 		artistaPane.setBounds(96, 121, 686, 372);
 		jsp.setViewportView(artistaPane);
@@ -50,7 +46,7 @@ public class MusikariakView extends JFrame {
 
 		// Aurreko pantallara joan
 		JButton btnAtzera = ViewMetodoak.btnAtzeraSortu();
-		
+
 		contentPane.add(jsp, BorderLayout.CENTER);
 		contentPane.add(btnErabiltzaile);
 		contentPane.add(btnAtzera);
@@ -69,6 +65,5 @@ public class MusikariakView extends JFrame {
 				JFrameSortu.menuNagusiaAukeraSortu();
 			}
 		});
-
 	}
 }

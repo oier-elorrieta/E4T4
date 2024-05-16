@@ -44,37 +44,45 @@ public class Login extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
+		// Login izena sortu
 		JLabel lblLogin = new JLabel("LOGIN");
 		lblLogin.setBounds(198, 60, 452, 58);
 		lblLogin.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLogin.setFont(new Font("Source Sans Pro Black", Font.BOLD, 45));
 
+		// Erabiltzailea lbl sortu
 		JLabel lblErabiltzailea = new JLabel("ERABILTZAILEA");
 		lblErabiltzailea.setBounds(210, 165, 204, 23);
 		lblErabiltzailea.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 15));
 
+		// Sortu erabiltzailea jartzeko field-a
 		txtErabiltzaile = new JTextField();
 		txtErabiltzaile.setBounds(210, 191, 433, 32);
 		txtErabiltzaile.setColumns(10);
 
+		// lbl Pasahitza sortu
 		JLabel lblPasahitza = new JLabel("PASAHITZA");
 		lblPasahitza.setBounds(210, 254, 204, 23);
 		lblPasahitza.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 15));
 
+		// Pasahitza jartzeko field-a egin
 		passwordField = new JPasswordField();
 		passwordField.setBounds(210, 281, 433, 33);
 
+		// Hizkuntza aukeratzeko combobox-a sortu
 		JComboBox cboErabiltzaileMota = new JComboBox();
 		cboErabiltzaileMota.setModel(new DefaultComboBoxModel(new String[] { "Bezeroa", "Administratzailea" }));
 		cboErabiltzaileMota.setBounds(210, 350, 433, 33);
 		cboErabiltzaileMota.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 15));
 
+		// Erregistratzeko botoia sortu
 		JButton btnErregistratu = new JButton("Erregistratu");
 		btnErregistratu.setBounds(342, 420, 148, 29);
 		btnErregistratu.setForeground(SystemColor.text);
 		btnErregistratu.setFont(new Font("Segoe UI Black", Font.PLAIN, 15));
 		btnErregistratu.setBackground(SystemColor.desktop);
 
+		// Logeatzeko botoia sortu
 		JButton btnLogin = new JButton("Login");
 		btnLogin.setBounds(342, 460, 148, 29);
 		btnLogin.setForeground(SystemColor.text);

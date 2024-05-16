@@ -26,10 +26,13 @@ public class HizkuntzaDao {
 				hizkuntzaSartu = new Hizkuntza(rs.getString("IdHizkuntza"), rs.getString("Deskribapena"));
 				hizkuntzak.add(hizkuntzaSartu);
 			}
+			konexioa.close();
+			return hizkuntzak;
 		} catch (SQLException e) {
 			e.getMessage();
+			return null;
 		}
-		return hizkuntzak;
+		
 	}
 	
 }
