@@ -21,20 +21,9 @@ public class Estadistika {
 	 * @param entzunda Entzundako zenbakia.
 	 */
 	public Estadistika(String s1, String s2, int entzunda) {
-		super();
 		this.s1 = s1;
 		this.s2 = s2;
 		this.entzunda = entzunda;
-	}
-	
-	/**
-	 * Hash kodea itzultzen du.
-	 * 
-	 * @return Hash kodea.
-	 */
-	@Override
-	public int hashCode() {
-		return Objects.hash(entzunda, s1, s2);
 	}
 	
 	/**

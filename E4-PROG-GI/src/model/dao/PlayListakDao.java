@@ -7,6 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
+
+import model.AbestiGuztokoa;
 import model.Abestia;
 import model.Audio;
 import model.PlayListak;
@@ -22,7 +25,9 @@ public class PlayListakDao {
 	 */
 	public static ArrayList<PlayListak> getPlaylist() {
 		ArrayList<PlayListak> playlistList = new ArrayList<PlayListak>();
-		PlayListak playLista;
+		Date date = new Date();
+		PlayListak playLista = new PlayListak(0, "Guztokoak", date);
+		playlistList.add(playLista);
 		int id = SesioAldagaiak.logErabiltzailea.getIdErabiltzailea();
 		try {
 			Connection konexioa = Kone.konektatu();

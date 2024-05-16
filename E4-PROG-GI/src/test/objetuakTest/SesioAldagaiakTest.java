@@ -19,11 +19,22 @@ public class SesioAldagaiakTest {
         SesioAldagaiak.logErabiltzailea = new Erabiltzailea();
         assertNotNull(SesioAldagaiak.logErabiltzailea);
     }
-
+    
     @Test
-    public void testGetJb() {
-        SesioAldagaiak.jb = new JButton();
-        assertNotNull(SesioAldagaiak.jb);
+    public void testGetDoSkip() {
+        SesioAldagaiak.doSkip = true;
+        assertTrue(SesioAldagaiak.doSkip);
     }
-
+    
+    @Test
+    public void testGetIragarkiaAtera() {
+        SesioAldagaiak.iragarkiaAtera = true;
+        assertTrue(SesioAldagaiak.iragarkiaAtera);
+    }
+    
+    @Test
+    public void testGetErreprodukzioKop() {
+        SesioAldagaiak.erreprodukzioKop = 1;
+        assertEquals(1, SesioAldagaiak.erreprodukzioKop);
+    }
 }
