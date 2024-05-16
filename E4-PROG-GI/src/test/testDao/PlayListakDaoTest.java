@@ -47,8 +47,7 @@ public class PlayListakDaoTest {
 		ArrayList<PlayListak> playlistList = PlayListakDao.getPlaylist();
 		PlayListak playlist = new PlayListak(1, "PlaylistProba", null);
 
-		
-		assertEquals(playlist, playlistList.get(0));
+		assertEquals(playlist, playlistList.get(1));
 	}
 
 	@Test

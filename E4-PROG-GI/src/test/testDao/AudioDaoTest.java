@@ -33,7 +33,6 @@ public class AudioDaoTest {
 		playlistTest.setIdPlayList(1);
 
 		ArrayList<Audio> audioakTest = AudioDao.getAbestiakByPlayList(playlistTest);
-		System.out.println(audioakTest);
 		assertEquals(audioTest, audioakTest.get(0));
 	}
 

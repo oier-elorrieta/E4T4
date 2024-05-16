@@ -1,4 +1,5 @@
 package test.testDao;
+
 import static org.junit.Assert.*;
 
 import java.sql.Blob;
@@ -24,15 +25,14 @@ import model.dao.AbestiaDao;
 import model.sql.Kone;
 
 public class AbestiaDaoTest {
-	
-    @Test
-    public void getAbestiakByAlbumTest() {
-    	Album albumTest = new Album(1, "AlbumTest");
-    	Time time = new Time(0, 4, 8);
-    	Abestia abestiaTest = new Abestia(1, "Phoenix", time, null, false);
-    	ArrayList<Audio> abestiakTest = AbestiaDao.getAbestiakByAlbum(albumTest);
 
-    	assertEquals(abestiaTest, abestiakTest.get(0));
-    }
+	@Test
+	public void getAbestiakByAlbumTest() {
+		Album albumTest = new Album(1, "AlbumTest");
+		Time time = new Time(0, 4, 8);
+		Abestia abestiaTest = new Abestia(1, "Phoenix", time, null, false);
+		ArrayList<Audio> abestiakTest = AbestiaDao.getAbestiakByAlbum(albumTest);
+		assertEquals(abestiaTest, abestiakTest.get(0));
+	}
 
 }

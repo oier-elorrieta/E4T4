@@ -19,7 +19,6 @@ public class IragarkiaDaoTest {
 	@Test
 	public void getIragarkiakTest() throws SQLException {
 		ArrayList<Iragarkia> iragarkiakTest = IragarkiaDao.getIragarkiak();
-		System.out.println(iragarkiakTest.get(0));
 		Iragarkia iragarkiaTest = new Iragarkia(35, "Nocilla", null);
 		assertEquals(iragarkiaTest, iragarkiakTest.get(0));
 	}

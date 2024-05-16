@@ -22,7 +22,6 @@ public class PodcasterraDaoTest {
 		int zenbatPodcaster = 0;
 				
 		ArrayList<Podcasterra> podcasterrakTest = PodcasterraDao.getPodcasterEntzunaldiak();
-		System.out.println(podcasterrakTest.get(0));
 		
 		Podcasterra podcasterTest = new Podcasterra("Jordi Wild", null,0);
 		
