@@ -91,7 +91,12 @@ public class MusikaKudeatu extends KudeatuPlantilla {
 						JOptionPane.PLAIN_MESSAGE);
 
 				if (opcion == JOptionPane.OK_OPTION) {
-
+					
+					if (irudia.getText().equals("")|| izena.getText().equals("") || desk.getText().equals("")) {
+						JOptionPane.showMessageDialog(null, "Bete datu guztiak", 
+                                "Error", 
+                                JOptionPane.ERROR_MESSAGE);
+					}
 					String insertatzekoIrudia = ImportExportMetodoak.inportatuIrudia(irudia.getText());
 					Musikaria m = new Musikaria(izena.getText(), desk.getText(), insertatzekoIrudia,
 							(String) cboEzaugarria.getSelectedItem());
