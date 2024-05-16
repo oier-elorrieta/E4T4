@@ -117,7 +117,7 @@ public class MusikaKudeatu extends KudeatuPlantilla {
 			}
 		});
 
-		///////////////////////////////////////////////////////////////////////////
+		
 
 		super.btnDatuakAldatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
