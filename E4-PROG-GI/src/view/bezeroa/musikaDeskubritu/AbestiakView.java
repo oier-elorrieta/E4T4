@@ -84,10 +84,10 @@ public class AbestiakView extends JFrame {
 
 		// Albumaren deskripzioa atera
 		JTextPane albumDeskripzioa = new JTextPane();
+		albumDeskripzioa.setEditable(false);
 		JScrollPane scrollPane_1 = new JScrollPane(albumDeskripzioa);
 		albumDeskripzioa.setText(album.toString());
 		scrollPane_1.setBounds(373, 378, 469, 166);
-		albumDeskripzioa.setEnabled(false);
 
 		// Erabiltzailearen datuak aldatzeko botoia
 		JButton btnErabiltzaile = ViewMetodoak.btnErabiltzaileaSortu();
