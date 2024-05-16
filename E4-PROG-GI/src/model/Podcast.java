@@ -20,5 +20,4 @@ public class Podcast extends Audio {
 	public Podcast(int IdAudio, String izena, Time iraupena, Blob irudia) {
 		super(IdAudio, izena, iraupena, irudia);
 	}
-
 }

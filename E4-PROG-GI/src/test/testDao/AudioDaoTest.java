@@ -25,20 +25,16 @@ public class AudioDaoTest {
 
 	@Test
 	public void getAbestiakByPlayListTest() throws SQLException {
+		
+		Time time = new Time(0, 4, 8);    	
+		Abestia audioTest = new Abestia(1, "Phoenix", time, null, false);
+		
 		PlayListak playlistTest = new PlayListak();
 		playlistTest.setIdPlayList(1);
-		int zenbatAbestiPlaylisteanTest = 0;
-
-		Connection konexioa = Kone.konektatu();
-		Statement stm = konexioa.createStatement();
-		String kontsulta = "SELECT count(*) as zbk FROM PlaylistAbestiak pla INNER JOIN Audio au on pla.IdAudio = au.IdAudio where IdList = 1";
-		ResultSet rs = stm.executeQuery(kontsulta);
-		rs.next();
-		zenbatAbestiPlaylisteanTest = rs.getInt("zbk");
-		konexioa.close();
 
 		ArrayList<Audio> audioakTest = AudioDao.getAbestiakByPlayList(playlistTest);
-		assertEquals(zenbatAbestiPlaylisteanTest, audioakTest.size());
+		System.out.println(audioakTest);
+		assertEquals(audioTest, audioakTest.get(0));
 	}
 
 	@Test

@@ -8,8 +8,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.junit.Test;
+
+import com.mysql.cj.xdevapi.DatabaseObjectDescription;
 
 import model.Album;
 import model.Audio;
@@ -23,24 +26,19 @@ public class AlbumDaoTest {
 
     @Test
     public void getAlbumakByMusikariTest() {
-    	ArrayList<Album> albumak = null;
+    	
         Musikaria musikariTest = new Musikaria(1, "MusikariaTest");
-        int zenbatAlbumTest = 0;
         
-        try {
-			Connection konexioa = Kone.konektatu();
-			Statement stm = konexioa.createStatement();
-			String kontsulta = "SELECT count(*) as zbk FROM Album where IdArtista = 1";
-			ResultSet rs = stm.executeQuery(kontsulta);
-			rs.next();
-			zenbatAlbumTest = rs.getInt("zbk");
-			konexioa.close();
-		} catch (SQLException e) {
-			e.getMessage();
-		}
-        albumak = AlbumDao.getAlbumakByMusikari(musikariTest);
+        Date date = new Date();
+        date.setYear(2011);
+        date.setMonth(8);
+        date.setDate(11);
         
-        assertEquals(zenbatAlbumTest, albumak.size());
+        Album album = new Album(1, "BS - Singles","Rock", null, date);
+        
+        ArrayList<Album> albumak = AlbumDao.getAlbumakByMusikari(musikariTest);
+ 
+        assertEquals(albumak.get(0),album);
     }
     
     @Test

@@ -19,17 +19,9 @@ public class IragarkiaDaoTest {
 	@Test
 	public void getIragarkiakTest() throws SQLException {
 		ArrayList<Iragarkia> iragarkiakTest = IragarkiaDao.getIragarkiak();
-		int zenbatIragarkiTest;
-		
-		Connection konexioa = Kone.konektatu();
-		Statement stm = konexioa.createStatement();
-		String kontsulta = "select count(*) as zbk from Audio where mota = 'iragarkia'";
-		ResultSet rs = stm.executeQuery(kontsulta);
-		rs.next();
-		zenbatIragarkiTest = rs.getInt("zbk");
-		konexioa.close();
-		
-		assertEquals(zenbatIragarkiTest, iragarkiakTest.size());
+		System.out.println(iragarkiakTest.get(0));
+		Iragarkia iragarkiaTest = new Iragarkia(35, "Nocilla", null);
+		assertEquals(iragarkiaTest, iragarkiakTest.get(0));
 	}
 
 }

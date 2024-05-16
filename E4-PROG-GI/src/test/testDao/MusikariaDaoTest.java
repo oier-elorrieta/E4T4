@@ -28,58 +28,48 @@ public class MusikariaDaoTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		Musikaria musikariTest = new Musikaria("probaEzabatuTest", "deskripzioa", irudia, "taldea");
-		Musikaria musikari1Test = new Musikaria("probaEditatuTest", "deskripzioa", irudia, "taldea");
-		
+		Musikaria musikari1Test = new Musikaria("probaTest", "deskripzioa", irudia, "taldea");
+		Musikaria musikari2Test = new Musikaria("probaEditTest", "deskripzioa", irudia, "taldea");
+
 		Kone.konektatuAdminKomprobatu("admin", "headmin");
 		MusikariaDao.gehituMusikaria(musikariTest);
 		MusikariaDao.gehituMusikaria(musikari1Test);
+		MusikariaDao.gehituMusikaria(musikari2Test);
 	}
 
 	@Test
 	public void getMusikariakEntzunaldiakTest() throws SQLException {
-		int zenbatMusikariTest = 0;
-
-		Connection konexioa = Kone.konektatu();
-		Statement stm = konexioa.createStatement();
-		String kontsulta = "SELECT count(*) as zbk FROM EstatistikakAurkestuMusikariaTotala";
-		ResultSet rs = stm.executeQuery(kontsulta);
-		rs.next();
-		zenbatMusikariTest = rs.getInt("zbk");
-		konexioa.close();
 
 		ArrayList<Musikaria> musikariakTest = MusikariaDao.getMusikariakEntzunaldiak();
+		Musikaria musikariaTest = new Musikaria("Burnout Syndromes", null, 0);
 
-		assertEquals(zenbatMusikariTest, musikariakTest.size());
+		assertEquals(musikariakTest.get(0), musikariaTest);
 	}
 
 	@Test
 	public void getMusikariaTest() throws SQLException {
-		Connection konexioa = Kone.konektatu();
-		Statement stm = konexioa.createStatement();
-		String kontsulta = "SELECT * FROM Musikaria m INNER JOIN Artista a on m.IdArtista = a.IdArtista WHERE IzenArtistikoa= 'probaEditatuTest'";
-		ResultSet rs = stm.executeQuery(kontsulta);
-		rs.next();
-		Musikaria musikariaTestarako = new Musikaria(rs.getInt("a.IdArtista"), rs.getString("a.IzenArtistikoa"));
-		konexioa.close();
+		Musikaria musikariaTest = MusikariaDao.getMusikaria("Burnout Syndromes");
+		Musikaria musikariTest = new Musikaria(1, "Burnout Syndromes",
+				"BURNOUT SINDROMES (バーンアウトシンドロームズ) Osakako japoniar rock talde bat da. 2005eko maiatzaren 4an eratua.",
+				null, "taldea");
 
-		Musikaria musikariaTest = MusikariaDao.getMusikaria("probaEditatuTest");
-		
-		assertEquals(musikariaTestarako.getIdArtista(), musikariaTest.getIdArtista());
-		
+		assertEquals(musikariaTest, musikariTest);
+
 	}
-	
+
 	@Test
 	public void getMusikariaByAudio() throws SQLException {
 		Audio audioTest = new Audio();
 		audioTest.setIdAudio(1);
 
-		Musikaria musikariaTestarako = new Musikaria(1, "Burnout Syndromes");
+		Musikaria musikariaTestarako = new Musikaria("Burnout Syndromes", "BURNOUT SINDROMES (バーンアウトシンドロームズ) Osakako japoniar rock talde bat da. 2005eko maiatzaren 4an eratua.",
+				null);
 
 		Musikaria musikariaTest = MusikariaDao.getMusikariaByAudio(audioTest);
 
-		assertEquals(musikariaTestarako.getIzena(), musikariaTest.getIzena());
+		assertEquals(musikariaTestarako, musikariaTest);
 	}
-	
+
 	@Test
 	public void gehituMusikariaTest() throws SQLException {
 		Kone.konektatuAdminKomprobatu("admin", "headmin");
@@ -87,22 +77,14 @@ public class MusikariaDaoTest {
 		boolean test = MusikariaDao.gehituMusikaria(musikariTest);
 		assertTrue(test);
 	}
-	
+
 	@Test
 	public void getMusikariakTest() throws SQLException {
-		int zenbatMusikariTest = 0;
-		
-		Connection konexioa = Kone.konektatu();
-		Statement stm = konexioa.createStatement();
-		String kontsulta = "SELECT count(*) as zbk FROM Artista JOIN Musikaria using (IdArtista)";
-		ResultSet rs = stm.executeQuery(kontsulta);
-		rs.next();
-		zenbatMusikariTest = rs.getInt("zbk");
-		konexioa.close();
 		
 		ArrayList<Musikaria> musikariak = MusikariaDao.getMusikariak();
-		
-		assertEquals(zenbatMusikariTest, musikariak.size());
+		Musikaria musikariaTestarako = new Musikaria(1, "Burnout Syndromes",
+				"BURNOUT SINDROMES (バーンアウトシンドロームズ) Osakako japoniar rock talde bat da. 2005eko maiatzaren 4an eratua.", null, "taldea");
+		assertEquals(musikariaTestarako, musikariak.get(0));
 	}
 
 	@Test
@@ -111,22 +93,24 @@ public class MusikariaDaoTest {
 		test = MusikariaDao.ezabatuMusikaria("probaEzabatuTest");
 		assertTrue(test);
 	}
-	
+
 	@Test
 	public void aldatuMusikariaTest() throws SQLException {
 		boolean test;
-		
-		Musikaria musikariTest = MusikariaDao.getMusikaria("probaEditatuTest");
+
+		Musikaria musikariTest = MusikariaDao.getMusikaria("probaEditTest");
 		musikariTest.setDeskription("deskripzioAldatuta");
 		test = MusikariaDao.aldatuMusikaria(musikariTest);
-		
+
 		assertTrue(test);
 	}
-	
+
 	@AfterClass
 	public static void setUpAfterClass() throws Exception {
 		MusikariaDao.ezabatuMusikaria("probaGehituTest");
 		MusikariaDao.ezabatuMusikaria("probaEditatuTest");
+		MusikariaDao.ezabatuMusikaria("probaEditTest");
+		
 	}
 
 }

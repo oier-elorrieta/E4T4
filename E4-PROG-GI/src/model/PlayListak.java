@@ -42,7 +42,7 @@ public class PlayListak {
 		if (getClass() != obj.getClass())
 			return false;
 		PlayListak other = (PlayListak) obj;
-		return Objects.equals(izena, other.izena) && Objects.equals(sorreraData, other.sorreraData);
+		return Objects.equals(izena, other.izena);
 	}
 
 	/**
