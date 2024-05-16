@@ -83,7 +83,7 @@ public class PodcastakView extends JFrame {
 		JScrollPane scrollPane_1 = new JScrollPane(txtPodcasterDeskripzioa);
 		txtPodcasterDeskripzioa.setText(podcasterra.getDeskription());
 		scrollPane_1.setBounds(373, 378, 469, 166);
-		txtPodcasterDeskripzioa.setEnabled(false);
+		txtPodcasterDeskripzioa.setEditable(false);
 		
 		// Erabiltzailearen datuak aldatzeko botoia
 		JButton btnErabiltzaile = ViewMetodoak.btnErabiltzaileaSortu();
